@@ -1,4 +1,4 @@
-###  Pic, a Note
+###  Pic, a Note팀
 
 ##  프로젝트 이름의 세 가지 의미
 1. 그림일기랑 글일기 중에 pic/ note
