@@ -1,7 +1,10 @@
+import Login from "./screens/Login";
 
 function App() {
   return (
-    <div></div>
+    <div>
+      <Login />
+    </div>
   );
 }
 
