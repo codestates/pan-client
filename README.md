@@ -1,4 +1,4 @@
-###  Pic, a Note팀
+<img width="793" alt="글씨체" src="https://user-images.githubusercontent.com/56882147/117606707-6785d680-b195-11eb-821d-2be5bea86319.png">
 
 ##  프로젝트 이름의 세 가지 의미
 1. 그림일기랑 글일기 중에 pic/ note
