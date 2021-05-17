@@ -1,5 +1,9 @@
 import Styled from "styled-components";
 
+export const TextAlign = Styled.div`
+    text-align: center;
+`;
+
 export const BlueFont = Styled.text`
     font-size: 24px;
     font-weight: 700;
