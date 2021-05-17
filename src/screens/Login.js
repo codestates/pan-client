@@ -11,6 +11,7 @@ import google_button from "../images/google_button.png";
 import { TextAlign, BlueFont, RedFont } from "../components/auth/FontLayout";
 import BottomBox from "../components/auth/BottomBox";
 import routes from "../routes";
+import { ImageBox } from "../components/auth/ImageBox";
 
 const Container = styled.div`
     position: absolute;
@@ -36,11 +37,16 @@ function Login() {
                         <form>
                             <Input name="email" type="text" placeholder="EMAIL" />
                             <Input name="password" type="password" placeholder="PASSWORD" />
-                            <Button type="submit" value="LOGIN" />
+                            <Button type="submit" value="LOG IN" />
                         </form>
                         <Separator />
-                        <img src={kakao_button} width="79%" />
-                        <img src={google_button} width="82%" />
+                        {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
+                        <ImageBox>
+                            <img src={kakao_button} width="70%" alt="kakao"/>
+                        </ImageBox>
+                        <ImageBox>
+                            <img src={google_button} width="70%" alt="google" />
+                        </ImageBox>
                     </FormBox>
                     <BottomBox cta="Don't have an account?" linkText="Sign Up" link={routes.signUp} />
             </AuthLayout>
