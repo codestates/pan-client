@@ -10,6 +10,7 @@ import AuthLayout from "../components/auth/AuthLayout";
 import { FatLink } from "../components/shared";
 import { BlueFont, RedFont, TextAlign } from "../components/auth/FontLayout";
 
+
 const Container = styled.div`
     position: absolute;
     background: url(${login_bg});
@@ -21,11 +22,13 @@ const Container = styled.div`
 `;
 
 const Subtitle = styled(FatLink)`
-    font-size: 13px;
+    font-size: 12px;
+    color: #666666;
     margin-top: 10px;
     margin-bottom: 0px;
     text-align: center;
 `;
+
 
 function SignUp() {
     return (
@@ -34,14 +37,14 @@ function SignUp() {
                 <PageTitle title="Sign Up" />
                 <FormBox>
                     <TextAlign>
-                        <BlueFont>SIGN IN </BlueFont><RedFont> ACCOUNT</RedFont>
+                        <BlueFont>SIGN UP </BlueFont><RedFont> ACCOUNT</RedFont>
                     </TextAlign>
                     <form>
-                        <Input name="username" type="text" placeholder="USERNAME" />
-                        <Input name="email" type="text" placeholder="EMAIL" />
-                        <Input name="password" type="password" placeholder="PASSWORD" />
-                        <Input name="chkpassword" type="password" placeholder="CHECK PASSWORD" />
-                        <Button type="submit" value="SIGN IN" />
+                        <Input name="username" type="text" placeholder="닉네임을 입력해주세요." />
+                        <Input name="email" type="text" placeholder="이메일을 입력해주세요." />
+                        <Input name="password" type="password" placeholder="비밀번호를 입력해주세요." />
+                        <Input name="chkpassword" type="password" placeholder="다시 한번 입력해주세요." />
+                        <Button type="submit" value="SIGN UP" />
                     </form>
                     {/* 이 subtitle 글귀 맘에 안들면 그냥 빼버려도 됨 */}
                     <Subtitle>

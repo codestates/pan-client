@@ -9,7 +9,12 @@ const SBottomBox = styled(BaseBox)`
     a {
         font-weight: 600;
         margin-left: 10px;
+        color: rgb(61, 141, 171);
     }
+    a:hover {
+        color: rgb(216, 89, 65);
+        }
+    
 `;
 
 function BottomBox({ cta ,link, linkText }) {
