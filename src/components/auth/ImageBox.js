@@ -7,3 +7,7 @@ export const ImageBox = styled.div`
     align-items: center;
     margin: 0px 5px 5px 0px;
 `;
+
+export const SocialBtn = styled.div`
+    margin: 0px 5px 0px 5px;
+`;
