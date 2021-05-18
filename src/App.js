@@ -17,7 +17,7 @@ function App() {
             <Route path={routes.randing} exact>
               <Randing />
             </Route>
-            <Route path={routes.home} >
+            <Route path={routes.main} >
               <Home />
             </Route>
             <Route path={routes.login}>

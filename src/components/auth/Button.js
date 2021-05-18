@@ -5,7 +5,7 @@ const Button = styled.input`
     margin-top: 12px;
     background-color:  #005c99;
     /* background-color: ${props => props.theme.accent}; */
-    border: 1px solid;
+    /* border: 1px solid; */
     border-radius: 10px;
     cursor: pointer;
     color: #ffffff;
@@ -15,9 +15,8 @@ const Button = styled.input`
     width: 80%;
     /* opacity: ${(props) => props.disabled ? "0.2" : "1"} */
     &:hover {
-        transform: scale(1.03);
+        transform: none;
         color: gold;
-        border: none;
     }
 `;
 

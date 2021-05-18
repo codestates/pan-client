@@ -1,6 +1,6 @@
 const routes = {
     randing: "/",
-    home: "/home",
+    main: "/main",
     login: "/login",
     signUp: "/signup"
 

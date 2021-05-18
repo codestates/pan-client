@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { BaseBox } from "../shared";
 
 const SBottomBox = styled(BaseBox)`
-    padding: 0px 0px;
+    padding: 0px 0px 10px 0px;
     text-align: center;
     a {
         font-weight: 600;
