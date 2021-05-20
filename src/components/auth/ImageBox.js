@@ -10,4 +10,8 @@ export const ImageBox = styled.div`
 
 export const SocialBtn = styled.div`
     margin: 0px 5px 0px 5px;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+    }
 `;

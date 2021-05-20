@@ -1,7 +1,7 @@
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from "./routes";
-import Home from "./screens/Home";
+import Main from "./screens/Main";
 import Randing from "./screens/Randing";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
@@ -18,7 +18,7 @@ function App() {
               <Randing />
             </Route>
             <Route path={routes.main} >
-              <Home />
+              <Main />
             </Route>
             <Route path={routes.login}>
               <Login />
@@ -26,7 +26,6 @@ function App() {
             <Route path={routes.signUp}>
               <SignUp />
             </Route>
-
           </Switch>
         </Router>
       </HelmetProvider>
