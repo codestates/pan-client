@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
 import { Link } from "react-router-dom";
+import logo from "../images/logo.png"
 
 function Header ({ main, login }) {
     return (
         <>
           <HeaderBox>
             <HeaderName>
-              <Link to={main}>Pic,a Note</Link>
+              <Link to={main}><img src={logo} width="50%" /></Link>
             </HeaderName>
             <div>
               <SearchBox>
