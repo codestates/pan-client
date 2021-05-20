@@ -5,22 +5,22 @@ import { Link } from "react-router-dom";
 function Header ({ main, login }) {
     return (
         <>
-        <HeaderBox>
-          <HeaderName>
-            <Link to={main}>Pic,a Note</Link>
-          </HeaderName>
-          <div>
-            <SearchBox>
-              <SearchTxt type="text" placeholder="Type to search"/>
-              <SearchBtn href="#">
-                <img src={SearchImg} width="13px" alt="serach"/> 
-              </SearchBtn>
-            </SearchBox>
-            <Login>
-              <Link to={login}>LOGIN</Link>
-            </Login>
-          </div>
-        </HeaderBox>
+          <HeaderBox>
+            <HeaderName>
+              <Link to={main}>Pic,a Note</Link>
+            </HeaderName>
+            <div>
+              <SearchBox>
+                <SearchTxt type="text" placeholder="Type to search"/>
+                <SearchBtn href="#">
+                  <img src={SearchImg} width="13px" alt="serach"/> 
+                </SearchBtn>
+              </SearchBox>
+              <Login>
+                <Link to={login}>LOGIN</Link>
+              </Login>
+            </div>
+          </HeaderBox>
         </>
     )
 }
@@ -30,6 +30,7 @@ const HeaderBox = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 22px;
+  background-color: none;
   border-bottom: 1px solid #7b7872;
   div {
     margin-top: 10px;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function Main() {
     return (
         <>
-        <Header main={routes.randing} login={routes.login}></Header>
+        <Header main={routes.landing} login={routes.login}></Header>
         <MainBody>
           <Phrase>글귀</Phrase>
           <Div1>Top10</Div1>

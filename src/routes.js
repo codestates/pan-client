@@ -1,5 +1,5 @@
 const routes = {
-    randing: "/",
+    landing: "/",
     main: "/main",
     login: "/login",
     signUp: "/signup"
