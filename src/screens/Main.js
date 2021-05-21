@@ -2,6 +2,8 @@ import Header from '../components/Header'
 import routes from "../routes";
 import styled from 'styled-components';
 import ToggleButton from './ToggleButton';
+import Top10 from '../components/MainPages/Top10';
+import PublicNote from '../components/MainPages/PublicNote';
 
 function Main() {
     return (
@@ -13,8 +15,15 @@ function Main() {
               <Phrase style={{ color: "#CCDEE2", paddingLeft: "3rem" }}>영원한 추억으로 기록하세요.</Phrase>
               <Phrase style={{ color: "#75A5A9", paddingLeft: "4rem" }}>일상을 발행하다. <span style={{ color: "#3D8DAB", fontWeight: 900}}>Pic, a note</span></Phrase>
             </PhraseGroup>
-            <Div1>Top10</Div1>
-            <Div2>공개된 개인/그룹 일기</Div2>
+            <Div1>
+              <Top10 />
+            </Div1>
+            <Div2>
+              <Div3>
+                <MainLabel>공유된 개인일기</MainLabel><MainLabel>공유된 교환일기</MainLabel>
+              </Div3>
+              <PublicNote />
+            </Div2>
           </MainBody>
           <ToggleButton />
         </>
@@ -23,8 +32,8 @@ function Main() {
 
 
 const MainBody = styled.body`
-  border: 2px solid black;
-  height: 190vh;
+  /* border: 2px solid black; */
+  height: 100%;
 `
 
 const PhraseGroup = styled.div`
@@ -44,18 +53,27 @@ const Phrase = styled.div`
 `;
 
 const Div1 = styled.div`
-  border: 1px solid red;
-  height: 80vh;
+  /* border: 1px solid red; */
+  height: 40vh;
 `;
 
 const Div2 = styled.div`
-  border: 1px solid blue;
-  height: 80vh;
+  /* border: 1px solid blue; */
+  height: 35vh;
 `;
 
-// const Footer = styled.div`
-//   border: 2px solid orange;
-//   height: 20vh;
-// `
+const Div3 = styled.div`
+  display: flex;
+`;
+
+const MainLabel = styled.h3`
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0 2rem 1.8rem;
+  padding-bottom: 8px;
+  width: fit-content;
+  border-bottom: 4px solid #343a40;
+`;
 
 export default Main;
