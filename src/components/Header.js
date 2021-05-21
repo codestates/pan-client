@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png"
+import logo from "../images/logo_second.png"
 
 function Header ({ main, login }) {
     return (
         <>
           <HeaderBox>
             <HeaderName>
-              <Link to={main}><img src={logo} width="50%" /></Link>
+              <Link to={main}><img src={logo} width="30%" /></Link>
             </HeaderName>
             <div>
               <SearchBox>
@@ -58,14 +58,14 @@ const Login = styled.span`
     position: absolute;
     display: flex;
     top: 16px;
-    right: 80px;
+    right: 90px;
     height: 30px;
     padding: 5px;
     border-radius: 50px;
     transition: .5s;
     /* border: 1px solid rgb(61, 141, 171); */
     &:hover {
-      box-shadow:  0 0 .5px 1px #3D8DAB;
+      box-shadow:  0 0 .5px 2px #3D8DAB;
     }
     &:hover > input {
       padding: 0 6px;
