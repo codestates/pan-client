@@ -1,17 +1,18 @@
 import Header from '../components/Header'
 import routes from "../routes";
 import styled from 'styled-components';
+import ToggleButton from './ToggleButton';
 
 function Main() {
     return (
         <>
-        <Header main={routes.landing} login={routes.login}></Header>
-        <MainBody>
-          <Phrase>글귀</Phrase>
-          <Div1>Top10</Div1>
-          <Div2>공개된 개인/그룹 일기</Div2>
-        </MainBody>
-        <Footer>footer</Footer>
+          <Header main={routes.landing} login={routes.login}></Header>
+          <MainBody>
+            <Phrase>글귀</Phrase>
+            <Div1>Top10</Div1>
+            <Div2>공개된 개인/그룹 일기</Div2>
+          </MainBody>
+          <ToggleButton />
         </>
     )
 }
@@ -37,10 +38,9 @@ const Div2 = styled.div`
   height: 80vh;
 `
 
-const Footer = styled.div`
-  border: 2px solid orange;
-  height: 20vh;
-`
-
+// const Footer = styled.div`
+//   border: 2px solid orange;
+//   height: 20vh;
+// `
 
 export default Main;

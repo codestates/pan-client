@@ -42,8 +42,8 @@ function Login() {
                         <Separator />
                         {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                         <ImageBox>
-                            <SocialBtn><img src={kakao_button} width="60%" alt="kakao"/></SocialBtn>
-                            <SocialBtn><img src={google_button} width="60%" alt="google" /></SocialBtn>
+                            <SocialBtn><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
+                            <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                         </ImageBox>
                     </FormBox>
                     <BottomBox cta="Don't You want to Log In?" linkText="Main" link={routes.main} />

@@ -3,13 +3,14 @@ import routes from "../routes";
 import styled from 'styled-components';
 import bg_image from "../images/background.png";
 import bg_red from "../images/bgcolors/red.png"
+import PageTitle from '../components/PageTitle';
 
 function Landing () {
     return (
 
       <LandingHtml>
+        <PageTitle title="HOME" />
         <Header main={routes.main} login={routes.login}></Header>
-        
         <LandingBody>
             <Introduction>
               <BgColorGreen>
