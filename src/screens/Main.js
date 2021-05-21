@@ -19,7 +19,7 @@ function Main() {
 
 
 const MainBody = styled.body`
-  border: 1px solid black;
+  border: 2px solid black;
   height: 190vh;
 `
 

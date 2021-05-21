@@ -57,7 +57,7 @@ export const Navigation = styled.div`
     justify-content: center;
     align-items: center;
     visibility: none;
-    right: calc(100% - 98%);
+    right: calc(100% - 98.2%);
     bottom: 9%;
     width: 48px;
     height: 48px;
