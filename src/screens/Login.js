@@ -8,7 +8,7 @@ import Separator from "../components/auth/Separator";
 import kakao_button from "../images/kakao_button.png";
 import AuthLayout from "../components/auth/AuthLayout";
 import google_button from "../images/google_button.png";
-import { TextAlign, BlueFont, RedFont } from "../components/auth/FontLayout";
+import { TextAlign, BlueGreen, CedarChest } from "../components/auth/FontLayout";
 import BottomBox from "../components/auth/BottomBox";
 import routes from "../routes";
 import { ImageBox, SocialBtn } from "../components/auth/ImageBox";
@@ -32,7 +32,7 @@ function Login() {
                 <PageTitle title="Log In" />
                     <FormBox>
                         <TextAlign>
-                            <BlueFont>LOGIN </BlueFont><RedFont> ACCOUNT</RedFont>
+                            <BlueGreen>LOGIN </BlueGreen><CedarChest> ACCOUNT</CedarChest>
                         </TextAlign>
                         <form>
                             <Input name="email" type="text" placeholder="EMAIL" />

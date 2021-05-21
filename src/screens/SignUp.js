@@ -8,7 +8,7 @@ import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import AuthLayout from "../components/auth/AuthLayout";
 import { FatLink } from "../components/shared";
-import { BlueFont, RedFont, TextAlign } from "../components/auth/FontLayout";
+import { BlueGreen, CedarChest, TextAlign } from "../components/auth/FontLayout";
 
 
 const Container = styled.div`
@@ -37,7 +37,7 @@ function SignUp() {
                 <PageTitle title="Sign Up" />
                 <FormBox>
                     <TextAlign>
-                        <BlueFont>SIGN UP </BlueFont><RedFont> ACCOUNT</RedFont>
+                        <BlueGreen>SIGN UP </BlueGreen><CedarChest> ACCOUNT</CedarChest>
                     </TextAlign>
                     <form>
                         <Input name="username" type="text" placeholder="닉네임을 입력해주세요." />

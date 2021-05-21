@@ -7,61 +7,65 @@ import bg_red from "../images/bgcolors/red.png"
 function Landing () {
     return (
       <>
-        <Header main={routes.main} login={routes.login}></Header>
-        
-        <LandingBody>
-            <Introduction>
-              <BgColorBlue>
-                <Gif left="8%" right="none">gif형식의 파일을 넣어주세요</Gif>
-                <Text left="none" right="10%">
-                  <h2>소개글 1</h2> 
+        <MainBG>
+          <Header main={routes.main} login={routes.login}></Header>
+          <LandingBody>
+              <Introduction>
+                <BgColorBlue>
+                  <Gif left="8%" right="none">gif형식의 파일을 넣어주세요</Gif>
+                  <Text left="none" right="10%">
+                    <h2>소개글 1</h2> 
+                    <p>                 
+                      동해물과 백두산이 마르고 닳도록 <br/>
+                      하느님이 보우하사 우리 나라 만세  <br/>
+                      무궁화 삼천리 화려 강산 대한 사람  <br/>
+                      대한으로 길이 보존하세.  <br/>
+                    </p>
+                  </Text>
+                </BgColorBlue>
+              </Introduction>
+              <Introduction>
+                <BgColorRed>
+                <Gif left="none" right="8%">gif형식의 파일을 넣어주세요</Gif>
+                <Text left="10%" right="noen">
+                  <h2>소개글 2</h2> 
                   <p>                 
                     동해물과 백두산이 마르고 닳도록 <br/>
                     하느님이 보우하사 우리 나라 만세  <br/>
                     무궁화 삼천리 화려 강산 대한 사람  <br/>
                     대한으로 길이 보존하세.  <br/>
-                  </p>
+                  </p>   
                 </Text>
-              </BgColorBlue>
-            </Introduction>
-            <Introduction>
-              <BgColorRed>
-              <Gif left="none" right="8%">gif형식의 파일을 넣어주세요</Gif>
-              <Text left="10%" right="noen">
-                <h2>소개글 2</h2> 
-                <p>                 
-                  동해물과 백두산이 마르고 닳도록 <br/>
-                  하느님이 보우하사 우리 나라 만세  <br/>
-                  무궁화 삼천리 화려 강산 대한 사람  <br/>
-                  대한으로 길이 보존하세.  <br/>
-                </p>   
-              </Text>
-              </BgColorRed>
-            </Introduction>
-            <Introduction>
-              <Gif left="8%" right="none">gif형식의 파일을 넣어주세요</Gif> 
-              <Text left="none" right="10%">
-                <h2>소개글 3</h2> 
-                <p>                 
-                  동해물과 백두산이 마르고 닳도록 <br/>
-                  하느님이 보우하사 우리 나라 만세  <br/>
-                  무궁화 삼천리 화려 강산 대한 사람  <br/>
-                  대한으로 길이 보존하세.  <br/>
-                </p>   
-              </Text>
-            </Introduction>
-        </LandingBody>
-        <HeaderFooter>footer</HeaderFooter>    
+                </BgColorRed>
+              </Introduction>
+              <Introduction>
+                <Gif left="8%" right="none">gif형식의 파일을 넣어주세요</Gif> 
+                <Text left="none" right="10%">
+                  <h2>소개글 3</h2> 
+                  <p>                 
+                    동해물과 백두산이 마르고 닳도록 <br/>
+                    하느님이 보우하사 우리 나라 만세  <br/>
+                    무궁화 삼천리 화려 강산 대한 사람  <br/>
+                    대한으로 길이 보존하세.  <br/>
+                  </p>   
+                </Text>
+              </Introduction>
+          </LandingBody>
+          <HeaderFooter>footer</HeaderFooter>
+        </MainBG>
       </>
     )
 }
+
+const MainBG = styled.html`
+  background-image: url(${bg_image});
+`;
 
 const LandingBody = styled.body`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(${bg_image});
   height: 270vh;
 `
 
