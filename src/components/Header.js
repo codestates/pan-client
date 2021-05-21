@@ -32,7 +32,7 @@ const HeaderBox = styled.header`
   justify-content: space-between;
   padding: 22px;
   background-color: none;
-  border-bottom: 1px solid #7b7872;
+  /* border-bottom: 1px solid #7b7872; */
   div {
     margin-top: 10px;
   } 
@@ -47,20 +47,25 @@ const HeaderName = styled.span`
 const Login = styled.span`
   margin-right: 10%;
   font-weight: bold;
+  font-size: large;
   cursor: pointer;
+  color: #3D8DAB;
+  
+  
 `
 
   const SearchBox = styled.div`
-    display: flex;
-    padding: 5px;
     position: absolute;
-    top: 13px;
-    right: 70px;
+    display: flex;
+    top: 16px;
+    right: 80px;
     height: 30px;
+    padding: 5px;
     border-radius: 50px;
     transition: .5s;
+    /* border: 1px solid rgb(61, 141, 171); */
     &:hover {
-      box-shadow:  0 0 .5px 1px black;
+      box-shadow:  0 0 .5px 1px #3D8DAB;
     }
     &:hover > input {
       padding: 0 6px;
