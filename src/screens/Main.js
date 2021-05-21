@@ -12,8 +12,8 @@ function Main() {
           <MainBody>
             <PhraseGroup>
               <Phrase>순간의 기억을 정리하고</Phrase>
-              <Phrase style={{ color: "#CCDEE2", paddingLeft: "3rem" }}>영원한 추억으로 기록하세요.</Phrase>
-              <Phrase style={{ color: "#75A5A9", paddingLeft: "4rem" }}>일상을 발행하다. <span style={{ color: "#3D8DAB", fontWeight: 900}}>Pic, a note</span></Phrase>
+              <Phrase style={{ color: "#CCDEE2" }}>영원한 추억으로 기록하세요.</Phrase>
+              <Phrase style={{ color: "#75A5A9" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
             </PhraseGroup>
             <Div1>
               <Top10 />
@@ -47,8 +47,8 @@ const Phrase = styled.div`
   margin-bottom: 15px;
   font-size: 2rem;
   /* font-family: "Noto Serif KR", serif; */
-  font-family: 'CookieRun-Regular';
-  font-style: normal;
+  font-family: 'MapoGoldenPier';
+  font-weight: bolder;
   color: #E3DFD4;
 `;
 
