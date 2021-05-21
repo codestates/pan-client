@@ -53,7 +53,7 @@ export const Navigation = styled.div`
     z-index: 5;
     position: fixed;
     display: flex;
-    flex-direction: column;
+    flex-direction: flex;
     justify-content: center;
     align-items: center;
     visibility: none;
