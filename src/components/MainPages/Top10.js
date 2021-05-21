@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import cardimg from "../../images/new_york.jpg"
+import dubai from "../../images/dubai.jpg";
+import newyork from "../../images/new_york.jpg";
+import toronto from "../../images/toronto.jpg";
+import seoul from "../../images/seoul.jpg";
+import beijing from "../../images/beijing.jpg";
 
 function Top10() {
     return (
@@ -17,14 +21,66 @@ function Top10() {
             </HeadCard>
             <CardList>
                 <CardWrap>
-                    <CardImg src={cardimg}/>
+                    <CardImg src={dubai}/>
                     <Link>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
-                            <h2>Weather</h2>
-                            <h2>Feeling</h2>
-                            <h2>Date</h2>
+                            <h3>Weather</h3>
+                            <h3>Feeling</h3>
+                            <h3>Date</h3>
+                        </CardContent>
+                        <CardOverlay />
+                    </Link>
+                </CardWrap>
+                <CardWrap>
+                    <CardImg src={newyork}/>
+                    <Link>
+                        <CardContent>
+                            <h2>Title</h2>
+                            <h2>Contents</h2>
+                            <h3>Weather</h3>
+                            <h3>Feeling</h3>
+                            <h3>Date</h3>
+                        </CardContent>
+                        <CardOverlay />
+                    </Link>
+                </CardWrap>
+                <CardWrap>
+                    <CardImg src={toronto}/>
+                    <Link>
+                        <CardContent>
+                            <h2>Title</h2>
+                            <h2>Contents</h2>
+                            <h3>Weather</h3>
+                            <h3>Feeling</h3>
+                            <h3>Date</h3>
+                        </CardContent>
+                        <CardOverlay />
+                    </Link>
+                </CardWrap>
+                <CardWrap>
+                    <CardImg src={seoul}/>
+                    <Link>
+                        <CardContent>
+                            <h2>Title</h2>
+                            <h2>Contents</h2>
+                            <h3>Weather</h3>
+                            <h3>Feeling</h3>
+                            <h3>Date</h3>
+                        </CardContent>
+                        <CardOverlay />
+                    </Link>
+                </CardWrap>
+                <CardWrap>
+                    <CardImg src={beijing}/>
+                    <Link>
+                        <CardContent>
+                            <h2>Title</h2>
+                            <h2>Contents</h2>
+                            <h3>Weather</h3>
+                            <h3>Feeling</h3>
+                            <h3>Date</h3>
                         </CardContent>
                         <CardOverlay />
                     </Link>
@@ -46,17 +102,9 @@ const HeadCard = styled.header`
     flex-direction: column;
     flex: 0 0 280px;
     margin: 2rem 1rem 10px;
-    /* background: linear-gradient(
-        0deg,
-        rgba(238, 174, 202, 1) 0%,
-        rgba(148, 187, 233, 1) 100%
-    ); */
-
     border-radius: 10px;
     padding: 2rem;
     height: 400px;
-    /* box-shadow: #adb5bd 1px 1px 8px; */
-
     h2 {
         font-size: 2rem;
         color: rgb(61, 141, 171);
@@ -82,20 +130,19 @@ const CardList = styled.section`
 `;
 
 const CardWrap = styled.article`
-    height: 400px;
-    width: 280px;
+    height: 380px;
+    width: 250px;
     min-width: 250px;
     background-color: none;
     box-shadow: #adb5bd -1px 1px 8px;
     display: flex;
     flex-direction: column;
     transition: all 0.5s;
-    margin: 0 20px 0 0;
+    margin: 0 10px 0 0;
     scroll-snap-align: start;
     clear: both;
     position: relative;
     border-radius: 10px;
-
     &:focus-within ~ .card,
     &:hover ~ .card {
         transform: translateX(130px);
@@ -124,7 +171,7 @@ const CardOverlay = styled.div`
     width: 100%;
     height: 100%;
     background-color: #adb5bd;
-    opacity: 0.7;
+    opacity: 0.5;
     left: 0;
     top: 0;
     z-index: 0;
@@ -160,6 +207,20 @@ const CardContent = styled.section`
         word-break: break-word;
         overflow: hidden;
         line-height: 2.6rem;
+    }
+
+    h3 {
+        color: #343a40;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 10px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+        overflow: hidden;
+        text-shadow: 2px 2px 0 #fff;
     }
 
     p {

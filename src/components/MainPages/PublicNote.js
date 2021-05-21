@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import dubai from "../../images/dubai.jpg";
+import newyork from "../../images/new_york.jpg";
+import toronto from "../../images/toronto.jpg";
+import seoul from "../../images/seoul.jpg";
+import beijing from "../../images/beijing.jpg";
 
 function PublicNote() {
     return (
@@ -12,9 +16,61 @@ function PublicNote() {
                     <ItemContent>
                         <h3>Title</h3>
                         <h3>Contents</h3>
-                        <h3>Weather</h3>
-                        <h3>Feeling</h3>
-                        <h3>Date</h3>
+                        <h4>Weather</h4>
+                        <h4>Feeling</h4>
+                        <h4>Date</h4>
+                    </ItemContent>
+                    <ItemOverlay />
+                </Link>
+            </ListItemBox>
+            <ListItemBox>
+                <ItemImg src={newyork}/>
+                <Link>
+                    <ItemContent>
+                        <h3>Title</h3>
+                        <h3>Contents</h3>
+                        <h4>Weather</h4>
+                        <h4>Feeling</h4>
+                        <h4>Date</h4>
+                    </ItemContent>
+                    <ItemOverlay />
+                </Link>
+            </ListItemBox>
+            <ListItemBox>
+                <ItemImg src={toronto}/>
+                <Link>
+                    <ItemContent>
+                        <h3>Title</h3>
+                        <h3>Contents</h3>
+                        <h4>Weather</h4>
+                        <h4>Feeling</h4>
+                        <h4>Date</h4>
+                    </ItemContent>
+                    <ItemOverlay />
+                </Link>
+            </ListItemBox>
+            <ListItemBox>
+                <ItemImg src={seoul}/>
+                <Link>
+                    <ItemContent>
+                        <h3>Title</h3>
+                        <h3>Contents</h3>
+                        <h4>Weather</h4>
+                        <h4>Feeling</h4>
+                        <h4>Date</h4>
+                    </ItemContent>
+                    <ItemOverlay />
+                </Link>
+            </ListItemBox>
+            <ListItemBox>
+                <ItemImg src={beijing}/>
+                <Link>
+                    <ItemContent>
+                        <h3>Title</h3>
+                        <h3>Contents</h3>
+                        <h4>Weather</h4>
+                        <h4>Feeling</h4>
+                        <h4>Date</h4>
                     </ItemContent>
                     <ItemOverlay />
                 </Link>
@@ -27,14 +83,14 @@ export default PublicNote;
 
 const ListSection = styled.section`
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 10px;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
     margin-top: 1rem;
     margin-left: 1rem;
 `;
 const ListItemBox = styled.div`
-    width: 100%;
-    height: 400px;
+    width: 90%;
+    height: 200px;
     box-shadow: #ced4da 0 1px 4px;
     background-color: none;
     position: relative;
@@ -88,6 +144,20 @@ const ItemContent = styled.article`
     h3 {
         color: #343a40;
         font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0 0 10px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-word;
+        overflow: hidden;
+        text-shadow: 2px 2px 0 #fff;
+    }
+
+    h4 {
+        color: #343a40;
+        font-size: 1rem;
         font-weight: 700;
         margin: 0 0 10px;
         text-overflow: ellipsis;
