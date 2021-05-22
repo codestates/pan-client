@@ -101,19 +101,20 @@ const HeadCard = styled.header`
     justify-content: flex-end;
     flex-direction: column;
     flex: 0 0 280px;
-    margin: 2rem 1rem 10px;
+    margin: 1rem 1rem 10px;
     border-radius: 10px;
     padding: 2rem;
-    height: 400px;
+    height: 16vh;
     h2 {
-        font-size: 2rem;
+        font-size: 2.5vw;
         color: rgb(61, 141, 171);
-        margin: 0 0 1rem;
-        font-weight: 700;
+        margin: 0 0 2rem;
+        font-weight: 900;
     }
 `;
 
 const CardList = styled.section`
+    height: 38vh;
     display: flex;
     justify-content: flex-start;
     padding-top: 2rem;
@@ -130,8 +131,8 @@ const CardList = styled.section`
 `;
 
 const CardWrap = styled.article`
-    height: 380px;
-    width: 250px;
+    height: 100%;
+    width: 20%;
     min-width: 250px;
     background-color: none;
     box-shadow: #adb5bd -1px 1px 8px;

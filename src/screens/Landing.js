@@ -54,8 +54,7 @@ function Landing () {
               </Text>
               </BgColorYellow>
             </Introduction>
-        </LandingBody>
-        <HeaderFooter>footer</HeaderFooter>    
+        </LandingBody> 
       </LandingHtml>
     )
 }
