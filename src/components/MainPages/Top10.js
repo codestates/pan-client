@@ -96,6 +96,8 @@ function Top10() {
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
+    height: 100%;
+    /* border: 1px solid black */
 `;
 
 const HeadCard = styled.header`
@@ -118,15 +120,14 @@ const HeadCard = styled.header`
 `;
 
 const CardList = styled.section`
-
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
-
     padding-top: 2rem;
     padding-left: 2rem;
     overflow-x: scroll;
-
+    /* border: 1px solid black; */
+    height: 100%;
     &::-webkit-scrollbar {
         width: 10px;
         height: 10px;
@@ -138,9 +139,9 @@ const CardList = styled.section`
 `;
 
 const CardWrap = styled.article`
-
+    /* border:1px solid blue; */
     width: 90%;
-    height: 380px;
+    height: 100%;
     box-shadow: #ced4da 0 1px 4px;
 
     background-color: none;
@@ -162,9 +163,11 @@ const CardWrap = styled.article`
 
 const CardImg = styled.img`
     position: relative;
+    /* width: 100%;
+    height: 100%; */
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 8px;
 
     &:hover {
@@ -197,11 +200,12 @@ const CardContent = styled.section`
     padding: 1rem;
     color: #343a40;
 
+
     h2 {
         color: inherit;
         opacity: 0.9;
         font-size: 2rem;
-        font-weight: 700;
+        font-weight: 700px;
         text-shadow: 2px 2px 0 #fff;
         margin: 0;
         margin-bottom: 12px;
