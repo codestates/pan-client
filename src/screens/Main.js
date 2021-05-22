@@ -32,7 +32,7 @@ function Main() {
 
 
 const MainBody = styled.body`
-  /* border: 2px solid black; */
+  border: 2px solid black;
   height: 100%;
 `
 
@@ -53,13 +53,13 @@ const Phrase = styled.div`
 `;
 
 const Div1 = styled.div`
-  /* border: 1px solid red; */
+  border: 1px solid red;
   height: 40vh;
 `;
 
 const Div2 = styled.div`
-  /* border: 1px solid blue; */
-  height: 35vh;
+  border: 1px solid blue;
+  height: 40vh;
 `;
 
 const Div3 = styled.div`
