@@ -6,18 +6,21 @@ import newyork from "../../images/new_york.jpg";
 import toronto from "../../images/toronto.jpg";
 import seoul from "../../images/seoul.jpg";
 import beijing from "../../images/beijing.jpg";
+import Zoom from 'react-reveal/Zoom';
 
 function Top10() {
     return (
         <Wrapper>
             <HeadCard>
-                <h2>
-                    a
-                    <br />
-                    Popular
-                    <br />
-                    Diary
-                </h2>
+                <Zoom delay={2000}>
+                    <h2>
+                        a
+                        <br />
+                        Popular
+                        <br />
+                        Diary
+                    </h2>
+                </Zoom>
             </HeadCard>
             <CardList>
                 <CardWrap>
@@ -105,9 +108,10 @@ const HeadCard = styled.header`
     border-radius: 10px;
     padding: 2rem;
     height: 16vh;
+    text-shadow: 4px 4px 4px lightgray;
     h2 {
-        font-size: 2.5vw;
-        color: rgb(61, 141, 171);
+        font-size: 40px;
+        color: #BB2B2A;
         margin: 0 0 2rem;
         font-weight: 900;
     }
@@ -161,7 +165,7 @@ const CardImg = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
 
     &:hover {
         border-radius: 10px;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ToggleButton from './ToggleButton';
 import Top10 from '../components/MainPages/Top10';
 import PublicNote from '../components/MainPages/PublicNote';
+import Fade from 'react-reveal/Fade';
 
 function Main() {
     return (
@@ -11,9 +12,15 @@ function Main() {
           <Header main={routes.landing} login={routes.login}></Header>
           <MainBody>
             <PhraseGroup>
-              <Phrase>순간의 기억을 정리하고</Phrase>
-              <Phrase style={{ color: "#CCDEE2" }}>영원한 추억으로 기록하세요.</Phrase>
-              <Phrase style={{ color: "#75A5A9" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
+              <Fade top>
+                <Phrase>순간의 기억을 정리하고</Phrase>
+              </Fade>
+              <Fade top delay={700}>
+                <Phrase style={{ color: "#CCDEE2" }}>영원한 추억으로 기록하세요.</Phrase>
+              </Fade>
+              <Fade top delay={1400}>
+                <Phrase style={{ color: "#75A5A9" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
+              </Fade>
             </PhraseGroup>
             <Div1>
               <Top10 />
@@ -32,7 +39,7 @@ function Main() {
 
 
 const MainBody = styled.body`
-  border: 2px solid black;
+  /* border: 2px solid black; */
   height: 100%;
 `
 
@@ -53,12 +60,12 @@ const Phrase = styled.div`
 `;
 
 const Div1 = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 40vh;
 `;
 
 const Div2 = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   height: 40vh;
 `;
 
@@ -67,13 +74,14 @@ const Div3 = styled.div`
 `;
 
 const MainLabel = styled.h3`
-  font-size: 1.8rem;
-  font-weight: 600;
-  font-family: "Noto Sans KR", sans-serif;
+  font-size: 30px;
+  font-family: 'MapoGoldenPier';
+  font-weight: bolder;
+  letter-spacing: -4px;
+  word-spacing: 5px;
   margin: 0 2rem 1.8rem;
   padding-bottom: 8px;
   width: fit-content;
-  border-bottom: 4px solid #343a40;
 `;
 
 export default Main;

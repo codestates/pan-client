@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BlueGreen = styled.div`
+export const BlueGreen = styled.span`
     background-color: rgb(61, 141, 171);
 `;
 
