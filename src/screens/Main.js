@@ -44,8 +44,8 @@ const MainBody = styled.body`
 `
 
 const PhraseGroup = styled.div`
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 50px;
 `;
 
 const Phrase = styled.div`
@@ -62,11 +62,14 @@ const Phrase = styled.div`
 const Div1 = styled.div`
   /* border: 1px solid red; */
   height: 40vh;
+  display: flex;
+  margin-top: 40px;
 `;
 
 const Div2 = styled.div`
   /* border: 1px solid blue; */
   height: 40vh;
+  margin-top: 40px;
 `;
 
 const Div3 = styled.div`
