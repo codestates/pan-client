@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import bg_image from "../images/background.jpg";
 import bg_red from "../images/bgcolors/red.png"
 import PageTitle from '../components/PageTitle';
-import { BlueGreen } from '../components/auth/BgColor';
 
 function Landing () {
     return (

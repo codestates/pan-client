@@ -41,23 +41,23 @@ const Container = styled.div`
     const handleSubmit = async (e) => {
         e.preventDefault();
         await axios({
-          method: 'post',
-          url: 'http://54.180.142.24:8080/login',
-          data: {
-            email,
-            password,
-          },
-          withCredentials: true,
+            method: 'post',
+            url: 'http://54.180.142.24:8080/login',
+            data: {
+                email,
+                password,
+            },
+            withCredentials: true,
         })
-          .then((res) => {
+        .then((res) => {
             console.log('응답', res.data);
             alert('로그인 성공');
-          })
-          .catch((err) => {
+        })
+        .catch((err) => {
             // alert('아이디 비밀번호를 다시 확인해주세요');
             console.error(err);
-          });
-      };
+        });
+    };
 
     
 
