@@ -12,6 +12,9 @@ import { TextAlign, BlueGreen, CedarChest } from "../components/auth/FontLayout"
 import BottomBox from "../components/auth/BottomBox";
 import routes from "../routes";
 import { ImageBox, SocialBtn } from "../components/auth/ImageBox";
+import { useState } from "react";
+import axios from "axios";
+
 
 const Container = styled.div`
     position: absolute;
@@ -24,7 +27,40 @@ const Container = styled.div`
 `;
 
 
-function Login() {
+ function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const handleLogin = (e) => {
+        setEmail(e.target.value);
+    }
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await axios({
+          method: 'post',
+          url: 'http://54.180.142.24:8080/login',
+          data: {
+            email,
+            password,
+          },
+          withCredentials: true,
+        })
+          .then((res) => {
+            console.log('응답', res.data);
+            alert('로그인 성공');
+          })
+          .catch((err) => {
+            // alert('아이디 비밀번호를 다시 확인해주세요');
+            console.error(err);
+          });
+      };
+
+    
+
     return (
         <Container>
             <AuthLayout>
@@ -35,9 +71,9 @@ function Login() {
                             <BlueGreen>LOGIN </BlueGreen><CedarChest> ACCOUNT</CedarChest>
                         </TextAlign>
                         <form>
-                            <Input name="email" type="text" placeholder="EMAIL" />
-                            <Input name="password" type="password" placeholder="PASSWORD" />
-                            <Button type="submit" value="LOG IN" />
+                            <Input name="email" type="text" placeholder="EMAIL" onChange={handleLogin}/>
+                            <Input name="password" type="password" placeholder="PASSWORD" onChange={handlePassword}/>
+                            <Button type="submit" value="LOG IN" onClick={handleSubmit} />
                         </form>
                         <Separator />
                         {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
