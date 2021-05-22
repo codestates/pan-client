@@ -1,9 +1,10 @@
 import Header from '../components/Header';
 import routes from "../routes";
 import styled from 'styled-components';
-import bg_image from "../images/background.png";
+import bg_image from "../images/background.jpg";
 import bg_red from "../images/bgcolors/red.png"
 import PageTitle from '../components/PageTitle';
+import { BlueGreen } from '../components/auth/BgColor';
 
 function Landing () {
     return (
@@ -61,6 +62,8 @@ function Landing () {
 
 const LandingHtml = styled.html`
   background-image: url(${bg_image});
+  justify-content: center;
+  align-items: center;
 `
 
 const LandingBody = styled.body`
@@ -68,16 +71,17 @@ const LandingBody = styled.body`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  background-image: url(${bg_image});
-  height: 240vh;
+  height: 215vh;
 `
 
 const Introduction = styled.div`
+  display: flex;
   position: relative;
+  justify-content: center;
+  align-items: center;
   top: 0%;
   width: 100%;
-  height: 80vh;
+  height: 70vh;
 `
 
 const Gif = styled.div`
@@ -86,7 +90,6 @@ const Gif = styled.div`
   right: ${props => props.right || "10%"};
   width: 40%;
   height: 45vh;
-  border: 1px solid black;
   background-color: white;
 `
 
@@ -122,27 +125,34 @@ const BgColorGreen = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(131,183,153);
-  width: 100%;
+  width: 95%;
   height: 100%;
+  background-color: rgba(61, 141, 171, 0.4);
+  border-radius: 40px;
+  margin-bottom: 20px;
 `;
 
 const BgColorRed = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(${bg_red});
-  width: 100%;
+  background-color: rgba(216, 89, 65, 0.5);
+  width: 95%;
   height: 100%;
+  border-radius: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const BgColorYellow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(228,216,180);
-  width: 100%;
+  background-color: rgba(228, 216, 180, 0.5);
+  width: 95%;
   height: 100%;
+  border-radius: 40px;
+  margin-top: 20px;
 `;
 
 
