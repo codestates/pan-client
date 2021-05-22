@@ -114,9 +114,11 @@ const HeadCard = styled.header`
 `;
 
 const CardList = styled.section`
-    display: flex;
-    justify-content: flex-start;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
     padding-top: 2rem;
+    padding-left: 2rem;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
@@ -130,28 +132,23 @@ const CardList = styled.section`
 `;
 
 const CardWrap = styled.article`
+    width: 90%;
     height: 380px;
-    width: 250px;
-    min-width: 250px;
+    box-shadow: #ced4da 0 1px 4px;
     background-color: none;
-    box-shadow: #adb5bd -1px 1px 8px;
+    position: relative;
+
     display: flex;
     flex-direction: column;
-    transition: all 0.5s;
-    margin: 0 10px 0 0;
-    scroll-snap-align: start;
-    clear: both;
-    position: relative;
-    border-radius: 10px;
+    transition: all 0.4s;
+    border-radius: 8px;
+
     &:focus-within ~ .card,
     &:hover ~ .card {
-        transform: translateX(130px);
+        transform: translateX(200px);
     }
     &:hover {
         transform: translateY(-1rem);
-    }
-    &:not(:first-child) {
-        margin-left: -130px;
     }
 `;
 
