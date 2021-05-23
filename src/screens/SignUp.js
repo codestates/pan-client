@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import routes from "../routes";
 import styled from "styled-components";
-import validate from '../components/utility/Validate';
 import Input from "../components/auth/Input";
 import login_bg from "../images/login_bg.jpg";
 import Button from "../components/auth/Button";
@@ -10,6 +9,7 @@ import PageTitle from "../components/PageTitle";
 import FormBox from "../components/auth/FormBox";
 import BottomBox from "../components/auth/BottomBox";
 import AuthLayout from "../components/auth/AuthLayout";
+import { useHistory } from "react-router-dom";
 import { FatLink } from "../components/shared";
 import { BlueGreen, CedarChest, TextAlign } from "../components/auth/FontLayout";
 
@@ -33,52 +33,43 @@ const Subtitle = styled(FatLink)`
 `;
 
 
-function SignUp(props) {
+export default function SignUp(props) {
 
-    const [values, setValues] = React.useState({
-        username: '',
-        isUserNameValid: false,
-        email: '',
-        isEmailValid: false,
-        password: '',
-        isPasswordValid: false,
-        passwordCorrect: ''
-    });
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        const errors = validate({ [name]: value});
-        setValues({ ...values, ...errors, [name]: value });
-    }
+    const history = useHistory();
 
-    // validate 함수로 입력값을 실시간으로 검사하여 조건에 맞지않으면 해당 state를 거짓으로 변경
-    const isAllVaild = () => {
-        const { isEmailVaild, isNickNameVaild, isPasswordVaild, password, passwordCorrect } = values;
-        return isEmailVaild && isNickNameVaild && isPasswordVaild && password === passwordCorrect;
+    const onUsernameHandler = (e) => { setUsername(e.target.value); }
+    const onEmailHandler = (e) => { setEmail(e.target.value); }
+    const onPasswordHandler = (e) => { setPassword(e.target.value); }
+    const onConfirmPasswordHandler = (e) => { setConfirmPassword(e.target.value); }
+
+    const handleSignUp = () => {
+        if (password !== confirmPassword) {
+            return setErrorMessage('비밀번호가 동일하지 않습니다.');
+        } else {
+            axios
+                .post(
+                    'http://54.180.142.24:8080/signup',
+                    {
+                        username,
+                        email,
+                        password
+                    },
+                    {
+                        'Content-Type': 'application/json',
+                        withCredentials: true,
+                    }
+                )
+                .then((res) => setErrorMessage(res.data.message))
+                .then(() => history.push('/login'))
+                .catch((err) => setErrorMessage(err.response.data.message));
+        }
     };
-
-    //입력된 모든 값이 true인지 확인 후 true or false로 반환
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        const { username, email, password } = values;
-        await axios ({
-            method: 'post',
-            url: 'http://54.180.142.24:8080/signup',
-            data: {
-                username,
-                email,
-                password
-            },
-        })
-        .then ((res) => {
-            alert('회원가입이 완료되었습니다.')
-        })
-        .catch((err) => {
-            alert('이미 가입된 이메일입니다.');
-            console.error(err);
-        })
-    }
 
     return (
         <Container>
@@ -88,13 +79,20 @@ function SignUp(props) {
                     <TextAlign>
                         <BlueGreen>SIGN UP </BlueGreen><CedarChest> ACCOUNT</CedarChest>
                     </TextAlign>
-                    <form onSubmit={handleSubmit}>
-                        <Input name="email" type="text" placeholder="이메일을 입력해주세요." onChange={handleChange} error={!values.isEmailValid && values.email !== ''} helperText={!values.isEmailValid && values.email !== '' && '올바른 이메일을 입력하세요'} value={values.email} />
-                        <Input name="username" type="text" placeholder="닉네임을 입력해주세요." onChange={handleChange} error={!values.isUserNameValid && values.username !== ''} helperText={!values.isUserNameValid && values.username !== '' && '2글자 이상 입력하세요'} value={values.username} />
-                        <Input name="password" type="password" placeholder="비밀번호를 입력해주세요." onChange={handleChange} error={!values.isPasswordValid && values.password !== ''} helperText={!values.isPasswordValid && values.password !== '' && '대소문자와 특수문자를 포함한 8글자 이상 입력하세요'} value={values.password} />
-                        <Input name="passwordCorrect" type="password" placeholder="다시 한번 입력해주세요." error={!(values.password === values.passwordCorrect) && values.passwordCorrect !== ''} helperText={!(values.password === values.passwordCorrect) && values.passwordCorrect !== '' && '동일한 비밀번호를 입력하세요'} value={values.passwordCorrect} />
-                        <Button type="submit" value="SIGN UP" />
+                    <form onSubmit={(e) => e.preventDefault()}>
+                        <Input name="email" type="text" placeholder="이메일을 입력해주세요." value={username} onChange={onUsernameHandler} />
+                        <Input name="username" type="text" placeholder="닉네임을 입력해주세요." value={email} onChange={onEmailHandler}  />
+                        <Input name="password" type="password" placeholder="비밀번호를 입력해주세요." value={password} onChange={onPasswordHandler} />
+                        <Input name="passwordCorrect" type="password" placeholder="다시 한번 입력해주세요." value={confirmPassword} onChange={onConfirmPasswordHandler} />
+                        <Button type="submit" value="SIGN UP" onClick={handleSignUp} />
                     </form>
+                    {
+                        errorMessage ? (
+                            <span className="errorMsg">{errorMessage}</span>
+                        ) : (
+                            <span className="errorMsg" />
+                        )
+                    }
                     {/* 이 subtitle 글귀 맘에 안들면 그냥 빼버려도 됨 */}
                     <Subtitle>
                         <div>&nbsp;</div>
@@ -109,5 +107,3 @@ function SignUp(props) {
         </Container>
     )
 }
-
-export default SignUp;
