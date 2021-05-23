@@ -16,10 +16,10 @@ function App() {
         <UserContextProvider>
           <Router>
             <Switch>
-              <Route path={routes.landing} exact>
+              <Route path={routes.landing}>
                 <Landing />
               </Route>
-              <Route path={routes.main} >
+              <Route path={routes.main} exact>
                 <Main />
               </Route>
               <Route path={routes.login}>
