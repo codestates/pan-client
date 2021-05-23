@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import bg_image from "../images/background.jpg";
 import PageTitle from '../components/PageTitle';
 
-
 function Landing () {
     return (
       <LandingHtml>
