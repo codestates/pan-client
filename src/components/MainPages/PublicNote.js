@@ -137,7 +137,7 @@ const ItemContent = styled.article`
     bottom: 15px;
     display: flex;
     flex-direction: column;
-    font-family: "Noto Serif KR", serif;
+    font-family: 'MapoGoldenPier';
     color: #fff;
     padding: 10px;
 
