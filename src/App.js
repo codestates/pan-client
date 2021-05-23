@@ -9,30 +9,30 @@ import { GlobalStyles } from "./styles";
 import { UserContextProvider }  from "./store/LoginStore";
 
 function App() {
-
   return (
+    <>
       <HelmetProvider>
         <GlobalStyles />
         <UserContextProvider>
-        <Router>
-          <Switch>
-            <Route path={routes.landing} exact>
-              <Landing />
-            </Route>
-            <Route path={routes.main} >
-              <Main />
-            </Route>
-            <Route path={routes.login}>
-              <Login />
-            </Route>
-            <Route path={routes.signUp}>
-              <SignUp />
-            </Route>
-          </Switch>
-
-        </Router>
+          <Router>
+            <Switch>
+              <Route path={routes.landing} exact>
+                <Landing />
+              </Route>
+              <Route path={routes.main} >
+                <Main />
+              </Route>
+              <Route path={routes.login}>
+                <Login />
+              </Route>
+              <Route path={routes.signUp}>
+                <SignUp />
+              </Route>
+            </Switch>
+          </Router>
         </UserContextProvider>
       </HelmetProvider>
+    </>
   );
 }
 
