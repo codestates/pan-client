@@ -2,13 +2,16 @@ import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
 import { Link } from "react-router-dom";
 import logo from "../images/logo_second.png"
+import {useUserContext} from "../store/LoginStore";
 
 function Header ({ main, login }) {
+  const { isLogin } = useUserContext();
+
+
     return (
-        <>
           <HeaderBox>
             <HeaderName>
-              <Link to={main}><img src={logo} width="30%" /></Link>
+              <Link to={main}><img src={logo} alt="" width="30%"/></Link>
             </HeaderName>
             <div>
               <SearchBox>
@@ -16,13 +19,22 @@ function Header ({ main, login }) {
                 <SearchBtn href="#">
                   <img src={SearchImg} width="13px" alt="serach"/> 
                 </SearchBtn>
-              </SearchBox>
-              <Login>
-                <Link to={login}>LOGIN</Link>
-              </Login>
+              </SearchBox>   
+                  {isLogin ? 
+                    (
+                     <Login>
+                        <Link to={main}>LOGOUT</Link>
+                      </Login>
+                    )
+                    :
+                    (
+                      <Login>
+                        <Link to={login}>LOGIN</Link>
+                      </Login>
+                    )
+                  }
             </div>
           </HeaderBox>
-        </>
     )
 }
 

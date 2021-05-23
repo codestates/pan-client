@@ -6,7 +6,6 @@ import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../
 function ToggleButton() {
     return (
         <div>
-            <>
                 <Switch>
                     <input type="checkbox" id="switch" />
                     <label htmlFor="switch">
@@ -29,7 +28,6 @@ function ToggleButton() {
                         </Navigation>
                     </label>
                 </Switch>
-            </>
         </div>
     )
 }
