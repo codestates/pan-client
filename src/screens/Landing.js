@@ -2,12 +2,10 @@ import Header from '../components/Header';
 import routes from "../routes";
 import styled from 'styled-components';
 import bg_image from "../images/background.jpg";
-import bg_red from "../images/bgcolors/red.png"
 import PageTitle from '../components/PageTitle';
 
 function Landing () {
     return (
-
       <LandingHtml>
         <PageTitle title="HOME" />
         <Header main={routes.main} login={routes.login}></Header>
@@ -153,15 +151,6 @@ const BgColorYellow = styled.div`
   border-radius: 40px;
   margin-top: 20px;
 `;
-
-
-const HeaderFooter = styled.footer`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20vh;
-  /* border: 1px solid black */
-`
 
 
 export default Landing;

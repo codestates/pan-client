@@ -14,6 +14,9 @@ import routes from "../routes";
 import { ImageBox, SocialBtn } from "../components/auth/ImageBox";
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import {useUserContext} from "../store/LoginStore";
+
 
 
 const Container = styled.div`
@@ -28,9 +31,11 @@ const Container = styled.div`
 
 
  function Login() {
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+    const { setIsLogin, setToken } = useUserContext();
+
     const handleLogin = (e) => {
         setEmail(e.target.value);
     }
@@ -50,12 +55,17 @@ const Container = styled.div`
             withCredentials: true,
         })
         .then((res) => {
+            if (res.data.message === "로그인 되었습니다.") {
+                setIsLogin(true);
+                setToken(res.data.data.accessToken);
+              }
             console.log('응답', res.data);
-            alert('로그인 성공');
+            return res.data;
         })
+        .then(() => history.push('/main'))
         .catch((err) => {
-            // alert('아이디 비밀번호를 다시 확인해주세요');
-            console.error(err);
+            alert('아이디 비밀번호를 다시 확인해주세요');
+            // console.error(err);
         });
     };
 

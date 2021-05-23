@@ -6,12 +6,14 @@ import Landing from "./screens/Landing";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles";
+import { UserContextProvider }  from "./store/LoginStore";
 
 function App() {
+
   return (
-    <div>
       <HelmetProvider>
         <GlobalStyles />
+        <UserContextProvider>
         <Router>
           <Switch>
             <Route path={routes.landing} exact>
@@ -27,9 +29,10 @@ function App() {
               <SignUp />
             </Route>
           </Switch>
+
         </Router>
+        </UserContextProvider>
       </HelmetProvider>
-    </div>
   );
 }
 

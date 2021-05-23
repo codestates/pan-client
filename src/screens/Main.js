@@ -5,8 +5,13 @@ import ToggleButton from './ToggleButton';
 import Top10 from '../components/MainPages/Top10';
 import PublicNote from '../components/MainPages/PublicNote';
 import Fade from 'react-reveal/Fade';
+import {useUserContext} from "../store/LoginStore";
 
 function Main() {
+  const { isLogin, token } = useUserContext();
+  // 전역 state 확인 
+  console.log(isLogin)
+  console.log(token)
     return (
         <>
           <Header main={routes.landing} login={routes.login}></Header>
