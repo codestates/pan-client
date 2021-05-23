@@ -22,7 +22,7 @@ function Header ({ main, login }) {
               </SearchBox>   
                   {isLogin ? 
                     (
-                     <Login>
+                      <Login>
                         <Link to={main}>LOGOUT</Link>
                       </Login>
                     )
