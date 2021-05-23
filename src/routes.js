@@ -1,6 +1,6 @@
 const routes = {
-    landing: "/",
-    main: "/main",
+    landing: "/about",
+    main: "/",
     login: "/login",
     signUp: "/signup"
 

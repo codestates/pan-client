@@ -59,7 +59,7 @@ export default function Login() {
             console.log('응답', res.data);
             return res.data;
         })
-        .then(() => history.push('/main'))
+        .then(() => history.push('/'))
         .catch((err) => {
             alert('아이디 비밀번호를 다시 확인해주세요');
             // console.error(err);

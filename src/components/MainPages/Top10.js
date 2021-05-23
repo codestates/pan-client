@@ -7,6 +7,7 @@ import toronto from "../../images/toronto.jpg";
 import seoul from "../../images/seoul.jpg";
 import beijing from "../../images/beijing.jpg";
 import Zoom from 'react-reveal/Zoom';
+import routes from "../../routes";
 
 function Top10() {
     return (
@@ -25,7 +26,7 @@ function Top10() {
             <CardList>
                 <CardWrap>
                     <CardImg src={dubai}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -38,7 +39,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={newyork}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -51,7 +52,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={toronto}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -64,7 +65,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={seoul}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -77,7 +78,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={beijing}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
