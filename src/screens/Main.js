@@ -6,15 +6,27 @@ import Top10 from '../components/MainPages/Top10';
 import PublicNote from '../components/MainPages/PublicNote';
 import Fade from 'react-reveal/Fade';
 import {useUserContext} from "../store/LoginStore";
+import React, { useContext, useEffect } from "react";
 
 export default function Main() {
-  const { isLogin, token } = useUserContext();
-  // 전역 state 확인 
-  console.log(isLogin)
-  console.log(token)
+  const { isLogin } = useUserContext();
+
+  const localStoragetokenCheck = localStorage.getItem('CC_Token')
+  const { setIsLogin } = useUserContext();
+
+  useEffect(() => {
+    // 브라우저 API를 이용하여 문서 타이틀을 업데이트합니다.
+    if(localStoragetokenCheck) {
+      setIsLogin(true);
+      console.log('로그인 상태입니다.')
+    } else {
+      console.log('로그아웃 상태입니다.')
+    }
+}, [isLogin]);
+
     return (
       <>
-        <Header main={routes.landing} login={routes.login}></Header>
+        <Header main={routes.main} login={routes.login}></Header>
         <MainBody>
           <PhraseGroup>
             <Fade top>

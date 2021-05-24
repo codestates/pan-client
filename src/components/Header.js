@@ -2,10 +2,11 @@ import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
 import { Link } from "react-router-dom";
 import logo from "../images/logo_second.png"
+import React from "react";
 import {useUserContext} from "../store/LoginStore";
 
 function Header ({ main, login }) {
-  const { isLogin } = useUserContext();
+    const { isLogin, setIsLogin } = useUserContext();
 
 
     return (
@@ -22,8 +23,11 @@ function Header ({ main, login }) {
               </SearchBox>   
                   {isLogin ? 
                     (
-                      <Login>
-                        <Link to={main}>LOGOUT</Link>
+                      <Login onClick={()=> {
+                        localStorage.removeItem('CC_Token');
+                        setIsLogin(false);
+                      }}>
+                        <Link to={main} exact>LOGOUT</Link>
                       </Login>
                     )
                     :
@@ -39,7 +43,7 @@ function Header ({ main, login }) {
 }
 
 
-const HeaderBox = styled.header`
+const HeaderBox = styled.body`
   display: flex;
   justify-content: space-between;
   padding: 22px;

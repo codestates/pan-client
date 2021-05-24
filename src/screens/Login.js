@@ -31,7 +31,7 @@ export default function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { setIsLogin, setIsToken } = useUserContext();
+    const { setIsLogin } = useUserContext();
 
     const HandleEmail = (e) => {
         setEmail(e.target.value);
@@ -52,12 +52,14 @@ export default function Login() {
             withCredentials: true,
         })
         .then((res) => {
-            if (res.data.message === "로그인 되었습니다.") {
+            if (res.data.data.accessToken) {
+                let tokenData = res.data.data.accessToken;
                 setIsLogin(true);
-                setIsToken(res.data.data.accessToken);
-            }
-            console.log('응답', res.data);
-            return res.data;
+                localStorage.setItem('CC_Token', tokenData);
+
+                // let refreshTokenData = res.data.headers['refresh-token'];
+                // localStorage.setItem('RF_Token', refreshTokenData);
+              }
         })
         .then(() => history.push('/'))
         .catch((err) => {
