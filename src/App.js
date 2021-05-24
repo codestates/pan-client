@@ -13,27 +13,25 @@ function App() {
 
   return (
     <>
-      <UserContextProvider>
-        <HelmetProvider>
-          <GlobalStyles />
-          <Router>
-              <Switch>
-                <Route path={routes.landing}>
-                  <Landing />
-                </Route>
-                <Route path={routes.main} exact>
-                  <Main />
-                </Route>
-                <Route path={routes.login}>
-                  <Login />
-                </Route>
-                <Route path={routes.signUp}>
-                  <SignUp />
-                </Route>
-              </Switch>
-          </Router>
-        </HelmetProvider>
-      </UserContextProvider>
+      <HelmetProvider>
+        <GlobalStyles />
+        <Router>
+            <Switch>
+              <Route path={routes.landing}>
+                <Landing />
+              </Route>
+              <Route path={routes.main} exact>
+                <Main />
+              </Route>
+              <Route path={routes.login}>
+                <Login />
+              </Route>
+              <Route path={routes.signUp}>
+                <SignUp />
+              </Route>
+            </Switch>
+        </Router>
+      </HelmetProvider>
     </>
   );
 }
