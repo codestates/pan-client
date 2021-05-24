@@ -31,7 +31,7 @@ export default function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const { setIsLogin, setIsToken } = useUserContext();
+    const { setIsLogin } = useUserContext();
 
     const HandleEmail = (e) => {
         setEmail(e.target.value);
@@ -53,12 +53,13 @@ export default function Login() {
         })
         .then((res) => {
             if (res.data.data.accessToken) {
+                let tokenData = res.data.data.accessToken;
                 setIsLogin(true);
-                setToken(res.data.data.accessToken);
-                localStorage.setItem('user', JSON.stringify(res.data));
+                localStorage.setItem('CC_Token', tokenData);
+
+                // let refreshTokenData = res.data.headers['refresh-token'];
+                // localStorage.setItem('RF_Token', refreshTokenData);
               }
-            console.log('응답', res.data);
-            return res.data;
         })
         .then(() => history.push('/'))
         .catch((err) => {

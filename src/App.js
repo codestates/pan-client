@@ -7,14 +7,16 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles";
 import { UserContextProvider }  from "./store/LoginStore";
+import React from 'react';
 
-function App() {
+function App() { 
+
   return (
     <>
+     <UserContextProvider>
       <HelmetProvider>
         <GlobalStyles />
-        <UserContextProvider>
-          <Router>
+        <Router>
             <Switch>
               <Route path={routes.landing}>
                 <Landing />
@@ -29,9 +31,9 @@ function App() {
                 <SignUp />
               </Route>
             </Switch>
-          </Router>
-        </UserContextProvider>
+        </Router>
       </HelmetProvider>
+      </UserContextProvider>
     </>
   );
 }
