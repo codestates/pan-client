@@ -1,18 +1,25 @@
 import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import logo from "../images/logo_second.png"
-import React from "react";
+import route from "../routes"
+import React, { useEffect } from "react";
 import {useUserContext} from "../store/LoginStore";
+import { useHistory } from "react-router-dom";
 
-function Header ({ main, login }) {
-    const { isLogin, setIsLogin } = useUserContext();
+function Header () {
+    const history = useHistory();
+    const token = localStorage.getItem('CC_Token');
 
+    const handlelogout = () => {
+      localStorage.removeItem('CC_Token');
+      history.push('/');
+    }
 
-    return (
+    return ( 
           <HeaderBox>
             <HeaderName>
-              <Link to={main}><img src={logo} alt="" width="30%"/></Link>
+              <Link to={route.main}><img src={logo} alt="" width="30%"/></Link>
             </HeaderName>
             <Wrapper>
               <SearchBox>
@@ -21,22 +28,20 @@ function Header ({ main, login }) {
                   <img src={SearchImg} width="13px" alt="serach"/> 
                 </SearchBtn>
               </SearchBox>   
-                  {isLogin ? 
+                  {token ? 
                     (
-                      <Login onClick={()=> {
-                        localStorage.removeItem('CC_Token');
-                        setIsLogin(false);
-                      }}>
-                        <Link to={main} exact>LOGOUT</Link>
+                      <Login>
+                        <Link to="#" onClick={handlelogout}>LOGOUT</Link>
                       </Login>
                     )
                     :
                     (
-                      <Login>
-                        <Link to={login}>LOGIN</Link>
+                       <Login>
+                        <Link to={route.login}>LOGIN</Link>
                       </Login>
                     )
                   }
+                    
             </Wrapper>
           </HeaderBox>
     )

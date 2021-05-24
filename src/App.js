@@ -13,7 +13,6 @@ function App() {
 
   return (
     <>
-     <UserContextProvider>
       <HelmetProvider>
         <GlobalStyles />
         <Router>
@@ -33,7 +32,6 @@ function App() {
             </Switch>
         </Router>
       </HelmetProvider>
-      </UserContextProvider>
     </>
   );
 }
