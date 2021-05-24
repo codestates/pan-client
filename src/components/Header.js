@@ -48,7 +48,7 @@ function Header () {
 }
 
 
-const HeaderBox = styled.body`
+const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 22px;
