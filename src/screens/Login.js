@@ -55,9 +55,10 @@ const Container = styled.div`
             withCredentials: true,
         })
         .then((res) => {
-            if (res.data.message === "로그인 되었습니다.") {
+            if (res.data.data.accessToken) {
                 setIsLogin(true);
                 setToken(res.data.data.accessToken);
+                localStorage.setItem('user', JSON.stringify(res.data));
               }
             console.log('응답', res.data);
             return res.data;
@@ -68,8 +69,6 @@ const Container = styled.div`
             // console.error(err);
         });
     };
-
-    
 
     return (
         <Container>
