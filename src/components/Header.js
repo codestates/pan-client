@@ -1,50 +1,52 @@
 import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../images/logo_second.png"
 import route from "../routes"
-import React, { useEffect } from "react";
-import {useUserContext} from "../store/LoginStore";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 function Header () {
-    const history = useHistory();
-    const token = localStorage.getItem('CC_Token');
+  const history = useHistory();
+  const token = localStorage.getItem('CC_Token');
 
-    const handlelogout = () => {
+  const handlelogout = () => {
+    try {
       localStorage.removeItem('CC_Token');
       history.push('/');
+    } catch(err) {
+      console.log(err);
     }
+  }
 
-    return ( 
-          <HeaderBox>
-            <HeaderName>
-              <Link to={route.main}><img src={logo} alt="" width="30%"/></Link>
-            </HeaderName>
-            <Wrapper>
-              <SearchBox>
-                <SearchTxt type="text" placeholder="Type to search"/>
-                <SearchBtn href="#">
-                  <img src={SearchImg} width="13px" alt="serach"/> 
-                </SearchBtn>
-              </SearchBox>   
-                  {token ? 
-                    (
-                      <Login>
-                        <Link to="#" onClick={handlelogout}>LOGOUT</Link>
-                      </Login>
-                    )
-                    :
-                    (
-                       <Login>
-                        <Link to={route.login}>LOGIN</Link>
-                      </Login>
-                    )
-                  }
-                    
-            </Wrapper>
-          </HeaderBox>
-    )
+  return ( 
+    <HeaderBox>
+      <HeaderName>
+        <Link to={route.main}><img src={logo} alt="" width="30%"/></Link>
+      </HeaderName>
+      <Wrapper>
+        <SearchBox>
+          <SearchTxt type="text" placeholder="Type to search"/>
+          <SearchBtn href="#">
+            <img src={SearchImg} width="13px" alt="serach"/> 
+          </SearchBtn>
+        </SearchBox>   
+            {token ? 
+              (
+                <Login>
+                  <Link to="#" onClick={handlelogout}>LOGOUT</Link>
+                </Login>
+              )
+              :
+              (
+                <Login>
+                  <Link to={route.login}>LOGIN</Link>
+                </Login>
+              )
+            }
+      </Wrapper>
+    </HeaderBox>
+  )
 }
 
 

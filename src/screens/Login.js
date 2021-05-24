@@ -13,7 +13,6 @@ import AuthLayout from "../components/auth/AuthLayout";
 import google_button from "../images/google_button.png";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useUserContext } from "../store/LoginStore";
 import { ImageBox, SocialBtn } from "../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../components/auth/FontLayout";
 
@@ -54,10 +53,8 @@ export default function Login() {
             if (res.data.data.accessToken) {
                 let tokenData = res.data.data.accessToken;
                 localStorage.setItem('CC_Token', tokenData);
-                history.push('/')    
-                // let refreshTokenData = res.data.headers['refresh-token'];
-                // localStorage.setItem('RF_Token', refreshTokenData);
-              }
+                history.push('/')
+            }
         })
         .catch((err) => {
             alert('아이디 비밀번호를 다시 확인해주세요');
