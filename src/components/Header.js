@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 function Header () {
   const history = useHistory();
   const token = localStorage.getItem('CC_Token');
-
   const handlelogout = () => {
     try {
       localStorage.removeItem('CC_Token');

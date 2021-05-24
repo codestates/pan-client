@@ -6,28 +6,28 @@ import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../
 function ToggleButton() {
     return (
         <div>
-                <Switch>
-                    <input type="checkbox" id="switch" />
-                    <label htmlFor="switch">
-                        <Hamburger>
-                            <SpanWrapper>
-                                <Span /><Span /><Span />
-                            </SpanWrapper>
-                        </Hamburger>
-                        <Navigation id="mypage">
-                            <VscAccount />
-                            <Paragraph>마이 페이지</Paragraph>
-                        </Navigation>
-                        <Navigation id="groupadd">
-                            <AiOutlineUsergroupAdd />
-                            <Paragraph>그룹일기 작성</Paragraph>
-                        </Navigation>
-                        <Navigation id="privateadd">
-                            <VscEdit />
-                            <Paragraph>개인일기 작성</Paragraph>
-                        </Navigation>
-                    </label>
-                </Switch>
+            <Switch>
+                <input type="checkbox" id="switch" />
+                <label htmlFor="switch">
+                    <Hamburger>
+                        <SpanWrapper>
+                            <Span /><Span /><Span />
+                        </SpanWrapper>
+                    </Hamburger>
+                    <Navigation id="mypage">
+                        <VscAccount />
+                        <Paragraph>마이 페이지</Paragraph>
+                    </Navigation>
+                    <Navigation id="groupadd">
+                        <AiOutlineUsergroupAdd />
+                        <Paragraph>그룹일기 작성</Paragraph>
+                    </Navigation>
+                    <Navigation id="privateadd">
+                        <VscEdit />
+                        <Paragraph>개인일기 작성</Paragraph>
+                    </Navigation>
+                </label>
+            </Switch>
         </div>
     )
 }
