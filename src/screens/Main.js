@@ -5,8 +5,7 @@ import ToggleButton from './ToggleButton';
 import Top10 from '../components/MainPages/Top10';
 import PublicNote from '../components/MainPages/PublicNote';
 import Fade from 'react-reveal/Fade';
-import {useUserContext} from "../store/LoginStore";
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Main() {
 
