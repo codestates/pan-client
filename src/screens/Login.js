@@ -13,7 +13,6 @@ import AuthLayout from "../components/auth/AuthLayout";
 import google_button from "../images/google_button.png";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useUserContext } from "../store/LoginStore";
 import { ImageBox, SocialBtn } from "../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../components/auth/FontLayout";
 

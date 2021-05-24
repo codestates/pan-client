@@ -6,7 +6,6 @@ import Landing from "./screens/Landing";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles";
-import { UserContextProvider }  from "./store/LoginStore";
 import React from 'react';
 
 function App() { 

@@ -4,7 +4,6 @@ import { Link, Route } from "react-router-dom";
 import logo from "../images/logo_second.png"
 import route from "../routes"
 import React, { useEffect } from "react";
-import {useUserContext} from "../store/LoginStore";
 import { useHistory } from "react-router-dom";
 
 function Header () {
@@ -15,6 +14,10 @@ function Header () {
       localStorage.removeItem('CC_Token');
       history.push('/');
     }
+
+    useEffect(()=> {
+      console.log('바껴라')
+    }, token)
 
     return ( 
           <HeaderBox>
@@ -30,8 +33,8 @@ function Header () {
               </SearchBox>   
                   {token ? 
                     (
-                      <Login>
-                        <Link to="#" onClick={handlelogout}>LOGOUT</Link>
+                      <Login onClick={handlelogout}>
+                         LOGOUT
                       </Login>
                     )
                     :
