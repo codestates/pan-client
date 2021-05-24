@@ -7,6 +7,7 @@ import toronto from "../../images/toronto.jpg";
 import seoul from "../../images/seoul.jpg";
 import beijing from "../../images/beijing.jpg";
 import Zoom from 'react-reveal/Zoom';
+import routes from "../../routes";
 
 function Top10() {
     return (
@@ -25,7 +26,7 @@ function Top10() {
             <CardList>
                 <CardWrap>
                     <CardImg src={dubai}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -38,7 +39,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={newyork}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -51,7 +52,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={toronto}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -64,7 +65,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={seoul}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -77,7 +78,7 @@ function Top10() {
                 </CardWrap>
                 <CardWrap>
                     <CardImg src={beijing}/>
-                    <Link>
+                    <Link to={routes.main}>
                         <CardContent>
                             <h2>Title</h2>
                             <h2>Contents</h2>
@@ -190,16 +191,15 @@ const CardOverlay = styled.div`
         opacity: 0.3;
     }
 `;
-const CardContent = styled.section`
+const CardContent = styled.article`
     position: absolute;
     left: 8px;
     bottom: 30px;
     display: flex;
     flex-direction: column;
-    font-family: "Noto Serif KR", serif;
-    padding: 1rem;
+    font-family: 'MapoGoldenPier';
+    padding: 10px;
     color: #343a40;
-
 
     h2 {
         color: inherit;
@@ -207,11 +207,10 @@ const CardContent = styled.section`
         font-size: 2rem;
         font-weight: 700px;
         text-shadow: 2px 2px 0 #fff;
-        margin: 0;
-        margin-bottom: 12px;
+        margin: 0 0 12px;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         word-break: break-word;
         overflow: hidden;

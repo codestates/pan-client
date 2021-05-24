@@ -8,7 +8,7 @@ const Context = createContext()
 //상위 컴포넌트에 UserContextProvider 컴포넌트를 감싸기 위한 설정
 export function UserContextProvider({ children }) {
   //글로벌하게 관리하고 싶은 상태값 지정
-  const [token, setToken] = useState(null)
+  const [isToken, setIsToken] = useState(null)
   const [isLogin, setIsLogin] = useState(false);
   return (
     //변수명.Provider 문법으로 그 범위 안에있는 컴포넌트한테 값을 공유할 수 있음
@@ -17,8 +17,8 @@ export function UserContextProvider({ children }) {
       value={{
         isLogin,
         setIsLogin,
-        token,
-        setToken
+        isToken,
+        setIsToken
       }}
     >
       {children}

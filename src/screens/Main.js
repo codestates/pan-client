@@ -7,43 +7,43 @@ import PublicNote from '../components/MainPages/PublicNote';
 import Fade from 'react-reveal/Fade';
 import {useUserContext} from "../store/LoginStore";
 
-function Main() {
+export default function Main() {
   const { isLogin, token } = useUserContext();
   // 전역 state 확인 
   console.log(isLogin)
   console.log(token)
     return (
-        <>
-          <Header main={routes.landing} login={routes.login}></Header>
-          <MainBody>
-            <PhraseGroup>
-              <Fade top>
-                <Phrase>순간의 기억을 정리하고</Phrase>
-              </Fade>
-              <Fade top delay={700}>
-                <Phrase style={{ color: "#CCDEE2" }}>영원한 추억으로 기록하세요.</Phrase>
-              </Fade>
-              <Fade top delay={1400}>
-                <Phrase style={{ color: "#75A5A9" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
-              </Fade>
-            </PhraseGroup>
-            <Div1>
-              <Top10 />
-            </Div1>
-            <Div2>
-              <Div3>
-                <MainLabel>공유된 개인일기</MainLabel><MainLabel>공유된 교환일기</MainLabel>
-              </Div3>
-              <PublicNote />
-            </Div2>
-          </MainBody>
-          <ToggleButton />
-        </>
+      <>
+        <Header main={routes.landing} login={routes.login}></Header>
+        <MainBody>
+          <PhraseGroup>
+            <Fade top>
+              <Phrase>순간의 기억을 정리하고</Phrase>
+            </Fade>
+            <Fade top delay={700}>
+              <Phrase style={{ color: "#CCDEE2" }}>영원한 추억으로 기록하세요.</Phrase>
+            </Fade>
+            <Fade top delay={1400}>
+              <Phrase style={{ color: "#75A5A9" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
+            </Fade>
+          </PhraseGroup>
+          <Div1>
+            <Top10 />
+          </Div1>
+          <Div2>
+            <Div3>
+              <MainLabel>공유된 개인일기</MainLabel><MainLabel>공유된 교환일기</MainLabel>
+            </Div3>
+            <PublicNote />
+          </Div2>
+        </MainBody>
+        <ToggleButton />
+      </>
     )
 }
 
 
-const MainBody = styled.body`
+const MainBody = styled.div`
   /* border: 2px solid black; */
   height: 100%;
 `
@@ -91,5 +91,3 @@ const MainLabel = styled.h3`
   padding-bottom: 8px;
   width: fit-content;
 `;
-
-export default Main;

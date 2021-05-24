@@ -6,13 +6,14 @@ import newyork from "../../images/new_york.jpg";
 import toronto from "../../images/toronto.jpg";
 import seoul from "../../images/seoul.jpg";
 import beijing from "../../images/beijing.jpg";
+import routes from "../../routes";
 
 function PublicNote() {
     return (
         <ListSection>
             <ListItemBox>
                 <ItemImg src={dubai}/>
-                <Link>
+                <Link to={routes.main}>
                     <ItemContent>
                         <h3>Title</h3>
                         <h3>Contents</h3>
@@ -25,7 +26,7 @@ function PublicNote() {
             </ListItemBox>
             <ListItemBox>
                 <ItemImg src={newyork}/>
-                <Link>
+                <Link to={routes.main}>
                     <ItemContent>
                         <h3>Title</h3>
                         <h3>Contents</h3>
@@ -38,7 +39,7 @@ function PublicNote() {
             </ListItemBox>
             <ListItemBox>
                 <ItemImg src={toronto}/>
-                <Link>
+                <Link to={routes.main}>
                     <ItemContent>
                         <h3>Title</h3>
                         <h3>Contents</h3>
@@ -51,7 +52,7 @@ function PublicNote() {
             </ListItemBox>
             <ListItemBox>
                 <ItemImg src={seoul}/>
-                <Link>
+                <Link to={routes.main}>
                     <ItemContent>
                         <h3>Title</h3>
                         <h3>Contents</h3>
@@ -64,7 +65,7 @@ function PublicNote() {
             </ListItemBox>
             <ListItemBox>
                 <ItemImg src={beijing}/>
-                <Link>
+                <Link to={routes.main}>
                     <ItemContent>
                         <h3>Title</h3>
                         <h3>Contents</h3>
@@ -137,7 +138,7 @@ const ItemContent = styled.article`
     bottom: 15px;
     display: flex;
     flex-direction: column;
-    font-family: "Noto Serif KR", serif;
+    font-family: 'MapoGoldenPier';
     color: #fff;
     padding: 10px;
 

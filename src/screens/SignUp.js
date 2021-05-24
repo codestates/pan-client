@@ -56,7 +56,7 @@ export default function SignUp(props) {
                 .post(
                     'http://54.180.142.24:8080/signup',
                     {
-                        username,
+                        userName: username,
                         email,
                         password
                     },
@@ -80,8 +80,8 @@ export default function SignUp(props) {
                         <BlueGreen>SIGN UP </BlueGreen><CedarChest> ACCOUNT</CedarChest>
                     </TextAlign>
                     <form onSubmit={(e) => e.preventDefault()}>
-                        <Input name="email" type="text" placeholder="이메일을 입력해주세요." value={username} onChange={onUsernameHandler} />
-                        <Input name="username" type="text" placeholder="닉네임을 입력해주세요." value={email} onChange={onEmailHandler}  />
+                        <Input name="email" type="text" placeholder="이메일을 입력해주세요." value={email} onChange={onEmailHandler} />
+                        <Input name="username" type="text" placeholder="닉네임을 입력해주세요." value={username} onChange={onUsernameHandler}  />
                         <Input name="password" type="password" placeholder="비밀번호를 입력해주세요." value={password} onChange={onPasswordHandler} />
                         <Input name="passwordCorrect" type="password" placeholder="다시 한번 입력해주세요." value={confirmPassword} onChange={onConfirmPasswordHandler} />
                         <Button type="submit" value="SIGN UP" onClick={handleSignUp} />
