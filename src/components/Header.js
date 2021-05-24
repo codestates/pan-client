@@ -4,16 +4,14 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo_second.png"
 import route from "../routes"
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 function Header () {
-  const history = useHistory();
   const token = localStorage.getItem('CC_Token');
 
   const handlelogout = () => {
     try {
       localStorage.removeItem('CC_Token');
-      history.push('/');
+      window.location.reload(true);
     } catch(err) {
       console.log(err);
     }
