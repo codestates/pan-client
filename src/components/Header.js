@@ -7,7 +7,6 @@ import React from "react";
 
 function Header () {
   const token = localStorage.getItem('CC_Token');
-
   const handlelogout = () => {
     try {
       localStorage.removeItem('CC_Token');
