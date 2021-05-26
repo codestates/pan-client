@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import Header from '../components/Header'
 import routes from '../routes'
 import styled from 'styled-components'
 import kermit from '../images/kermit.png'
 import ToggleButton from './ToggleButton';
 import { TiCameraOutline } from "react-icons/ti";
+import Books from '../components/Mypages/Books'
+import Diaries from '../components/Mypages/Diaries'
 
 export default function  Mypage() {
   return (
@@ -24,7 +26,7 @@ export default function  Mypage() {
             <Print>print</Print>
           </LeftSection>
           <DiarySection>
-
+            <Books></Books>
           </DiarySection>
         </MypageMain>
         <ToggleButton></ToggleButton>
@@ -46,23 +48,23 @@ const LeftSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border: 2px solid green;
+  justify-content: space-between;
+  /* border: 2px solid green; */
   width: 27%;
   height: 80%;
 `
 
 const ProfileWrapper = styled.div`
   display: flex;
-  margin-top : -5%;
-  border: 2px solid red;
+  margin-top : 6%;
+  /* border: 2px solid red; */
   width: 100%;
   height: 30%;
 `
 
 const Profile = styled.img`
   position: relative;
-  border: 1px solid blue;
+  border: 2px solid black;
   border-radius: 50%;
   margin: 20px 0 0 40px;
   width: 45%;
@@ -130,7 +132,7 @@ const ExchangeDiary = styled.button`
 const Print = styled.button`
   width: 70%;
   height: 8%;
-  margin-top: 28%;
+  margin: 24%;
   cursor: pointer;
   font-size: 2em;
   font-weight: bold;
@@ -148,7 +150,8 @@ const DiarySection = styled.section`
   position: relative;
   top: 3%;
   left: 4.2%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 66%;
   height: 77%;
+  background-color: #FFF9E9;
 `
