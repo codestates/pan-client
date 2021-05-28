@@ -3,7 +3,8 @@ const routes = {
     main: "/",
     mypage: "/mypage",
     login: "/login",
-    signUp: "/signup"
+    signUp: "/signup",
+    template: "/template"
 
 }
 

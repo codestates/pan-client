@@ -8,7 +8,14 @@ import { TiCameraOutline } from "react-icons/ti";
 import Books from '../components/Mypages/Books'
 import Diaries from '../components/Mypages/Diaries'
 
-export default function  Mypage() {
+export default function  Mypage() { 
+  const [cur, setCur] = useState({
+    person : true,
+    exchange : false,
+  })
+
+
+
   return (
     <MypageWrapper>
       <Header main={routes.main} login={routes.login}></Header>
@@ -21,13 +28,14 @@ export default function  Mypage() {
             </ProfileButton>
           </ProfileWrapper>
             <Usernmae>username</Usernmae>
-            <PersonalDiary>개인 일기</PersonalDiary>
-            <ExchangeDiary>교환 일기</ExchangeDiary>
+            <PersonalDiary cur={cur.person} onClick={() => setCur({person : true, exchange : false})}>개인 일기</PersonalDiary>
+            <ExchangeDiary cur={cur.exchange} onClick={() => setCur({person : false, exchange : true,})}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
-          <DiarySection>
-            <Books></Books>
-          </DiarySection>
+            <DiarySection>
+            {/* <Books></Books> */}
+            <Diaries></Diaries>
+            </DiarySection>
         </MypageMain>
         <ToggleButton></ToggleButton>
     </MypageWrapper>
@@ -97,7 +105,7 @@ const Usernmae = styled.h2`
 `
 
 const PersonalDiary = styled.button`
-  width: 70%;
+  width: ${props => props.cur === true ? '74%' : "70%"};
   height: 8%;
   top:100px;
   margin-top: 10%;
@@ -105,7 +113,7 @@ const PersonalDiary = styled.button`
   font-size: 2em;
   font-weight: bold;
   text-align: left;
-  background-color: #E4D8B4;
+  background-color: ${props => props.cur === true ? '#E2CD6D' : '#E4D8B4'};
   border-radius: 5px;
   border:none;
   :hover {
@@ -114,14 +122,14 @@ const PersonalDiary = styled.button`
 `
 
 const ExchangeDiary = styled.button`
-  width: 70%;
+  width: ${props => props.cur === true ? '74%' : "70%"};
   height: 8%;
   margin-top: 3%;
   cursor: pointer;
   font-size: 2em;
   font-weight: bold;
   text-align: left;
-  background-color: #E4D8B4;
+  background-color: ${props => props.cur === true ? '#E2CD6D' : '#E4D8B4'};
   border-radius: 5px;
   border:none;
   :hover {
