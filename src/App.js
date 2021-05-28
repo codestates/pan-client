@@ -8,6 +8,7 @@ import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles";
 import React from 'react';
+import Template from "./screens/Template";
 
 function App() { 
 
@@ -25,6 +26,9 @@ function App() {
               </Route>
               <Route path={routes.mypage}>
                 <Myapge />
+              </Route>
+              <Route path={routes.template}>
+                <Template />
               </Route>
               <Route path={routes.login}>
                 <Login />

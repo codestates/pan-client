@@ -5,9 +5,13 @@ import ToggleButton from './ToggleButton';
 import Top10 from '../components/MainPages/Top10';
 import PublicNote from '../components/MainPages/PublicNote';
 import Fade from 'react-reveal/Fade';
-import React from "react";
+import React, {useState} from "react";
 
 export default function Main() {
+    const [cur, setCur] = useState({
+      person : true,
+      exchange : false,
+    })
 
     return (
       <>
@@ -29,7 +33,8 @@ export default function Main() {
           </Div1>
           <Div2>
             <Div3>
-              <MainLabel>공유된 개인일기</MainLabel><MainLabel>공유된 교환일기</MainLabel>
+              <MainLabel border={cur.person} onClick={()=>setCur({person:true, exchange:false})}>공유된 개인일기</MainLabel>
+              <MainLabel border={cur.exchange} onClick={()=>setCur({person:false, exchange:true})}>공유된 교환일기</MainLabel>
             </Div3>
             <PublicNote />
           </Div2>
@@ -87,4 +92,6 @@ const MainLabel = styled.h3`
   margin: 0 2rem 1.8rem;
   padding-bottom: 8px;
   width: fit-content;
+  border-bottom: ${props => props.border ? "3px solid black" : "none" };
+  cursor: pointer;
 `;

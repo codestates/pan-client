@@ -27,8 +27,10 @@ function ToggleButton() {
                             <Paragraph>그룹일기 작성</Paragraph>
                         </Navigation>
                         <Navigation id="privateadd">
+                          <Link to={routes.template}>
                             <VscEdit />
                             <Paragraph>개인일기 작성</Paragraph>
+                          </Link>
                         </Navigation>
                     </label>
                 </Switch>

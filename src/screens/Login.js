@@ -42,7 +42,7 @@ export default function Login() {
         e.preventDefault();
         await axios({
             method: 'post',
-            url: 'http://54.180.142.24:8080/login',
+            url: 'https://api.picanote.me/login',
             data: {
                 email,
                 password,
@@ -54,6 +54,7 @@ export default function Login() {
                 let tokenData = res.data.data.accessToken;
                 localStorage.setItem('CC_Token', tokenData);
                 history.push('/')
+                console.log(res)
             }
         })
         .catch((err) => {
