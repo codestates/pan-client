@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SearchImg from "../images/loupe.png"
 import { Link } from "react-router-dom";
-import logo from "../images/logo_second.png"
+import logo from "../images/logo.png"
 import route from "../routes"
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -21,10 +21,10 @@ function Header () {
 
   return ( 
     <HeaderBox>
-      <HeaderName>
-        <Link to={route.main}><img src={logo} alt="" width="30%"/></Link>
-      </HeaderName>
       <Wrapper>
+        <HeaderName>
+          <Link to={route.main}><img src={logo} alt="" width="30%"/></Link>
+        </HeaderName>
         <SearchBox>
           <SearchTxt type="text" placeholder="Type to search"/>
           <SearchBtn href="#">
@@ -33,13 +33,13 @@ function Header () {
         </SearchBox>   
             {token ? 
               (
-                <Login right="-1450%">
+                <Login>
                   <Link onClick={handlelogout}>LOGOUT</Link>
                 </Login>
               )
               :
               (
-                <Login right="-1940%">
+                <Login>
                   <Link to={route.login}>LOGIN</Link>
                 </Login>
               )
@@ -50,42 +50,41 @@ function Header () {
 }
 
 const HeaderBox = styled.div`
+  width: 100%;
   display: flex;
-  margin-left: 5%;
-  padding: 22px;
-  background-color: none;
-  /* border-bottom: 1px solid #7b7872; */
-  width: 80%;
-  div {
-    margin-top: 10px;
-  } 
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 18px;
 `
+const Wrapper = styled.div`
+  max-width: 1430px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+`;
 
 const HeaderName = styled.span`
-  position: relative;
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
-  left: 1%;
 `
 
-const Login = styled.span`
-  position: relative;
-  margin-right: 10%;
+const Login = styled.div`
   font-weight: bold;
   font-size: large;
   cursor: pointer;
   color: #3D8DAB;
-  right: ${props => props.right}
 `
-const Wrapper = styled.div`
-  
-`;
 
   const SearchBox = styled.div`
   position: absolute;
   display: flex;
-  top: 16px;
+  top: 35px;
   right: 200px;
   height: 30px;
   padding: 5px;
@@ -93,6 +92,7 @@ const Wrapper = styled.div`
   transition: .5s;
   /* border: 1px solid rgb(61, 141, 171); */
   &:hover {
+    line-height: 60px;
     box-shadow:  0 0 .5px 2px #3D8DAB;
   }
   &:hover > input {
@@ -116,9 +116,9 @@ const SearchTxt =styled.input `
 const SearchBtn = styled.a `
   display: flex;
   text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
+  justify-content: right;
+  align-items: right;
+  width: 32px;
   height: 17px;
   border-radius: 50%;
   color: black;

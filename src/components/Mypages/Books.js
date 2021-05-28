@@ -5,16 +5,16 @@ import styled from 'styled-components';
 export default function Books () {
     return (
         <CoverWrapper>
-            <Cover> 일기장1 </Cover>
-            <Cover> 일기장2 </Cover>
-            <Cover> 일기장3 </Cover>
-            <Cover> 일기장4 </Cover>
-            <Cover> 일기장5 </Cover>
-            <Cover> 일기장6 </Cover>
-            <Cover> 일기장7 </Cover>
-            <Cover> 일기장8 </Cover>
-            <Cover> 일기장9 </Cover>
-            <Cover> 일기장10 </Cover>
+            <Cover> <h2>일기장1</h2> </Cover>
+            <Cover> <h2>일기장2</h2> </Cover>
+            <Cover> <h2>일기장3</h2> </Cover>
+            <Cover> <h2>일기장4</h2> </Cover>
+            <Cover> <h2>일기장5</h2> </Cover>
+            <Cover> <h2>일기장6</h2> </Cover>
+            <Cover> <h2>일기장7</h2> </Cover>
+            <Cover> <h2>일기장8</h2> </Cover>
+            <Cover> <h2>일기장9</h2> </Cover>
+            <Cover> <h2>일기장10</h2> </Cover>
         </CoverWrapper>
     )
 } 
@@ -44,5 +44,13 @@ const Cover = styled.button`
   margin: 15px;
   &:hover {
     transform: translateY(-1rem);
+  }
+  h2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    overflow: hidden;
+    line-height: 2.6rem;
   }
 `
