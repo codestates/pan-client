@@ -21,6 +21,7 @@ export default function Books () {
 
 const CoverWrapper = styled.div`
   display: grid;
+  margin: 40px 20px;
   grid-template-columns: 20% 20% 20% 20% 20%; 
   grid-template-rows: 50% 50%;
   /* border: 4px solid black; */
@@ -30,12 +31,15 @@ const CoverWrapper = styled.div`
 
 
 const Cover = styled.button`
-  background-color: #DCB1B7;
+  background-image: url("https://source.unsplash.com/random/640x960");
+  box-shadow: 10px 10px 10px #E4D8B4;
   border: none;
   outline: none;
   cursor: pointer;
+  font-family: 'MapoGoldenPier';
   font-size: xx-large;
   font-weight: bold;
+  color: #FFF9E9;
   border-radius: 5px;
   margin: 15px;
   &:hover {
