@@ -7,6 +7,7 @@ import ToggleButton from './ToggleButton';
 import { TiCameraOutline } from "react-icons/ti";
 import Books from '../components/Mypages/Books'
 import Diaries from '../components/Mypages/Diaries'
+import { TabMenu } from '../components/Mypages/CommonStyle';
 
 export default function  Mypage() { 
   const [cur, setCur] = useState({
@@ -152,7 +153,6 @@ const Print = styled.button`
     background-color: #E2CD6D;
   }
 `
-
 
 const DiarySection = styled.section`
   position: relative;
