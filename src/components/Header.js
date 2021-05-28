@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo_second.png"
 import route from "../routes"
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 function Header () {
+  const history = useHistory();
   const token = localStorage.getItem('CC_Token');
   const handlelogout = () => {
     try {
       localStorage.removeItem('CC_Token');
+      history.push("/");
       window.location.reload(true);
     } catch(err) {
       console.log(err);
@@ -30,13 +33,13 @@ function Header () {
         </SearchBox>   
             {token ? 
               (
-                <Login>
-                  <Link to="#" onClick={handlelogout}>LOGOUT</Link>
+                <Login right="-1450%">
+                  <Link onClick={handlelogout}>LOGOUT</Link>
                 </Login>
               )
               :
               (
-                <Login>
+                <Login right="-1940%">
                   <Link to={route.login}>LOGIN</Link>
                 </Login>
               )
@@ -46,30 +49,34 @@ function Header () {
   )
 }
 
-
 const HeaderBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  margin-left: 5%;
   padding: 22px;
   background-color: none;
   /* border-bottom: 1px solid #7b7872; */
+  width: 80%;
   div {
     margin-top: 10px;
   } 
 `
 
 const HeaderName = styled.span`
+  position: relative;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
+  left: 1%;
 `
 
 const Login = styled.span`
+  position: relative;
   margin-right: 10%;
   font-weight: bold;
   font-size: large;
   cursor: pointer;
   color: #3D8DAB;
+  right: ${props => props.right}
 `
 const Wrapper = styled.div`
   
@@ -79,7 +86,7 @@ const Wrapper = styled.div`
   position: absolute;
   display: flex;
   top: 16px;
-  right: 90px;
+  right: 200px;
   height: 30px;
   padding: 5px;
   border-radius: 50px;

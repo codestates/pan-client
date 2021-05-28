@@ -16,11 +16,14 @@ export const SpanWrapper = styled.div`
 `;
 
 export const Paragraph = styled.p`
+    display: block;
+    line-height: 16px;
     z-index: 5;
     visibility: hidden;
     position: absolute;
     text-align: center;
     width: 80px;
+    height: 15px;
     top: 18px;
     right: 115%;
     font-size: 12px;
@@ -57,7 +60,7 @@ export const Navigation = styled.div`
     justify-content: center;
     align-items: center;
     visibility: none;
-    right: calc(100% - 98.32%);
+    right: 1.7%;
     bottom: 9%;
     width: 48px;
     height: 48px;
@@ -105,7 +108,7 @@ export const Switch = styled.div`
         opacity: 1;
     }
     > input:checked + label #mypage {
-        transform: translateY(-125%);
+        transform: translateY(-120%);
         font-size: 25px;
     }
     > input:checked + label #groupadd {

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import bg from '../../images/background.jpg'
 
 export default function Diaries () {
     return (
@@ -117,18 +116,19 @@ const DiaryHeader = styled.div`
     width: 15%;
     margin: 0.5rem 1rem;
     font-size: x-large;
-
-  :hover{
-    background-color: gray;
+    :hover{
+      background-color: gray;
+    }
   }
-  }
-
 `
 
 const DiaryWrapper = styled.div`
   width: 100%;
-  height: 8%;
-  border-bottom: 1px dotted gray;
+  height: 7%;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  /* border-bottom: 1px dotted gray; */
+  font-family: 'MapoGoldenPier';
 `
 
 const Public = styled.input` 
@@ -144,9 +144,8 @@ const Public = styled.input`
   :checked {
     background-color: #3D8DAB;
     border: none;
-}
+  }
 `
-
 
 const Diary = styled.div`
   display: flex;
@@ -156,9 +155,10 @@ const Diary = styled.div`
   height: 100%;
   cursor: pointer; 
   font-size: xx-large;
-  background-image: url(${bg});
+  background-image: url("https://source.unsplash.com/random/1920x1080");
+  border-radius: 10px;
   :hover{
-    transform: translateY(-0.3rem);
+    transform: translateY(-0.2rem);
   }
 `
 
@@ -166,12 +166,12 @@ const Ttitle = styled.span`
   width: 40%;
   height: 80%;
   display: flex;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin: 0 1rem 0 1rem;
+  padding-left: 10px;
   border-radius: 10px;
   background-color: #CCDEE2;
-  font-size: x-large;
-  justify-content: center;
+  font-size: 25px;
+  /* justify-content: center; */
   align-items: center;
 `
 
@@ -183,7 +183,7 @@ const Date = styled.span`
   display: flex;
   background-color: #CCDEE2;
   border-radius: 10px;
-  font-size: x-large;
+  font-size: 20px;
   justify-content: center;
   align-items: center;
 `

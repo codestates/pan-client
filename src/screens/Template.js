@@ -10,8 +10,8 @@ export default function Template () {
         <Header></Header>
         <Announcement>템플릿 선택하기</Announcement>
         <TemplateMain>
-            <Writing></Writing>
-            <Drawing></Drawing>
+            <Writing>시적 감성</Writing>
+            <Drawing>예술적 감성</Drawing>
         </TemplateMain>
         </>
     )
@@ -31,12 +31,17 @@ const Announcement = styled.div`
 const TemplateMain = styled.section`
   display: flex;
   /* border: 1px solid black; */
-  height: 60vh;
+  height: 70vh;
   width: 80vw;
-  margin: 0 0 0 10%;
+  margin: -5% 0 0 10%;
   `
 
 const Writing = styled.div` 
+  display: block;
+  font-size: 50px;
+  color: white;
+  line-height: 520px;
+  font-family: 'MapoGoldenPier';
   background-image: url(${toronto});
   background-size: 100% 100%;
   width: 30%;
@@ -54,6 +59,11 @@ const Writing = styled.div`
 `
 
 const Drawing = styled.div`
+  display: block;
+  font-size: 50px;
+  color: white;
+  line-height: 520px;
+  font-family: 'MapoGoldenPier';
   background-image: url(${newyork});
   background-size: 100% 100%;
   width: 30%;

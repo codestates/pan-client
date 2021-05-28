@@ -33,8 +33,8 @@ export default function Main() {
           </Div1>
           <Div2>
             <Div3>
-              <MainLabel border={cur.person} onClick={()=>setCur({person:true, exchange:false})}>공유된 개인일기</MainLabel>
-              <MainLabel border={cur.exchange} onClick={()=>setCur({person:false, exchange:true})}>공유된 교환일기</MainLabel>
+              <MainLabel choose={cur.person} onClick={()=>setCur({person:true, exchange:false})}>공유된 개인일기</MainLabel>
+              <MainLabel choose={cur.exchange} onClick={()=>setCur({person:false, exchange:true})}>공유된 교환일기</MainLabel>
             </Div3>
             <PublicNote />
           </Div2>
@@ -47,6 +47,10 @@ export default function Main() {
 
 const MainBody = styled.div`
   /* border: 2px solid black; */
+  position: relative;
+  justify-content: center;
+  left: 5%;
+  width: 90%;
   height: 100%;
 `
 
@@ -92,6 +96,7 @@ const MainLabel = styled.h3`
   margin: 0 2rem 1.8rem;
   padding-bottom: 8px;
   width: fit-content;
-  border-bottom: ${props => props.border ? "3px solid black" : "none" };
+  border-bottom: ${props => props.choose ? "3px solid black" : "none" };
   cursor: pointer;
+  opacity: ${props => props.choose ? "1.0" : "0.5"};
 `;
