@@ -58,7 +58,7 @@ const HeaderBox = styled.div`
   padding: 18px;
 `
 const Wrapper = styled.div`
-  max-width: 1430px;
+  max-width: 1675px;
   width: 100%;
   display: flex;
   justify-content: space-between;

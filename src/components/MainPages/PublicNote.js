@@ -84,6 +84,7 @@ export default PublicNote;
 
 const ListSection = styled.section`
     display: grid;
+    max-width: 1675px;
     grid-gap: 10px;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
     margin-top: 1rem;
