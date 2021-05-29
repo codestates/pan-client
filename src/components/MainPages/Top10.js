@@ -96,7 +96,9 @@ function Top10() {
 
 const Wrapper = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
+    max-width: 1675px;
     height: 100%;
     /* border: 1px solid black */
 `;

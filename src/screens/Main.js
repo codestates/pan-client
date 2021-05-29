@@ -44,11 +44,11 @@ export default function Main() {
     )
 }
 
-
 const MainBody = styled.div`
   /* border: 2px solid black; */
   position: relative;
   justify-content: center;
+  align-items: center;
   left: 5%;
   width: 90%;
   height: 100%;
