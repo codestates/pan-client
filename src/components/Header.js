@@ -28,22 +28,22 @@ function Header () {
         <SearchBox>
           <SearchTxt type="text" placeholder="Type to search"/>
           <SearchBtn href="#">
-            <img src={SearchImg} width="13px" alt="serach"/> 
+            <img src={SearchImg} width="18px" alt="serach"/> 
           </SearchBtn>
         </SearchBox>   
-            {token ? 
-              (
-                <Login>
-                  <Link onClick={handlelogout}>LOGOUT</Link>
-                </Login>
-              )
-              :
-              (
-                <Login>
-                  <Link to={route.login}>LOGIN</Link>
-                </Login>
-              )
-            }
+        {token ? 
+          (
+            <Login>
+              <Link onClick={handlelogout}>LOGOUT</Link>
+            </Login>
+          )
+          :
+          (
+            <Login>
+              <Link to={route.login}>LOGIN</Link>
+            </Login>
+          )
+        }
       </Wrapper>
     </HeaderBox>
   )
@@ -118,7 +118,7 @@ const SearchBtn = styled.a `
   text-decoration: none;
   justify-content: right;
   align-items: right;
-  width: 32px;
+  /* width: 32px; */
   height: 17px;
   border-radius: 50%;
   color: black;
