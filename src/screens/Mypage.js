@@ -17,7 +17,7 @@ export default function  Mypage() {
 
   return (
     <MypageWrapper>
-      <Header main={routes.main} login={routes.login}></Header>
+      <Header main={routes.main} login={routes.login} />
         <MypageMain>
           <LeftSection>
           <ProfileWrapper>
@@ -36,13 +36,12 @@ export default function  Mypage() {
             {/* <Diaries></Diaries> */}
             </DiarySection>
         </MypageMain>
-        <ToggleButton></ToggleButton>
+        <ToggleButton />
     </MypageWrapper>
   )
 }
 const MypageWrapper = styled.div`
   /* border: 1px solid black; */
-  
   align-items: center;
   justify-content: center;
 `

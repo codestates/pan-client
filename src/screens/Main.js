@@ -49,8 +49,9 @@ const MainBody = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
-  left: 5%;
-  width: 90%;
+  margin: 0 auto;
+  max-width: 1600px;
+  width: 100%;
   height: 100%;
 `
 

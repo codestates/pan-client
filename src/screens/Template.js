@@ -1,4 +1,5 @@
 import React from 'react';
+import routes from '../routes';
 import styled from 'styled-components';
 import Header from '../components/Header'
 import toronto from '../images/toronto.jpg'
@@ -7,7 +8,7 @@ import newyork from "../images/new_york.jpg";
 export default function Template () {
     return (
         <>
-        <Header></Header>
+        <Header main={routes.main} login={routes.login} />
         <Announcement>템플릿 선택하기</Announcement>
         <TemplateMain>
             <Writing>시적 감성</Writing>
@@ -17,23 +18,27 @@ export default function Template () {
     )
 }
 
-
 const Announcement = styled.div`
-  position: relative;
+  /* position: relative; */
   padding-top: 4.3%;
   /* border:1px solid blue; */
   text-align: center;
-  font-size: xx-large;
+  font-family: 'MapoGoldenPier';
+  font-size: 50px;
   font-weight: 700;
   height: 20vh;
+  max-width: 1600px;
+  width: 80%;
+  margin: 0 auto;
 `
 
 const TemplateMain = styled.section`
   display: flex;
   /* border: 1px solid black; */
   height: 70vh;
-  width: 80vw;
-  margin: -5% 0 0 10%;
+  max-width: 1600px;
+  width: 80%;
+  margin: 0 auto;
   `
 
 const Writing = styled.div` 
@@ -45,7 +50,7 @@ const Writing = styled.div`
   background-image: url(${toronto});
   background-size: 100% 100%;
   width: 30%;
-  height: 80%;
+  height: 70%;
   margin: 5% 5% 5% 15%;
   cursor: pointer;
   text-align: center;
@@ -67,7 +72,7 @@ const Drawing = styled.div`
   background-image: url(${newyork});
   background-size: 100% 100%;
   width: 30%;
-  height: 80%;
+  height: 70%;
   margin: 5% 15% 5% 5%;
   cursor: pointer;
   text-align: center;

@@ -9,6 +9,7 @@ import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles";
 import React from 'react';
 import Template from "./screens/Template";
+import Details from "./screens/Details";
 
 function App() { 
 
@@ -35,6 +36,9 @@ function App() {
               </Route>
               <Route path={routes.signUp}>
                 <SignUp />
+              </Route>
+              <Route path={routes.details}>
+                <Details />
               </Route>
             </Switch>
         </Router>

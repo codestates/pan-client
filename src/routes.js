@@ -4,8 +4,9 @@ const routes = {
     mypage: "/mypage",
     login: "/login",
     signUp: "/signup",
-    template: "/template"
-
+    template: "/template",
+    details: "/details",
+    
 }
 
 export default routes;
