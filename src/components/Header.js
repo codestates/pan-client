@@ -20,74 +20,72 @@ function Header () {
   }
 
   return ( 
+    <Wrapper>
     <HeaderBox>
-      <Wrapper>
         <HeaderName>
-          <Link to={route.main}><img src={logo} alt="" width="30%"/></Link>
+          <Link to={route.main}><img src={logo} alt="" width="200px"/></Link>
         </HeaderName>
-        <SearchBox>
-          <SearchTxt type="text" placeholder="Type to search"/>
-          <SearchBtn href="#">
-            <img src={SearchImg} width="18px" alt="serach"/> 
-          </SearchBtn>
-        </SearchBox>   
-        {token ? 
-          (
-            <Login>
-              <Link onClick={handlelogout}>LOGOUT</Link>
-            </Login>
-          )
-          :
-          (
-            <Login>
-              <Link to={route.login}>LOGIN</Link>
-            </Login>
-          )
-        }
-      </Wrapper>
+        <div>
+          <SearchBox>
+            <SearchTxt type="text" placeholder="Type to search"/>
+            <SearchBtn href="#">
+              <img src={SearchImg} width="15px" alt="serach"/> 
+            </SearchBtn>
+          </SearchBox>   
+              {token ? 
+                (
+                  <Login>
+                    <Link onClick={handlelogout}>LOGOUT</Link>
+                  </Login>
+                )
+                :
+                (
+                  <Login>
+                    <Link to={route.login}>LOGIN</Link>
+                  </Login>
+                )
+              }
+        </div>
     </HeaderBox>
+    </Wrapper>
   )
 }
-
-const HeaderBox = styled.div`
-  width: 100%;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const HeaderBox = styled.div` 
+  /* border:1px solid black; */
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-  padding: 18px;
-`
-const Wrapper = styled.div`
   max-width: 1675px;
   width: 100%;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  /* border: 1px solid black; */
-`;
+  margin-top: 10px;
+
+  padding: 18px;
+`
 
 const HeaderName = styled.span`
-  justify-content: center;
-  align-items: center;
   font-size: 30px;
   font-weight: bold;
   cursor: pointer;
 `
 
-const Login = styled.div`
+const Login = styled.div`  
+  display: inline-block;
   font-weight: bold;
-  font-size: large;
+  font-size: x-large;
   cursor: pointer;
   color: #3D8DAB;
+  margin-right: -6px;
 `
 
   const SearchBox = styled.div`
-  position: absolute;
-  display: flex;
-  top: 35px;
-  right: 200px;
+  display: inline-block;
   height: 30px;
-  padding: 5px;
+  padding: 6px;
+  margin-right: 10px;
   border-radius: 50px;
   transition: .5s;
   /* border: 1px solid rgb(61, 141, 171); */
@@ -122,6 +120,7 @@ const SearchBtn = styled.a `
   height: 17px;
   border-radius: 50%;
   color: black;
+
 `
 
 export default Header;

@@ -98,8 +98,9 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 1675px;
+    max-width: 1600px;
     height: 100%;
+    width: 100%;
     /* border: 1px solid black */
 `;
 
@@ -130,7 +131,7 @@ const CardList = styled.section`
     padding-left: 2rem;
     overflow-x: scroll;
     /* border: 1px solid black; */
-    height: 100%;
+    height: 40vh;
     &::-webkit-scrollbar {
         width: 10px;
         height: 10px;
@@ -146,15 +147,12 @@ const CardWrap = styled.article`
     width: 90%;
     height: 100%;
     box-shadow: #ced4da 0 1px 4px;
-
     background-color: none;
     position: relative;
-
     display: flex;
     flex-direction: column;
     transition: all 0.4s;
     border-radius: 8px;
-
     &:focus-within ~ .card,
     &:hover ~ .card {
         transform: translateX(200px);
@@ -172,7 +170,6 @@ const CardImg = styled.img`
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-
     &:hover {
         border-radius: 10px;
     }
@@ -188,7 +185,6 @@ const CardOverlay = styled.div`
     z-index: 0;
     border: none;
     border-radius: 10px;
-
     &:hover {
         opacity: 0.3;
     }
@@ -202,7 +198,6 @@ const CardContent = styled.article`
     font-family: 'MapoGoldenPier';
     padding: 10px;
     color: #343a40;
-
     h2 {
         color: inherit;
         opacity: 0.9;
@@ -218,7 +213,6 @@ const CardContent = styled.article`
         overflow: hidden;
         line-height: 2.6rem;
     }
-
     h3 {
         color: #343a40;
         font-size: 1.5rem;
@@ -232,7 +226,6 @@ const CardContent = styled.article`
         overflow: hidden;
         text-shadow: 2px 2px 0 #fff;
     }
-
     p {
         color: inherit;
         opacity: 0.9;
