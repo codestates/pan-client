@@ -51,8 +51,9 @@ const MainBody = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
-  left: 6%;
-  width: 88%;
+  margin: 0 auto;
+  max-width: 1600px;
+  width: 100%;
   height: 100%;
 `
 
@@ -61,7 +62,7 @@ const PhraseGroup = styled.div`
   width: 100%;
   margin: 40px 0;
   /* border : 1px solid black; */
-  max-width: 1675px;
+  max-width: 1600px;
 `;
 
 const Phrase = styled.div`

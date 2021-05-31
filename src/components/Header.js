@@ -59,7 +59,7 @@ const HeaderBox = styled.div`
   display: flex;
   align-items: center;
   max-width: 1675px;
-  width: 88%;
+  width: 100%;
   justify-content: space-between;
   margin-top: 10px;
 
@@ -116,7 +116,7 @@ const SearchBtn = styled.a `
   text-decoration: none;
   justify-content: right;
   align-items: right;
-  width: 32px;
+  /* width: 32px; */
   height: 17px;
   border-radius: 50%;
   color: black;

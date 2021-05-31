@@ -54,7 +54,7 @@ const MypageMain = styled.div`
   display: flex;
   height: 88vh;
   width: 80%;
-  max-width: 1675px;
+  max-width: 1600px;
 
 `
 
