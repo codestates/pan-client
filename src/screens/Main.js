@@ -46,17 +46,22 @@ export default function Main() {
 
 const MainBody = styled.div`
   /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
   align-items: center;
-  left: 5%;
-  width: 90%;
+  left: 6%;
+  width: 88%;
   height: 100%;
 `
 
 const PhraseGroup = styled.div`
-  margin-top: 40px;
-  margin-bottom: 50px;
+  position: relative;
+  width: 100%;
+  margin: 40px 0;
+  /* border : 1px solid black; */
+  max-width: 1675px;
 `;
 
 const Phrase = styled.div`
@@ -73,14 +78,14 @@ const Phrase = styled.div`
 const Div1 = styled.div`
   /* border: 1px solid red; */
   height: 40vh;
-  display: flex;
   margin-top: 40px;
 `;
 
 const Div2 = styled.div`
   /* border: 1px solid blue; */
   height: 40vh;
-  margin-top: 40px;
+  margin: 40px 0;
+  /* overflow: hidden; */
 `;
 
 const Div3 = styled.div`

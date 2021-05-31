@@ -88,7 +88,9 @@ const ListSection = styled.section`
     grid-gap: 10px;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
     margin-top: 1rem;
-    margin-left: 1rem;
+    padding-left: 1rem;
+    width: 100%;
+    /* overflow: hidden; */
 `;
 const ListItemBox = styled.div`
     width: 90%;
@@ -96,12 +98,10 @@ const ListItemBox = styled.div`
     box-shadow: #ced4da 0 1px 4px;
     background-color: none;
     position: relative;
-
     display: flex;
     flex-direction: column;
     transition: all 0.4s;
     border-radius: 8px;
-
     &:hover {
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
@@ -127,7 +127,6 @@ const ItemOverlay = styled.div`
     opacity: 0.3;
     border: none;
     border-radius: 8px;
-
     &:hover {
         opacity: 0;
     }

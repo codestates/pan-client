@@ -16,8 +16,9 @@ export default function  Mypage() {
   })
 
   return (
-    <MypageWrapper>
+    <>
       <Header main={routes.main} login={routes.login}></Header>
+      <MypageWrapper>
         <MypageMain>
           <LeftSection>
           <ProfileWrapper>
@@ -36,31 +37,32 @@ export default function  Mypage() {
             {/* <Diaries></Diaries> */}
             </DiarySection>
         </MypageMain>
+        </MypageWrapper>
         <ToggleButton></ToggleButton>
-    </MypageWrapper>
+    </>
   )
 }
 const MypageWrapper = styled.div`
-  /* border: 1px solid black; */
-  
+  display: flex;
   align-items: center;
   justify-content: center;
+  /* border: 1px solid black; */
 `
 const MypageMain = styled.div`
+  /* border: 1px solid black; */
   position: relative;
-  left: 7.5%;
-  /* border: 1px solid red; */
   display: flex;
-  justify-content: center;
   height: 88vh;
   width: 80%;
+  max-width: 1675px;
+
 `
 
 const LeftSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   /* border: 2px solid green; */
   width: 27%;
   height: 80%;
