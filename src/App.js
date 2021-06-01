@@ -10,11 +10,12 @@ import { GlobalStyles } from "./styles";
 import React from 'react';
 import Template from "./screens/Template";
 import Details from "./screens/Details";
+import UserStore from "./store/User"
 
 function App() { 
 
   return (
-    <>
+    <UserStore>
       <HelmetProvider>
         <GlobalStyles />
         <Router>
@@ -43,7 +44,7 @@ function App() {
             </Switch>
         </Router>
       </HelmetProvider>
-    </>
+    </UserStore>
   );
 }
 

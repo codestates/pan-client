@@ -5,13 +5,44 @@ import ToggleButton from './ToggleButton';
 import Top10 from '../components/MainPages/Top10';
 import PublicNote from '../components/MainPages/PublicNote';
 import Fade from 'react-reveal/Fade';
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import Pagination from '../components/Pagination';
+import axios from 'axios';
 
 export default function Main() {
     const [cur, setCur] = useState({
       person : true,
       exchange : false,
     })
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
+
+    useEffect(() => {
+      const fetchPosts = async () => {
+        setLoading(true);
+        // 더미데이터 들어오면 url 바꿔야됨
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        setPosts(res.data);
+        setLoading(false);
+      };   
+  
+      fetchPosts();
+    }, []);
+
+       // Get current posts
+       const indexOfLastPost = currentPage * postsPerPage;
+       const indexOfFirstPost = indexOfLastPost - postsPerPage;
+       const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+   
+       // Change page
+       const paginate = pageNumber => setCurrentPage(pageNumber);
+       
+       if (loading) {
+         return <h2>Loading...</h2>;
+       }
+
 
     return (
       <>
@@ -33,11 +64,18 @@ export default function Main() {
           </Div1>
           <Div2>
             <Div3>
+              {/* mainlabel을 maping해서 갯수에 맞게 pagenation 적용해야됨 */}
               <MainLabel choose={cur.person} onClick={()=>setCur({person:true, exchange:false})}>공유된 개인일기</MainLabel>
               <MainLabel choose={cur.exchange} onClick={()=>setCur({person:false, exchange:true})}>공유된 교환일기</MainLabel>
             </Div3>
             <PublicNote />
+            <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={posts.length}
+                paginate={paginate}
+              />
           </Div2>
+          <MainFooter></MainFooter>
         </MainBody>
         <ToggleButton />
       </>
@@ -92,6 +130,13 @@ const Div2 = styled.div`
 const Div3 = styled.div`
   display: flex;
 `;
+
+const MainFooter = styled.footer`
+  width: 100%;
+  height: 20vh;
+`
+
+
 
 const MainLabel = styled.h3`
   font-size: 30px;
