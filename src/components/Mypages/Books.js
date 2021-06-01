@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-export default function Books () {
+export default function Books ({isCoverClick}) {
     return (
         <CoverWrapper>
-            <Cover> <h2>일기장1</h2> </Cover>
+            <Cover onClick={isCoverClick}> <h2>일기장1</h2> </Cover>
             <Cover> <h2>일기장2</h2> </Cover>
             <Cover> <h2>일기장3</h2> </Cover>
             <Cover> <h2>일기장4</h2> </Cover>

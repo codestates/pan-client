@@ -54,7 +54,6 @@ export default function Login() {
                 let tokenData = res.data.data.accessToken;
                 localStorage.setItem('CC_Token', tokenData);
                 history.push('/')
-                console.log(res)
             }
         })
         .catch((err) => {

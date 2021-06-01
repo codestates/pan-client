@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect, useContext }  from 'react';
 import Header from '../components/Header'
 import routes from '../routes'
 import styled from 'styled-components'
@@ -7,13 +7,35 @@ import ToggleButton from './ToggleButton';
 import { AiOutlineCamera } from "react-icons/ai";
 import Books from '../components/Mypages/Books'
 import Diaries from '../components/Mypages/Diaries'
-import { TabMenu } from '../components/Mypages/CommonStyle';
+import axios from 'axios';
+import { UserContext } from "../store/User"
 
 export default function  Mypage() { 
   const [cur, setCur] = useState({
     person : true,
     exchange : false,
   })
+
+  const context = useContext(UserContext);
+  const {username, setUsername, email, setEmail, accessTokenRequest} = context ;
+  console.log(context)
+  
+  const [lookBooks, SetLookBooks] = useState(false);
+  // const [diaries, SetDiaries] = useState([]);
+
+  const isCoverClick = () => {
+    SetLookBooks(true);
+    // console.log(lookBooks);
+    // 1. cover를 클릭하면 bookId 와 일치하는 일기장들을 찾는다.
+    // 2. 그 일기장들을 SetDiaries에 담는다.
+    // 3. setBooks으로 Books를 true로 바꿔준다. 
+    // 4. Diaries파일에 diaries를 map메소드로 돌려서 전체를 보여준다.
+    // 5. pagenation을 사용해서 10개씩 잘라서 보여준다.
+  }
+
+
+  useEffect(accessTokenRequest, [])
+
 
   return (
     <>
@@ -27,17 +49,20 @@ export default function  Mypage() {
               <AiOutlineCamera size="90%" />
             </ProfileButton>
           </ProfileWrapper>
-            <Usernmae>꼬북좌</Usernmae>
+            <Usernmae>{username}</Usernmae>
             <PersonalDiary cur={cur.person} onClick={() => setCur({person : true, exchange : false})}>개인 일기</PersonalDiary>
             <ExchangeDiary cur={cur.exchange} onClick={() => setCur({person : false, exchange : true,})}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
             <DiarySection>
-            <Books></Books>
+            {lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> :
+             <Diaries></Diaries>  }
+            {/* <Books a={a}></Books> */}
             {/* <Diaries></Diaries> */}
             </DiarySection>
         </MypageMain>
         </MypageWrapper>
+        <MypageFooter></MypageFooter>
         <ToggleButton></ToggleButton>
     </>
   )
@@ -177,6 +202,11 @@ const DiarySection = styled.section`
   left: 4.2%;
   /* border: 1px solid red; */
   width: 66%;
-  height: 77%;
+  height: 80%;
   /* background-color: #FFF9E9; */
+`
+
+const MypageFooter = styled.footer`
+  width: 100%;
+  height: 10vh;
 `

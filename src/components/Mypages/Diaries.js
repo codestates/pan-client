@@ -1,94 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect }  from 'react';
 import styled from 'styled-components';
+import Pagination from '../Pagination';
+import axios from 'axios';
 
 export default function Diaries () {
+  // pagenation state 
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(10);
+
+  // pagenation useEffect   
+    useEffect(() => {
+      const fetchPosts = async () => {
+        setLoading(true);
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        setPosts(res.data);
+        setLoading(false);
+      };   
+  
+      fetchPosts();
+    }, []);
+
+  // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    
+  // 없애거나 좋은 이미지 있으면 넣으면 좋을 듯 ex) 비바 로딩
+    if (loading) {
+      return <h2>Loading...</h2>;
+    }
+
     return (
       <Container>
         <DiaryHeader>
           <button>연도</button>
           <button>월</button>
         </DiaryHeader>
-
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
-          <Public type="checkbox"/>
-          <Diary>
-            <Ttitle>운수 좋은 날</Ttitle>
-            <ChooseTP>T</ChooseTP>
-            <Date>2021-05-27</Date>
-          </Diary>
-        </DiaryWrapper>
-        <DiaryWrapper>
+        {/* 전체 페이지에서 한페이지당 10개만 나오게 설정 */}
+        {currentPosts.map(post => (
+          <DiaryWrapper key={post.id}>
             <Public type="checkbox"/>
             <Diary>
-              <Ttitle>운수 좋은 날</Ttitle>
+              <Ttitle>{post.id}</Ttitle>
               <ChooseTP>T</ChooseTP>
               <Date>2021-05-27</Date>
             </Diary>
           </DiaryWrapper>
+        ))}
+        {/* pagination 을 불러오고 위에 상태들을 props로 전달 */}
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={posts.length}
+          paginate={paginate}
+          color={"#83B799"}
+      />
+       
+
       </Container>
 
     )
@@ -96,14 +68,15 @@ export default function Diaries () {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 120%;
+  /* border:1px solid black; */
 `
 
 const DiaryHeader = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 10%;
+  height: 70px;
   button {
     background-color: #83B799;
     background-repeat:no-repeat;
@@ -124,11 +97,10 @@ const DiaryHeader = styled.div`
 
 const DiaryWrapper = styled.div`
   width: 100%;
-  height: 7%;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  /* border-bottom: 1px dotted gray; */
+  height: 5.5%;
+  margin-top: 13px;
   font-family: 'MapoGoldenPier';
+  /* border: 1px solid black; */
 `
 
 const Public = styled.input` 
