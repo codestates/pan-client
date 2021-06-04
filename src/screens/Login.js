@@ -42,7 +42,8 @@ export default function Login() {
         e.preventDefault();
         await axios({
             method: 'post',
-            url: 'https://api.picanote.me/login',
+            // url: 'https://api.picanote.me/login',
+            url: 'https://localhost:80/login',
             data: {
                 email,
                 password,
