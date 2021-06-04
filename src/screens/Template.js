@@ -4,16 +4,21 @@ import styled from 'styled-components';
 import Header from '../components/Header'
 import toronto from '../images/toronto.jpg'
 import newyork from "../images/new_york.jpg";
+import { useHistory } from "react-router-dom";
+import ToggleButton from './ToggleButton';
 
 export default function Template () {
+  const history = useHistory();
+
     return (
         <>
         <Header main={routes.main} login={routes.login} />
         <Announcement>템플릿 선택하기</Announcement>
         <TemplateMain>
-            <Writing>시적 감성</Writing>
-            <Drawing>예술적 감성</Drawing>
+            <Writing  onClick={() => {history.push('/writing')}}>시적 감성</Writing>
+            <Drawing onClick={() => {history.push('/drawing')}}>예술적 감성</Drawing>
         </TemplateMain>
+        <ToggleButton></ToggleButton>
         </>
     )
 }

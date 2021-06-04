@@ -11,16 +11,16 @@ export default function Diaries () {
     const [postsPerPage] = useState(10);
 
   // pagenation useEffect   
-    useEffect(() => {
-      const fetchPosts = async () => {
-        setLoading(true);
-        const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        setPosts(res.data);
-        setLoading(false);
-      };   
-  
-      fetchPosts();
-    }, []);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      const res = await axios.get('https://localhost:80/diaries');
+      console.log(res)
+      setPosts(res.data.data);
+      setLoading(false);
+    };   
+    fetchPosts();
+  }, []);
 
   // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
@@ -43,12 +43,13 @@ export default function Diaries () {
         </DiaryHeader>
         {/* 전체 페이지에서 한페이지당 10개만 나오게 설정 */}
         {currentPosts.map(post => (
-          <DiaryWrapper key={post.id}>
+          <DiaryWrapper key={post.createdAt}>
             <Public type="checkbox"/>
             <Diary>
-              <Ttitle>{post.id}</Ttitle>
-              <ChooseTP>T</ChooseTP>
-              <Date>2021-05-27</Date>
+              <Ttitle>{post.title}</Ttitle>
+              {post.picUrl === null ?  <ChooseTP>T</ChooseTP> :  <ChooseTP>P</ChooseTP> }
+              {/* 더미 데이터 말고 date 들어올때 날짜추출 메소드를 쓸것인지 slice를 쓸것인지 정해야됨 */}
+              <Date>{post.date.slice(0,10)}</Date>
             </Diary>
           </DiaryWrapper>
         ))}
@@ -57,7 +58,8 @@ export default function Diaries () {
           postsPerPage={postsPerPage}
           totalPosts={posts.length}
           paginate={paginate}
-          color={"#83B799"}
+          currentPage={currentPage}
+          color={["#83B799","black"]}
       />
        
 
@@ -142,7 +144,8 @@ const Ttitle = styled.span`
   padding-left: 10px;
   border-radius: 10px;
   background-color: #CCDEE2;
-  font-size: 25px;
+  font-size: 17px;
+  font-weight: bold;
   /* justify-content: center; */
   align-items: center;
 `

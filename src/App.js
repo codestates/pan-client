@@ -9,6 +9,8 @@ import SignUp from "./screens/SignUp";
 import { GlobalStyles } from "./styles";
 import React from 'react';
 import Template from "./screens/Template";
+import Writing from "./screens/Writing";
+import Drawing from "./screens/Drawing";
 import Details from "./screens/Details";
 import UserStore from "./store/User"
 
@@ -31,6 +33,12 @@ function App() {
               </Route>
               <Route path={routes.template}>
                 <Template />
+              </Route>
+              <Route path={routes.writing}>
+                <Writing />
+              </Route>
+              <Route path={routes.drawing}>
+                <Drawing />
               </Route>
               <Route path={routes.login}>
                 <Login />

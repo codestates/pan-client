@@ -35,7 +35,7 @@ function Header () {
               {token ? 
                 (
                   <Login>
-                    <Link onClick={handlelogout}>LOGOUT</Link>
+                    <Link to="#" onClick={handlelogout}>LOGOUT</Link>
                   </Login>
                 )
                 :

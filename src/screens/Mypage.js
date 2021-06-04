@@ -7,8 +7,8 @@ import ToggleButton from './ToggleButton';
 import { AiOutlineCamera } from "react-icons/ai";
 import Books from '../components/Mypages/Books'
 import Diaries from '../components/Mypages/Diaries'
-import axios from 'axios';
 import { UserContext } from "../store/User"
+
 
 export default function  Mypage() { 
   const [cur, setCur] = useState({
@@ -17,8 +17,7 @@ export default function  Mypage() {
   })
 
   const context = useContext(UserContext);
-  const {username, setUsername, email, setEmail, accessTokenRequest} = context ;
-  console.log(context)
+  const {username, accessTokenRequest, refreshTokenRequest} = context ;
   
   const [lookBooks, SetLookBooks] = useState(false);
   // const [diaries, SetDiaries] = useState([]);
@@ -33,9 +32,8 @@ export default function  Mypage() {
     // 5. pagenation을 사용해서 10개씩 잘라서 보여준다.
   }
 
-
-  useEffect(accessTokenRequest, [])
-
+  // refreshTokenRequest()
+  useEffect(accessTokenRequest, [accessTokenRequest])
 
   return (
     <>
@@ -54,11 +52,13 @@ export default function  Mypage() {
             <ExchangeDiary cur={cur.exchange} onClick={() => setCur({person : false, exchange : true,})}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
+       
             <DiarySection>
-            {lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> :
-             <Diaries></Diaries>  }
-            {/* <Books a={a}></Books> */}
-            {/* <Diaries></Diaries> */}
+            {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
+            {cur.person ? 
+            lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> : <Diaries></Diaries>  :
+             "교환일기"
+            }
             </DiarySection>
         </MypageMain>
         </MypageWrapper>

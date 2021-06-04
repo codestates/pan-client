@@ -73,6 +73,7 @@ export default function Main() {
                 postsPerPage={postsPerPage}
                 totalPosts={posts.length}
                 paginate={paginate}
+                color={["gray","black"]}
               />
           </Div2>
           <MainFooter></MainFooter>

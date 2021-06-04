@@ -6,6 +6,8 @@ const routes = {
     signUp: "/signup",
     template: "/template",
     details: "/details",
+    writing: "/writing",
+    drawing: "/drawing"
     
 }
 
