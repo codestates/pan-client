@@ -12,8 +12,8 @@ import { UserContext } from "../store/UserStore"
 
 export default function  Mypage() { 
   const [cur, setCur] = useState({
-    person : true,
-    exchange : false,
+    individual : true,
+    group : false,
   })
 
   const context = useContext(UserContext);
@@ -48,14 +48,14 @@ export default function  Mypage() {
               </ProfileButton>
             </ProfileWrapper>
             <Usernmae>{username}</Usernmae>
-            <PersonalDiary cur={cur.person} onClick={() => setCur({person : true, exchange : false})}>개인 일기</PersonalDiary>
-            <ExchangeDiary cur={cur.exchange} onClick={() => setCur({person : false, exchange : true,})}>교환 일기</ExchangeDiary>
+            <PersonalDiary cur={cur.individual} onClick={() => setCur({individual : true, group : false})}>개인 일기</PersonalDiary>
+            <ExchangeDiary cur={cur.group} onClick={() => setCur({individual : false, group : true,})}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
        
             <DiarySection>
             {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
-            {cur.person ? 
+            {cur.individual ? 
             lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> : <Diaries></Diaries>  :
              "교환일기"
             }

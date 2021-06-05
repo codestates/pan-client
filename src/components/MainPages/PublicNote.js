@@ -5,19 +5,23 @@ import routes from "../../routes";
 import { DiaryContext } from "../../store/DiaryStore"
 
 function PublicNote({current}) {
+    // contextAPI와 page이동을 위한 변수들!
     const history = useHistory();
     const context = useContext(DiaryContext);
     const {setDiary} = context ;
 
+    // 해당 일기를 클릭하면 contextAPI에 해당 일기의 데이터를 담아주고 그 페이지로 이동!
     const ToDetails = (e) => {
         setDiary(e);
         history.push(`/details/${e.id}`) 
     }
     return (
         <ListSection>
+         {/*  main페이지에서 props로 current를 받아서 이것을 반복문으로 돌려줌
+             current는 공개된 전체 데이터 
+             대신, 개인일기는 개인 일기 / 교환일기면 교환 일기 데이터를 받게 해줌  */}
             {current.map(post => {
               return (
-                  // 어디갔니 아이디얌
               <ListItemBox key={post.id} onClick={()=> ToDetails(post)}>
               <ItemImg src={"https://source.unsplash.com/user/erondu"} />
               <Link to={routes.main}>

@@ -10,16 +10,20 @@ import Pagination from '../components/Pagination';
 import axios from 'axios';
 
 export default function Main() {
+  // 개인, 그룹 규별
     const [cur, setCur] = useState({
       individual : true,
       group : false,
     })
+
+  // pagination을 위한 states
     const [individual, setIndividual] = useState([]);
     const [group, setGroup] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
+  // (resI:개인, resG:그룹) 렌더링 될 때  각 state에 담아줌
     useEffect(() => {
       const fetchPosts = async () => {
         setLoading(true);
@@ -72,6 +76,7 @@ export default function Main() {
               <MainLabel  choose={cur.individual} onClick={()=>setCur({individual:true, group:false})}>공유된 개인일기</MainLabel>
               <MainLabel  choose={cur.group} onClick={()=>setCur({individual:false, group:true})}>공유된 교환일기</MainLabel>
             </Div3>
+            {/* 개인과 그룹을 구별하기 위한 삼한 연산자 */}
             {cur.individual ? 
               <>
                 <PublicNote current={currentIndividual}/> 
