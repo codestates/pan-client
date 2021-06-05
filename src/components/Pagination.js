@@ -1,22 +1,29 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import styled from 'styled-components';
 
-const Pagination = ({ postsPerPage, totalPosts, paginate, color }) => {
+
+const Pagination = ({ postsPerPage, totalPosts, paginate, color, currentPage }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
   return (
     <>
       <Nav>
         {pageNumbers.map(number => (
-          <Item color={color} key={number} onClick={() => paginate(number)}>
-            <a onClick={() => paginate(number)} href='#'>
+          currentPage === number ?
+          <Item color={color[1]} key={number} onClick={() => paginate(number)}>
+            <a href='#'>
               {number}
             </a>
-          </Item>
+          </Item> 
+          :
+          <Item color={color[0]} key={number} onClick={() => paginate(number)}>
+            <a href='#'>
+              {number}
+            </a>
+          </Item> 
         ))}
       </Nav>
     </>
@@ -43,7 +50,9 @@ const Item = styled.li`
   cursor: pointer;
   :hover{
     background-color: gray;
+    transform: translateY(-0.5rem);
   }
+
 `
 
 
