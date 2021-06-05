@@ -19,6 +19,7 @@ function ToggleButton() {
                                 <Span /><Span /><Span />
                             </SpanWrapper>
                         </Hamburger>
+                        {/* 로그인 안된 유저는 마이페이지 입장 불가! */}
                         <Navigation id="mypage" onClick={()=> {token ? history.push('/mypage') : alert('로그인이 필요합니다')}}>
                           {/* <Link to={routes.mypage}> */}
                             <VscAccount />
@@ -29,6 +30,7 @@ function ToggleButton() {
                             <AiOutlineUsergroupAdd />
                             <Paragraph>그룹일기 작성</Paragraph>
                         </Navigation>
+                        {/* 로그인 여부 확인하기 위한 삼항연산자 */}
                         <Navigation id="privateadd" onClick={()=> {token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.')}}>
                           <Link to={routes.template}>
                             <VscEdit />
