@@ -1,84 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import dubai from "../../images/dubai.jpg";
-import newyork from "../../images/new_york.jpg";
-import toronto from "../../images/toronto.jpg";
-import seoul from "../../images/seoul.jpg";
-import beijing from "../../images/beijing.jpg";
+import { Link, useHistory } from "react-router-dom";
 import routes from "../../routes";
 
-function PublicNote() {
+function PublicNote({current}) {
+    const history = useHistory();
+
+    const ToDetails = (e) => {
+        console.log(e);
+        history.push(`/details:${e.id}`) 
+    }
     return (
         <ListSection>
-            <ListItemBox>
-                <ItemImg src={dubai}/>
-                <Link to={routes.main}>
-                    <ItemContent>
-                        <h3>Title</h3>
-                        <h3>Contents</h3>
-                        <h4>Weather</h4>
-                        <h4>Feeling</h4>
-                        <h4>Date</h4>
-                    </ItemContent>
-                    <ItemOverlay />
-                </Link>
-            </ListItemBox>
-            <ListItemBox>
-                <ItemImg src={newyork}/>
-                <Link to={routes.main}>
-                    <ItemContent>
-                        <h3>Title</h3>
-                        <h3>Contents</h3>
-                        <h4>Weather</h4>
-                        <h4>Feeling</h4>
-                        <h4>Date</h4>
-                    </ItemContent>
-                    <ItemOverlay />
-                </Link>
-            </ListItemBox>
-            <ListItemBox>
-                <ItemImg src={toronto}/>
-                <Link to={routes.main}>
-                    <ItemContent>
-                        <h3>Title</h3>
-                        <h3>Contents</h3>
-                        <h4>Weather</h4>
-                        <h4>Feeling</h4>
-                        <h4>Date</h4>
-                    </ItemContent>
-                    <ItemOverlay />
-                </Link>
-            </ListItemBox>
-            <ListItemBox>
-                <ItemImg src={seoul}/>
-                <Link to={routes.main}>
-                    <ItemContent>
-                        <h3>Title</h3>
-                        <h3>Contents</h3>
-                        <h4>Weather</h4>
-                        <h4>Feeling</h4>
-                        <h4>Date</h4>
-                    </ItemContent>
-                    <ItemOverlay />
-                </Link>
-            </ListItemBox>
-            <ListItemBox>
-                <ItemImg src={beijing}/>
-                <Link to={routes.main}>
-                    <ItemContent>
-                        <h3>Title</h3>
-                        <h3>Contents</h3>
-                        <h4>Weather</h4>
-                        <h4>Feeling</h4>
-                        <h4>Date</h4>
-                    </ItemContent>
-                    <ItemOverlay />
-                </Link>
-            </ListItemBox>
+            {current.map(post => {
+              return (
+                  // 어디갔니 아이디얌
+              <ListItemBox key={post.createdAt} onClick={()=> ToDetails(post)}>
+              <ItemImg src={"https://source.unsplash.com/user/erondu"} />
+              <Link to={routes.main}>
+                  <ItemContent>
+                      <h3>{post.title}</h3>
+                      <h4>{post.writer}</h4>
+                      <p>{post.content}</p>
+                  </ItemContent>
+                  <ItemOverlay />
+              </Link>
+          </ListItemBox>
+            )})}
+
         </ListSection>
     )
 }
+
+
 
 export default PublicNote;
 
@@ -90,7 +44,7 @@ const ListSection = styled.section`
     margin-top: 1rem;
     padding-left: 1rem;
     width: 100%;
-    /* overflow: hidden; */
+    overflow: hidden;
 `;
 const ListItemBox = styled.div`
     width: 90%;
@@ -102,6 +56,7 @@ const ListItemBox = styled.div`
     flex-direction: column;
     transition: all 0.4s;
     border-radius: 8px;
+    overflow: hidden;
     &:hover {
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
@@ -144,8 +99,8 @@ const ItemContent = styled.article`
 
     h3 {
         color: #343a40;
-        font-size: 1.5rem;
-        font-weight: 700;
+        font-size: x-large;
+        font-weight: 800;
         margin: 0 0 10px;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -172,14 +127,15 @@ const ItemContent = styled.article`
 
     p {
         color: #343a40;
-        font-size: 1rem;
-        font-weight: 400;
+        font-size: 1.3rem;
+        font-weight: 700;
         margin: 0 0 10px;
         text-overflow: ellipsis;
         display: -webkit-box;
-        -webkit-line-clamp: 1;
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         word-break: break-;
         text-shadow: 2px 2px 0 #fff;
+        overflow: hidden;
     }
 `;

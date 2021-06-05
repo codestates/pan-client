@@ -1,4 +1,4 @@
-import React,{ useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 
@@ -14,15 +14,11 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, color, currentPage }) 
         {pageNumbers.map(number => (
           currentPage === number ?
           <Item color={color[1]} key={number} onClick={() => paginate(number)}>
-            <a href='#'>
               {number}
-            </a>
           </Item> 
           :
           <Item color={color[0]} key={number} onClick={() => paginate(number)}>
-            <a href='#'>
               {number}
-            </a>
           </Item> 
         ))}
       </Nav>
@@ -36,7 +32,6 @@ const Nav = styled.ul`
   display: flex;
   justify-content: center;
   /* border: 1px solid red; */
-
 `
 const Item = styled.li`
   display: flex;
@@ -52,7 +47,6 @@ const Item = styled.li`
     background-color: gray;
     transform: translateY(-0.5rem);
   }
-
 `
 
 

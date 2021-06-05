@@ -6,15 +6,6 @@ export default function Books ({isCoverClick}) {
     return (
         <CoverWrapper>
             <Cover onClick={isCoverClick}> <h2>일기장1</h2> </Cover>
-            <Cover> <h2>일기장2</h2> </Cover>
-            <Cover> <h2>일기장3</h2> </Cover>
-            <Cover> <h2>일기장4</h2> </Cover>
-            <Cover> <h2>일기장5</h2> </Cover>
-            <Cover> <h2>일기장6</h2> </Cover>
-            <Cover> <h2>일기장7</h2> </Cover>
-            <Cover> <h2>일기장8</h2> </Cover>
-            <Cover> <h2>일기장9</h2> </Cover>
-            <Cover> <h2>일기장10</h2> </Cover>
         </CoverWrapper>
     )
 } 
