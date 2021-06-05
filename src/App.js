@@ -12,12 +12,14 @@ import Template from "./screens/Template";
 import Writing from "./screens/Writing";
 import Drawing from "./screens/Drawing";
 import Details from "./screens/Details";
-import UserStore from "./store/User"
+import UserStore from "./store/UserStore"
+import DiaryStore from "./store/DiaryStore"
 
 function App() { 
 
   return (
     <UserStore>
+      <DiaryStore>
       <HelmetProvider>
         <GlobalStyles />
         <Router>
@@ -52,6 +54,7 @@ function App() {
             </Switch>
         </Router>
       </HelmetProvider>
+      </DiaryStore>
     </UserStore>
   );
 }

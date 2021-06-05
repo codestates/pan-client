@@ -1,21 +1,24 @@
-import React from "react";
+import React , {useContext} from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import routes from "../../routes";
+import { DiaryContext } from "../../store/DiaryStore"
 
 function PublicNote({current}) {
     const history = useHistory();
+    const context = useContext(DiaryContext);
+    const {setDiary} = context ;
 
     const ToDetails = (e) => {
-        console.log(e);
-        history.push(`/details:${e.id}`) 
+        setDiary(e);
+        history.push(`/details/${e.id}`) 
     }
     return (
         <ListSection>
             {current.map(post => {
               return (
                   // 어디갔니 아이디얌
-              <ListItemBox key={post.createdAt} onClick={()=> ToDetails(post)}>
+              <ListItemBox key={post.id} onClick={()=> ToDetails(post)}>
               <ItemImg src={"https://source.unsplash.com/user/erondu"} />
               <Link to={routes.main}>
                   <ItemContent>
