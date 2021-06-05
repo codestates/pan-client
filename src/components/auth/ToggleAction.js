@@ -108,7 +108,7 @@ export const Switch = styled.div`
         opacity: 1;
     }
     > input:checked + label #mypage {
-        transform: translateY(-120%);
+        transform: translateY(-125%);
         font-size: 25px;
     }
     > input:checked + label #groupadd {
