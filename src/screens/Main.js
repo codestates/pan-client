@@ -11,10 +11,11 @@ import axios from 'axios';
 
 export default function Main() {
     const [cur, setCur] = useState({
-      person : true,
-      exchange : false,
+      individual : true,
+      group : false,
     })
-    const [posts, setPosts] = useState([]);
+    const [individual, setIndividual] = useState([]);
+    const [group, setGroup] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
@@ -22,9 +23,11 @@ export default function Main() {
     useEffect(() => {
       const fetchPosts = async () => {
         setLoading(true);
-        // 더미데이터 들어오면 url 바꿔야됨
-        const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        setPosts(res.data);
+        const resI = await axios.get('https://localhost:80/diaries');
+        console.log(resI)
+        // const resG = await axios.get('https://localhost:80//group-diaries');
+        setIndividual(resI.data.data);
+        // setGroup(resG.data.data);
         setLoading(false);
       };   
   
@@ -34,7 +37,8 @@ export default function Main() {
        // Get current posts
        const indexOfLastPost = currentPage * postsPerPage;
        const indexOfFirstPost = indexOfLastPost - postsPerPage;
-       const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+       const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
+       const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
    
        // Change page
        const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -65,16 +69,32 @@ export default function Main() {
           <Div2>
             <Div3>
               {/* mainlabel을 maping해서 갯수에 맞게 pagenation 적용해야됨 */}
-              <MainLabel choose={cur.person} onClick={()=>setCur({person:true, exchange:false})}>공유된 개인일기</MainLabel>
-              <MainLabel choose={cur.exchange} onClick={()=>setCur({person:false, exchange:true})}>공유된 교환일기</MainLabel>
+              <MainLabel  choose={cur.individual} onClick={()=>setCur({individual:true, group:false})}>공유된 개인일기</MainLabel>
+              <MainLabel  choose={cur.group} onClick={()=>setCur({individual:false, group:true})}>공유된 교환일기</MainLabel>
             </Div3>
-            <PublicNote />
-            <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={posts.length}
-                paginate={paginate}
-                color={["gray","black"]}
-              />
+            {cur.individual ? 
+              <>
+                <PublicNote current={currentIndividual}/> 
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={individual.length}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                  color={["#343a40","#C57951"]}
+                />
+              </>
+              : 
+              <>
+                <PublicNote current={currentGroup}/>
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={group.length}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                  color={["#343a40","#C57951"]}
+                />
+              </>
+              }
           </Div2>
           <MainFooter></MainFooter>
         </MainBody>
@@ -122,8 +142,7 @@ const Div1 = styled.div`
 `;
 
 const Div2 = styled.div`
-  /* border: 1px solid blue; */
-  height: 40vh;
+  height: 60vh;
   margin: 40px 0;
   /* overflow: hidden; */
 `;
@@ -134,7 +153,7 @@ const Div3 = styled.div`
 
 const MainFooter = styled.footer`
   width: 100%;
-  height: 20vh;
+  height: 10vh;
 `
 
 
