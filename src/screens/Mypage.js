@@ -43,27 +43,26 @@ export default function  Mypage() {
       <MypageWrapper>
         <MypageMain>
           <LeftSection>
-          <ProfileWrapper>
-            <Profile src={default_profile} alt="이미지입니다" />
-            <ProfileButton>
-              <AiOutlineCamera size="90%" />
-            </ProfileButton>
-          </ProfileWrapper>
+            <ProfileWrapper>
+              <Profile src={default_profile} alt="이미지입니다" />
+              <ProfileButton>
+                <AiOutlineCamera size="90%" />
+              </ProfileButton>
+            </ProfileWrapper>
             <Usernmae>{username}</Usernmae>
             <PersonalDiary cur={cur.person} onClick={() => setCur({person : true, exchange : false})}>개인 일기</PersonalDiary>
             <ExchangeDiary cur={cur.exchange} onClick={() => setCur({person : false, exchange : true,})}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
             <DiarySection>
-            {lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> :
-             <Diaries></Diaries>  }
+            {lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> : <Diaries></Diaries>  }
             {/* <Books a={a}></Books> */}
             {/* <Diaries></Diaries> */}
             </DiarySection>
         </MypageMain>
-        </MypageWrapper>
-        <MypageFooter></MypageFooter>
-        <ToggleButton></ToggleButton>
+      </MypageWrapper>
+      <MypageFooter />
+      <ToggleButton />
     </>
   )
 }
