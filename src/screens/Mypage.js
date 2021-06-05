@@ -7,7 +7,7 @@ import ToggleButton from './ToggleButton';
 import { AiOutlineCamera } from "react-icons/ai";
 import Books from '../components/Mypages/Books'
 import Diaries from '../components/Mypages/Diaries'
-import { UserContext } from "../store/User"
+import { UserContext } from "../store/UserStore"
 
 
 export default function  Mypage() { 

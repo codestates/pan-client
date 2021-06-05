@@ -1,12 +1,15 @@
-import React from 'react';
+import React, {useState, useContext} from 'react';
 import routes from '../routes';
 import Header from '../components/Header';
 import ToggleButton from './ToggleButton';
 import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, DisableComment, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../components/Details/DetailsLayout"
-
+import { DiaryContext } from "../store/DiaryStore"
 export default function Details () {
-    
+  // diaryInfo 안에 해당 diary 관련 데이터 들어 있음
+  const diaryInfo = useContext(DiaryContext);
+  console.log(diaryInfo.diary);
+
     return (
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />
