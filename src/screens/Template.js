@@ -9,7 +9,7 @@ import ToggleButton from './ToggleButton';
 
 export default function Template () {
   const history = useHistory();
-
+  
     return (
         <>
         <Header main={routes.main} login={routes.login} />

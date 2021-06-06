@@ -1,19 +1,16 @@
-import React , {useContext} from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import routes from "../../routes";
-import { DiaryContext } from "../../store/DiaryStore"
 
 function PublicNote({current}) {
-    // contextAPI와 page이동을 위한 변수들!
+    //  page이동을 위한 변수들!
     const history = useHistory();
-    const context = useContext(DiaryContext);
-    const {setDiary} = context ;
 
-    // 해당 일기를 클릭하면 contextAPI에 해당 일기의 데이터를 담아주고 그 페이지로 이동!
-    const ToDetails = (e) => {
-        setDiary(e);
-        history.push(`/details/${e.id}`) 
+    // Details 페이지로 이동 하는 메소드
+    // onClick하면 해당 일기의 id값을 추출해서 params로 전달하면서 페이지 이동
+    const ToDetails = (id) => {
+        history.push(`/details/${id}`) 
     }
     return (
         <ListSection>
@@ -22,7 +19,7 @@ function PublicNote({current}) {
              대신, 개인일기는 개인 일기 / 교환일기면 교환 일기 데이터를 받게 해줌  */}
             {current.map(post => {
               return (
-              <ListItemBox key={post.id} onClick={()=> ToDetails(post)}>
+              <ListItemBox key={post.id} onClick={()=> ToDetails(post.id)}>
               <ItemImg src={"https://source.unsplash.com/user/erondu"} />
               <Link to={routes.main}>
                   <ItemContent>

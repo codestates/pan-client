@@ -28,7 +28,7 @@ export default function Main() {
       const fetchPosts = async () => {
         setLoading(true);
         const resI = await axios.get('https://localhost:80/diaries');
-        console.log(resI)
+        // console.log(resI)
         // const resG = await axios.get('https://localhost:80//group-diaries');
         setIndividual(resI.data.data);
         // setGroup(resG.data.data);
