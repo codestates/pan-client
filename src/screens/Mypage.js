@@ -8,7 +8,12 @@ import { AiOutlineCamera } from "react-icons/ai";
 import Books from '../components/Mypages/Books'
 import Diaries from '../components/Mypages/Diaries'
 import { UserContext } from "../store/UserStore"
+import axios from 'axios';
 
+// 1. accesstoken, refreshtoken으로 유저 정보 받아오기
+// 2. sever에게 books 데이터를 받았다면 개인 일기 , 교환 일기 나누어서 저장 (cur state 활용) => mypage에서 데이터를 books 페이지에 props 전달해줌
+// 3. books을 클릭하면 books안에 있는 일기 리스트 나오게 해줌 => mypage에서 데이터를 Diaries페이지로 props 전달해줌
+// 4. Diaries페이지가 완성 되엇으면 main의 PublickNote 페이지처럼 Onclick method를 줘서 해당 detail페이지로 이동
 
 export default function  Mypage() { 
   const [cur, setCur] = useState({
@@ -34,7 +39,10 @@ export default function  Mypage() {
 
   // refreshTokenRequest()
   useEffect(accessTokenRequest, [accessTokenRequest])
-
+  useEffect(()=> {
+    const res = axios.get('https://localhost:80/mypage/books');
+    console.log(res)
+  }, [])
   return (
     <>
       <Header main={routes.main} login={routes.login}></Header>

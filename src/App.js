@@ -13,13 +13,11 @@ import Writing from "./screens/Writing";
 import Drawing from "./screens/Drawing";
 import Details from "./screens/Details";
 import UserStore from "./store/UserStore"
-import DiaryStore from "./store/DiaryStore"
 
 function App() { 
 
   return (
     <UserStore>
-      <DiaryStore>
       <HelmetProvider>
         <GlobalStyles />
         <Router>
@@ -48,13 +46,13 @@ function App() {
               <Route path={routes.signUp}>
                 <SignUp />
               </Route>
-              <Route path={routes.details}>
+                <Route exact path="/details/:id" component={Details}/>
+              {/* <Route path={routes.details}>
                 <Details />
-              </Route>
+              </Route> */}
             </Switch>
         </Router>
       </HelmetProvider>
-      </DiaryStore>
     </UserStore>
   );
 }
