@@ -56,7 +56,8 @@ export default function SignUp(props) {
                 .post(
                     'https://localhost:80/signup',
                     {
-                        username: username,
+                        username,
+
                         email,
                         password
                     },
