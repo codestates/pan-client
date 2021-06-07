@@ -2,7 +2,7 @@ import React from 'react';
 import routes from '../routes';
 import Header from '../components/Header';
 import ToggleButton from '../screens/ToggleButton'
-import {DiaryWritingWrapper, DiaryWritingMain, Wirte, Preview} from '../components/auth/DiaryWritingLayout'
+import {DiaryWritingWrapper, DiaryWritingMain, Wirte, Preview} from '../components/writing/DiaryWritingLayout'
 
 
 export default function Writing() {

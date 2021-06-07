@@ -89,15 +89,14 @@ export default function  Mypage() {
             <ExchangeDiary cur={cur.group} onClick={changeGroup}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
-       
-            <DiarySection>
-            {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
-            {cur.individual ? 
-            lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>  
+          <DiarySection>
+          {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
+          {cur.individual ? 
+            lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>
             :
-            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries>  
-            }
-            </DiarySection>
+            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries>
+          }
+          </DiarySection>
         </MypageMain>
       </MypageWrapper>
       <MypageFooter />
