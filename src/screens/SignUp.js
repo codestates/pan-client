@@ -54,9 +54,9 @@ export default function SignUp(props) {
         } else {
             axios
                 .post(
-                    'https://api.picanote.me/signup',
+                    'https://localhost:80/signup',
                     {
-                        userName: username,
+                        username: username,
                         email,
                         password
                     },

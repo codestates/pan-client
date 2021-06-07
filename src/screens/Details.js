@@ -1,19 +1,21 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import routes from '../routes';
 import Header from '../components/Header';
 import ToggleButton from './ToggleButton';
 import { FiHeart } from "react-icons/fi";
-import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, DisableComment, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../components/Details/DetailsLayout"
+import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../components/Details/DetailsLayout"
 import axios from 'axios';
-import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 export default function Details ({match}) {
     // url params에 맞춰서 일기를 렌더링 한다.
-    useEffect( async ()=>{
-        const id = match.params.id
-        const res = await axios.get(`https://localhost:80/diaries/${id}`)
-        console.log(res);
-    }, [])
+    useEffect(() => {
+       const getDetails = async() => {
+            const id = match.params.id
+            const res = await axios.get(`https://localhost:80/diaries/${id}`)
+            console.log(res);
+        }
+        getDetails();
+    })
     return (
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />

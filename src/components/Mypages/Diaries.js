@@ -1,26 +1,20 @@
 import React, { useState, useEffect }  from 'react';
 import styled from 'styled-components';
 import Pagination from '../Pagination';
-import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
-export default function Diaries () {
+export default function Diaries ({diary}) {
   // pagenation state 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
-
   // pagenation useEffect   
-  useEffect(() => {
-    const fetchPosts = async () => {
+    useEffect(() => {
       setLoading(true);
-      const res = await axios.get('https://localhost:80/diaries');
-      console.log(res)
-      setPosts(res.data.data);
+      setPosts(diary);
       setLoading(false);
-    };   
-    fetchPosts();
-  }, []);
+    }, []);
 
   // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
@@ -29,7 +23,15 @@ export default function Diaries () {
 
   // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    
+  
+  //  page이동을 위한 변수!
+    const history = useHistory();
+  
+  // Details 페이지로 이동 하는 메소드
+  // onClick하면 해당 일기의 id값을 추출해서 params로 전달하면서 페이지 이동
+    const ToDetails = (id) => {
+      history.push(`/details/${id}`) 
+    }
   // 없애거나 좋은 이미지 있으면 넣으면 좋을 듯 ex) 비바 로딩
     if (loading) {
       return <h2>Loading...</h2>;
@@ -43,9 +45,9 @@ export default function Diaries () {
         </DiaryHeader>
         {/* 전체 페이지에서 한페이지당 10개만 나오게 설정 */}
         {currentPosts.map(post => (
-          <DiaryWrapper key={post.createdAt}>
+          <DiaryWrapper key={post.id}>
             <Public type="checkbox"/>
-            <Diary>
+            <Diary onClick={()=> ToDetails(post.id)}>
               <Ttitle>{post.title}</Ttitle>
               {post.picUrl === null ?  <ChooseTP>T</ChooseTP> :  <ChooseTP>P</ChooseTP> }
               {/* 더미 데이터 말고 date 들어올때 날짜추출 메소드를 쓸것인지 slice를 쓸것인지 정해야됨 */}

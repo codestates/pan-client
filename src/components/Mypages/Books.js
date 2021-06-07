@@ -1,11 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export default function Books ({isCoverClick, books}) {
 
-export default function Books ({isCoverClick}) {
     return (
         <CoverWrapper>
-            <Cover onClick={isCoverClick}> <h2>일기장1</h2> </Cover>
+             {books.map((book)=> {
+              return  (
+              <Cover 
+                key={book.bookName} 
+                onClick={ () => isCoverClick(book.Diaries)}>
+                  <h2>{book.bookName}</h2> 
+              </Cover>
+              )
+             })}
         </CoverWrapper>
     )
 } 
