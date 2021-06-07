@@ -10,11 +10,6 @@ import Diaries from '../components/Mypages/Diaries'
 import { UserContext } from "../store/UserStore"
 import axios from 'axios';
 
-// 1. accesstoken, refreshtoken으로 유저 정보 받아오기
-// 2. sever에게 books 데이터를 받았다면 개인 일기 , 교환 일기 나누어서 저장 (cur state 활용) => mypage에서 데이터를 books 페이지에 props 전달해줌
-// 3. books을 클릭하면 books안에 있는 일기 리스트 나오게 해줌 => mypage에서 데이터를 Diaries페이지로 props 전달해줌
-// 4. Diaries페이지가 완성 되엇으면 main의 PublickNote 페이지처럼 Onclick method를 줘서 해당 detail페이지로 이동
-
 export default function  Mypage() { 
   const [cur, setCur] = useState({
     individual : true,
@@ -23,26 +18,60 @@ export default function  Mypage() {
 
   const context = useContext(UserContext);
   const {username, accessTokenRequest, refreshTokenRequest} = context ;
-  
+  const [individual, setIndividual] = useState([]);
+  const [group, setGroup] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [lookBooks, SetLookBooks] = useState(false);
-  // const [diaries, SetDiaries] = useState([]);
+  const [diaries, setDiaries] = useState([]);
 
-  const isCoverClick = () => {
+  // books=> cover onClick 하면 books안에있는 diary들이 diaries state에 저장이 된다.
+  const isCoverClick = (e) => {
     SetLookBooks(true);
-    // console.log(lookBooks);
-    // 1. cover를 클릭하면 bookId 와 일치하는 일기장들을 찾는다.
-    // 2. 그 일기장들을 SetDiaries에 담는다.
-    // 3. setBooks으로 Books를 true로 바꿔준다. 
-    // 4. Diaries파일에 diaries를 map메소드로 돌려서 전체를 보여준다.
-    // 5. pagenation을 사용해서 10개씩 잘라서 보여준다.
+    setDiaries(e);
+    console.log(e)
+  }
+
+  const changeIndividual = () => {
+    setCur({individual : true, group : false});
+    SetLookBooks(false);
+
+  }
+  const changeGroup = () => {
+    setCur({individual : false, group : true});
+    SetLookBooks(false);
   }
 
   // refreshTokenRequest()
   useEffect(accessTokenRequest, [accessTokenRequest])
-  useEffect(()=> {
-    const res = axios.get('https://localhost:80/mypage/books');
-    console.log(res)
-  }, [])
+  
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      await axios.get('https://localhost:80/books',{
+      headers:{
+      Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+      'ContentType' : 'application/json',
+      },
+      withCredentials : true
+      })
+      .then(res => {
+        if(!res.data.data.groupId) {
+          setIndividual(res.data.data)
+        } else {
+          setGroup(res.data.data)
+        }
+  
+      })
+      setLoading(false);
+    };   
+
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <>
       <Header main={routes.main} login={routes.login}></Header>
@@ -56,16 +85,17 @@ export default function  Mypage() {
               </ProfileButton>
             </ProfileWrapper>
             <Usernmae>{username}</Usernmae>
-            <PersonalDiary cur={cur.individual} onClick={() => setCur({individual : true, group : false})}>개인 일기</PersonalDiary>
-            <ExchangeDiary cur={cur.group} onClick={() => setCur({individual : false, group : true,})}>교환 일기</ExchangeDiary>
+            <PersonalDiary cur={cur.individual} onClick={changeIndividual}>개인 일기</PersonalDiary>
+            <ExchangeDiary cur={cur.group} onClick={changeGroup}>교환 일기</ExchangeDiary>
             <Print>print</Print>
           </LeftSection>
        
             <DiarySection>
             {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
             {cur.individual ? 
-            lookBooks === false ? <Books isCoverClick={isCoverClick}></Books> : <Diaries></Diaries>  :
-             "교환일기"
+            lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>  
+            :
+            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries>  
             }
             </DiarySection>
         </MypageMain>

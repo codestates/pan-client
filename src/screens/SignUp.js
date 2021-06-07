@@ -57,6 +57,7 @@ export default function SignUp(props) {
                     'https://localhost:80/signup',
                     {
                         username,
+
                         email,
                         password
                     },
