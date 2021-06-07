@@ -7,7 +7,7 @@ export const UserContext = createContext();
 function UserStore (props) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-
+    
     const accessTokenRequest = () => {
         // axios.get('https://api.picanote.me/accessToken',{
         axios.get('https://localhost:80/accessToken',{
@@ -48,7 +48,6 @@ function UserStore (props) {
           });
       }
       
-
     return (
         <UserContext.Provider value={{
             username,
