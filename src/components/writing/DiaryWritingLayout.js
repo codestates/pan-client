@@ -6,7 +6,6 @@ export const DiaryWritingWrapper = styled.div`
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
-   
 `
 export const DiaryWritingMain = styled.div`
     display: flex;
