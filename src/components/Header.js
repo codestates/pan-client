@@ -62,7 +62,6 @@ const HeaderBox = styled.div`
   width: 100%;
   justify-content: space-between;
   margin-top: 10px;
-
   padding: 18px;
 `
 
