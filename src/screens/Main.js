@@ -28,7 +28,7 @@ export default function Main() {
       const fetchPosts = async () => {
         setLoading(true);
         const resI = await axios.get('https://localhost:80/diaries');
-        // console.log(resI)
+        console.log(resI)
         // const resG = await axios.get('https://localhost:80//group-diaries');
         setIndividual(resI.data.data);
         // setGroup(resG.data.data);
@@ -43,6 +43,8 @@ export default function Main() {
        const indexOfFirstPost = indexOfLastPost - postsPerPage;
        const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
        const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
+       // 개인일기와 교환일기를 합쳐서 like가 1개라도 있으면 top10으로 props 전달
+       const allDiaries = individual.concat(group).filter((e)=> {return e.like !== null})
    
        // Change page
        const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -68,7 +70,8 @@ export default function Main() {
             </Fade>
           </PhraseGroup>
           <Div1>
-            <Top10 />
+            {/* 개인일기과 그룹일기를 합쳐서 top10에 보내준다. */}
+            <Top10 allDiaries={allDiaries} />
           </Div1>
           <Div2>
             <Div3>
