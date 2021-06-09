@@ -55,16 +55,13 @@ export default function  Mypage() {
       withCredentials : true
       })
       .then(res => {
-        if(!res.data.data.groupId) {
-          setIndividual(res.data.data)
-        } else {
-          setGroup(res.data.data)
-        }
-  
+        const individualBooks = res.data.data.filter(e=>!e.groupId);
+        const groupBooks = res.data.data.filter(e=> e.groupId);
+          setIndividual(individualBooks)
+          setGroup(groupBooks)
       })
       setLoading(false);
     };   
-
     fetchPosts();
   }, []);
 
