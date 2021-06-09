@@ -15,7 +15,7 @@ export default function Details ({match}) {
             console.log(res);
         }
         getDetails();
-    })
+    }, [])
     return (
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />
