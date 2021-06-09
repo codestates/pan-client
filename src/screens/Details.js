@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import routes from '../routes';
 import Header from '../components/Header';
 import ToggleButton from './ToggleButton';
@@ -7,16 +7,31 @@ import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, C
 import axios from 'axios';
 
 export default function Details ({match}) {
+    const [details, setDetails] = useState([]);
+    const [loading, setLoading] = useState(false);
     // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
-       const getDetails = async() => {
-            const id = match.params.id
-            const res = await axios.get(`https://localhost:80/diaries/${id}`)
-            console.log(res);
+        try{
+          const getDetails = async() => {
+                setLoading(true);
+                const id = await match.params.id
+                const res = await axios.get(`https://localhost:80/diaries/${id}`)
+                setDetails(res.data.data[0])
+                setLoading(false);
+                console.log(res)
+              }
+              getDetails()
+           
+        }catch{
+            console.error("err");
         }
-        getDetails();
-    })
-    return (
+     
+    }, [])
+
+    if (loading) {
+        return <h2>Loading...</h2>;
+      }
+      return (
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />
             <DetailsMain>
@@ -24,27 +39,32 @@ export default function Details ({match}) {
                     <ContentHeader>
                         <ContentHeaderT>
                             <ContentHBLeft>
-                                제목: <ContentTitle />
+                                {/* 제목: <ContentTitle /> */}
+                                제목: {details.title}
                             </ContentHBLeft>
                             <ContentHBRight>
-                                날짜: <ContentDate />
+                                {/* 날짜: <ContentDate /> */}
+                                날짜: {details.weather}
                             </ContentHBRight>
                         </ContentHeaderT>
                         <ContentHeaderB>
                             <ContentHBLeft>
-                                기분: <ContentFeel />
+                                {/* 기분: <ContentFeel /> */}
+                                기분: {details.feelings}
                             </ContentHBLeft>
                             <ContentHBRight>
-                                날씨: <ContentWeather />
+                                {/* 날씨: <ContentWeather /> */}
+                                날씨: {details.weather}
                             </ContentHBRight>
                         </ContentHeaderB>
                     </ContentHeader>
                     {/* 일기 본문 내용 */}
                     <ContentMain>
-                        <p>무엇인가 찾아나서는 도전은 언제나 초심자의 행운으로 시작되고 반드시 가혹한 시험으로 끝을 맺는다.</p>
+                        {/* <p>무엇인가 찾아나서는 도전은 언제나 초심자의 행운으로 시작되고 반드시 가혹한 시험으로 끝을 맺는다.</p>
                         <p>모두가 자아의 신화를 실현하려는 간절한 소망을 가지고 그 것을 달성하기 위한 끈질긴 집념,</p>
                         <p>그리고 비록 많은 시련과 포기하고 싶은 좌절의 순간이 있었겠지만,</p>
-                        <p>오직 하나를 위한 성실한 노력과 연습으로 마지막의 벽을 넘어서야 가혹한 시험을 통과할 수 있다.</p>
+                        <p>오직 하나를 위한 성실한 노력과 연습으로 마지막의 벽을 넘어서야 가혹한 시험을 통과할 수 있다.</p> */}
+                        {details.content}
                     </ContentMain>
                     <ContentBottom>
                         <BottomLeft>
@@ -106,3 +126,4 @@ export default function Details ({match}) {
         </DetailsWrapper>
     )
 }
+

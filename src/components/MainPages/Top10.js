@@ -1,15 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import dubai from "../../images/dubai.jpg";
-import newyork from "../../images/new_york.jpg";
-import toronto from "../../images/toronto.jpg";
-import seoul from "../../images/seoul.jpg";
-import beijing from "../../images/beijing.jpg";
+import { Link, useHistory } from "react-router-dom";
 import Zoom from 'react-reveal/Zoom';
 import routes from "../../routes";
 
-function Top10() {
+function Top10({allDiaries}) {
+    const history = useHistory();
+    // like순으로 정렬 현재로선 5개만 나오게 함 (slice)
+    const sortDiaries = allDiaries.sort(function(a, b) {
+        return a.like > b.like ? -1 : a.like < b.like ? 1 : 0;
+      }).slice(0,5);
+
+    const ToDetails = (id) => {
+        history.push(`/details/${id}`) 
+    }
     return (
         <Wrapper>
             <HeadCard>
@@ -24,71 +28,22 @@ function Top10() {
                 </Zoom>
             </HeadCard>
             <CardList>
-                <CardWrap>
-                    <CardImg src={dubai}/>
+                {sortDiaries.map((post)=>{
+                    return (
+                    <CardWrap key={post.id} onClick={() => ToDetails(post.id)}>
+                    <CardImg src={"https://source.unsplash.com/user/erondu"}/>
                     <Link to={routes.main}>
                         <CardContent>
-                            <h2>Title</h2>
-                            <h2>Contents</h2>
-                            <h3>Weather</h3>
-                            <h3>Feeling</h3>
-                            <h3>Date</h3>
+                            <h2>{post.title}</h2>
+                            <h2>{post.content}</h2>
+                            <h3>{post.weather}</h3>
+                            <h3>{post.feelings}</h3>
                         </CardContent>
                         <CardOverlay />
                     </Link>
                 </CardWrap>
-                <CardWrap>
-                    <CardImg src={newyork}/>
-                    <Link to={routes.main}>
-                        <CardContent>
-                            <h2>Title</h2>
-                            <h2>Contents</h2>
-                            <h3>Weather</h3>
-                            <h3>Feeling</h3>
-                            <h3>Date</h3>
-                        </CardContent>
-                        <CardOverlay />
-                    </Link>
-                </CardWrap>
-                <CardWrap>
-                    <CardImg src={toronto}/>
-                    <Link to={routes.main}>
-                        <CardContent>
-                            <h2>Title</h2>
-                            <h2>Contents</h2>
-                            <h3>Weather</h3>
-                            <h3>Feeling</h3>
-                            <h3>Date</h3>
-                        </CardContent>
-                        <CardOverlay />
-                    </Link>
-                </CardWrap>
-                <CardWrap>
-                    <CardImg src={seoul}/>
-                    <Link to={routes.main}>
-                        <CardContent>
-                            <h2>Title</h2>
-                            <h2>Contents</h2>
-                            <h3>Weather</h3>
-                            <h3>Feeling</h3>
-                            <h3>Date</h3>
-                        </CardContent>
-                        <CardOverlay />
-                    </Link>
-                </CardWrap>
-                <CardWrap>
-                    <CardImg src={beijing}/>
-                    <Link to={routes.main}>
-                        <CardContent>
-                            <h2>Title</h2>
-                            <h2>Contents</h2>
-                            <h3>Weather</h3>
-                            <h3>Feeling</h3>
-                            <h3>Date</h3>
-                        </CardContent>
-                        <CardOverlay />
-                    </Link>
-                </CardWrap>
+                    )
+                })}
             </CardList>
         </Wrapper>
     )
@@ -105,6 +60,7 @@ const Wrapper = styled.div`
 `;
 
 const HeadCard = styled.header`
+    /* border: 1px solid red; */
     position: relative;
     display: flex;
     justify-content: flex-end;
@@ -125,11 +81,11 @@ const HeadCard = styled.header`
 
 const CardList = styled.section`
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-gap: 5px;
+    grid-template-columns: repeat(5, minmax(250px, 1fr));
     padding-top: 2rem;
-    padding-left: 2rem;
-    overflow-x: scroll;
+    /* padding-left: 2rem; */
+    overflow-x: hidden;
     /* border: 1px solid black; */
     height: 40vh;
     &::-webkit-scrollbar {
