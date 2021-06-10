@@ -39,7 +39,7 @@ const Nav = styled.ul`
 `
 const Item = styled.li`
   display: flex;
-  font-size: large;
+  font-size: x-large;
   /* color: #83B799; */
   color: ${props => props.color || "black"};
   width: 40px;
