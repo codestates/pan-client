@@ -6,22 +6,31 @@ import toronto from '../images/toronto.jpg'
 import newyork from "../images/new_york.jpg";
 import { useHistory } from "react-router-dom";
 import ToggleButton from './ToggleButton';
+import ChooseBook from '../components/modal/ChooseBook';
+import { ModalProvider, BaseModalBackground } from "styled-react-modal";
 
 export default function Template () {
   const history = useHistory();
-  
+
     return (
-        <>
-        <Header main={routes.main} login={routes.login} />
-        <Announcement>템플릿 선택하기</Announcement>
-        <TemplateMain>
-            <Writing  onClick={() => {history.push('/writing')}}>시적 감성</Writing>
-            <Drawing onClick={() => {history.push('/drawing')}}>예술적 감성</Drawing>
-        </TemplateMain>
-        <ToggleButton></ToggleButton>
-        </>
+        <ModalProvider backgroundComponent={FadingBackground}>
+          <ChooseBook/>
+            <Header main={routes.main} login={routes.login} />
+            <Announcement>템플릿 선택하기</Announcement>
+            <TemplateMain>
+                <Writing  onClick={() => {history.push('/writing')}}>시적 감성</Writing>
+                <Drawing onClick={() => {history.push('/drawing')}}>예술적 감성</Drawing>
+            </TemplateMain>
+            <ToggleButton></ToggleButton>
+        </ModalProvider>
     )
 }
+
+const FadingBackground = styled(BaseModalBackground)`
+  opacity: ${(props) => props.opacity};
+  transition: all 0.3s ease-in-out;
+`;
+
 
 const Announcement = styled.div`
   /* position: relative; */

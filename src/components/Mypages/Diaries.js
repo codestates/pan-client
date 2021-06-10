@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from 'react';
 import styled from 'styled-components';
 import Pagination from '../Pagination';
 import { useHistory } from "react-router-dom";
+import checkIcons from "../../images/check.png"
 
 export default function Diaries ({diary}) {
   // pagenation state 
@@ -82,7 +83,7 @@ const DiaryHeader = styled.div`
   width: 100%;
   height: 70px;
   button {
-    background-color: #83B799;
+    background-color: rgb(95,187,167);
     background-repeat:no-repeat;
     border: none;
     border-radius: 8px;
@@ -113,13 +114,14 @@ const Public = styled.input`
   height: 85%;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid #E3DFD4;
   border-radius: 50%;
   cursor: pointer;
   background-color: white;
   :checked {
-    background-color: #3D8DAB;
     border: none;
+    background-image: url(${checkIcons});
+    background-size: cover;
   }
 `
 
@@ -169,9 +171,9 @@ const ChooseTP = styled.span`
   display: flex;
   width: 3%;
   height: 70%;
-  background-color: #D85941;
+  color: #C57951;
   border-radius: 50%;
-  font-size: x-large;
+  font-size: xx-large;
   justify-content: center;
   align-items: center;
 `
