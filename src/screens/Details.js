@@ -1,37 +1,35 @@
 import React, {useEffect, useState, useRef} from 'react';
+import axios from 'axios';
 import routes from '../routes';
 import Header from '../components/Header';
 import ToggleButton from './ToggleButton';
 import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../components/Details/DetailsLayout"
-import axios from 'axios';
 
 export default function Details ({match}) {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false);
     // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
-        try{
-          const getDetails = async() => {
+        try {
+            const getDetails = async() => {
                 setLoading(true);
                 const id = await match.params.id
                 const res = await axios.get(`https://localhost:80/diaries/${id}`)
                 setDetails(res.data.data[0])
                 setLoading(false);
                 console.log(res)
-              }
-              getDetails()
-           
-        }catch{
+            }
+            getDetails()
+        } catch {
             console.error("err");
         }
-     
     }, [])
 
     if (loading) {
         return <h2>Loading...</h2>;
-      }
-      return (
+    }
+    return (
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />
             <DetailsMain>

@@ -13,7 +13,6 @@ import { useHistory } from "react-router-dom";
 import { FatLink } from "../components/shared";
 import { BlueGreen, CedarChest, TextAlign } from "../components/auth/FontLayout";
 
-
 const Container = styled.div`
     position: absolute;
     background: url(${login_bg});
