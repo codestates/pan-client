@@ -24,19 +24,19 @@ export default function Main() {
     const [postsPerPage] = useState(10);
 
   // (resI:개인, resG:그룹) 렌더링 될 때  각 state에 담아줌
-    useEffect(() => {
-      const fetchPosts = async () => {
-        setLoading(true);
-        const resI = await axios.get('https://localhost:80/diaries');
-        console.log(resI)
-        // const resG = await axios.get('https://localhost:80//group-diaries');
-        setIndividual(resI.data.data);
-        // setGroup(resG.data.data);
-        setLoading(false);
-      };   
+    // useEffect(() => {
+    //   const fetchPosts = async () => {
+    //     setLoading(true);
+    //     const resI = await axios.get('https://localhost:80/diaries');
+    //     console.log(resI)
+    //     // const resG = await axios.get('https://localhost:80//group-diaries');
+    //     setIndividual(resI.data.data);
+    //     // setGroup(resG.data.data);
+    //     setLoading(false);
+    //   };   
   
-      fetchPosts();
-    }, []);
+    //   fetchPosts();
+    // }, []);
 
        // Get current posts
        const indexOfLastPost = currentPage * postsPerPage;

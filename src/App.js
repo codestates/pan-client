@@ -13,11 +13,15 @@ import Writing from "./screens/Writing";
 import Drawing from "./screens/Drawing";
 import Details from "./screens/Details";
 import UserStore from "./store/UserStore"
+import IsGroupStore from "./store/IsGroup"
 
 function App() { 
 
   return (
     <UserStore>
+      {/*  User contextAPI  */}
+      <IsGroupStore>
+      {/*Group여부 확인 contextAPI */}
       <HelmetProvider>
         <GlobalStyles />
         <Router>
@@ -53,6 +57,7 @@ function App() {
             </Switch>
         </Router>
       </HelmetProvider>
+      </IsGroupStore>
     </UserStore>
   );
 }

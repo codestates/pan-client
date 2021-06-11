@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import routes from '../routes';
 import styled from 'styled-components';
 import Header from '../components/Header'
@@ -7,14 +7,21 @@ import newyork from "../images/new_york.jpg";
 import { useHistory } from "react-router-dom";
 import ToggleButton from './ToggleButton';
 import ChooseBook from '../components/modal/ChooseBook';
+import ChooseGroupBook from '../components/modal/ChooseGroupBook';
 import { ModalProvider, BaseModalBackground } from "styled-react-modal";
+import { IsGroupContext } from "../store/IsGroup"
+
 
 export default function Template () {
   const history = useHistory();
+  // IsGroup contextAPI 사용하기 위한 변수
+  const context = useContext(IsGroupContext);
+  const { isGroup } = context ;
 
     return (
         <ModalProvider backgroundComponent={FadingBackground}>
-          <ChooseBook/>
+          {/* ContextAPI로 group인지 아닌지 확인한 후 거기에 맞춰 모달창을 띄워준다. */}
+          {!isGroup ? <ChooseBook/> : <ChooseGroupBook/> }
             <Header main={routes.main} login={routes.login} />
             <Announcement>템플릿 선택하기</Announcement>
             <TemplateMain>
