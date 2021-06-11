@@ -61,13 +61,7 @@ export default function ChooseGroupBook() {
               <LeftCoverDiv>
                 <h1>커버를 선택해주세요.</h1>
                 <SelectCover>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
+  
                 </SelectCover>
               </LeftCoverDiv>
             </LeftCreateDiv>
