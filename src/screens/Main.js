@@ -38,20 +38,20 @@ export default function Main() {
       fetchPosts();
     }, []);
 
-       // Get current posts
-       const indexOfLastPost = currentPage * postsPerPage;
-       const indexOfFirstPost = indexOfLastPost - postsPerPage;
-       const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
-       const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
-       // 개인일기와 교환일기를 합쳐서 like가 1개라도 있으면 top10으로 props 전달
-       const allDiaries = individual.concat(group).filter((e)=> {return e.like !== null})
-   
-       // Change page
-       const paginate = pageNumber => setCurrentPage(pageNumber);
-       
-       if (loading) {
-         return <h2>Loading...</h2>;
-       }
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
+    const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
+    // 개인일기와 교환일기를 합쳐서 like가 1개라도 있으면 top10으로 props 전달
+    const allDiaries = individual.concat(group).filter((e)=> {return e.like !== null})
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    
+    if (loading) {
+      return <h2>Loading...</h2>;
+    }
 
 
     return (
