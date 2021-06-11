@@ -1,6 +1,6 @@
-import Header from '../components/Header';
 import routes from "../routes";
 import styled from 'styled-components';
+import Header from '../components/Header';
 import bg_image from "../images/background.jpg";
 import PageTitle from '../components/PageTitle';
 

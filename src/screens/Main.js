@@ -1,13 +1,12 @@
-import Header from '../components/Header'
+import axios from 'axios';
 import routes from "../routes";
-import styled from 'styled-components';
+import Top10 from '../screens/Top10';
+import Header from '../components/Header';
 import ToggleButton from './ToggleButton';
-import Top10 from '../components/MainPages/Top10';
-import PublicNote from '../components/MainPages/PublicNote';
-import Fade from 'react-reveal/Fade';
+import PublicNote from '../screens/PublicNote';
 import React, {useState, useEffect} from "react";
 import Pagination from '../components/Pagination';
-import axios from 'axios';
+import { MainBody, PhraseGroup, Phrase, Div1, Div2, Div3, MainFooter, MainLabel } from "../components/MainPages/Style_Main";
 
 export default function Main() {
   // 개인, 그룹 규별
@@ -59,15 +58,9 @@ export default function Main() {
         <Header main={routes.main} login={routes.login}></Header>
         <MainBody>
           <PhraseGroup>
-            <Fade top>
-              <Phrase>순간의 기억을 정리하고</Phrase>
-            </Fade>
-            <Fade top delay={700}>
-              <Phrase style={{ color: "#CCDEE2" }}>영원한 추억으로 기록하세요.</Phrase>
-            </Fade>
-            <Fade top delay={1400}>
-              <Phrase style={{ color: "#75A5A9" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
-            </Fade>
+              <Phrase style={{ animation: "fadein 1s", fontWeight: "bolder"}}>순간의 기억을 정리하고</Phrase>
+              <Phrase style={{ animation: "fadein 2s", color: "#CCDEE2", fontWeight: "bolder" }}>영원한 추억으로 기록하세요.</Phrase>
+              <Phrase style={{ color: "#75A5A9", fontWeight: "bolder" }}>글과 그림으로 오늘을 표현하다. <span style={{ color: "#3D8DAB" }}>Pic, a note</span></Phrase>
           </PhraseGroup>
           <Div1>
             {/* 개인일기과 그룹일기를 합쳐서 top10에 보내준다. */}
@@ -83,26 +76,14 @@ export default function Main() {
             {cur.individual ? 
               <>
                 <PublicNote current={currentIndividual}/> 
-                <Pagination
-                  postsPerPage={postsPerPage}
-                  totalPosts={individual.length}
-                  paginate={paginate}
-                  currentPage={currentPage}
-                  color={["#343a40","#C57951"]}
-                />
+                <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
               </>
               : 
               <>
                 <PublicNote current={currentGroup}/>
-                <Pagination
-                  postsPerPage={postsPerPage}
-                  totalPosts={group.length}
-                  paginate={paginate}
-                  currentPage={currentPage}
-                  color={["#343a40","#C57951"]}
-                />
+                <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
               </>
-              }
+            }
           </Div2>
           <MainFooter></MainFooter>
         </MainBody>
@@ -110,72 +91,3 @@ export default function Main() {
       </>
     )
 }
-
-const MainBody = styled.div`
-  /* border: 2px solid black; */
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 1600px;
-  width: 100%;
-  height: 100%;
-`
-
-const PhraseGroup = styled.div`
-  position: relative;
-  width: 100%;
-  margin: 40px 0;
-  /* border : 1px solid black; */
-  max-width: 1600px;
-`;
-
-const Phrase = styled.div`
-  display: block;
-  padding-left: 2rem;
-  margin-bottom: 15px;
-  font-size: 2rem;
-  /* font-family: "Noto Serif KR", serif; */
-  font-family: 'MapoGoldenPier';
-  font-weight: bolder;
-  color: #E3DFD4;
-`;
-
-const Div1 = styled.div`
-  /* border: 1px solid red; */
-  height: 40vh;
-  margin-top: 40px;
-`;
-
-const Div2 = styled.div`
-  height: 60vh;
-  margin: 40px 0;
-  /* overflow: hidden; */
-`;
-
-const Div3 = styled.div`
-  display: flex;
-`;
-
-const MainFooter = styled.footer`
-  width: 100%;
-  height: 10vh;
-`
-
-
-
-const MainLabel = styled.h3`
-  font-size: 30px;
-  font-family: 'MapoGoldenPier';
-  font-weight: bolder;
-  letter-spacing: -4px;
-  word-spacing: 5px;
-  margin: 0 2rem 1.8rem;
-  padding-bottom: 8px;
-  width: fit-content;
-  border-bottom: ${props => props.choose ? "3px solid black" : "none" };
-  cursor: pointer;
-  opacity: ${props => props.choose ? "1.0" : "0.5"};
-`;
