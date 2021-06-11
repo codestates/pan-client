@@ -3,7 +3,7 @@ import Modal from 'styled-react-modal'
 import styled from 'styled-components';
 import { FiPlusCircle } from 'react-icons/fi';
 
-function ChooseBook() {
+export default function ChooseGroupBook() {
   const [modalIsOpen,setModalIsOpen] = useState(true);
   const [create, setCreate] = useState(false)
 
@@ -276,7 +276,3 @@ function ChooseBook() {
         justify-content: center;
         font-size: 30px;
     `
-  
-
-    
-export default ChooseBook
