@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const DiaryWritingWrapper = styled.div`
     /* border: 5px solid tomato; */
-    height: 110vh;
+    height: 87vh;
     max-width: 1500px;
     width: 100%;
     margin: 0 auto;
@@ -43,7 +43,7 @@ export const WriteTitle = styled.div`
     width: 80%;
     height: 20%;
     padding-left: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     input {
         width: 400px;
         height: 40px;
@@ -67,6 +67,9 @@ export const WriteWeather = styled.div`
         border-radius: 12px;
         padding-left: 10px;
     }
+    img {
+        margin-left: 20px;
+    }
 `;
 export const WriteHeaderRight = styled.div`
     display: flex;
@@ -84,14 +87,14 @@ export const WriteFeel = styled.div`
     width: 80%;
     height: 20%;
     padding-left: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     input {
-        width: 400px;
+        width: 40px;
         height: 40px;
-        border: 1px solid #3D8DAB;
-        margin-left: 10px;
-        border-radius: 12px;
-        padding-left: 10px;
+        margin-left: 20px;
+    }
+    img {
+        margin-left: 20px;
     }
 `;
 export const WriteDate = styled.div`

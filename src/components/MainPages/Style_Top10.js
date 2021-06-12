@@ -27,7 +27,7 @@ export const HeadCard = styled.header`
 export const HeaderText = styled.div`
     font-size: 40px;
     color: #BB2B2A;
-    margin: 0 0 2rem;
+    margin-left: 40px;
     font-family: 'Cafe24Ssurround';
     font-weight: 900;
     animation: zoom 2s;
