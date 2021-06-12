@@ -121,7 +121,8 @@ const Public = styled.input`
   :checked {
     border: none;
     background-image: url(${checkIcons});
-    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 `
 

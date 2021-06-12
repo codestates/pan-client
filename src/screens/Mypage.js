@@ -14,6 +14,7 @@ export default function  Mypage() {
   const [cur, setCur] = useState({
     individual : true,
     group : false,
+    edit : false
   })
 
   const context = useContext(UserContext);
@@ -32,12 +33,16 @@ export default function  Mypage() {
   }
 
   const changeIndividual = () => {
-    setCur({individual : true, group : false});
+    setCur({individual : true, group : false, edit: false});
     SetLookBooks(false);
 
   }
   const changeGroup = () => {
-    setCur({individual : false, group : true});
+    setCur({individual : false, group : true, edit: false});
+    SetLookBooks(false);
+  }
+  const changeEdit = () => {
+    setCur({individual : false, group : false, edit: true});
     SetLookBooks(false);
   }
 
@@ -84,14 +89,14 @@ export default function  Mypage() {
             <Usernmae>{username}</Usernmae>
             <PersonalDiary cur={cur.individual} onClick={changeIndividual}>개인 일기</PersonalDiary>
             <ExchangeDiary cur={cur.group} onClick={changeGroup}>교환 일기</ExchangeDiary>
-            <Print>print</Print>
+            <Print cur={cur.edit} onClick={changeEdit}>회원 정보 수정</Print>
           </LeftSection>
           <DiarySection>
           {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
           {cur.individual ? 
             lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>
             :
-            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries>
+            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries> 
           }
           </DiarySection>
         </MypageMain>
@@ -220,13 +225,16 @@ const Print = styled.button`
   margin: 24%;
   cursor: pointer;
   font-size: 2em;
+  font-family: 'MapoGoldenPier';
   font-weight: bold;
   text-align: left;
-  background-color: #E4D8B4;
+  color: #FFFFFF;
+  background-color: ${props => props.cur === true ? '#3D8DAB' : '#83B799'};
+  opacity: ${props => props.cur === true ? '1.0' : '0.5'};
   border-radius: 5px;
   border:none;
   :hover {
-    background-color: #E2CD6D;
+    background-color: #B6CB9E;
   }
 `
 
