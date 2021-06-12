@@ -1,40 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 export default function EditUserInfo() {
     return(
         <EditWrapper>
-            <Editprofile>
-                <LeftDiv>프로필 사진</LeftDiv>
-                <RightDiv>         
-                    <ProFilePhoto></ProFilePhoto>
-                    <ProFileButton>사진 변경</ProFileButton>
-                </RightDiv>
-            </Editprofile>
-            <EditUsername>
-                <LeftDiv>유저네임 변경</LeftDiv>       
-                <RightDiv>
-                    
-                </RightDiv>              
-            </EditUsername>
-            <EditPassword>
-                <LeftDiv>비밀번호 변경</LeftDiv>  
-                <PasswordRight>
+            <ProfileWrapper>
+                    <ProfileLeft>         
+                        <div></div>
+                        <button>사진 변경</button>
+                    </ProfileLeft>
+                    <ProfileRight>
+                        <div>abcd123</div>
+                        <div>kimcoding@google.com</div>
+                    </ProfileRight>
+            </ProfileWrapper>
+            <PassowrdWrapper>
+                <LeftDiv>비밀번호</LeftDiv>  
+                <PasswordMain>
                     <div>
-                        <span>새비밀번호</span>
-                        <input></input>
+                        <span>새 비밀번호</span>
+                        <input placeholder="새 비밀번호"></input>
                     </div>
                     <div>
-                        <span>새비밀번호 확인</span>
-                        <input></input>
+                        <span>비밀번호 확인</span>
+                        <input placeholder="비밀번호 확인"></input>
                     </div>
-                </PasswordRight>
-            </EditPassword>
+                </PasswordMain>
+            </PassowrdWrapper>
             <Withdrawal>
-                <LeftDiv>회원탈퇴</LeftDiv>
-                  회원탈퇴를 원하시는 분은 회원탈퇴 버튼을 눌러주세요
-                  <button>회원탈퇴</button>    
+                <WithdrawalMain>
+                    <LeftDiv>회원탈퇴</LeftDiv>
+                    <button>회원 탈퇴</button>   
+                </WithdrawalMain>
+                <Bottom>
+                  탈퇴 시 작성하신 일기장 및 일기들이 모두 삭제되며 복구되지 않습니다.
+                </Bottom>    
             </Withdrawal>
+       
         </EditWrapper>
     )
 
@@ -42,7 +44,7 @@ export default function EditUserInfo() {
 
 
 const EditWrapper = styled.div`
-    border: 1px solid tomato;
+    /* border: 1px solid tomato; */
     width: 100%;
     height: 100%;
     display: flex;
@@ -50,61 +52,89 @@ const EditWrapper = styled.div`
     align-items: center;
 `
 
-const Editprofile = styled.div`
+const ProfileWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 100px;
+`
+
+const ProfileLeft = styled.div`
+    width: 30%;
+    height: 100%;
+    border-right: 1px solid rgb(234,236,239);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    div{
+        width:150px;
+        height: 150px;
+        border: 1px solid #E3DFD4;
+        border-radius: 50%;
+    }
+    button{
+        margin-top: 5px;
+        width: 150px;
+        height: 35px;
+        cursor: pointer;
+        color: white;
+        font-size: large;
+        font-weight: bold;
+        background-color: #3D8DAB;
+        border-radius: 9px;
+        outline: none;
+        border: none;
+    }
+`
+const ProfileRight = styled.div`
     margin-top: 30px;
-    display: flex;
-    width: 100%;
-    height: 200px;
-    border: 1px solid blue;
-`
-const ProFilePhoto = styled.div`
-    margin: 30px 0px 10px 40px;
-    width:100px;
-    height: 100px;
-    border: 1px solid black;
-    border-radius: 50%;
-`
-
-const ProFileButton = styled.button`
-    margin-left: 40px;
-    width: 100px;
-    height: 50px;
+    width: 70%;
+    height: 100%;
+    /* border: 1px solid red; */
+    div {
+        margin: 15px 0 0 25px;
+        font-size: x-large;
+    }
+    div:nth-child(1) {
+        font-size: xx-large;
+        font-family: 'Cafe24Ssurround';
+    }
 `
 
-const EditUsername = styled.div`
+const UsernameWrapper = styled.div`
     display: flex;
     width: 100%;
     height: 20%;
-    border: 1px solid red;
+    border-bottom: 1px solid rgb(234,236,239);
 `
 
-const EditPassword = styled.div`
+const PassowrdWrapper = styled.div`
     display: flex;
     width: 100%;
-    height: 20%;
-    border: 1px solid red;
+    height: 150px;
+    border-bottom: 1px solid rgb(234,236,239);
 `
-const PasswordRight = styled.div`
+const PasswordMain = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 70%;
-    border: 1px solid pink; 
+    margin-top: 10px;
+    /* border: 1px solid pink;  */
     font-size: large;
     font-weight: 600;
     div{
         width: 100%;
         height: 50px;
-        padding-left: 10%;
-
     }
     input {
         width: 50%;
-        height: 30px;
-        border: 1px solid black;
+        height: 36px;
+        border: 1px solid rgb(234,236,239);
         border-radius: 12px;
-        margin: 10px 20px;
     }
     span {
         display: inline-block;
@@ -117,25 +147,45 @@ const PasswordRight = styled.div`
 
 const Withdrawal = styled.div`
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 10%;
-    border: 1px solid red;
-    button{
-        position: relative;  
+`
+const  WithdrawalMain = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 30px;
+        button{ 
+        margin-left: 10px;
+        width: 150px;
+        height: 45px;
+        cursor: pointer;
+        color: white;
+        font-size: x-large;
+        font-weight: bold;
+        background-color: rgb(237,116,112);
+        border-radius: 9px;
+        outline: none;
+        border: none;
     }
+`
+
+const Bottom = styled.div`
+    margin: 20px 0 0 0;
+    width: 100%;
+    height: 5%;
+    font-size: large;
+    color: gray;
+    opacity: 0.6;
+    
 `
 
 const LeftDiv = styled.div`
     width: 30%;
-    background-color: rgb(249,249,249);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: x-large;
     font-weight: 700;
-`
-
-const RightDiv = styled.div`
-    width: 70%;
-    border: 1px solid pink; 
 `

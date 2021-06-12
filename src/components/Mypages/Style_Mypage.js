@@ -42,8 +42,8 @@ export const Profile = styled.img`
     border: 1px solid #CCDEE2;
     border-radius: 50%;
     margin: 20px 0 0 40px;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     text-align: center;
 `;
 
