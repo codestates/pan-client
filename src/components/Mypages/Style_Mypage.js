@@ -58,6 +58,7 @@ export const ProfileButton = styled.button`
     background-repeat:no-repeat;
     outline:none;
     cursor: pointer;
+    font-family: 'Cafe24SsurroundAir';
 `;
 
 export const Usernmae = styled.h2`
@@ -87,6 +88,7 @@ export const PersonalDiary = styled.button`
     border-radius: 5px;
     border:none;
     box-shadow: 5px 5px 5px #E4D8B4;
+    font-family: 'Cafe24SsurroundAir';
     :hover {
         background-color: #B6CB9E;
     }
@@ -106,24 +108,29 @@ export const ExchangeDiary = styled.button`
     border-radius: 5px;
     border:none;
     box-shadow: 5px 5px 5px #E4D8B4;
+    font-family: 'Cafe24SsurroundAir';
     :hover {
         background-color: #B6CB9E;
     }
 `;
 
 export const Print = styled.button`
-    width: 70%;
+    width: ${props => props.cur === true ? '74%' : "70%"};
     height: 8%;
     margin: 24%;
     cursor: pointer;
     font-size: 2em;
     font-weight: bold;
     text-align: left;
-    background-color: #E4D8B4;
+    color: #FFFFFF;
+    background-color: ${props => props.cur === true ? '#3D8DAB' : '#83B799'};
+    opacity: ${props => props.cur === true ? '1.0' : '0.5'};
+    box-shadow: 5px 5px 5px #E4D8B4;
     border-radius: 5px;
     border:none;
+    font-family: 'Cafe24SsurroundAir';
     :hover {
-        background-color: #E2CD6D;
+        background-color: #B6CB9E;
     }
 `;
 

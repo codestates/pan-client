@@ -5,8 +5,9 @@ import Header from '../components/Header';
 import ToggleButton from './ToggleButton';
 import Books from '../components/Mypages/Books';
 import Diaries from '../components/Mypages/Diaries';
+import EditUserInfo from '../components/Mypages/EditUserInfo';
 import default_profile from '../images/default_profile.png';
-import { AiOutlineCamera } from "react-icons/ai";
+// import { AiOutlineCamera } from "react-icons/ai";
 import { UserContext } from "../store/UserStore";
 import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Usernmae, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../components/Mypages/Style_Mypage"
 
@@ -14,6 +15,7 @@ export default function Mypage() {
   const [cur, setCur] = useState({
     individual : true,
     group : false,
+    edit : false
   })
 
   const context = useContext(UserContext);
@@ -32,12 +34,16 @@ export default function Mypage() {
   }
 
   const changeIndividual = () => {
-    setCur({individual : true, group : false});
+    setCur({individual : true, group : false, edit: false});
     SetLookBooks(false);
 
   }
   const changeGroup = () => {
-    setCur({individual : false, group : true});
+    setCur({individual : false, group : true, edit: false});
+    SetLookBooks(false);
+  }
+  const changeEdit = () => {
+    setCur({individual : false, group : false, edit: true});
     SetLookBooks(false);
   }
 
@@ -78,20 +84,23 @@ export default function Mypage() {
             <ProfileWrapper>
               <Profile src={default_profile} alt="이미지입니다" />
               <ProfileButton>
-                <AiOutlineCamera size="90%" />
+                {/* <AiOutlineCamera size="90%" /> */}
               </ProfileButton>
             </ProfileWrapper>
             <Usernmae>{username}</Usernmae>
             <PersonalDiary cur={cur.individual} onClick={changeIndividual}>개인 일기</PersonalDiary>
             <ExchangeDiary cur={cur.group} onClick={changeGroup}>교환 일기</ExchangeDiary>
-            <Print>print</Print>
+            <Print cur={cur.edit} onClick={changeEdit}>회원 정보 수정</Print>
           </LeftSection>
           <DiarySection>
           {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
           {cur.individual ? 
             lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>
             :
-            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries>
+            cur.group ?
+            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries> 
+            :
+            <EditUserInfo/>
           }
           </DiarySection>
         </MypageMain>

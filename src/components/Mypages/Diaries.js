@@ -101,6 +101,8 @@ const DiaryHeader = styled.div`
 `
 
 const DiaryWrapper = styled.div`
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 5.5%;
   margin-top: 13px;
@@ -110,18 +112,20 @@ const DiaryWrapper = styled.div`
 
 const Public = styled.input` 
   display: inline-block;
-  width:3.5%;
-  height: 85%;
+  width:2%;
+  height: 50%;
   justify-content: center;
   align-items: center;
   border: 1px solid #E3DFD4;
   border-radius: 50%;
   cursor: pointer;
   background-color: white;
+  margin-right: 5px;
   :checked {
     border: none;
     background-image: url(${checkIcons});
-    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 `
 
