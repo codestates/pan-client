@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DiaryWritingWrapper = styled.div`
-    border: 5px solid tomato;
+    /* border: 5px solid tomato; */
     height: 100vh;
     max-width: 1600px;
     width: 100%;
@@ -9,6 +9,7 @@ export const DiaryWritingWrapper = styled.div`
 `
 export const DiaryWritingMain = styled.div`
     display: flex;
+    justify-content: center;
     border:1px solid blue;
     width: 100%;
     height: 87.5vh;

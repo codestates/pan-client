@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useContext }  from 'react';
-import Header from '../components/Header'
-import routes from '../routes'
-import styled from 'styled-components'
-import default_profile from '../images/default_profile.png'
-import ToggleButton from './ToggleButton';
-import { AiOutlineCamera } from "react-icons/ai";
-import Books from '../components/Mypages/Books'
-import Diaries from '../components/Mypages/Diaries'
-import { UserContext } from "../store/UserStore"
 import axios from 'axios';
+import routes from '../routes';
+import Header from '../components/Header';
+import ToggleButton from './ToggleButton';
+import Books from '../components/Mypages/Books';
+import Diaries from '../components/Mypages/Diaries';
+import default_profile from '../images/default_profile.png';
+import { AiOutlineCamera } from "react-icons/ai";
+import { UserContext } from "../store/UserStore";
+import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Usernmae, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../components/Mypages/Style_Mypage"
 
-export default function  Mypage() { 
+export default function Mypage() { 
   const [cur, setCur] = useState({
     individual : true,
     group : false,
@@ -105,6 +105,7 @@ export default function  Mypage() {
       <ToggleButton />
     </>
   )
+<<<<<<< HEAD
 }
 const MypageWrapper = styled.div`
   display: flex;
@@ -252,3 +253,6 @@ const MypageFooter = styled.footer`
   width: 100%;
   height: 10vh;
 `
+=======
+}
+>>>>>>> dev

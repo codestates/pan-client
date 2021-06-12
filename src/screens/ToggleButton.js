@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { AiOutlineUsergroupAdd } from "react-icons/ai";
-import { VscEdit, VscAccount } from 'react-icons/vsc';
-import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../components/utility/ToggleAction";
 import { useHistory } from "react-router-dom";
-import { IsGroupContext } from "../store/IsGroup"
+import { IsGroupContext } from "../store/IsGroup";
+import { VscEdit, VscAccount } from 'react-icons/vsc';
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../components/utility/ToggleAction";
 
-function ToggleButton() {
+export default function ToggleButton() {
   const history = useHistory();
   const token = localStorage.getItem('CC_Token');
   const context = useContext(IsGroupContext);
@@ -53,5 +53,3 @@ function ToggleButton() {
         </div>
     )
 }
-
-export default ToggleButton;
