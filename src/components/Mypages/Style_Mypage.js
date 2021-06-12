@@ -58,6 +58,7 @@ export const ProfileButton = styled.button`
     background-repeat:no-repeat;
     outline:none;
     cursor: pointer;
+    font-family: 'Cafe24SsurroundAir';
 `;
 
 export const Usernmae = styled.h2`
@@ -87,6 +88,7 @@ export const PersonalDiary = styled.button`
     border-radius: 5px;
     border:none;
     box-shadow: 5px 5px 5px #E4D8B4;
+    font-family: 'Cafe24SsurroundAir';
     :hover {
         background-color: #B6CB9E;
     }
@@ -106,6 +108,7 @@ export const ExchangeDiary = styled.button`
     border-radius: 5px;
     border:none;
     box-shadow: 5px 5px 5px #E4D8B4;
+    font-family: 'Cafe24SsurroundAir';
     :hover {
         background-color: #B6CB9E;
     }
@@ -125,6 +128,7 @@ export const Print = styled.button`
     box-shadow: 5px 5px 5px #E4D8B4;
     border-radius: 5px;
     border:none;
+    font-family: 'Cafe24SsurroundAir';
     :hover {
         background-color: #B6CB9E;
     }

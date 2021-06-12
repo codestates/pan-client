@@ -86,6 +86,7 @@ const ProfileLeft = styled.div`
         border-radius: 9px;
         outline: none;
         border: none;
+        font-family: 'Cafe24SsurroundAir';
     }
 `
 const ProfileRight = styled.div`
@@ -167,6 +168,7 @@ const  WithdrawalMain = styled.div`
         border-radius: 9px;
         outline: none;
         border: none;
+        font-family: 'Cafe24SsurroundAir';
     }
 `
 
