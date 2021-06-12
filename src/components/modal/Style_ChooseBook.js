@@ -161,7 +161,10 @@ export const SelectCover = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(25%, 1fr));
   grid-template-rows: repeat(3, minmax(50%, 1fr));
-  overflow-y: scroll;
+  overflow: hidden;
+  :hover {
+    overflow-y: scroll;
+  }
 `;
 
 export const CoverImg = styled.img`
