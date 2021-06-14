@@ -15,7 +15,7 @@ export default function Details ({match}) {
             const getDetails = async() => {
                 setLoading(true);
                 const id = await match.params.id
-                const res = await axios.get(`https://localhost:80/diaries/${id}`)
+                const res = await axios.get(`https://picanote.shop/diaries/${id}`)
                 setDetails(res.data.data[0])
                 setLoading(false);
                 console.log(res)

@@ -174,6 +174,7 @@ export const BottomRight = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 `;
 
 export const BottomPreBtn = styled.div`
