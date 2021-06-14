@@ -19,7 +19,7 @@ function UserStore (props) {
         withCredentials : true
         })
         .then(res => {
-            console.log(res.data.data.userInfo);
+            // console.log(res.data.data.userInfo);
             const { username, email } = res.data.data.userInfo;
             setUsername(username);
             setEmail(email);

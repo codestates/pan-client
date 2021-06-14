@@ -4,14 +4,14 @@ import { Link, useHistory } from "react-router-dom";
 import { Wrapper, HeadCard, HeaderText, CardList, CardWrap, CardImg, CardOverlay, CardContent} from "../components/MainPages/Style_Top10";
 
 export default function Top10({allDiaries}) {
-    console.log(allDiaries);
+
     const history = useHistory();
     // like순으로 정렬 현재로선 5개만 나오게 함 (slice)
     const sortDiaries = allDiaries.sort(function(a, b) {
         return a.like > b.like ? -1 : a.like < b.like ? 1 : 0;
     }).slice(0,5);
 
-    const ToDetails = (id) => {
+    const ToDetails = (id,allDiaries) => {
         history.push(`/details/${id}`) 
     }
     return (
