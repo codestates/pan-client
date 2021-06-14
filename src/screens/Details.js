@@ -18,7 +18,6 @@ export default function Details ({match}) {
                 const res = await axios.get(`https://picanote.shop/diaries/${id}`)
                 setDetails(res.data.data[0])
                 setLoading(false);
-                console.log(res)
             }
             getDetails()
         } catch {
@@ -42,7 +41,7 @@ export default function Details ({match}) {
                             </ContentHBLeft>
                             <ContentHBRight>
                                 {/* 날짜: <ContentDate /> */}
-                                날짜: {details.weather}
+                                날짜: {details.date}
                             </ContentHBRight>
                         </ContentHeaderT>
                         <ContentHeaderB>
@@ -67,7 +66,7 @@ export default function Details ({match}) {
                     <ContentBottom>
                         <BottomLeft>
                             <BottomWriter>
-                                작성자: lunaticholic
+                                작성자: {details.username}
                             </BottomWriter>
                             <BottomLikeBtn>
                                 <FiHeart />

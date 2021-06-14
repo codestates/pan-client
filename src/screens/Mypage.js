@@ -29,7 +29,6 @@ export default function Mypage() {
   const isCoverClick = (e) => {
     SetLookBooks(true);
     setDiaries(e);
-    console.log(e)
   }
 
   const changeIndividual = () => {

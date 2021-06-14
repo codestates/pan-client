@@ -12,8 +12,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    
-    console.log(newName);
+
     // 회원정보 수정
     const UserInfoHandler = async () => {
         if(!newName || !newPassword){
