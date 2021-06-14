@@ -26,7 +26,12 @@ export default function Main() {
     useEffect(() => {
       const fetchPosts = async () => {
         setLoading(true);
-        const resI = await axios.get('https://picanote.shop/diaries');
+        const resI = await axios ({
+          method: "post",
+          url: ('https://picanote.shop/diaries'),
+          withCredentials: true
+        })
+        
         console.log(resI)
         // const resG = await axios.get('https://picanote.shop//group-diaries');
         setIndividual(resI.data.data);
