@@ -56,8 +56,9 @@ export const Div3 = styled.div`
 `;
 
 export const MainFooter = styled.footer`
+    margin-top: 10vh;
+    height: 5vh;
     width: 100%;
-    height: 10vh;
 `;
 
 export const MainLabel = styled.h3`
