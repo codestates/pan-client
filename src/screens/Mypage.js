@@ -6,10 +6,9 @@ import ToggleButton from './ToggleButton';
 import Books from '../components/Mypages/Books';
 import Diaries from '../components/Mypages/Diaries';
 import EditUserInfo from '../components/Mypages/EditUserInfo';
-import default_profile from '../images/default_profile.png';
-// import { AiOutlineCamera } from "react-icons/ai";
+import Nondisclosure from '../images/Nondisclosure.jpg'
 import { UserContext } from "../store/UserStore";
-import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Usernmae, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../components/Mypages/Style_Mypage"
+import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../components/Mypages/Style_Mypage"
 
 export default function Mypage() { 
   const [cur, setCur] = useState({
@@ -19,7 +18,7 @@ export default function Mypage() {
   })
 
   const context = useContext(UserContext);
-  const {username, accessTokenRequest, refreshTokenRequest} = context ;
+  const {username, email, profileUrl, accessTokenRequest, refreshTokenRequest} = context ;
   const [individual, setIndividual] = useState([]);
   const [group, setGroup] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -65,6 +64,8 @@ export default function Mypage() {
         const groupBooks = res.data.data.filter(e=> e.groupId);
           setIndividual(individualBooks)
           setGroup(groupBooks)
+        
+          
       })
       setLoading(false);
     };   
@@ -82,12 +83,10 @@ export default function Mypage() {
         <MypageMain>
           <LeftSection>
             <ProfileWrapper>
-              <Profile src={default_profile} alt="이미지입니다" />
-              <ProfileButton>
-                {/* <AiOutlineCamera size="90%" /> */}
-              </ProfileButton>
+              {!profileUrl ?  <Profile src={Nondisclosure} alt="이미지입니다" /> :  <Profile src={profileUrl} alt="이미지입니다" />}
+                <Username>{username}</Username>
             </ProfileWrapper>
-            <Usernmae>{username}</Usernmae>
+    
             <PersonalDiary cur={cur.individual} onClick={changeIndividual}>개인 일기</PersonalDiary>
             <ExchangeDiary cur={cur.group} onClick={changeGroup}>교환 일기</ExchangeDiary>
             <Print cur={cur.edit} onClick={changeEdit}>회원 정보 수정</Print>
@@ -100,7 +99,7 @@ export default function Mypage() {
             cur.group ?
             lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries> 
             :
-            <EditUserInfo/>
+            <EditUserInfo username={username} email={email} profileUrl={profileUrl}/>
           }
           </DiarySection>
         </MypageMain>

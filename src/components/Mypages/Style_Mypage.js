@@ -21,19 +21,17 @@ export const LeftSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    /* border: 2px solid green; */
     width: 27%;
     height: 80%;
 `;
 
 export const ProfileWrapper = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-top : 6%;
-    /* border: 2px solid red; */
+    align-items: center;
     width: 100%;
-    height: 30%;
+    height: 300px;
 `;
 
 export const Profile = styled.img`
@@ -41,27 +39,12 @@ export const Profile = styled.img`
     object-fit: cover;
     border: 1px solid #CCDEE2;
     border-radius: 50%;
-    margin: 20px 0 0 40px;
     width: 150px;
     height: 150px;
     text-align: center;
 `;
 
-export const ProfileButton = styled.button`
-    position: relative;
-    top: 12%;
-    left: -50px;
-    width: 14%;
-    height: 21%;
-    border: none;
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    outline:none;
-    cursor: pointer;
-    font-family: 'Cafe24SsurroundAir';
-`;
-
-export const Usernmae = styled.h2`
+export const Username = styled.h2`
     display: flex;
     justify-content: center;
     width: 70%;
@@ -79,7 +62,7 @@ export const PersonalDiary = styled.button`
     top:100px;
     margin-top: 10%;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1.7rem;
     font-weight: bold;
     text-align: left;
     background-color: ${props => props.cur === true ? '#3D8DAB' : '#83B799'};
@@ -99,7 +82,7 @@ export const ExchangeDiary = styled.button`
     height: 8%;
     margin-top: 3%;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1.7rem;
     font-weight: bold;
     text-align: left;
     background-color: ${props => props.cur === true ? '#3D8DAB' : '#83B799'};
@@ -119,7 +102,7 @@ export const Print = styled.button`
     height: 8%;
     margin: 24%;
     cursor: pointer;
-    font-size: 2em;
+    font-size: 1.6rem;
     font-weight: bold;
     text-align: left;
     color: #FFFFFF;
