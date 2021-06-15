@@ -27,9 +27,9 @@ export default function Main() {
       const fetchPosts = async () => {
         setLoading(true);
         const resI = await axios ({
-          method: "post",
-          url: ('https://picanote.shop/diaries'),
-          withCredentials: true
+          method: "GET",
+          url: "https://picanote.shop/diaries",
+          credentials: true
         })
         
         console.log(resI)
@@ -56,7 +56,7 @@ export default function Main() {
     if (loading) {
       return <h2>Loading...</h2>;
     }
-
+    console.log(loading);
 
     return (
       <>
