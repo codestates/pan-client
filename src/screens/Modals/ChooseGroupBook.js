@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FiPlusCircle } from 'react-icons/fi';
-import { StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton, LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } from "../components/modal/Style_ChooseGroupBook";
-import bg01 from "../images/Cover_img/01.png"
-import bg02 from "../images/Cover_img/02.png"
-import bg03 from "../images/Cover_img/03.png"
-import bg04 from "../images/Cover_img/04.png"
-import bg05 from "../images/Cover_img/05.png"
-import bg06 from "../images/Cover_img/06.png"
-import bg07 from "../images/Cover_img/07.png"
+import { StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton, LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } from "../../components/modal/Style_ChooseGroupBook";
+import bg01 from "../../images/Cover_img/01.png"
+import bg02 from "../../images/Cover_img/02.png"
+import bg03 from "../../images/Cover_img/03.png"
+import bg04 from "../../images/Cover_img/04.png"
+import bg05 from "../../images/Cover_img/05.png"
+import bg06 from "../../images/Cover_img/06.png"
+import bg07 from "../../images/Cover_img/07.png"
 
 export default function ChooseBook() {
     const [modalIsOpen,setModalIsOpen] = useState(true);

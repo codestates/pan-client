@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext }  from 'react';
 import axios from 'axios';
-import routes from '../routes';
-import Header from '../components/Header';
-import ToggleButton from './ToggleButton';
-import Books from '../components/Mypages/Books';
-import Diaries from '../components/Mypages/Diaries';
-import EditUserInfo from '../components/Mypages/EditUserInfo';
-import Nondisclosure from '../images/Nondisclosure.jpg'
-import { UserContext } from "../store/UserStore";
-import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../components/Mypages/Style_Mypage"
+import routes from '../../routes';
+import ToggleButton from '../ToggleButton';
+import Diaries from '../SubPage/Diaries';
+import Header from '../../components/Header';
+import Books from '../SubPage/Books';
+import Nondisclosure from '../../images/Nondisclosure.jpg'
+import EditUserInfo from '../MyPage/Userinfo';
+import { UserContext } from "../../store/UserStore";
+import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../../components/Mypages/Style_Mypage"
 
 export default function Mypage() { 
   const [cur, setCur] = useState({
@@ -53,10 +53,10 @@ export default function Mypage() {
       setLoading(true);
       await axios.get('https://api.picanote.me/books',{
       headers:{
-      Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
-      'ContentType' : 'application/json',
+        Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+        'ContentType' : 'application/json',
       },
-      withCredentials : true
+      // withCredentials : true
       })
       .then(res => {
         const individualBooks = res.data.data.filter(e=>!e.groupId);

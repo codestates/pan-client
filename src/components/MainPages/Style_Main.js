@@ -11,6 +11,11 @@ export const MainBody = styled.div`
     max-width: 1600px;
     width: 100%;
     height: 100%;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 `;
 
 export const PhraseGroup = styled.div`
@@ -73,4 +78,14 @@ export const MainLabel = styled.h3`
     border-bottom: ${props => props.choose ? "3px solid black" : "none" };
     cursor: pointer;
     opacity: ${props => props.choose ? "1.0" : "0.5"};
+`;
+
+export const CautionEx = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cafe24SsurroundAir';
+    font-size: 50px;
 `;

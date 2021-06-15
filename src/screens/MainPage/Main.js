@@ -1,12 +1,12 @@
-import axios from 'axios';
-import routes from "../routes";
-import Top10 from '../screens/Top10';
-import Header from '../components/Header';
-import ToggleButton from './ToggleButton';
-import PublicNote from '../screens/PublicNote';
 import React, {useState, useEffect} from "react";
-import Pagination from '../components/Pagination';
-import { MainBody, PhraseGroup, Phrase, Div1, Div2, Div3, MainFooter, MainLabel } from "../components/MainPages/Style_Main";
+import axios from 'axios';
+import routes from "../../routes";
+import Top10 from '../SubPage/Top10';
+import ToggleButton from '../ToggleButton';
+import Header from '../../components/Header';
+import PublicNote from '../SubPage/PublicNote';
+import Pagination from '../../components/Pagination';
+import { MainBody, PhraseGroup, Phrase, Div1, Div2, Div3, MainFooter, MainLabel, CautionEx } from "../../components/MainPages/Style_Main";
 
 export default function Main() {
   // 개인, 그룹 규별
@@ -72,7 +72,7 @@ export default function Main() {
               <MainLabel  choose={cur.individual} onClick={()=>setCur({individual:true, group:false})}>공유된 개인일기</MainLabel>
               <MainLabel  choose={cur.group} onClick={()=>setCur({individual:false, group:true})}>공유된 교환일기</MainLabel>
             </Div3>
-            {/* 개인과 그룹을 구별하기 위한 삼한 연산자 */}
+            {/* 개인과 그룹을 구별하기 위한 삼항 연산자 */}
             {cur.individual ? 
               <>
                 <PublicNote current={currentIndividual}/> 
@@ -80,8 +80,18 @@ export default function Main() {
               </>
               : 
               <>
-                <PublicNote current={currentGroup}/>
-                <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
+                { currentGroup ? 
+                  <>
+                    <CautionEx>
+                      현재 공유된 교환일기가 없습니다.
+                    </CautionEx>
+                  </>
+                :
+                  <>
+                    <PublicNote current={currentGroup}/>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
+                  </>
+                }
               </>
             }
           </Div2>

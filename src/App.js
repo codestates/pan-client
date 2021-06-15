@@ -1,17 +1,22 @@
+import React from 'react';
+import routes from "./routes";
+import { GlobalStyles } from "./styles";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import routes from "./routes";
-import Main from "./screens/Main";
-import Myapge from "./screens/Mypage";
+
+import Main from "./screens/MainPage/Main";
+import Login from "./screens/MainPage/Login";
+import SignUp from "./screens/MainPage/SignUp";
+
+import Myapge from "./screens/MyPage/Mypage";
 import Landing from "./screens/Landing";
-import Login from "./screens/Login";
-import SignUp from "./screens/SignUp";
-import { GlobalStyles } from "./styles";
-import React from 'react';
+
 import Template from "./screens/Template";
-import Writing from "./screens/Writing";
-import Drawing from "./screens/Drawing";
-import Details from "./screens/Details";
+
+import Writing from "./screens/MakePage/Writing";
+import Drawing from "./screens/MakePage/Drawing";
+
+import Details from "./screens/SubPage/Details";
 import UserStore from "./store/UserStore"
 import IsGroupStore from "./store/IsGroup"
 

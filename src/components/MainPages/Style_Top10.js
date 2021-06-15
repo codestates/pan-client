@@ -39,6 +39,11 @@ export const HeaderText = styled.div`
         transform: scale (1);
         }
     }
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 `;
 
 export const CardList = styled.section`

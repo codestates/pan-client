@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
-import routes from '../routes';
-import Header from '../components/Header';
-import ToggleButton from '../screens/ToggleButton';
-import { DiaryWritingWrapper, DiaryWritingMain, WriteHeader, WriteHeaderLeft, WriteContents, WriteTitle, WriteWeather, WriteHeaderRight, WriteFeel, WriteDate, Footer, WriteButton, CancelButton } from '../components/writing/DiaryWritingLayout';
+import routes from '../../routes';
+import Header from '../../components/Header';
+import ToggleButton from '../ToggleButton';
+import { DiaryWritingWrapper, DiaryWritingMain, WriteHeader, WriteHeaderLeft, WriteContents, WriteTitle, WriteWeather, WriteHeaderRight, WriteFeel, WriteDate, Footer, WriteButton, CancelButton } from '../../components/writing/DiaryWritingLayout';
 
-import angry from "../images/emotions/angry.png";
-import angry_selected from "../images/emotions/angry_selected.png";
-import annoyed from "../images/emotions/annoyed.png";
-import confused from "../images/emotions/confused.png";
-import excited from "../images/emotions/excited.png";
-import happy from "../images/emotions/happy.png";
-import sad from "../images/emotions/sad.png";
-import shy from "../images/emotions/shy.png";
-import tired from "../images/emotions/tired.png";
+import angry from "../../images/emotions/angry.png";
+import angry_selected from "../../images/emotions/angry_selected.png";
+import annoyed from "../../images/emotions/annoyed.png";
+import confused from "../../images/emotions/confused.png";
+import excited from "../../images/emotions/excited.png";
+import happy from "../../images/emotions/happy.png";
+import sad from "../../images/emotions/sad.png";
+import shy from "../../images/emotions/shy.png";
+import tired from "../../images/emotions/tired.png";
 
-import cloudy from "../images/weathers/cloudy.png";
-import fog from "../images/weathers/fog.png";
-import hail from "../images/weathers/hail.png";
-import lightning from "../images/weathers/lightning.png";
-import rainy from "../images/weathers/rainy.png";
-import showers from "../images/weathers/showers.png";
-import snow from "../images/weathers/snow.png";
-import sunny from "../images/weathers/sunny.png";
+import cloudy from "../../images/weathers/cloudy.png";
+import fog from "../../images/weathers/fog.png";
+import hail from "../../images/weathers/hail.png";
+import lightning from "../../images/weathers/lightning.png";
+import rainy from "../../images/weathers/rainy.png";
+import showers from "../../images/weathers/showers.png";
+import snow from "../../images/weathers/snow.png";
+import sunny from "../../images/weathers/sunny.png";
 
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
