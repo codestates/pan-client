@@ -11,7 +11,7 @@ function UserStore (props) {
     
     const accessTokenRequest = () => {
         // axios.get('https://api.picanote.me/accessToken',{
-        axios.get('https://picanote.shop/accessToken',{
+        axios.get('https://api.picanote.me/accessToken',{
         headers:{
         Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
         'ContentType' : 'application/json',
@@ -35,7 +35,7 @@ function UserStore (props) {
     const refreshTokenRequest = () => {
         axios
         //   .get("https://api.picanote.me/refreshToken", {
-          .get("https://picanote.shop/refreshToken", {
+          .get("https://api.picanote.me/refreshToken", {
             withCredentials: true,
           })
           .then((res) => {

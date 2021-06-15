@@ -23,7 +23,7 @@ export default function ChooseBook() {
 
     useEffect(async () => {
         try{
-            await axios.get('https://picanote.shop/myBook',{
+            await axios.get('https://api.picanote.me/myBook',{
                 headers:{
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                 'ContentType' : 'application/json',
@@ -40,7 +40,7 @@ export default function ChooseBook() {
         try{ 
             await axios({
                 method: 'post',
-                url: 'https://picanote.shop/books',
+                url: 'https://api.picanote.me/books',
                 data: {
                     bookName,
                     bookCover,

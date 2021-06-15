@@ -51,7 +51,7 @@ export default function Mypage() {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      await axios.get('https://picanote.shop/books',{
+      await axios.get('https://api.picanote.me/books',{
       headers:{
       Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
       'ContentType' : 'application/json',
