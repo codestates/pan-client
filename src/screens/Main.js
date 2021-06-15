@@ -28,12 +28,12 @@ export default function Main() {
         setLoading(true);
         const resI = await axios ({
           method: "GET",
-          url: "https://picanote.shop/diaries",
+          url: "https://api.picanote.me/diaries",
           credentials: true
         })
         
         console.log(resI)
-        // const resG = await axios.get('https://picanote.shop//group-diaries');
+        // const resG = await axios.get('https://api.picanote.me//group-diaries');
         setIndividual(resI.data.data);
         // setGroup(resG.data.data);
         setLoading(false);

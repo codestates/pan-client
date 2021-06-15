@@ -53,7 +53,7 @@ export default function SignUp(props) {
         } else {
             axios
                 .post(
-                    'https://picanote.shop/signup',
+                    'https://api.picanote.me/signup',
                     {
                         username,
 
