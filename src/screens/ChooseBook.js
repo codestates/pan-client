@@ -82,10 +82,10 @@ export default function ChooseBook() {
                                 {books.map(book=>{
                                     return( 
                                         <div key={book.id} className="foo" onClick={(e)=>console.log(e.target.classlist)}>
-                                          {book.bookName}
+                                            {book.bookName}
                                         </div> 
-                                    )})
-                                }
+                                    )
+                                })}
                             </SelectBook>
                         </Wrapper> 
                         <Footer>

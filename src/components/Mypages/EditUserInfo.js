@@ -23,7 +23,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
         try{
             await axios({
                 method: 'put',
-                url: 'https://localhost:80/profile',
+                url: 'https://api.picanote.me/profile',
                 headers: {
                     Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                     'ContentType' : 'application/json',
@@ -48,7 +48,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
     // 회원탈퇴
     const WithdrawalHandler = async () => {
         try{
-            await axios.delete('https://localhost:80/withdrawal', {
+            await axios.delete('https://api.picanote.me/withdrawal', {
                 headers: {
                     Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                     'ContentType' : 'application/json',
@@ -64,13 +64,11 @@ export default function EditUserInfo({username, email, profileUrl}) {
         }
     }
 
-
-
     return(
         <EditWrapper>
             <ProfileWrapper>
                     <ProfileLeft>     
-                        {!newProfile ? <img src={Nondisclosure}></img> : <img src={profileUrl}></img>}    
+                        {!newProfile ? <img src={Nondisclosure} alt="Nondisclosure" /> : <img src={profileUrl} alt="profileUrl"/>}    
                         <button>사진 변경</button>
                     </ProfileLeft>
                     <ProfileRight>
