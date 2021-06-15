@@ -46,25 +46,25 @@ export default function Writing() {
             <WriteHeaderRight>
               <WriteFeel>
                 기분:
-                  <img src={angry} width="40px" />
-                  <img src={annoyed} width="40px" />
-                  <img src={confused} width="40px" />
-                  <img src={excited} width="40px" />
-                  <img src={happy} width="40px" />
-                  <img src={sad} width="40px" />
-                  <img src={shy} width="40px" />
-                  <img src={tired} width="40px" />
+                  <img src={angry} width="40px" alt="angry" />
+                  <img src={annoyed} width="40px" alt="annoyed" />
+                  <img src={confused} width="40px" alt="confused" />
+                  <img src={excited} width="40px" alt="excited" />
+                  <img src={happy} width="40px" alt="happy" />
+                  <img src={sad} width="40px" alt="sad" />
+                  <img src={shy} width="40px" alt="shy" />
+                  <img src={tired} width="40px" alt="tired" />
               </WriteFeel>
               <WriteWeather>
               날씨:
-                <img src={cloudy} width="40px" />
-                <img src={fog} width="40px" />
-                <img src={hail} width="40px" />
-                <img src={lightning} width="40px" />
-                <img src={rainy} width="40px" />
-                <img src={showers} width="40px" />
-                <img src={snow} width="40px" />
-                <img src={sunny} width="40px" />
+                <img src={cloudy} width="40px" alt="cloudy" />
+                <img src={fog} width="40px" alt="fog" />
+                <img src={hail} width="40px" alt="hail" />
+                <img src={lightning} width="40px" alt="lightning" />
+                <img src={rainy} width="40px" alt="rainy" />
+                <img src={showers} width="40px" alt="showers" />
+                <img src={snow} width="40px" alt="snow" />
+                <img src={sunny} width="40px" alt="sunny" />
               </WriteWeather>
             </WriteHeaderRight>
           </WriteHeader>
