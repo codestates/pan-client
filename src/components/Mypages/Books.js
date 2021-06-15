@@ -21,9 +21,9 @@ export default function Books ({isCoverClick, books}) {
 const CoverWrapper = styled.div`
   display: grid;
   margin: 40px 20px;
-  grid-template-columns: 20% 20% 20% 20% 20%; 
-  grid-template-rows: 50% 50%;
-  /* border: 4px solid black; */
+  grid-template-columns: repeat(4, minmax(25%, 1fr));
+  grid-template-rows: repeat(5, minmax(50%, 1fr));
+  overflow-x: scroll;
   height: 100%;
   width: 100%;
 `

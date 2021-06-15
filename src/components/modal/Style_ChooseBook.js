@@ -76,8 +76,14 @@ export const SelectBook = styled.div`
   grid-template-rows: repeat(5, minmax(50%, 1fr));
   overflow-x: scroll;
     div{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+      font-size: medium;
       margin : 10px;
       border: 1px solid lightgray;
+      /* border: ${props=> props.checked  ? "1px solid lightgray" : "4px solid black"}; */
       border-radius: 15px;
       box-shadow: 5px 5px 5px gray;
       cursor: pointer;
@@ -138,6 +144,7 @@ export const LeftTitleDiv = styled.div`
     margin-left: 30px;
     padding-left: 10px;
   }
+
 `;
 
 export const LeftCoverDiv = styled.div`
@@ -202,4 +209,6 @@ export const PreviewCover = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  font-weight: 700;
+  color: white;
 `;
