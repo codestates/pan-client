@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
-import routes from "../routes";
+import routes from "../../routes";
 import styled from "styled-components";
-import Input from "../components/auth/Input";
-import login_bg from "../images/login_bg.jpg";
-import Button from "../components/auth/Button";
-import PageTitle from "../components/PageTitle";
-import FormBox from "../components/auth/FormBox";
-import BottomBox from "../components/auth/BottomBox";
-import AuthLayout from "../components/auth/AuthLayout";
+import Input from "../../components/auth/Input";
+import login_bg from "../../images/login_bg.jpg";
+import Button from "../../components/auth/Button";
+import PageTitle from "../../components/PageTitle";
+import FormBox from "../../components/auth/FormBox";
+import BottomBox from "../../components/auth/BottomBox";
+import AuthLayout from "../../components/auth/AuthLayout";
 import { useHistory } from "react-router-dom";
-import { FatLink } from "../components/shared";
-import { BlueGreen, CedarChest, TextAlign } from "../components/auth/FontLayout";
+import { FatLink } from "../../components/shared";
+import { BlueGreen, CedarChest, TextAlign } from "../../components/auth/FontLayout";
 
 const Container = styled.div`
     position: absolute;
@@ -60,10 +60,10 @@ export default function SignUp(props) {
                         email,
                         password
                     },
-                    {
-                        'Content-Type': 'application/json',
-                        withCredentials: true,
-                    }
+                    // {
+                    //     'Content-Type': 'application/json',
+                    //     withCredentials: true,
+                    // }
                 )
                 .then((res) => setErrorMessage(res.data.message))
                 .then(() => history.push('/login'))

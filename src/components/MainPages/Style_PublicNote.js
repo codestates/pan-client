@@ -3,17 +3,19 @@ import styled from "styled-components";
 export const ListSection = styled.section`
     display: grid;
     max-width: 1600px;
+    height: 460px;
     grid-gap: 10px;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
-    margin-top: 1rem;
+    margin-top: 10px;
+    padding-top: 24px;
     padding-left: 1rem;
     width: 100%;
     overflow: hidden;
 `;
 
 export const ListItemBox = styled.div`
-    width: 90%;
-    height: 200px;
+    width: 80%;
+    height: 180px;
     box-shadow: #ced4da 0 1px 4px;
     background-color: none;
     position: relative;
@@ -35,6 +37,7 @@ export const ItemImg = styled.img`
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    opacity: 0.8;
 `;
 
 export const ItemOverlay = styled.div`
@@ -58,7 +61,7 @@ export const ItemContent = styled.article`
     bottom: 15px;
     display: flex;
     flex-direction: column;
-    font-family: 'MapoGoldenPier';
+    font-family: 'Cafe24SsurroundAir';
     color: #fff;
     padding: 10px;
 

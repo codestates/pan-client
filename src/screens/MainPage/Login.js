@@ -1,20 +1,20 @@
 import axios from "axios";
-import routes from "../routes";
+import routes from "../../routes";
 import styled from "styled-components";
-import Input from "../components/auth/Input";
-import login_bg from "../images/login_bg.jpg";
-import Button from "../components/auth/Button";
-import PageTitle from "../components/PageTitle";
-import FormBox from "../components/auth/FormBox";
-import BottomBox from "../components/auth/BottomBox";
-import Separator from "../components/auth/Separator";
-import kakao_button from "../images/kakao_button.png";
-import AuthLayout from "../components/auth/AuthLayout";
-import google_button from "../images/google_button.png";
+import Input from "../../components/auth/Input";
+import login_bg from "../../images/login_bg.jpg";
+import Button from "../../components/auth/Button";
+import PageTitle from "../../components/PageTitle";
+import FormBox from "../../components/auth/FormBox";
+import BottomBox from "../../components/auth/BottomBox";
+import Separator from "../../components/auth/Separator";
+import kakao_button from "../../images/kakao_button.png";
+import AuthLayout from "../../components/auth/AuthLayout";
+import google_button from "../../images/google_button.png";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { ImageBox, SocialBtn } from "../components/auth/ImageBox";
-import { TextAlign, BlueGreen, CedarChest } from "../components/auth/FontLayout";
+import { ImageBox, SocialBtn } from "../../components/auth/ImageBox";
+import { TextAlign, BlueGreen, CedarChest } from "../../components/auth/FontLayout";
 
 const Container = styled.div`
     position: absolute;
@@ -48,7 +48,7 @@ export default function Login() {
                 email,
                 password,
             },
-            withCredentials: true,
+            // withCredentials: true,
         })
         .then((res) => {
             if (res.data.data.accessToken) {

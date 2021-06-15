@@ -1,7 +1,7 @@
 import React from "react";
-import routes from "../routes";
+import routes from "../../routes";
 import { Link, useHistory } from "react-router-dom";
-import { Wrapper, HeadCard, HeaderText, CardList, CardWrap, CardImg, CardOverlay, CardContent} from "../components/MainPages/Style_Top10";
+import { Wrapper, HeadCard, HeaderText, CardList, CardWrap, CardImg, CardOverlay, CardContent} from "../../components/MainPages/Style_Top10";
 
 export default function Top10({allDiaries}) {
 
