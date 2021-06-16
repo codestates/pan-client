@@ -8,7 +8,6 @@ const routes = {
     details: "/details/:id",
     writing: "/writing",
     drawing: "/drawing"
-    
 }
 
 export default routes;

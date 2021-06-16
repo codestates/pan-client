@@ -153,7 +153,7 @@ export const  WithdrawalMain = styled.div`
 
 export const Bottom = styled.div`
     margin-top: 1.3rem;
-    padding: 0 0 1rem 4.3rem;
+    padding: 0.5rem 0 1rem 4.3rem;
     width: 100%;
     height: 50px;
     font-size: large;
@@ -194,4 +194,14 @@ export const EditFooter = styled.div`
             transform: scale(1.1);
         }  
     }
+`;
+
+export const DiarySection = styled.section`
+    position: relative;
+    top: 3%;
+    left: 4.2%;
+    /* border: 1px solid red; */
+    width: 66%;
+    height: 80%;
+    /* background-color: #FFF9E9; */
 `;

@@ -6,7 +6,7 @@ import Diaries from '../SubPage/Diaries';
 import Header from '../../components/Header';
 import Books from '../SubPage/Books';
 import Nondisclosure from '../../images/Nondisclosure.jpg'
-import EditUserInfo from '../MyPage/Userinfo';
+import UserInfo from '../MyPage/Userinfo';
 import { UserContext } from "../../store/UserStore";
 import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../../components/Mypages/Style_Mypage"
 
@@ -91,15 +91,15 @@ export default function Mypage() {
             <Print cur={cur.edit} onClick={changeEdit}>회원 정보 수정</Print>
           </LeftSection>
           <DiarySection>
-          {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
-          {cur.individual ? 
-            lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>
-            :
-            cur.group ?
-            lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries> 
-            :
-            <EditUserInfo username={username} email={email} profileUrl={profileUrl}/>
-          }
+            {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}
+            {cur.individual ? 
+              lookBooks === false ? <Books isCoverClick={isCoverClick} books={individual}></Books> : <Diaries diary={diaries}></Diaries>
+              :
+              cur.group ?
+              lookBooks === false ? <Books isCoverClick={isCoverClick} books={group}></Books> : <Diaries diary={diaries}></Diaries> 
+              :
+              <UserInfo username={username} email={email} profileUrl={profileUrl}/>
+            }
           </DiarySection>
         </MypageMain>
       </MypageWrapper>
