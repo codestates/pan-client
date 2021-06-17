@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FiPlusCircle } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import { StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton, LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } from "../../components/modal/Style_ChooseBook";
@@ -10,16 +10,18 @@ import bg04 from "../../images/Cover_img/04.png"
 import bg05 from "../../images/Cover_img/05.png"
 import bg06 from "../../images/Cover_img/06.png"
 import bg07 from "../../images/Cover_img/07.png"
+import { CreateBookContext } from "../../store/CreateBookStore";
 
 export default function ChooseBook() {
     const history = useHistory();
     const [modalIsOpen,setModalIsOpen] = useState(true);
     const [create, setCreate] = useState(false);
     const [books, setBooks] = useState([]);
-    // const [chooseBook, setChooseBook] = useState(false);
-    
     const [bookName, setBookName] = useState('일기장 이름');
     const [bookCover, setBookCover] = useState(bg01);
+
+    const context = useContext(CreateBookContext);
+    const {bookInfo, setBookInfo} = context ;
 
     useEffect(async () => {
         try{
@@ -30,11 +32,15 @@ export default function ChooseBook() {
                 },
                 withCredentials : true
                 })
-                .then(res => setBooks(res.data.data));
+                .then(res => setBooks(res.data.data))
         }catch{ 
             console.error("err");
         }
-    },[books]);
+    },[]);
+
+    const selectBtn = () => {
+        setModalIsOpen(false);
+    }
 
     const createBook = async () => {
         try{ 
@@ -54,7 +60,10 @@ export default function ChooseBook() {
             .then(
                 alert('북이 생성되었습니다'),
                 setCreate(false),
-                );
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 100)
+                )
         }catch{
             console.error("err");
         }        
@@ -80,17 +89,38 @@ export default function ChooseBook() {
                             </CreateBooks>
                             <SelectBook>
                                 {books.map(book=>{
-                                    return( 
-                                        <div key={book.id} className="foo" onClick={(e)=>console.log(e.target.classlist)}>
+                                    return ( 
+                                        book.id === bookInfo.id ? 
+                                        <div 
+                                            key={book.id} 
+                                            className="foo" 
+                                            style={{
+                                                backgroundImage:`url(${book.bookCover})`,
+                                                backgroundSize: '100% 100%',
+                                                border: '4px solid black'
+                                            }}
+                                            onClick={() => setBookInfo(book)}>
                                             {book.bookName}
                                         </div> 
+                                        :
+                                        <div 
+                                            key={book.id} 
+                                            className="foo" 
+                                            style={{
+                                                backgroundImage:`url(${book.bookCover})`,
+                                                backgroundSize: '100% 100%'
+                                            }}
+                                            onClick={() => setBookInfo(book)}>
+                                            {book.bookName}
+                                        </div> 
+                                  
                                     )
                                 })}
                             </SelectBook>
                         </Wrapper> 
                         <Footer>
                             <ModalButton onClick={cancelBtn}>취소</ModalButton>
-                            <ModalButton onClick={()=> {setModalIsOpen(false)}}>선택</ModalButton>
+                            <ModalButton onClick={selectBtn}>선택</ModalButton>
                         </Footer>
                         </>
                         :

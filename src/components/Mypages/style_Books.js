@@ -11,7 +11,7 @@ export const CoverWrapper = styled.div`
 `;
 
 export const Cover = styled.button`
-  background-image: url("https://source.unsplash.com/random/640x960");
+  /* background-image: url("https://source.unsplash.com/random/640x960"); */
   box-shadow: 10px 10px 10px #E4D8B4;
   border: none;
   outline: none;

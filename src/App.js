@@ -17,8 +17,10 @@ import Writing from "./screens/MakePage/Writing";
 import Drawing from "./screens/MakePage/Drawing";
 
 import Details from "./screens/SubPage/Details";
-import UserStore from "./store/UserStore"
-import IsGroupStore from "./store/IsGroup"
+import UserStore from "./store/UserStore";
+import IsGroupStore from "./store/IsGroupStore";
+import CreateBookStore from "./store/CreateBookStore";
+
 
 function App() { 
 
@@ -27,6 +29,7 @@ function App() {
       {/*  User contextAPI  */}
       <IsGroupStore>
       {/*Group여부 확인 contextAPI */}
+      <CreateBookStore>
       <HelmetProvider>
         <GlobalStyles />
         <Router>
@@ -48,7 +51,7 @@ function App() {
               </Route>
               <Route path={routes.drawing}>
                 <Drawing />
-              </Route>
+              </Route> 
               <Route path={routes.login}>
                 <Login />
               </Route>
@@ -62,6 +65,7 @@ function App() {
             </Switch>
         </Router>
       </HelmetProvider>
+      </CreateBookStore>
       </IsGroupStore>
     </UserStore>
   );

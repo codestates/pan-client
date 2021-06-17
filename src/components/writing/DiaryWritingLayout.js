@@ -67,8 +67,32 @@ export const WriteWeather = styled.div`
         border-radius: 12px;
         padding-left: 10px;
     }
-    img {
+    div {
+        position: relative;
         margin-left: 20px;
+        :hover p{
+            visibility: visible;
+            opacity: 1;
+        }
+        img {
+        cursor: pointer;
+        }
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 25px;
+            border-radius: 10px;
+            position: absolute;
+            top: 50px;
+            left: -5px;
+            background-color: #E4D8B4;
+            color: white;
+            visibility: hidden;
+            opacity: 0;
+            font-size: medium;
+        }
     }
 `;
 export const WriteHeaderRight = styled.div`
@@ -88,14 +112,40 @@ export const WriteFeel = styled.div`
     height: 20%;
     padding-left: 10px;
     margin-bottom: 40px;
+    /* border:1px solid red; */
     input {
         width: 40px;
         height: 40px;
         margin-left: 20px;
     }
-    img {
+    div {
+        position: relative;
         margin-left: 20px;
+        :hover p{
+            visibility: visible;
+            opacity: 1;
+        }
+        img {
+        cursor: pointer;
+        }
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 25px;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 55px;
+            left: -5px;
+            background-color: #E4D8B4;
+            color: white;
+            visibility: hidden;
+            opacity: 0;
+            font-size: medium;
+        }
     }
+
 `;
 export const WriteDate = styled.div`
     display: flex;
@@ -116,7 +166,7 @@ export const WriteDate = styled.div`
 export const WriteContents = styled.div`
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 30px;
 `;
 
 export const Wirte = styled.section`

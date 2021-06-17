@@ -2,7 +2,6 @@ import React, { createContext, useState } from 'react'
 
 export const IsGroupContext = createContext();
 
-
 function IsGroupStore (props) {
     const [isGroup, setIsGroup] = useState(false);
 
@@ -12,7 +11,7 @@ function IsGroupStore (props) {
             setIsGroup
         }}
         > 
-        {props.children}
+            {props.children}
         </IsGroupContext.Provider>
     )
 }

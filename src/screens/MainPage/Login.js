@@ -42,13 +42,12 @@ export default function Login() {
         e.preventDefault();
         await axios({
             method: 'post',
-            // url: 'https://api.picanote.me/login',
             url: 'https://api.picanote.me/login',
             data: {
                 email,
                 password,
             },
-            // withCredentials: true,
+            withCredentials: true,
         })
         .then((res) => {
             if (res.data.data.accessToken) {
@@ -59,7 +58,7 @@ export default function Login() {
         })
         .catch((err) => {
             alert('아이디 비밀번호를 다시 확인해주세요');
-            // console.error(err);
+            console.error(err);
         });
     };
 

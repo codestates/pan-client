@@ -56,7 +56,7 @@ export default function Mypage() {
         Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
         'ContentType' : 'application/json',
       },
-      // withCredentials : true
+      withCredentials : true
       })
       .then(res => {
         const individualBooks = res.data.data.filter(e=>!e.groupId);

@@ -7,8 +7,13 @@ export default function Books ({isCoverClick, books}) {
             {books.map((book)=> {
                 return  (
                     <Cover 
-                        key={book.bookName} 
-                        onClick={ () => isCoverClick(book.Diaries)}>
+                        key={book.id} 
+                        style = {{
+                            backgroundImage: `url(${book.bookCover})`,
+                            backgroundSize: '100% 100%',
+                        }}
+                        onClick={ () => isCoverClick(book.Diaries)}
+                        >
                         <h2>{book.bookName}</h2> 
                     </Cover>
                 )
