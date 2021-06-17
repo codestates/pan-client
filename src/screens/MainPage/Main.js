@@ -27,7 +27,6 @@ export default function Main() {
       const fetchPosts = async () => {
         setLoading(true);
         const resI = await axios.get('https://api.picanote.me/diaries');
-        console.log(resI)
         // const resG = await axios.get('https://api.picanote.me//group-diaries');
         setIndividual(resI.data.data);
         // setGroup(resG.data.data);
@@ -51,7 +50,7 @@ export default function Main() {
     if (loading) {
       return <h2>Loading...</h2>;
     }
-    console.log(loading);
+
 
     return (
       <>

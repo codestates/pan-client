@@ -1,12 +1,26 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import routes from '../../routes';
 import Header from '../../components/Header';
 import ToggleButton from '../ToggleButton';
 import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../../components/Details/DetailsLayout"
+// import { getDefaultNormalizer } from '@testing-library/react';
+import Angry from "../../images/emotions/angry.png";
+
+
 
 export default function Details ({match}) {
+    const [curFeeling, setCurFeeing] = useState({
+        angry: "../../images/emotions/angry.png",
+        annoyed: false,
+        confused: false,
+        excited: false,
+        happy: false,
+        sad: false,
+        shy: false,
+        tired: false,
+    })
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false);
     // url params에 맞춰서 일기를 렌더링 한다.
@@ -15,7 +29,14 @@ export default function Details ({match}) {
             const getDetails = async() => {
                 setLoading(true);
                 const id = await match.params.id
-                const res = await axios.get(`https://api.picanote.me/diaries/${id}`)
+                const res = await axios.get(`https://api.picanote.me/diaries/${id}`, {
+                    headers:{
+                        Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                        'ContentType' : 'application/json',
+                      },
+                      withCredentials : true
+                },[])
+                
                 setDetails(res.data.data[0])
                 setLoading(false);
             }
@@ -28,6 +49,15 @@ export default function Details ({match}) {
     if (loading) {
         return <h2>Loading...</h2>;
     }
+
+    const test = () => {
+        for(const key in curFeeling) {
+            key === details.feelings ?
+        console.log(curFeeling[key]) : console.log('다르다.')  
+    }
+}
+    test()
+
     return (
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />
@@ -36,22 +66,18 @@ export default function Details ({match}) {
                     <ContentHeader>
                         <ContentHeaderT>
                             <ContentHBLeft>
-                                {/* 제목: <ContentTitle /> */}
-                                제목: {details.title}
+                                제목: <ContentTitle> {details.title} </ContentTitle>
                             </ContentHBLeft>
                             <ContentHBRight>
-                                {/* 날짜: <ContentDate /> */}
-                                날짜: {details.date}
+                                날짜: <ContentDate> {details.date} </ContentDate >
                             </ContentHBRight>
                         </ContentHeaderT>
                         <ContentHeaderB>
                             <ContentHBLeft>
-                                {/* 기분: <ContentFeel /> */}
-                                기분: {details.feelings}
+                                기분: <ContentFeel> {details.feelings} </ContentFeel>
                             </ContentHBLeft>
                             <ContentHBRight>
-                                {/* 날씨: <ContentWeather /> */}
-                                날씨: {details.weather}
+                                날씨: <ContentWeather> {details.weather} </ContentWeather>
                             </ContentHBRight>
                         </ContentHeaderB>
                     </ContentHeader>
@@ -61,7 +87,7 @@ export default function Details ({match}) {
                         <p>모두가 자아의 신화를 실현하려는 간절한 소망을 가지고 그 것을 달성하기 위한 끈질긴 집념,</p>
                         <p>그리고 비록 많은 시련과 포기하고 싶은 좌절의 순간이 있었겠지만,</p>
                         <p>오직 하나를 위한 성실한 노력과 연습으로 마지막의 벽을 넘어서야 가혹한 시험을 통과할 수 있다.</p> */}
-                        {details.content}
+                        <p>{details.content}</p>
                     </ContentMain>
                     <ContentBottom>
                         <BottomLeft>

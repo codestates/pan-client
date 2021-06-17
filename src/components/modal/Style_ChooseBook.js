@@ -88,6 +88,7 @@ export const SelectBook = styled.div`
       box-shadow: 5px 5px 5px gray;
       cursor: pointer;
       opacity: 0.7;
+      color: #E3DFD4;
       :hover {
         border: 4px solid black;
       }
@@ -208,7 +209,7 @@ export const PreviewCover = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
-  color: white;
+  color: #E3DFD4;
 `;

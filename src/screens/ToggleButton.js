@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { IsGroupContext } from "../store/IsGroup";
+import { IsGroupContext } from "../store/IsGroupStore";
 import { VscEdit, VscAccount } from 'react-icons/vsc';
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../components/utility/ToggleAction";

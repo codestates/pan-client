@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import ChooseBook from './Modals/ChooseBook';
 import ChooseGroupBook from './Modals/ChooseGroupBook';
 import { useHistory } from "react-router-dom";
-import { IsGroupContext } from "../store/IsGroup";
+import { IsGroupContext } from "../store/IsGroupStore";
 import { ModalProvider } from "styled-react-modal";
 import { FadingBackground, Announcement, TemplateMain, Writing, Drawing } from "../components/modal/Style_Template";
 
@@ -18,11 +18,11 @@ export default function Template () {
     return (
         <ModalProvider backgroundComponent={FadingBackground}>
           {/* ContextAPI로 group인지 아닌지 확인한 후 거기에 맞춰 모달창을 띄워준다. */}
-          {!isGroup ? <ChooseBook/> : <ChooseGroupBook/> }
+          {!isGroup ? <ChooseBook /> : <ChooseGroupBook /> }
             <Header main={routes.main} login={routes.login} />
             <Announcement>템플릿 선택하기</Announcement>
             <TemplateMain>
-                <Writing  onClick={() => {history.push('/writing')}}>시적 감성</Writing>
+                <Writing onClick={() => {history.push('/writing')}}>시적 감성</Writing>
                 <Drawing onClick={() => {history.push('/drawing')}}>예술적 감성</Drawing>
             </TemplateMain>
             <ToggleButton></ToggleButton>
