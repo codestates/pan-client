@@ -85,10 +85,9 @@ export default function Mypage() {
               {!profileUrl ?  <Profile src={Nondisclosure} alt="이미지입니다" /> :  <Profile src={profileUrl} alt="이미지입니다" />}
                 <Username>{username}</Username>
             </ProfileWrapper>
-    
             <PersonalDiary cur={cur.individual} onClick={changeIndividual}>개인 일기</PersonalDiary>
             <ExchangeDiary cur={cur.group} onClick={changeGroup}>교환 일기</ExchangeDiary>
-            <Print cur={cur.edit} onClick={changeEdit}>회원 정보 수정</Print>
+            <Print cur={cur.edit} onClick={changeEdit}>회원 정보</Print>
           </LeftSection>
           <DiarySection>
             {/* 개인일기, 교환일기 선택해서 나오게 해주는 것! 내용은 수정이 필요함 */}

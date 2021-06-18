@@ -6,7 +6,6 @@ import ToggleButton from '../ToggleButton';
 import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../../components/Details/DetailsLayout"
 // import { getDefaultNormalizer } from '@testing-library/react';
-import Angry from "../../images/emotions/angry.png";
 
 
 
@@ -33,8 +32,8 @@ export default function Details ({match}) {
                     headers:{
                         Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                         'ContentType' : 'application/json',
-                      },
-                      withCredentials : true
+                    },
+                    withCredentials : true
                 },[])
                 
                 setDetails(res.data.data[0])
@@ -68,12 +67,11 @@ export default function Details ({match}) {
                         <ContentHeaderB>
                             <ContentHBLeft>
                                 기분:<ContentFeel
-                                           style = {{
+                                            style = {{
                                             backgroundImage: `url(${details.feelings})`,
                                             backgroundSize: '100% 100%',
                                         }}
                                     />
-                     
                             </ContentHBLeft>
                             <ContentHBRight>
                                 날씨:<ContentWeather             
