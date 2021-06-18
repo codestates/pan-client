@@ -45,6 +45,10 @@ export default function Diaries ({diary}) {
         return <h2>Loading...</h2>;
     }
 
+    // 일기 공개 비공개 소스
+
+    // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
+
     return (
         <Container>
             <DiaryHeader>

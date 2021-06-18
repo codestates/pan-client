@@ -43,8 +43,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
             }).then(
                 localStorage.removeItem('CC_Token'),
                 alert('회원정보가 정상적으로 바꼈습니다. 다시 로그인해주세요.'),
-                history.push("/login"),
-                window.location.reload(true)
+                history.push("/login")
             )
         }catch{
             console.log("err");
@@ -82,7 +81,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
                         <div>{email}</div>
                     </ProfileRight>
             </ProfileWrapper>
-            <UsernameWrapper>
+            {/* <UsernameWrapper>
                 <LeftDiv>유저네임</LeftDiv>  
                     <input type="text" placeholder="유저네임" onChange={e=> {setNewName(e.target.value)}}></input>
             </UsernameWrapper>
@@ -98,18 +97,19 @@ export default function EditUserInfo({username, email, profileUrl}) {
                         <input placeholder="비밀번호 확인" onChange={e=> {setConfirmPassword(e.target.value)}}></input>
                     </div>
                 </PasswordMain>
-            </PassowrdWrapper>
+            </PassowrdWrapper> */}
             <Withdrawal>
                 <WithdrawalMain>
                     <LeftDiv>회원탈퇴</LeftDiv>
                     <button onClick={WithdrawalHandler}>회원 탈퇴</button>   
                 </WithdrawalMain>
                 <Bottom>
-                  탈퇴 시 작성하신 일기장 및 일기들이 모두 삭제되며 복구되지 않습니다.
+                    탈퇴 시 작성하신 일기장 및 일기들이 모두 삭제되며 복구되지 않습니다.
                 </Bottom>    
             </Withdrawal>
             <EditFooter>
-                <button onClick={UserInfoHandler}>수정 완료</button>
+                <button onClick={UserInfoHandler}>수정하기</button>
+                <button>취소</button>
             </EditFooter>
         </EditWrapper>
     )

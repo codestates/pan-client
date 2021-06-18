@@ -27,11 +27,11 @@ export const DiaryBG = styled.div`
   padding-top: 10px;
   background: linear-gradient(
       to right,
-      rgba(20, 20, 20, 0.7) 70%,
-      rgba(20, 20, 20, 0.7) 70%,
-      rgba(20, 20, 20, 0.7)
+      rgba(20, 20, 20, 0.6) 70%,
+      rgba(20, 20, 20, 0.6) 70%,
+      rgba(20, 20, 20, 0.6)
     ),
-    url("https://source.unsplash.com/user/lunalism");
+    url("https://source.unsplash.com/user/erondu");
   background-size: cover;
 `;
 

@@ -179,7 +179,8 @@ export const EditFooter = styled.div`
     justify-content: center;
     button {
         margin-top: 2rem;
-        width: 150px;
+        margin-left: 20px;
+        width: 120px;
         height: 45px;
         cursor: pointer;
         color: white;
