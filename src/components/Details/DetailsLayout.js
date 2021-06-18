@@ -72,7 +72,6 @@ export const ContentHTLeft = styled.div`
 
 export const ContentTitle = styled.div`
     margin-left: 20px;
-    border: 3px solid #E2CD6D;
     width: 80%;
     height: 30px;
 `;
@@ -86,7 +85,6 @@ export const ContentHTRight = styled.div`
 
 export const ContentDate = styled.div`
     margin-left: 20px;
-    border: 3px solid #E2CD6D;
     width: 80%;
     height: 30px;
 `;
@@ -109,9 +107,8 @@ export const ContentHBLeft = styled.div`
 
 export const ContentFeel = styled.div`
     margin-left: 20px;
-    border: 3px solid #E2CD6D;
-    width: 80%;
-    height: 30px;
+    width: 50px;
+    height: 40px;
 `;
 
 export const ContentHBRight = styled.div`
@@ -123,10 +120,8 @@ export const ContentHBRight = styled.div`
 
 export const ContentWeather = styled.div`
     margin-left: 20px;
-
-    border: 3px solid #E2CD6D;
-    width: 80%;
-    height: 30px;
+    width: 50px;
+    height: 40px;
 `;
 
 export const ContentMain = styled.div`
