@@ -24,7 +24,7 @@ export default function Writing() {
   const { bookInfo } = context;
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
-  const [feelings, setFeelings] = useState('');
+  const [feelings, setFeelings] = useState();
   const [weather, setWeather] = useState('');
   // 텍스트 툴 내용 빼서 저장한다음 보내기
   const [content, setContent] = useState('이야호');
@@ -39,7 +39,6 @@ export default function Writing() {
         
       }else {
           setTitle(e.target.value);
-          console.log(e.target.value.length); 
       }
   };
   // 제목과 마찬가지로 날짜는 총10글자 2022-06-17 까지만 작성가능하게 하고 상태에 저장
@@ -102,13 +101,13 @@ export default function Writing() {
   };
 
 // 테스트용으로 남겨둔거 나중에 작성 완료되면 삭제해야됨
-  useEffect(()=> {
-    console.log(title)
-    console.log(date)
-    console.log(feelings)
-    console.log(weather)
-    console.log(bookInfo.id)
-  }, [title,date,feelings,weather,bookInfo])
+  // useEffect(()=> {
+  //   console.log(title)
+  //   console.log(date)
+  //   console.log(feelings)
+  //   console.log(weather)
+  //   console.log(bookInfo.id)
+  // }, [title,date,feelings,weather,bookInfo])
 
 
   return (

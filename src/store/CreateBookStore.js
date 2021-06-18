@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react'
 export const CreateBookContext = createContext();
 
 function CreateBookStore (props) {
-    const [bookInfo, setBookInfo] = useState({hey:'what'});
+    const [bookInfo, setBookInfo] = useState({});
 
     return (
         <CreateBookContext.Provider value={{

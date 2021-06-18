@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from 'react';
 import { FiPlusCircle } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
-import { StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton, LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } from "../../components/modal/Style_ChooseBook";
+import { 
+    StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton, 
+    LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } 
+    from "../../components/modal/Style_ChooseBook";
 import bg01 from "../../images/Cover_img/01.png"
 import bg02 from "../../images/Cover_img/02.png"
 import bg03 from "../../images/Cover_img/03.png"
@@ -13,7 +15,6 @@ import bg07 from "../../images/Cover_img/07.png"
 import { CreateBookContext } from "../../store/CreateBookStore";
 
 export default function ChooseBook() {
-    const history = useHistory();
     const [modalIsOpen,setModalIsOpen] = useState(true);
     const [create, setCreate] = useState(false);
     const [books, setBooks] = useState([]);
@@ -22,7 +23,7 @@ export default function ChooseBook() {
 
     const context = useContext(CreateBookContext);
     const {bookInfo, setBookInfo} = context ;
-
+    
     useEffect(async () => {
         try{
             await axios.get('https://api.picanote.me/myBook',{
@@ -39,40 +40,48 @@ export default function ChooseBook() {
     },[]);
 
     const selectBtn = () => {
-        setModalIsOpen(false);
-    }
+        setBookInfo(bookInfo)
+        bookInfo.id ? setModalIsOpen(false) : alert('일기장을 선택해주세요.');
+    };
 
     const createBook = async () => {
         try{ 
-            await axios({
-                method: 'post',
-                url: 'https://api.picanote.me/books',
-                data: {
-                    bookName,
-                    bookCover,
-                },
-                headers:{
-                    Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
-                    'ContentType' : 'application/json',
+            localStorage.getItem('CC_Token') ? 
+                await axios({
+                    method: 'post',
+                    url: 'https://api.picanote.me/books',
+                    data: {
+                        bookName,
+                        bookCover,
                     },
-                withCredentials: true,
-            })
-            .then(
-                alert('북이 생성되었습니다'),
-                setCreate(false),
-                setTimeout(() => {
-                    window.location.reload(true);
-                }, 100)
+                    headers:{
+                        Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                        'ContentType' : 'application/json',
+                        },
+                    withCredentials: true,
+                })
+                .then(
+                    alert('일기장이 생성되었습니다'),
+                    setCreate(false),
+                    setTimeout(() => {
+                        window.location.reload(true);
+                    }, 100)
                 )
+            :
+                alert('일기장 생성이 실패했습니다. 로그인 후 생성 가능합니다.');   
         }catch{
             console.error("err");
-        }        
+        };
     };
 
-    const cancelBtn = () => {
-        setModalIsOpen(false);
-        history.push('/');
+    const createCancelBtn = () => {
+        window.location.reload(true);
     };
+
+    const chooseCancelBtn = () => {
+        setModalIsOpen(false);
+    };
+
     return (
         <>
             <StyledModal isOpen={modalIsOpen}>
@@ -119,7 +128,7 @@ export default function ChooseBook() {
                             </SelectBook>
                         </Wrapper> 
                         <Footer>
-                            <ModalButton onClick={cancelBtn}>취소</ModalButton>
+                            <ModalButton onClick={chooseCancelBtn}>취소</ModalButton>
                             <ModalButton onClick={selectBtn}>선택</ModalButton>
                         </Footer>
                         </>
@@ -163,7 +172,7 @@ export default function ChooseBook() {
                         </Wrapper>
                         <Footer>
                             {/* 여기서 취소를 누르면 전페이지로 이동 */}
-                            <ModalButton onClick={cancelBtn}>취소</ModalButton>
+                            <ModalButton onClick={createCancelBtn}>취소</ModalButton>
                             <ModalButton onClick={createBook}>생성</ModalButton>
                         </Footer>
                     </>

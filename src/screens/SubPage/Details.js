@@ -50,13 +50,6 @@ export default function Details ({match}) {
         return <h2>Loading...</h2>;
     }
 
-    const test = () => {
-        for(const key in curFeeling) {
-            key === details.feelings ?
-        console.log(curFeeling[key]) : console.log('다르다.')  
-    }
-}
-    test()
 
     return (
         <DetailsWrapper>
@@ -74,10 +67,21 @@ export default function Details ({match}) {
                         </ContentHeaderT>
                         <ContentHeaderB>
                             <ContentHBLeft>
-                                기분: <ContentFeel> {details.feelings} </ContentFeel>
+                                기분:<ContentFeel
+                                           style = {{
+                                            backgroundImage: `url(${details.feelings})`,
+                                            backgroundSize: '100% 100%',
+                                        }}
+                                    />
+                     
                             </ContentHBLeft>
                             <ContentHBRight>
-                                날씨: <ContentWeather> {details.weather} </ContentWeather>
+                                날씨:<ContentWeather             
+                                            style = {{
+                                            backgroundImage: `url(${details.weather})`,
+                                            backgroundSize: '100% 100%',
+                                        }}
+                                    />
                             </ContentHBRight>
                         </ContentHeaderB>
                     </ContentHeader>

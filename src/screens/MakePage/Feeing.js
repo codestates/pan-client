@@ -46,7 +46,7 @@ export default function Feeling({setFeelings})  {
     const changeFeeing = (e) => {
         for(const key in curFeeling) {
             if(key === e.currentTarget.className) {
-                setFeelings(key)
+                setFeelings(e.currentTarget.children[0].src)
                 setCurFeeing({
                     ...originFeeling,
                     [key]: true
@@ -66,8 +66,6 @@ export default function Feeling({setFeelings})  {
         }
     }
 
-    // 테스트용 나중에 삭제
-    // useEffect(()=> {console.log(curFeeling)}, [curFeeling])
 
     return (
         <WriteFeel>

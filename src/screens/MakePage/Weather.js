@@ -46,7 +46,7 @@ export default function Weather({setWeather}) {
         const changeWeather = (e) => {
             for(const key in curWeather) {
                 if(key === e.currentTarget.className) {
-                    setWeather(key)
+                    setWeather(e.currentTarget.children[0].src)
                     setCurWeather({
                         ...originWeather,
                         [key]: true
