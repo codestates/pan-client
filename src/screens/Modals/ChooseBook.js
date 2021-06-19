@@ -12,6 +12,11 @@ import bg04 from "../../images/Cover_img/04.png"
 import bg05 from "../../images/Cover_img/05.png"
 import bg06 from "../../images/Cover_img/06.png"
 import bg07 from "../../images/Cover_img/07.png"
+import bg08 from "../../images/Cover_img/08.png"
+import bg09 from "../../images/Cover_img/09.png"
+import bg10 from "../../images/Cover_img/10.png"
+import bg11 from "../../images/Cover_img/11.png"
+import bg12 from "../../images/Cover_img/12.png"
 import { CreateBookContext } from "../../store/CreateBookStore";
 
 export default function ChooseBook() {
@@ -139,34 +144,38 @@ export default function ChooseBook() {
                         </Header>
                         <Wrapper>
                             <LeftCreateDiv>
-                            <LeftTitleDiv>
-                                일기장 이름:
-                                <input type="text" placeholder="일기장 이름" onChange={e => {setBookName(e.target.value)}}/>
-                            </LeftTitleDiv>
-                            <LeftCoverDiv>
-                                <h1>커버를 선택해주세요.</h1>
-                                <SelectCover>
-                                    <CoverImg src={bg01} onClick={e => {setBookCover(e.target.src)}} />
-                                    <CoverImg src={bg02} onClick={e => {setBookCover(e.target.src)}} />
-                                    <CoverImg src={bg03} onClick={e => {setBookCover(e.target.src)}} />
-                                    <CoverImg src={bg04} onClick={e => {setBookCover(e.target.src)}} />
-                                    <CoverImg src={bg05} onClick={e => {setBookCover(e.target.src)}} />
-                                    <CoverImg src={bg06} onClick={e => {setBookCover(e.target.src)}} />
-                                    <CoverImg src={bg07} onClick={e => {setBookCover(e.target.src)}} />
-                                </SelectCover>
-                            </LeftCoverDiv>
+                                <LeftTitleDiv>
+                                    일기장 이름:
+                                    <input type="text" placeholder="일기장 이름" onChange={e => {setBookName(e.target.value)}}/>
+                                </LeftTitleDiv>
+                                <LeftCoverDiv>
+                                    <h1>커버를 선택해주세요.</h1>
+                                    <SelectCover>
+                                        <CoverImg src={bg01} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg02} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg03} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg04} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg05} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg06} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg07} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg08} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg09} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg10} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg11} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg12} onClick={e => {setBookCover(e.target.src)}} />
+                                    </SelectCover>
+                                </LeftCoverDiv>
                             </LeftCreateDiv>
                             <RightCreateDiv>
-                            <PreviewCover 
-                                style={{
-                                    backgroundImage: `url(${bookCover})`,  
-                                    backgroundPosition: 'center',   
-                                    backgroundSize: '100% 100%',  
-                                    backgroundRepeat: 'no-repeat'
-                                    }}>
-                                {bookName}
-                            </PreviewCover>
-
+                                <PreviewCover 
+                                    style={{
+                                        backgroundImage: `url(${bookCover})`,  
+                                        backgroundPosition: 'center',   
+                                        backgroundSize: '100% 100%',  
+                                        backgroundRepeat: 'no-repeat'
+                                        }}>
+                                    {bookName}
+                                </PreviewCover>
                             </RightCreateDiv>
                         </Wrapper>
                         <Footer>
