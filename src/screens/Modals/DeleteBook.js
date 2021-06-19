@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { 
     StyledModal, ModalBox, 
     ModalHeader, ModalTitle, DiaryWrapper, Public,
@@ -8,23 +9,33 @@ import {
 } from "../../components/modal/Style_DeleteBook";
 
 export default function Deletebook(props) {
+    const history = useHistory();
     const { modalIsOpen, setIsOpen, books } = props;
     const closeModal = () => {
         setIsOpen(false);
     }
 
-    const [ bookId, setBookId ] = useState();
+    const [ bookId, setBookId ] = useState("");
     
+    const handleTest = (e) => {
+        // setBookId(e);
+        console.log("이건 bookID");
+    }
+
     const HandleSubmit = async(e) => {
-        await axios({
-            method: "delete",
-            url: `https://api.picanote.me/books/${bookId}`,
-            headers:{
-                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
-                'ContentType' : 'application/json',
-            },
-            withCredentials : true
-        })
+        console.log("버튼클릭")
+        // await axios
+        //     .delete ({
+        //         url: `https://api.picanote.me/books/${bookId}`,
+        //         headers:{
+        //             Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+        //             'ContentType' : 'application/json',
+        //         },
+        //         withCredentials : true
+        //     })
+        //     .then(() => {
+        //         history.push("/mypage")
+        //     })
     }
 
     return (
@@ -41,8 +52,8 @@ export default function Deletebook(props) {
                     <ModalBook>
                         {books.map((book) => {
                             return (
-                                <DiaryWrapper key={book.id}>
-                                    <Public type="checkbox" />
+                                <DiaryWrapper key={book.id} >
+                                    <Public onClick={handleTest(book.id)} />
                                     <DeleteCover key={book.id} style={{ backgroundImage: `url(${book.bookCover})`, backgroundSize: "100% 100%"}}>
                                         <h2>{book.bookName}</h2>
                                     </DeleteCover>
