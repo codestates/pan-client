@@ -133,6 +133,15 @@ export const ContentMain = styled.div`
     font-family: 'MapoGoldenPier';
     font-size: 20px;
     line-height: 40px;
+    h1 {
+        font-size: 50px;
+    }
+    h2 {
+        font-size: 40px;
+    }
+    h3 {
+        font-size: 30px;
+    }
 `;
 
 export const ContentBottom = styled.div`

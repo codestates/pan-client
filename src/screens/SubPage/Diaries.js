@@ -64,7 +64,7 @@ export default function Diaries ({diary}) {
                             <Ttitle>{post.title}</Ttitle>
                             {post.picUrl === null ?  <ChooseTP><img src={Text} width="30px" height="30px" alt="textnote" /></ChooseTP> :  <ChooseTP><img src={Drawing} width="30px" height="30px" alt="drawingnote" /></ChooseTP> }
                             {/* 더미 데이터 말고 date 들어올때 날짜추출 메소드를 쓸것인지 slice를 쓸것인지 정해야됨 */}
-                            <Date>{post.date.slice(0,10)}</Date>
+                            {!post.date ? <Date>{post.date}</Date> : <Date>{post.date.slice(0,10)}</Date> }
                         </Diary>
                     </DiaryWrapper>
                 ))}

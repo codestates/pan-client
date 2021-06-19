@@ -4,22 +4,11 @@ import routes from '../../routes';
 import Header from '../../components/Header';
 import ToggleButton from '../ToggleButton';
 import { FiHeart } from "react-icons/fi";
-import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../../components/Details/DetailsLayout"
+import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight, DisableComment } from "../../components/Details/DetailsLayout"
 // import { getDefaultNormalizer } from '@testing-library/react';
 
 
-
 export default function Details ({match}) {
-    const [curFeeling, setCurFeeing] = useState({
-        angry: "../../images/emotions/angry.png",
-        annoyed: false,
-        confused: false,
-        excited: false,
-        happy: false,
-        sad: false,
-        shy: false,
-        tired: false,
-    })
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false);
     // url params에 맞춰서 일기를 렌더링 한다.
@@ -85,11 +74,7 @@ export default function Details ({match}) {
                     </ContentHeader>
                     {/* 일기 본문 내용 */}
                     <ContentMain>
-                        {/* <p>무엇인가 찾아나서는 도전은 언제나 초심자의 행운으로 시작되고 반드시 가혹한 시험으로 끝을 맺는다.</p>
-                        <p>모두가 자아의 신화를 실현하려는 간절한 소망을 가지고 그 것을 달성하기 위한 끈질긴 집념,</p>
-                        <p>그리고 비록 많은 시련과 포기하고 싶은 좌절의 순간이 있었겠지만,</p>
-                        <p>오직 하나를 위한 성실한 노력과 연습으로 마지막의 벽을 넘어서야 가혹한 시험을 통과할 수 있다.</p> */}
-                        <p>{details.content}</p>
+                        <div dangerouslySetInnerHTML={ {__html: details.content} }></div>
                     </ContentMain>
                     <ContentBottom>
                         <BottomLeft>
