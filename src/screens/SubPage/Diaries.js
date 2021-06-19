@@ -11,7 +11,7 @@ import Text from "../../images/text.png";
 import Drawing from "../../images/drawing.png";
 
 export default function Diaries ({diary}) {
-  // pagenation state 
+    // pagenation state 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -46,9 +46,9 @@ export default function Diaries ({diary}) {
     }
 
     // 일기 공개 비공개 소스
-
     // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
-
+    // const [ private, setPrivate ] = useState([]);
+    
     return (
         <Container>
             <DiaryHeader>
