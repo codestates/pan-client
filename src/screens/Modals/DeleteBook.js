@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { 
     StyledModal, ModalBox, 
     ModalHeader, ModalTitle, DiaryWrapper, Public,
@@ -9,11 +8,17 @@ import {
 } from "../../components/modal/Style_DeleteBook";
 
 export default function Deletebook(props) {
+    
     const { modalIsOpen, setIsOpen, books } = props;
     const closeModal = () => {
         setIsOpen(false);
     }
     const [ bookId, setBookId ] = useState();
+    
+    const handleTest = (e) => {
+        // setBookId(e);
+        console.log("이건 bookID");
+    }
 
     const HandleSubmit = async(e) => {
 
