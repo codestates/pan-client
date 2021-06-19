@@ -71,6 +71,7 @@ export const ContentHTLeft = styled.div`
 `;
 
 export const ContentTitle = styled.div`
+    margin-top: 10px;
     margin-left: 20px;
     width: 80%;
     height: 30px;
@@ -84,6 +85,7 @@ export const ContentHTRight = styled.div`
 `;
 
 export const ContentDate = styled.div`
+    margin-top: 10px;
     margin-left: 20px;
     width: 80%;
     height: 30px;
@@ -99,6 +101,7 @@ export const ContentHeaderB = styled.div`
 `;
 
 export const ContentHBLeft = styled.div`
+    padding-left: 80px;
     width: 50%;
     height: 50px;
     display: flex;
@@ -112,6 +115,7 @@ export const ContentFeel = styled.div`
 `;
 
 export const ContentHBRight = styled.div`
+    padding-left: 80px;
     width: 50%;
     height: 50px;
     display: flex;
@@ -128,19 +132,46 @@ export const ContentMain = styled.div`
     /* border: 3px solid #83B799; */
     width: 100%;
     height: 80%;
-    padding-top: 20px;
-    padding-left: 20px;
+    padding: 20px;
     font-family: 'MapoGoldenPier';
     font-size: 20px;
     line-height: 40px;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    div { 
+        word-break: break-all;
+        width: 100%;
+        height: 100%;
+ 
+    }
     h1 {
-        font-size: 50px;
+        font-size: 38px;
+        margin-bottom: 10px;
     }
     h2 {
-        font-size: 40px;
+        font-size: 36px;
+        margin-bottom: 10px;
     }
     h3 {
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+    h4 {
+        font-size: 32px;
+        margin-bottom: 7px;
+    }
+    h5 {
         font-size: 30px;
+        margin-bottom: 7px;
+    }
+    h6 {
+        font-size: 28px;
+        margin-bottom: 7px;
+    }
+    strong {
+        font-weight: 700 ;
     }
 `;
 

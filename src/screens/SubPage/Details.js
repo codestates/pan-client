@@ -74,6 +74,7 @@ export default function Details ({match}) {
                     {/* 일기 본문 내용 */}
                     <ContentMain>
                         <div dangerouslySetInnerHTML={ {__html: details.content} }></div>
+                        {/* {details.content} */}
                     </ContentMain>
                     <ContentBottom>
                         <BottomLeft>
