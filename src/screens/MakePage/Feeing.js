@@ -72,19 +72,19 @@ export default function Feeling({setFeelings})  {
             {
                 curFeeling.angry === false ? 
                 <div className="angry" onClick={changeFeeing}>
-                    <img src={ImgAngry} name="angry" width="40px" alt="angry" /> 
+                    <img src={ImgAngry}  width="40px" alt="angry" /> 
                     <p>화남</p>
                 </div>
                 : 
                 <div className="angry" onClick={rechangeFeeing}>
-                    <img src={ImgAngry_selected} name="angry"  width="40px" alt="ImgAngry_selected" /> 
+                    <img src={ImgAngry_selected}  width="40px" alt="ImgAngry_selected" /> 
                     <p>화남</p>
                 </div>
             }
             {
                 curFeeling.annoyed === false ? 
                 <div className="annoyed" onClick={changeFeeing}>
-                    <img src={ImgAnnoyed} name="annoyed" width="40px" alt="angry" /> 
+                    <img src={ImgAnnoyed} width="40px" alt="angry" /> 
                     <p>짜증</p>
                 </div>
                 : 

@@ -7,6 +7,7 @@ import {
     ModalMiddle, MiddleTitle, ModalBook, DeleteCover,
     ModalBottom, Button
 } from "../../components/modal/Style_DeleteBook";
+import { useHistory } from "react-router-dom";
 
 export default function Deletebook(props) {
     const history = useHistory();
@@ -14,8 +15,8 @@ export default function Deletebook(props) {
     const closeModal = () => {
         setIsOpen(false);
     }
-
-    const [ bookId, setBookId ] = useState("");
+    const [ bookId, setBookId ] = useState();
+    const history = useHistory();
     
     const handleTest = (e) => {
         // setBookId(e);
@@ -23,19 +24,20 @@ export default function Deletebook(props) {
     }
 
     const HandleSubmit = async(e) => {
-        console.log("버튼클릭")
-        // await axios
-        //     .delete ({
-        //         url: `https://api.picanote.me/books/${bookId}`,
-        //         headers:{
-        //             Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
-        //             'ContentType' : 'application/json',
-        //         },
-        //         withCredentials : true
-        //     })
-        //     .then(() => {
-        //         history.push("/mypage")
-        //     })
+
+        await axios({
+            method: "delete",
+            url: `https://api.picanote.me/books/${bookId}`,
+            headers:{
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                'ContentType' : 'application/json',
+            },
+            withCredentials : true
+        })
+        .then(  setIsOpen(false))
+        .then((res) => { window.location.reload(true) }
+     
+        )
     }
 
     return (
@@ -52,8 +54,8 @@ export default function Deletebook(props) {
                     <ModalBook>
                         {books.map((book) => {
                             return (
-                                <DiaryWrapper key={book.id} >
-                                    <Public onClick={handleTest(book.id)} />
+                                <DiaryWrapper key={book.id}>
+                                    <Public type="checkbox" onClick={()=>{setBookId(book.id)}}/>
                                     <DeleteCover key={book.id} style={{ backgroundImage: `url(${book.bookCover})`, backgroundSize: "100% 100%"}}>
                                         <h2>{book.bookName}</h2>
                                     </DeleteCover>
