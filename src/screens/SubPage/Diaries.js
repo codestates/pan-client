@@ -18,8 +18,6 @@ export default function Diaries ({diary}) {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
-    const [ diaryId, setDiaryId ] = useState();
-    const [ isPrivate, setisPrivate ] = useState('');
     
     // pagenation useEffect   
     useEffect(() => {
@@ -53,26 +51,17 @@ export default function Diaries ({diary}) {
     // 일기 공개 비공개 소스
     // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
     
-    const handleSubmit = (id) => {
-        setDiaryId(id)
-        setTimeout(() => {
-            axios({
+    const handleSubmit = async (id) => {
+            await axios({
                 method: 'post',
-                url: `https://api.picanote.me/diaries/${diaryId}/private`,
+                url: `https://api.picanote.me/diaries/${id}/private`,
                 headers:{
                     Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                     'ContentType' : 'application/json',
                 },
-                withCredentials : true,
-                
+                withCredentials : true,    
             })
-            
-        }, 3000);
-
-
-    }
-
-    console.log(posts)
+    };
    
     return (
         <Container>
@@ -84,6 +73,7 @@ export default function Diaries ({diary}) {
             <DiaryBG>
                 {currentPosts.map(post => (
                     <DiaryWrapper key={post.id}>
+                        {/* 공개 비공개 여부에 맞춰서 체크배경을 나타나게 해줘야 한다! */}
                         {post.private ? console.log(post.id+'비공개') : console.log(post.id+'공개') }
                         <Public type="checkbox" onClick={() => {handleSubmit(post.id)}}/>
                         <Diary onClick={()=> ToDetails(post.id)}>
