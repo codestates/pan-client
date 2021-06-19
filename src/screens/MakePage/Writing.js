@@ -71,7 +71,6 @@ export default function Writing() {
                 weather,
                 content,
                 type
-
             },
             headers: {
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
