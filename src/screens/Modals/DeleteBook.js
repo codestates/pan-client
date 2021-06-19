@@ -14,12 +14,6 @@ export default function Deletebook(props) {
         setIsOpen(false);
     }
     const [ bookId, setBookId ] = useState();
-    
-    const handleTest = (e) => {
-        // setBookId(e);
-        console.log("이건 bookID");
-    }
-
     const HandleSubmit = async(e) => {
 
         await axios({
