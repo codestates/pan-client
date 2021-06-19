@@ -7,8 +7,6 @@ import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight } from "../../components/Details/DetailsLayout"
 // import { getDefaultNormalizer } from '@testing-library/react';
 
-
-
 export default function Details ({match}) {
     const [curFeeling, setCurFeeing] = useState({
         angry: "../../images/emotions/angry.png",

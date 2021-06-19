@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const CoverMain = styled.div`
+  align-items: center;
+  height: 100%;
+  width: 100%;
+`;
+
 export const CoverWrapper = styled.div`
   display: grid;
   margin: 40px 20px;
@@ -10,13 +16,32 @@ export const CoverWrapper = styled.div`
   width: 100%;
 `;
 
+export const CoverHeader = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: right;
+`;
+
+export const CoverDelete = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid tomato;
+  border-radius: 20px;
+  width: 160px;
+  height: 70px;
+  font-size: 25px;
+  color: white;
+  background-color: #D85941;
+`;
+
 export const Cover = styled.button`
   /* background-image: url("https://source.unsplash.com/random/640x960"); */
   box-shadow: 10px 10px 10px #E4D8B4;
   border: none;
   outline: none;
   cursor: pointer;
-  font-family: 'MapoGoldenPier';
+  font-family: 'Cafe24SsurroundAir';
   font-size: xx-large;
   font-weight: bold;
   color: #FFF9E9;

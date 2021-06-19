@@ -3,8 +3,7 @@ import axios from 'axios';
 
 export const UserContext = createContext();
 
-
-function UserStore (props) {
+export default function UserStore (props) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [profileUrl, setProfileUrl] = useState("");
@@ -66,14 +65,3 @@ function UserStore (props) {
         </UserContext.Provider>
     )
 }
-
-
-export default UserStore
-
-
-
-
-
-
-
-

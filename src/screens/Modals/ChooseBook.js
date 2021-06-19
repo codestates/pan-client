@@ -121,8 +121,7 @@ export default function ChooseBook() {
                                             }}
                                             onClick={() => setBookInfo(book)}>
                                             {book.bookName}
-                                        </div> 
-                                  
+                                        </div>
                                     )
                                 })}
                             </SelectBook>

@@ -8,7 +8,7 @@ import {
     ProfileWrapper, ProfileLeft, ProfileRight, 
     UsernameWrapper, PassowrdWrapper, PasswordMain, 
     Withdrawal, WithdrawalMain, 
-    Bottom, LeftDiv, EditFooter 
+    Bottom, LeftDiv, EditFooter, UsernameInput 
 } from "../../components/Mypages/style_UserInfo";
 
 export default function EditUserInfo({username, email, profileUrl}) {
@@ -18,6 +18,19 @@ export default function EditUserInfo({username, email, profileUrl}) {
     const [newProfile, setNewProfile] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    // 회원정보 페이지에서 수정하기 버튼을 누르면 수정할 공간이 변하는 상태
+    const [ cur, setCur ] = useState({
+        edit: false
+    })
+
+    const changeInfo = () => {
+        setCur({ edit: true });
+    }
+
+    const cancelInfo = () => {
+        setCur({ edit: false });
+    }
 
     // 회원정보 수정
     const UserInfoHandler = async () => {
@@ -81,7 +94,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
                         <div>{email}</div>
                     </ProfileRight>
             </ProfileWrapper>
-            {/* <UsernameWrapper>
+            <UsernameWrapper>
                 <LeftDiv>유저네임</LeftDiv>  
                     <input type="text" placeholder="유저네임" onChange={e=> {setNewName(e.target.value)}}></input>
             </UsernameWrapper>
@@ -90,14 +103,14 @@ export default function EditUserInfo({username, email, profileUrl}) {
                 <PasswordMain>
                     <div>
                         <span>새 비밀번호</span>
-                        <input placeholder="새 비밀번호" onChange={e=> {setNewPassword(e.target.value)}}></input>
+                        <input type="password" placeholder="새 비밀번호" onChange={e=> {setNewPassword(e.target.value)}}></input>
                     </div>
                     <div>
                         <span>비밀번호 확인</span>
-                        <input placeholder="비밀번호 확인" onChange={e=> {setConfirmPassword(e.target.value)}}></input>
+                        <input type="password" placeholder="비밀번호 확인" onChange={e=> {setConfirmPassword(e.target.value)}}></input>
                     </div>
                 </PasswordMain>
-            </PassowrdWrapper> */}
+            </PassowrdWrapper>
             <Withdrawal>
                 <WithdrawalMain>
                     <LeftDiv>회원탈퇴</LeftDiv>
@@ -109,9 +122,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
             </Withdrawal>
             <EditFooter>
                 <button onClick={UserInfoHandler}>수정하기</button>
-                <button>취소</button>
             </EditFooter>
         </EditWrapper>
     )
-
 };
