@@ -6,6 +6,7 @@ import {
     ModalMiddle, MiddleTitle, ModalBook, DeleteCover,
     ModalBottom, Button
 } from "../../components/modal/Style_DeleteBook";
+import { useHistory } from "react-router-dom";
 
 export default function Deletebook(props) {
     const { modalIsOpen, setIsOpen, books } = props;
@@ -14,6 +15,7 @@ export default function Deletebook(props) {
     }
 
     const [ bookId, setBookId ] = useState();
+    const history = useHistory();
     
     const HandleSubmit = async(e) => {
         await axios({
@@ -25,6 +27,10 @@ export default function Deletebook(props) {
             },
             withCredentials : true
         })
+        .then(  setIsOpen(false))
+        .then((res) => { window.location.reload(true) }
+     
+        )
     }
 
     return (
@@ -42,7 +48,7 @@ export default function Deletebook(props) {
                         {books.map((book) => {
                             return (
                                 <DiaryWrapper key={book.id}>
-                                    <Public type="checkbox" />
+                                    <Public type="checkbox" onClick={()=>{setBookId(book.id)}}/>
                                     <DeleteCover key={book.id} style={{ backgroundImage: `url(${book.bookCover})`, backgroundSize: "100% 100%"}}>
                                         <h2>{book.bookName}</h2>
                                     </DeleteCover>

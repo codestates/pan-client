@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext }  from 'react';
+import React, { useEffect, useState, useContext, useRef }  from 'react';
 import routes from '../../routes';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
@@ -24,11 +24,10 @@ export default function Writing() {
   const { bookInfo } = context;
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
-  const [feelings, setFeelings] = useState();
+  const [feelings, setFeelings] = useState('');
   const [weather, setWeather] = useState('');
-  // 텍스트 툴 내용 빼서 저장한다음 보내기
-  const [content, setContent] = useState('이야호');
-  // 이건 지영님이랑 얘기해봤는데 현영님이랑 얘기하고 불필요하다 싶으면 없앨예정
+  const [content, setContent] = useState('');
+  // 나중에 삭제
   const [type] = useState('2');
 
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
@@ -70,11 +69,8 @@ export default function Writing() {
                 date,
                 feelings,
                 weather,
-
-              
-                type,
-                content
-
+                content,
+                type
 
             },
             headers: {
@@ -100,14 +96,26 @@ export default function Writing() {
     history.push('/');
   };
 
+  // 에디터 툴 내용 추출
+  const editorRef = useRef();
+  
+  const getEditorContent = () => {
+    const editorInstance = editorRef.current.getInstance();
+    // const getContent_md = editorInstance.getMarkdown();
+    const GetContent_html = editorInstance.getHtml();
+    setContent(GetContent_html)
+  }
+
+
 // 테스트용으로 남겨둔거 나중에 작성 완료되면 삭제해야됨
-  // useEffect(()=> {
-  //   console.log(title)
-  //   console.log(date)
-  //   console.log(feelings)
-  //   console.log(weather)
-  //   console.log(bookInfo.id)
-  // }, [title,date,feelings,weather,bookInfo])
+  useEffect(()=> {
+    console.log(title)
+    console.log(date)
+    console.log(feelings)
+    console.log(weather)
+    console.log(bookInfo.id)
+    console.log(content)
+  }, [title,date,feelings,weather,bookInfo,content])
 
 
   return (
@@ -129,12 +137,20 @@ export default function Writing() {
             </WriteHeaderRight>
           </WriteHeader>
           <WriteContents>
-            <Editor previewStyle="vertical" height="590px" initialEditType="markdown" useCommandShortcut={true} />
+            <Editor 
+              previewStyle="vertical" 
+              height="590px" 
+              initialEditType="markdown" 
+              useCommandShortcut={true} 
+              ref={editorRef} 
+              onChange={getEditorContent}
+            />
           </WriteContents>
           <Footer>
             {/* 여기서 취소를 누르면 전페이지로 이동 */}
             <CancelButton onClick={cancelBtn}>취 소</CancelButton>
             <WriteButton onClick={writeBtn}>생 성</WriteButton>
+       
 
           </Footer>
         </DiaryWritingMain>

@@ -10,7 +10,7 @@ import {
 import { CreateBookContext } from "../../store/CreateBookStore";
 import Feeling from "./Feeing";
 import Weather from "./Weather";
-import Draw from "./Draw";
+// import Draw from "./Draw";
 
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -137,7 +137,6 @@ export default function Writing() {
                 }}
               
               >
-                        <Draw/>
               </div>
       
             <Editor previewStyle="vertical" height="350px" initialEditType="markdown" useCommandShortcut={true} />
