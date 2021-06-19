@@ -4,11 +4,12 @@ import { useHistory } from "react-router-dom";
 
 import { 
     Container, DiaryHeader, DiaryWrapper, DiaryBG,
-    Public, Diary, Ttitle, Date, ChooseTP 
+    Public, Diary, Ttitle, Date, ChooseTP, DiaryBottom, DiaryBottomLeft, DiaryBottomCenter, DiaryBottomRight, DiaryPublicButton 
 } from "../../components/Mypages/style_Diaries";
 
 import Text from "../../images/text.png";
 import Drawing from "../../images/drawing.png";
+import axios from 'axios';
 
 export default function Diaries ({diary}) {
     // pagenation state 
@@ -16,6 +17,9 @@ export default function Diaries ({diary}) {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
+
+    const [ diaryId, setDiaryId ] = useState();
+    const [ checkPrivate, setCheckPrivate ] = useState(true);
     
     // pagenation useEffect   
     useEffect(() => {
@@ -47,7 +51,22 @@ export default function Diaries ({diary}) {
 
     // 일기 공개 비공개 소스
     // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
-    // const [ private, setPrivate ] = useState([]);
+    
+    const reverseStatus = () => {
+        console.log("false로 바꼈을껄?")
+        setCheckPrivate(false);
+    }
+    const handleSubmit = async(e) => {
+        await axios({
+            method: 'post',
+            url: `https://api.picanote.me/diaries/${diaryId}/private`,
+            headers:{
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                'ContentType' : 'application/json',
+            },
+            withCredentials : true
+        })
+    }
     
     return (
         <Container>
@@ -59,7 +78,7 @@ export default function Diaries ({diary}) {
             <DiaryBG>
                 {currentPosts.map(post => (
                     <DiaryWrapper key={post.id}>
-                        <Public type="checkbox"/>
+                        <Public type="checkbox" onClick={() => {setDiaryId(post.id)}, reverseStatus}/>
                         <Diary onClick={()=> ToDetails(post.id)}>
                             <Ttitle>{post.title}</Ttitle>
                             {post.picUrl === null ?  <ChooseTP><img src={Text} width="30px" height="30px" alt="textnote" /></ChooseTP> :  <ChooseTP><img src={Drawing} width="30px" height="30px" alt="drawingnote" /></ChooseTP> }
@@ -69,14 +88,23 @@ export default function Diaries ({diary}) {
                     </DiaryWrapper>
                 ))}
             </DiaryBG>
-            {/* pagination 을 불러오고 위에 상태들을 props로 전달 */}
-            <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={posts.length}
-                paginate={paginate}
-                currentPage={currentPage}
-                color={["#83B799","black"]}
-            />
+            <DiaryBottom>
+                <DiaryBottomLeft>
+                    <DiaryPublicButton onClick={handleSubmit}>
+                        일기 공개
+                    </DiaryPublicButton>
+                </DiaryBottomLeft>
+                <DiaryBottomCenter>
+                    {/* pagination 을 불러오고 위에 상태들을 props로 전달 */}
+                    <Pagination 
+                        postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}
+                        currentPage={currentPage} color={["#83B799","black"]}
+                    />
+                </DiaryBottomCenter>
+                <DiaryBottomRight>
+                    오른쪽 공간
+                </DiaryBottomRight>
+            </DiaryBottom>
         </Container>
 
     )

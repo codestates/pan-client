@@ -121,9 +121,10 @@ export const ModalButton = styled.button`
 `;
 
 export const LeftCreateDiv = styled.div`
-  width: 45%;
+  width: 50%;
   height: 90%;
   /* border: 1px solid red; */
+  margin-left: 20px;
   margin-right: 30px;
   display: flex;
   flex-direction: column;
@@ -164,20 +165,18 @@ export const LeftCoverDiv = styled.div`
 `;
 
 export const SelectCover = styled.div`
-  width: 100%;
-  height: 90%;
+  width: 105%;
+  height: 95%;
   display: grid;
   grid-template-columns: repeat(3, minmax(25%, 1fr));
   grid-template-rows: repeat(3, minmax(50%, 1fr));
   overflow: hidden;
-  :hover {
-    overflow-y: scroll;
-  }
+  overflow-y: scroll;
 `;
 
 export const CoverImg = styled.img`
   width: 90%;
-  height: 90%;
+  height: 95%;
   margin: 10px;
   border: 1px solid lightgray;
   border-radius: 15px;
@@ -190,7 +189,7 @@ export const CoverImg = styled.img`
 `;
 
 export const RightCreateDiv = styled.div`
-  width: 45%;
+  width: 40%;
   height: 90%;
   /* border: 1px solid red; */
   margin-left: 30px;
@@ -200,16 +199,33 @@ export const RightCreateDiv = styled.div`
 `;
 
 export const PreviewCover = styled.div`
-  width: 50%;
+  width: 70%;
   height: 70%;
   margin : 10px;
-  border: 1px solid lightgray;
   border-radius: 15px;
   box-shadow: 5px 5px 5px gray;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   font-size: 30px;
   font-weight: 700;
   color: #E3DFD4;
+  z-index: 1;
+  ::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 20px 0 0 20px;
+    background: linear-gradient(
+        to right,
+        rgba(20, 20, 20, 0.6) 10%,
+        rgba(20, 20, 20, 0.6) 100%
+    );
+    background-size: cover;
+  }
 `;

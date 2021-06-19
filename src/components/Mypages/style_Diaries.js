@@ -49,7 +49,7 @@ export const DiaryWrapper = styled.div`
 
 export const Public = styled.input` 
   display: inline-block;
-  width:2%;
+  width: 3%;
   height: 50%;
   justify-content: center;
   align-items: center;
@@ -59,9 +59,9 @@ export const Public = styled.input`
   background-color: white;
   margin-right: 5px;
   :checked {
-    border: none;
+    border: 1px solid rgb(0, 192, 168);
     background-image: url(${checkIcons});
-    background-size: 100% 100%;
+    background-size: 110% 110%;
     background-repeat: no-repeat;
   }
 `;
@@ -115,4 +115,54 @@ export const ChooseTP = styled.span`
   font-size: xx-large;
   justify-content: center;
   align-items: center;
+`;
+
+export const DiaryBottom = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 70px;
+`;
+
+export const DiaryBottomLeft = styled.div`
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  width: 25%;
+  height: 100%;
+  /* border: 2px solid gray; */
+`;
+
+export const DiaryPublicButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 70%;
+  background-color: #3D8DAB;
+  border: 2px solid #3D8DAB;
+  border-radius: 10px;
+  margin-left: 20px;
+  font-size: x-large;
+  color: white;
+  font-family: 'Cafe24SsurroundAir';
+`;
+
+export const DiaryBottomCenter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  /* border: 2px solid tomato; */
+`;
+
+export const DiaryBottomRight = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+  /* border: 2px solid blue; */
 `;

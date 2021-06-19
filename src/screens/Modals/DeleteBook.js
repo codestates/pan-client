@@ -15,7 +15,6 @@ export default function Deletebook(props) {
     }
     const [ bookId, setBookId ] = useState();
     const HandleSubmit = async(e) => {
-
         await axios({
             method: "delete",
             url: `https://api.picanote.me/books/${bookId}`,
@@ -25,9 +24,9 @@ export default function Deletebook(props) {
             },
             withCredentials : true
         })
-        .then(  setIsOpen(false))
+        alert("삭제가 완료되었습니다.")
+        .then(setIsOpen(false))
         .then((res) => { window.location.reload(true) }
-     
         )
     }
 
