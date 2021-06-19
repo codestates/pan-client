@@ -52,7 +52,6 @@ export default function Diaries ({diary}) {
 
     // 일기 공개 비공개 소스
     // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
-    
     const handleSubmit = (id) => {
         setDiaryId(id)
         setTimeout(() => {
@@ -64,16 +63,10 @@ export default function Diaries ({diary}) {
                     'ContentType' : 'application/json',
                 },
                 withCredentials : true,
-                
             })
-            
         }, 3000);
-
-
     }
-
     console.log(posts)
-   
     return (
         <Container>
             <DiaryHeader>
