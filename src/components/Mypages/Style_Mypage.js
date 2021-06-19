@@ -5,6 +5,7 @@ export const MypageWrapper = styled.div`
     align-items: center;
     justify-content: center;
     /* border: 1px solid black; */
+    
 `;
 
 export const MypageMain = styled.div`
@@ -15,6 +16,11 @@ export const MypageMain = styled.div`
     width: 80%;
     max-width: 1600px;
     font-family: 'Cafe24SsurroundAir';
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 `;
 
 export const LeftSection = styled.section`
