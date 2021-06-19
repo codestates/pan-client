@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { 
     StyledModal, ModalBox, 
     ModalHeader, ModalTitle, DiaryWrapper, Public,
@@ -9,15 +10,21 @@ import {
 import { useHistory } from "react-router-dom";
 
 export default function Deletebook(props) {
+    const history = useHistory();
     const { modalIsOpen, setIsOpen, books } = props;
     const closeModal = () => {
         setIsOpen(false);
     }
-
     const [ bookId, setBookId ] = useState();
     const history = useHistory();
     
+    const handleTest = (e) => {
+        // setBookId(e);
+        console.log("이건 bookID");
+    }
+
     const HandleSubmit = async(e) => {
+
         await axios({
             method: "delete",
             url: `https://api.picanote.me/books/${bookId}`,
