@@ -12,6 +12,7 @@ import Drawing from "../../images/drawing.png";
 import axios from 'axios';
 
 export default function Diaries ({diary}) {
+    // console.log(diary)
     // pagenation state 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -31,6 +32,7 @@ export default function Diaries ({diary}) {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    console.log(currentPosts)
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
