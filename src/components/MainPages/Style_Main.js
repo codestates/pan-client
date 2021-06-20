@@ -51,17 +51,20 @@ export const Div1 = styled.div`
 `;
 
 export const Div2 = styled.div`
+    /* border: 1px solid red; */
+    width: 100%;
     height: 60vh;
     margin: 40px 0;
     /* overflow: hidden; */
 `;
 
 export const Div3 = styled.div`
+  /* border: 1px solid red; */
     display: flex;
 `;
 
 export const MainFooter = styled.footer`
-    margin-top: 10vh;
+    margin-top: 20vh;
     height: 5vh;
     width: 100%;
 `;

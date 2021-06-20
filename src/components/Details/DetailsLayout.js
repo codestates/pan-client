@@ -252,6 +252,7 @@ export const BottomEditBtn = styled.div`
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;
+    cursor: pointer;
 `;
 
 export const BottomDeleteBtn = styled.div`
@@ -266,6 +267,7 @@ export const BottomDeleteBtn = styled.div`
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;
+    cursor: pointer;
 `;
 
 export const DetailComment = styled.div`

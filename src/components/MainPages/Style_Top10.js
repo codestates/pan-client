@@ -7,17 +7,14 @@ export const Wrapper = styled.div`
     max-width: 1600px;
     height: 100%;
     width: 100%;
-    /* border: 1px solid black */
 `;
 
 export const HeadCard = styled.header`
-    /* border: 1px solid red; */
     position: relative;
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    flex: 0 0 280px;
-    margin: 1rem 1rem 10px;
+    margin: 1rem 0 10px 0;
     border-radius: 10px;
     padding: 2rem;
     height: 16vh;
@@ -27,7 +24,6 @@ export const HeadCard = styled.header`
 export const HeaderText = styled.div`
     font-size: 40px;
     color: #BB2B2A;
-    margin-left: 40px;
     font-family: 'Cafe24Ssurround';
     font-weight: 900;
     animation: zoom 2s;
@@ -49,12 +45,13 @@ export const HeaderText = styled.div`
 export const CardList = styled.section`
     display: grid;
     grid-gap: 5px;
-    grid-template-columns: repeat(5, minmax(250px, 1fr));
+    grid-template-columns: repeat(20, minmax(250px, 1fr));
     padding-top: 2rem;
     /* padding-left: 2rem; */
-    overflow-x: hidden;
+    overflow: scroll;
     /* border: 1px solid black; */
     height: 40vh;
+    
     &::-webkit-scrollbar {
         width: 10px;
         height: 10px;

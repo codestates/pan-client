@@ -26,7 +26,7 @@ export default function Deletebook(props) {
         })
         alert("삭제가 완료되었습니다.")
         .then(setIsOpen(false))
-        .then((res) => { window.location.reload(true) }
+        .then(() => { window.location.reload(true)}
         )
     }
 

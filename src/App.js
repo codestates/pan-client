@@ -20,6 +20,7 @@ import Details from "./screens/SubPage/Details";
 import UserStore from "./store/UserStore";
 import IsGroupStore from "./store/IsGroupStore";
 import CreateBookStore from "./store/CreateBookStore";
+import DiaryInfoStore from "./store/DiaryInfoStore";
 
 
 function App() { 
@@ -30,41 +31,45 @@ function App() {
       <IsGroupStore>
       {/*Group여부 확인 contextAPI */}
       <CreateBookStore>
-      <HelmetProvider>
-        <GlobalStyles />
-        <Router>
-            <Switch>
-              <Route path={routes.landing}>
-                <Landing />
-              </Route>
-              <Route path={routes.main} exact>
-                <Main />
-              </Route>
-              <Route path={routes.mypage}>
-                <Myapge />
-              </Route>
-              <Route path={routes.template}>
-                <Template />
-              </Route>
-              <Route path={routes.writing}>
-                <Writing />
-              </Route>
-              <Route path={routes.drawing}>
-                <Drawing />
-              </Route> 
-              <Route path={routes.login}>
-                <Login />
-              </Route>
-              <Route path={routes.signUp}>
-                <SignUp />
-              </Route>
-                <Route exact path="/details/:id" component={Details}/>
-              {/* <Route path={routes.details}>
-                <Details />
-              </Route> */}
-            </Switch>
-        </Router>
-      </HelmetProvider>
+      {/*가입된 book 정보 확인 contextAPI */}
+      <DiaryInfoStore>
+      {/* 다이어리 정보를 임시 저장 하기 위한 contextAPI */}
+        <HelmetProvider>
+          <GlobalStyles />
+          <Router>
+              <Switch>
+                <Route path={routes.landing}>
+                  <Landing />
+                </Route>
+                <Route path={routes.main} exact>
+                  <Main />
+                </Route>
+                <Route path={routes.mypage}>
+                  <Myapge />
+                </Route>
+                <Route path={routes.template}>
+                  <Template />
+                </Route>
+                <Route path={routes.writing}>
+                  <Writing />
+                </Route>
+                <Route path={routes.drawing}>
+                  <Drawing />
+                </Route> 
+                <Route path={routes.login}>
+                  <Login />
+                </Route>
+                <Route path={routes.signUp}>
+                  <SignUp />
+                </Route>
+                  <Route exact path="/details/:id" component={Details}/>
+                {/* <Route path={routes.details}>
+                  <Details />
+                </Route> */}
+              </Switch>
+          </Router>
+        </HelmetProvider>
+      </DiaryInfoStore>
       </CreateBookStore>
       </IsGroupStore>
     </UserStore>
