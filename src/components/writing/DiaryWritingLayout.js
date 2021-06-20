@@ -8,11 +8,11 @@ export const DiaryWritingWrapper = styled.div`
     margin: 0 auto;
 `;
 export const DiaryWritingMain = styled.div`
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     /* border:1px solid blue; */
-    width: 100%;
-    height: 100%;
     margin-top: 20px;
 `;
 
@@ -164,6 +164,7 @@ export const WriteDate = styled.div`
 `;
 
 export const WriteContents = styled.div`
+    width: 1360px;
     align-items: center;
     justify-content: center;
     padding: 30px;
