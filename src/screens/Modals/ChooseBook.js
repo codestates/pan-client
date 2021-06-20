@@ -29,6 +29,7 @@ export default function ChooseBook() {
     const context = useContext(CreateBookContext);
     const {bookInfo, setBookInfo} = context ;
     
+    // 서버랑 통신해서 현재 회원의 북 정보를 받아온다
     useEffect(async () => {
         try{
             await axios.get('https://api.picanote.me/myBook',{
@@ -44,11 +45,13 @@ export default function ChooseBook() {
         }
     },[]);
 
+    // 선택 버튼
     const selectBtn = () => {
         setBookInfo(bookInfo)
         bookInfo.id ? setModalIsOpen(false) : alert('일기장을 선택해주세요.');
     };
 
+    // create에서 북을 선택하고 북 이름을 적으면 일기장이 생성되기 위한 메소드
     const createBook = async () => {
         try{ 
             localStorage.getItem('CC_Token') ? 
@@ -79,10 +82,12 @@ export default function ChooseBook() {
         };
     };
 
+    // 취소하면 리로드되서 다시 북 선택 모달창으로 이동
     const createCancelBtn = () => {
         window.location.reload(true);
     };
 
+    // 취소 버튼을 누르면 모달창이 닫아짐 => 비회원한테 글쓰기 화면을 보여주기 위함
     const chooseCancelBtn = () => {
         setModalIsOpen(false);
     };

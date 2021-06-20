@@ -6,7 +6,7 @@ import route from "../routes"
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function Header () {
+function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
   const history = useHistory();
   const token = localStorage.getItem('CC_Token');
   const handlelogout = () => {
@@ -19,19 +19,31 @@ function Header () {
     }
   }
 
+  const searchKeywords = (e) => {
+    SetKeywords(e.target.value)
+  }
+
   return ( 
     <Wrapper>
     <HeaderBox>
         <HeaderName>
           <Link to={route.main}><img src={logo} alt="" width="200px"/></Link>
         </HeaderName>
-        <div>
+        <div> 
+          {isMain ? 
           <SearchBox>
-            <SearchTxt type="text" placeholder="Type to search"/>
-            <SearchBtn href="#">
-              <img src={SearchImg} width="15px" alt="serach"/> 
+            {keywords ? 
+            <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords} style={{
+                  padding: '0 6px',
+                  width: '240px',
+            }}/>
+            :
+            <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords}/>}
+            <SearchBtn href="#" onClick={handlerSearch}>
+              <img src={SearchImg} width="15px" alt="serach" /> 
             </SearchBtn>
           </SearchBox>   
+          : null }
               {token ? 
                 (
                   <Login>
@@ -110,7 +122,7 @@ const SearchTxt =styled.input `
   transition: .4s;
 `
 
-const SearchBtn = styled.a `
+const SearchBtn = styled.button `
   display: flex;
   text-decoration: none;
   justify-content: right;
@@ -119,7 +131,12 @@ const SearchBtn = styled.a `
   height: 17px;
   border-radius: 50%;
   color: black;
-
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  :hover {
+    transform: scale(1.1);
+  }
 `
 
 export default Header;

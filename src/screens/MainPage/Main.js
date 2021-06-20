@@ -14,7 +14,10 @@ export default function Main() {
       individual : true,
       group : false,
     })
-
+  // search
+    const [keywords, SetKeywords] = useState('');
+    const [isMain] = useState(true);
+    const [searchDiary, setSearchDiary] = useState([]);
   // pagination을 위한 states
     const [individual, setIndividual] = useState([]);
     const [group, setGroup] = useState([]);
@@ -36,25 +39,42 @@ export default function Main() {
       fetchPosts();
     }, []);
 
+    // searchDiary 나오게하는 useEffect 
+    useEffect(() => {
+      console.log(searchDiary)
+      console.log(individual)
+    },[searchDiary])
+
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
     const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
+    const curSearchDiary = [];
+    
     // 개인일기와 교환일기를 합쳐서 like가 1개라도 있으면 top10으로 props 전달
     const allDiaries = individual.concat(group).filter((e)=> {return e.like !== null})
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-    
+
+
+    const handlerSearch = async () => {
+        await axios({
+          method: 'get',
+          url: `https://api.picanote.me/search?q=${keywords}`,
+          withCredentials : true,  
+        })
+        .then(res=> setSearchDiary(res.data.data))
+    }
+ 
     if (loading) {
       return <h2>Loading...</h2>;
     }
 
-
     return (
       <>
-        <Header main={routes.main} login={routes.login}></Header>
+        <Header isMain={isMain} keywords={keywords} SetKeywords={SetKeywords} handlerSearch={handlerSearch} main={routes.main} login={routes.login}></Header>
         <MainBody>
           <PhraseGroup>
               <Phrase style={{ animation: "fadein 1s", fontWeight: "bolder"}}>순간의 기억을 정리하고</Phrase>
@@ -71,11 +91,39 @@ export default function Main() {
               <MainLabel  choose={cur.individual} onClick={()=>setCur({individual:true, group:false})}>공유된 개인일기</MainLabel>
               <MainLabel  choose={cur.group} onClick={()=>setCur({individual:false, group:true})}>공유된 교환일기</MainLabel>
             </Div3>
+            {searchDiary.length >= 1 ? 
+            <>
+            {console.log('실행되는지 확인')}
+             <PublicNote current={searchDiary}/> 
+             <Pagination postsPerPage={postsPerPage} totalPosts={searchDiary.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
+            </>
+            :
+              cur.individual ? 
+                <>
+                  <PublicNote current={currentIndividual}/> 
+                  <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
+                </>
+                : 
+                <>
+                  { currentGroup ? 
+                    <>
+                      <CautionEx>
+                        현재 공유된 교환일기가 없습니다.
+                      </CautionEx>
+                    </>
+                  :
+                    <>
+                      <PublicNote current={currentGroup}/>
+                      <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
+                    </>
+                  }
+                </>
+            }
             {/* 개인과 그룹을 구별하기 위한 삼항 연산자 */}
-            {cur.individual ? 
+            {/* {cur.individual ? 
               <>
                 <PublicNote current={currentIndividual}/> 
-                <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
+                <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
               </>
               : 
               <>
@@ -92,7 +140,7 @@ export default function Main() {
                   </>
                 }
               </>
-            }
+            } */}
           </Div2>
           <MainFooter></MainFooter>
         </MainBody>

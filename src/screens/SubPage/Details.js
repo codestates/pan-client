@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { UserContext } from "../../store/UserStore";
 import axios from 'axios';
 import routes from '../../routes';
 import Header from '../../components/Header';
 import ToggleButton from '../ToggleButton';
 import { FiHeart } from "react-icons/fi";
-import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight, DisableComment } from "../../components/Details/DetailsLayout"
+import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, 
+    ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, 
+    CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, 
+    CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, 
+    ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight, DisableComment } 
+    from "../../components/Details/DetailsLayout"
+import { useHistory } from 'react-router-dom';
 // import { getDefaultNormalizer } from '@testing-library/react';
 
 export default function Details ({match}) {
     const [details, setDetails] = useState([]);
     const [loading, setLoading] = useState(false);
+    const histoy = useHistory();
+
+    const context = useContext(UserContext);
+    const {username, accessTokenRequest} = context ;
+
+    // 토큰 유무를 확인해서 로그인 상태라면 에세스 토큰으로 정보를 추출함 => 본인 일기라면 수정,삭제 보이게 해주기 위함
+    useEffect(() => {
+        if(localStorage.getItem('CC_Token')) {
+            accessTokenRequest()
+        }
+    },[])
     // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
         try {
@@ -32,11 +50,45 @@ export default function Details ({match}) {
             console.error("err");
         }
     }, [])
+    console.log(details)
+    // 다이어리 삭제 메소드
+    const deleteDiary = async () => {
+        try{
+            setLoading(true);
+            const id = await match.params.id
+            await axios.delete(`https://api.picanote.me/diaries/${id}`, {
+                headers: {
+                    Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                    'ContentType' : 'apllication/json',
+                },
+                withCredentials : true
+            })
+            .then(setLoading(false),
+                  alert('일기장이 삭제되었습니다'))
+            .then(()=>{ histoy.push('/mypage')})
+        }catch{
+            console.error("err");
+        }
+    };
+
+    // 좋아요 기능 구현
+    const handlerHeart = async () => {
+        const id = await match.params.id
+        await axios({
+            method: 'post',
+            url: `https://api.picanote.me/diaries/${id}/trending`,
+            headers:{
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                'ContentType' : 'application/json',
+                },
+            withCredentials: true,
+        })
+        .then(alert('좋아요 눌렀는지 어떻게 확인하지?'))
+    }
 
     if (loading) {
         return <h2>Loading...</h2>;
     }
-
 
     return (
         <DetailsWrapper>
@@ -82,7 +134,7 @@ export default function Details ({match}) {
                                 작성자: {details.username}
                             </BottomWriter>
                             <BottomLikeBtn>
-                                <FiHeart />
+                                <FiHeart onClick={handlerHeart}/>
                             </BottomLikeBtn>
                         </BottomLeft>
                         <BottomRight>
@@ -92,12 +144,20 @@ export default function Details ({match}) {
                             <BottomNextBtn>
                                 다음일기
                             </BottomNextBtn>
-                            <BottomEditBtn>
-                                수 정
-                            </BottomEditBtn>
-                            <BottomDeleteBtn>
-                                삭 제
-                            </BottomDeleteBtn>
+                            {/* username 먼저 확인 있다면 일기장username과 username 비교 */}
+                            {/* 없다면 수정,삭제 버튼 안보이게 함 */}
+                            { username ?
+                                details.username === username ? 
+                                <>
+                                    <BottomEditBtn>
+                                        수 정
+                                    </BottomEditBtn>
+                                    <BottomDeleteBtn onClick={deleteDiary}>
+                                        삭 제
+                                    </BottomDeleteBtn> 
+                                </>   : null : null
+                            }
+                 
                         </BottomRight>
                     </ContentBottom>
                 </DetailContent>

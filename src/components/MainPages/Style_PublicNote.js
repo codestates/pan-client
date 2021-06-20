@@ -64,7 +64,6 @@ export const ItemContent = styled.article`
     font-family: 'Cafe24SsurroundAir';
     color: #fff;
     padding: 10px;
-
     h3 {
         color: #343a40;
         font-size: x-large;
@@ -78,7 +77,6 @@ export const ItemContent = styled.article`
         overflow: hidden;
         text-shadow: 2px 2px 0 #fff;
     }
-
     h4 {
         color: #343a40;
         font-size: 1rem;
@@ -92,7 +90,6 @@ export const ItemContent = styled.article`
         overflow: hidden;
         text-shadow: 2px 2px 0 #fff;
     }
-
     p {
         color: #343a40;
         font-size: 1.3rem;
