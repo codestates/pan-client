@@ -57,7 +57,7 @@ export default function Writing() {
           if(!bookInfo) {
             alert('일기장이 선택되지 않았습니다. 일기장을 다시 선택하고 작성해주세요.');
           }
-          else if(!title || !date || !feelings || !weather ) {
+          else if(!title || !date || !feelings || !weather || !content ) {
             alert('제목,기분,날짜,날씨,내용을 작성해주세요.');
           } else {
           await axios({
