@@ -20,7 +20,7 @@ export default function PublicNote({current}) {
             {current.map(post => {
             return (
                 <ListItemBox key={post.id} onClick={()=> ToDetails(post.id)}>
-                    <ItemImg src={"https://source.unsplash.com/user/erondu"} />
+                    <ItemImg src={post.bookCover} />
                     <Link to={routes.main}>
                         <ItemContent>
                             <h3>{post.title}</h3>

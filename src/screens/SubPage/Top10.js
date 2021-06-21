@@ -43,7 +43,7 @@ export default function Top10({allDiaries}) {
                 {sortDiaries.map((post)=>{
                     return (
                         <CardWrap key={post.id} onClick={() => ToDetails(post.id)}>
-                            <CardImg src={`${bgImg}`} />
+                            <CardImg src={post.bookCover} />
                             <Link to={routes.main}>
                                 <CardContent>
                                     <h2>{post.title}</h2>

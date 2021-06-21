@@ -67,8 +67,9 @@ export default function Login() {
     const REDIRECT_URI =  "http://localhost:3000/kakao";
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
-    const kakaoLoginHandler = () => {
+    const kakaoLoginHandler = ({match}) => {
         window.location.assign(KAKAO_AUTH_URL)
+        console.log(match)
     }
 
     return (

@@ -93,6 +93,7 @@ export const CardImg = styled.img`
     object-fit: cover;
     border-radius: 20px;
     opacity: 0.6;
+    background-size: 100% 100%;
 `;
 
 export const CardOverlay = styled.div`
