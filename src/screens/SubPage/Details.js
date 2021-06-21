@@ -7,7 +7,7 @@ import ToggleButton from '../ToggleButton';
 import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, 
     ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, 
-    CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, 
+    CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, PublicBtn, 
     CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, 
     ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight, DisableComment } 
     from "../../components/Details/DetailsLayout"
@@ -142,6 +142,25 @@ export default function Details ({ match }) {
 
     }
 
+    // 일기 공개 비공개 소스
+    // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
+    
+    const handleSubmit = async () => {
+        await axios({
+            method: 'post',
+            url: `https://api.picanote.me/diaries/${id}/private`,
+            headers:{
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                'ContentType' : 'application/json',
+            },
+            withCredentials : true,    
+        })
+        .then(
+            // setTiomeout으로 공개 비공개 전환을 가능하게 해주었다.
+            setTimeout(()=> { window.location.reload(true)}, 100)
+        )
+};
+
     if (loading) {
         return <h2>Loading...</h2>;
     }
@@ -205,6 +224,10 @@ export default function Details ({ match }) {
                             { username ?
                                 details.username === username ? 
                                 <>
+                                {details.private ?  
+                                <PublicBtn onClick={handleSubmit}> 공 개 </PublicBtn> 
+                                : <PublicBtn onClick={handleSubmit}> 비 공 개 </PublicBtn>
+                                }
                                     <BottomEditBtn>
                                         수 정
                                     </BottomEditBtn>

@@ -8,7 +8,7 @@ import {
     ProfileWrapper, ProfileLeft, ProfileRight, 
     UsernameWrapper, PassowrdWrapper, PasswordMain, 
     Withdrawal, WithdrawalMain, 
-    Bottom, LeftDiv, EditFooter, UsernameInput 
+    Bottom, LeftDiv, EditFooter 
 } from "../../components/Mypages/style_UserInfo";
 
 export default function EditUserInfo({username, email, profileUrl}) {
@@ -18,19 +18,6 @@ export default function EditUserInfo({username, email, profileUrl}) {
     const [newProfile, setNewProfile] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
-    // 회원정보 페이지에서 수정하기 버튼을 누르면 수정할 공간이 변하는 상태
-    const [ cur, setCur ] = useState({
-        edit: false
-    })
-
-    const changeInfo = () => {
-        setCur({ edit: true });
-    }
-
-    const cancelInfo = () => {
-        setCur({ edit: false });
-    }
 
     // 회원정보 수정
     const UserInfoHandler = async () => {

@@ -24,7 +24,7 @@ export const DiaryBG = styled.div`
   height: 80%;
   /* background-color: rgba(255, 249, 233, 0.7); */
   border-radius: 10px;
-  padding-top: 10px;
+  padding-top: 5px;
   background: linear-gradient(
       to right,
       rgba(20, 20, 20, 0.6) 70%,
@@ -42,9 +42,7 @@ export const DiaryWrapper = styled.div`
   width: 100%;
   height: 8%;
   margin-top: 10px;
-  margin-left: 5px;
   font-family: 'Cafe24SsurroundAir';
-  /* border: 1px solid black; */
 `;
 
 export const Public = styled.input` 
@@ -125,14 +123,6 @@ export const DiaryBottom = styled.div`
   height: 70px;
 `;
 
-export const DiaryBottomLeft = styled.div`
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  width: 25%;
-  height: 100%;
-  /* border: 2px solid gray; */
-`;
 
 export const DiaryPublicButton = styled.button`
   display: flex;
@@ -156,13 +146,4 @@ export const DiaryBottomCenter = styled.div`
   width: 50%;
   height: 100%;
   /* border: 2px solid tomato; */
-`;
-
-export const DiaryBottomRight = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 100%;
-  /* border: 2px solid blue; */
 `;

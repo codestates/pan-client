@@ -31,6 +31,7 @@ export const InviteUser = styled.input`
     color: black;
 `
 export const InviteBottom = styled.div`
+    /* border:1px solid red; */
 `
 export const InviteBtn = styled.button`
     width: 90px;

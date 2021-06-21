@@ -4,7 +4,7 @@ import checkIcons from "../../images/check.png";
 
 export const StyledModal = Modal.styled`
     width: 60vw;
-    height: 48vh;
+    height: 50vh;
     display: flex;
     border-radius: 20px;
     align-items: center;
@@ -30,7 +30,8 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalTitle = styled.div`
-    /* border: 1px solid red; */
+    width: 100%;
+    margin-top: 10px;
     font-size: 2rem;
     text-align: center;
 `;
@@ -38,24 +39,30 @@ export const ModalTitle = styled.div`
 export const ModalMiddle = styled.div`
     display: flex;
     align-items: center;
-    border: 2px solid blue;
+    margin-top: 10px;
+    /* border: 2px solid blue; */
     width: 100%;
     height: 74%;
 `;
 
 export const MiddleTitle = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
-    border: 3px solid gray;
+    justify-content: center;
+    /* border: 3px solid gray; */
     width: 16%;
     height: 100%;
     padding-left: 10px;
     font-size: 24px;
+    color: #C57951;
+    
+    
 `;
 
 export const ModalBook = styled.div`
     display: grid;
-    border: 3px solid tomato;
+    /* border: 3px solid tomato; */
     /* margin: 40px 20px; */
     grid-template-columns: repeat(10, minmax(25%, 1fr));
     grid-template-rows: repeat(1, minmax(50%, 1fr));
@@ -83,12 +90,7 @@ export const Public = styled.input`
     height: 5%;
     border: 3px solid #E3DFD4;
     border-radius: 50%;
-    :checked {
-        border: 3px solid white;
-        background-image: url(${checkIcons});
-        background-size: 120% 120%;
-        background-repeat: no-repeat;
-    }
+    cursor: pointer;
 `;
 
 export const DeleteCover = styled.button`
@@ -120,8 +122,9 @@ export const ModalBottom = styled.div`
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
-    height: 10%;
+    height: 3.5rem;
     margin-top: 10px;
+    /* border: 1px solid red; */
 `;
 
 export const Button = styled.button`
@@ -136,4 +139,5 @@ export const Button = styled.button`
     color: white;
     background-color: #D85941;
     margin-left: 10px;
+    cursor: pointer;
 `;

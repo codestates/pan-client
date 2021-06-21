@@ -31,7 +31,7 @@ function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
         </HeaderName>
         <div> 
           {isMain ? 
-          <SearchBox className={`search${keywords ? 'text' : 'Empty'}`}>
+          <SearchBox>
             {keywords ? 
             <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords} style={{
                   padding: '0 6px',
