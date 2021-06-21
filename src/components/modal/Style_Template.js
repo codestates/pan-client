@@ -38,7 +38,7 @@ export const Writing = styled.div`
     font-size: 50px;
     color: white;
     line-height: 520px;
-    background-image: url(${WriteTemp});
+    background-image: url(${toronto});
     background-size: 102% 100%;
     width: 30%;
     height: 70%;

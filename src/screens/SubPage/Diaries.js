@@ -29,7 +29,7 @@ export default function Diaries ({diary}) {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    console.log(currentPosts)
+    // console.log(currentPosts)
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);

@@ -17,6 +17,11 @@ export const GroupWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 `
 
 export const InviteUser = styled.input`
@@ -24,15 +29,33 @@ export const InviteUser = styled.input`
     border-radius: 12px;
     width: 350px;
     height: 50px;
-    margin-bottom: 20px;
     text-align: center;
     font-family: 'Cafe24SsurroundAir';
     font-size: large;
     color: black;
 `
+
+export const CheckBtn = styled.button`
+    width: 60px;
+    height: 30px;
+    margin-left: 20px;
+    background-color: #9196E1;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    color: white;
+    font-weight: 700;
+    font-family: 'Cafe24SsurroundAir';
+    :hover {
+        border: 3px solid #505AC5;
+    }
+
+`
+
 export const InviteBottom = styled.div`
     /* border:1px solid red; */
 `
+
 export const InviteBtn = styled.button`
     width: 90px;
     height: 40px;
@@ -55,6 +78,7 @@ export const InviteBtn = styled.button`
 export const CancelBtn = styled.button`
     width: 90px;
     height: 40px;
+    margin-top: 30px;
     margin-left: 15px;
     border: 1px solid #D9A9A9;
     border-radius: 10px;
