@@ -40,10 +40,7 @@ export default function Main() {
     }, []);
 
     // searchDiary 나오게하는 useEffect 
-    useEffect(() => {
-      console.log(searchDiary)
-      console.log(individual)
-    },[searchDiary])
+    useEffect(() => {},[searchDiary])
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
@@ -65,7 +62,9 @@ export default function Main() {
           url: `https://api.picanote.me/search?q=${keywords}`,
           withCredentials : true,  
         })
-        .then(res=> setSearchDiary(res.data.data))
+        .then(res => 
+          setSearchDiary(res.data.data),
+        )
     }
  
     if (loading) {

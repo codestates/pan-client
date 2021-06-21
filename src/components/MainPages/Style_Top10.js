@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
     align-items: center;
     max-width: 1600px;
     height: 100%;
-    width: 100%;
+    width: 90%;
 `;
 
 export const HeadCard = styled.header`

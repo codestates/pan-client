@@ -84,7 +84,7 @@ export default function ChooseBook() {
 
     // 취소하면 리로드되서 다시 북 선택 모달창으로 이동
     const createCancelBtn = () => {
-        window.location.reload(true);
+        setCreate(false)
     };
 
     // 취소 버튼을 누르면 모달창이 닫아짐 => 비회원한테 글쓰기 화면을 보여주기 위함

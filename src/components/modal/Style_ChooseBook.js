@@ -229,3 +229,4 @@ export const PreviewCover = styled.div`
     background-size: cover;
   }
 `;
+

@@ -28,7 +28,6 @@ export default function Writing() {
   const [weather, setWeather] = useState('');
   const [content, setContent] = useState('');
   // 나중에 삭제
-  const [type] = useState('2');
 
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
   const titleHandler = (e) => {
@@ -70,7 +69,6 @@ export default function Writing() {
                 feelings,
                 weather,
                 content,
-                type
             },
             headers: {
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,

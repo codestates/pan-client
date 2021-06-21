@@ -31,7 +31,7 @@ function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
         </HeaderName>
         <div> 
           {isMain ? 
-          <SearchBox>
+          <SearchBox className={`search${keywords ? 'text' : 'Empty'}`}>
             {keywords ? 
             <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords} style={{
                   padding: '0 6px',
@@ -43,7 +43,10 @@ function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
               <img src={SearchImg} width="15px" alt="serach" /> 
             </SearchBtn>
           </SearchBox>   
-          : null }
+          : 
+            null
+          }
+
               {token ? 
                 (
                   <Login>
