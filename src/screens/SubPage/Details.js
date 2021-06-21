@@ -12,7 +12,6 @@ import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, C
     ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight, DisableComment } 
     from "../../components/Details/DetailsLayout"
 import { useHistory } from 'react-router-dom';
-// import { getDefaultNormalizer } from '@testing-library/react';
 
 export default function Details ({ match }) {
     const id = match.params.id;
@@ -37,14 +36,11 @@ export default function Details ({ match }) {
     const {username, accessTokenRequest} = context ;
 
     // 토큰 유무를 확인해서 로그인 상태라면 에세스 토큰으로 정보를 추출함 => 본인 일기라면 수정,삭제 보이게 해주기 위함
+    // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
         if(localStorage.getItem('CC_Token')) {
             accessTokenRequest()
-        }
-    },[])
-    // url params에 맞춰서 일기를 렌더링 한다.
-    useEffect(() => {
-        try {
+                try {
             const getDetails = async() => {
                 setLoading(true);
                 // const id = await match.params.id
@@ -79,7 +75,29 @@ export default function Details ({ match }) {
         } catch {
             histoy.goBack();
         }
-    }, [])
+        } else {
+            const fetchPosts = async () => {
+                setLoading(true);
+                const res = await axios.get(`https://api.picanote.me/diaries/${id}`);
+                setDetails({      
+                    title : res.data.data[0].title,
+                    content: res.data.data[0].content,
+                    feelings: res.data.data[0].feelings,
+                    weather: res.data.data[0].weather,
+                    picUrl: res.data.data[0].picUrl,
+                    username: res.data.data[0].username,
+                    date: res.data.data[0].date,
+                    private: res.data.data[0].private,
+                    like: res.data.data[0].like,
+                    comments : res.data.data[0].Comments
+                })
+                setLoading(false);
+                console.log(res)
+              };   
+          
+              fetchPosts();
+        }
+    },[]);
 
     // 다이어리 삭제 메소드
     const deleteDiary = async () => {
@@ -149,15 +167,14 @@ export default function Details ({ match }) {
             window.location.reload(true);
             }
         )
-        .catch(alert('다시 시도해 주세요.'));
     }
 
     // 댓글 삭제
-    const deleteCommnet = async (index) => {
-        console.log(index)
+    const deleteCommnet = async (id) => {
+    try {
         await axios({
             method: 'delete',
-            url: `https://api.picanote.me/diaries/${id}/comments/${index}`,
+            url: `https://api.picanote.me/comments/${id}`,
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                 'ContentType' : 'application/json',
@@ -167,14 +184,19 @@ export default function Details ({ match }) {
             },
             withCredentials: true,
         })
-        .then(() => alert('댓글이 삭제 되었습니다.'))
-        .catch(() => alert('다시 시도해 주세요.'));
-    }
+        .then(() => 
+            alert('댓글이 삭제 되었습니다.'),
+            setTimeout(()=> {
+                window.location.reload(true)
+            },2000)
+            )
+    }catch {
+        console.log('err')
+        }}
     
 
     // 일기 공개 비공개 소스
     // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
-    
     const handleSubmit = async () => {
         await axios({
             method: 'post',
@@ -278,23 +300,23 @@ export default function Details ({ match }) {
                 ? 
                 <DetailComment>
                 <DetailBG>
-                {details.comments.map((comment,index) => {
+                {details.comments.map((comment) => {
                     return(
-                        <CommnetBG key={index}>
+                        <CommnetBG key={comment.id}>
                             <CommentHeader>
                                 <CommentLeft>
-                                    {comment.username}
+                                    {comment.User.username}
                                 </CommentLeft>
                                 <CommentMiddle>
-                                    {comment.date}
+                                    {comment.createdAt.slice(0,10)}
                                 </CommentMiddle>
                                 <CommentRight>
-                                    <CommentDeleteBtn onClick={() => deleteCommnet(index)}>
+                                    <CommentDeleteBtn onClick={() => deleteCommnet(comment.id)}>
                                         삭 제
                                     </CommentDeleteBtn>
-                                    <CommentEditBtn>
+                                    {/* <CommentEditBtn>
                                         수 정
-                                    </CommentEditBtn>
+                                    </CommentEditBtn> */}
                                 </CommentRight>
                             </CommentHeader>
                             <CommentMain>

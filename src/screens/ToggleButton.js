@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { IsGroupContext } from "../store/IsGroupStore";
 import { VscEdit, VscAccount } from 'react-icons/vsc';
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../components/utility/ToggleAction";
@@ -8,19 +7,15 @@ import { Switch, Hamburger, Navigation, SpanWrapper, Span, Paragraph } from "../
 export default function ToggleButton() {
   const history = useHistory();
   const token = localStorage.getItem('CC_Token');
-  const context = useContext(IsGroupContext);
-  const { setIsGroup } = context ;
 
   const Toindividual = () => {
-    setIsGroup(false);
     // token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.');
     history.push('/template')
     
   }
   const ToGroup = () => {
-    setIsGroup(true);
   //   token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.');
-    history.push('/template')
+    history.push('/templategroup')
   }
   const ToMypage = () => {
     token ? history.push('/mypage') : alert('로그인이 필요합니다');
