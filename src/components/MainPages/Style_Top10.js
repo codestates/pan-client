@@ -50,64 +50,64 @@ export const CardList = styled.section`
     padding-left: 2rem;
     overflow: scroll;
     /* border: 1px solid black; */
-    height: 40vh;
-    
+    height: 38vh;
     &::-webkit-scrollbar {
         width: 10px;
-        height: 10px;
+        height: 26px;
+        margin-top: 2rem;
     }
     &::-webkit-scrollbar-thumb {
-        background: #f2f3f5;
-        border-radius: 10px;
+        background: #006D77;
+        border-radius: 20px;
+        background-clip: padding-box;
+        border: 7px solid transparent;
     }
 `;
 
 export const CardWrap = styled.article`
     /* border:1px solid blue; */
     width: 90%;
-    height: 100%;
+    height: 99%;
     box-shadow: #ced4da 0 1px 4px;
     background-color: none;
     position: relative;
     display: flex;
     flex-direction: column;
     transition: all 0.4s;
-    border-radius: 8px;
+    border-radius: 20px;
+    opacity: 0.5;
     &:focus-within ~ .card,
     &:hover ~ .card {
         transform: translateX(200px);
     }
     &:hover {
         transform: translateY(-1rem);
+        opacity: 1.0;
     }
 `;
 
 export const CardImg = styled.img`
     position: relative;
-    /* width: 100%;
-    height: 100%; */
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    &:hover {
-        border-radius: 10px;
-    }
+    border-radius: 20px;
+    opacity: 0.6;
 `;
 
 export const CardOverlay = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #adb5bd;
+    background-color: #DAEDBD;
     opacity: 0.5;
     left: 0;
     top: 0;
     z-index: 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     &:hover {
-        opacity: 0.3;
+        opacity: 0.2;
     }
 `;
 
@@ -119,13 +119,13 @@ export const CardContent = styled.article`
     flex-direction: column;
     font-family: 'Cafe24SsurroundAir';
     padding: 10px;
-    color: #343a40;
+    /* color: #343a40; */
     h2 {
-        color: inherit;
+        color: black;
         opacity: 0.9;
         font-size: 2rem;
         font-weight: 700px;
-        text-shadow: 2px 2px 0 #fff;
+        text-shadow: 1px 1px 0 #fff;
         margin: 0 0 12px;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -136,7 +136,7 @@ export const CardContent = styled.article`
         line-height: 2.6rem;
     }
     h3 {
-        color: #343a40;
+        color: black;
         font-size: 1.5rem;
         font-weight: 700;
         margin: 0 0 10px;
@@ -146,10 +146,10 @@ export const CardContent = styled.article`
         -webkit-box-orient: vertical;
         word-break: break-word;
         overflow: hidden;
-        text-shadow: 2px 2px 0 #fff;
+        text-shadow: 1px 1px 0 #fff;
     }
     p {
-        color: inherit;
+        color: black;
         opacity: 0.9;
         font-size: 1rem;
         font-weight: 400;
@@ -161,6 +161,6 @@ export const CardContent = styled.article`
         -webkit-box-orient: vertical;
         word-break: break-word;
         overflow: hidden;
-        text-shadow: 2px 2px 0 #fff;
+        text-shadow: 1px 1px 0 #fff;
     }
 `;

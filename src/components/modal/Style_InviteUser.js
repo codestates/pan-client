@@ -2,14 +2,14 @@ import Modal from 'styled-react-modal';
 import styled from 'styled-components';
 
 export const InviteModal = Modal.styled`
-  width: 40%;
-  height: 40%;
-  display: flex;
-  border-radius: 20px;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  background-color: white;
+    width: 40%;
+    height: 40%;
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
 `;
 
 export const GroupWrapper = styled.div`
@@ -17,12 +17,26 @@ export const GroupWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    div {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
+    font-family: 'Cafe24SsurroundAir';
+    border: 4px solid #C49C48;
+    border-radius: 16px;
+    width: 95%;
+    height: 92%;
 `
+export const GroupHeader = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    margin-bottom: 5rem;
+`;
+
+export const SearchUser = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+`;
 
 export const InviteUser = styled.input`
     border: 1px solid #242D40;
@@ -30,14 +44,13 @@ export const InviteUser = styled.input`
     width: 350px;
     height: 50px;
     text-align: center;
-    font-family: 'Cafe24SsurroundAir';
     font-size: large;
     color: black;
 `
 
 export const CheckBtn = styled.button`
     width: 60px;
-    height: 30px;
+    height: 40px;
     margin-left: 20px;
     background-color: #9196E1;
     border: none;
@@ -45,15 +58,16 @@ export const CheckBtn = styled.button`
     cursor: pointer;
     color: white;
     font-weight: 700;
-    font-family: 'Cafe24SsurroundAir';
     :hover {
         border: 3px solid #505AC5;
     }
-
 `
 
 export const InviteBottom = styled.div`
     /* border:1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 export const InviteBtn = styled.button`
@@ -68,7 +82,6 @@ export const InviteBtn = styled.button`
     font-size: large;
     color: black;
     cursor: pointer;
-    font-family: 'Cafe24SsurroundAir';
     font-weight: bolder;
     :hover {
         transform: scale(1.05);
@@ -87,7 +100,6 @@ export const CancelBtn = styled.button`
     font-size: large;
     color: black;
     cursor: pointer;
-    font-family: 'Cafe24SsurroundAir';
     font-weight: bolder;
     opacity: 0.7;
     :hover {

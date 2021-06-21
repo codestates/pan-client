@@ -24,10 +24,12 @@ export const ListItemBox = styled.div`
     transition: all 0.4s;
     border-radius: 8px;
     overflow: hidden;
+    opacity: 0.5;
     &:hover {
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
+        opacity: 1.0;
     }
 `;
 
