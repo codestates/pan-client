@@ -5,7 +5,7 @@ import {
     StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton,
     LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } 
     from "../../components/modal/Style_ChooseBook";
-import { InviteModal, InviteUser, GroupWrapper, InviteBtn, CancelBtn, InviteBottom, CheckBtn } from "../../components/modal/Style_InviteUser";
+import { InviteModal, InviteUser, GroupWrapper, InviteBtn, CancelBtn, InviteBottom, CheckBtn, SearchUser, GroupHeader } from "../../components/modal/Style_InviteUser";
 import bg01 from "../../images/Cover_img/01.png"
 import bg02 from "../../images/Cover_img/02.png"
 import bg03 from "../../images/Cover_img/03.png"
@@ -204,23 +204,26 @@ export default function ChooseBook() {
                         <Wrapper>
                             {/* 그룹 초대 모달창 */}
                             <InviteModal isOpen={inviteModalIsOpen}> 
-                                <GroupWrapper> 
-                                    <div>
+                                <GroupWrapper>
+                                    <GroupHeader>
+                                        초대할 유저의 이메일을 작성해주세요
+                                    </GroupHeader>
+                                    <SearchUser>
                                         <InviteUser 
                                             type="text" 
                                             placeholder="초대할 유저의 이메일을 작성해주세요." 
                                             onChange={(e)=> {setInviteUser1(e.target.value)}}
                                         />
                                         <CheckBtn onClick={CheckUser1}>Check</CheckBtn>
-                                    </div>
-                                    <div>
+                                    </SearchUser>
+                                    <SearchUser>
                                         <InviteUser 
                                             type="text" 
                                             placeholder="초대할 유저의 이메일을 작성해주세요." 
                                             onChange={(e)=> {setInviteUser2(e.target.value)}}
                                         />
                                         <CheckBtn onClick={CheckUser2}>Check</CheckBtn>
-                                    </div>
+                                    </SearchUser>
                                     <InviteBottom>
                                         <CancelBtn onClick={inviteCancelBtn}>취소</CancelBtn>
                                         <InviteBtn onClick={inviteModalBtn}>초대</InviteBtn>
