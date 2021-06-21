@@ -286,7 +286,7 @@ export const BottomDeleteBtn = styled.div`
 `;
 
 export const DetailComment = styled.div`
-    border: 5px solid red;
+    /* border: 5px solid red; */
     width: 35%;
     height: 100%;
     margin: 0 auto;
@@ -302,6 +302,7 @@ export const CommentHeader = styled.div`
     /* border: 3px solid #C57951; */
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: 30px;
     margin-top: 10px;
@@ -347,12 +348,14 @@ export const CommentEditBtn = styled.div`
 
 export const CommentDeleteBtn = styled.div`
     width: 50px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid #75A5A9;
+    /* border: 5px solid #75A5A9; */
+    /* border: 5px solid red; */
     background-color: #75A5A9;
-    margin-left: 20px;
+    margin-right: 20px;
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;

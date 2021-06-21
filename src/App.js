@@ -12,13 +12,12 @@ import Myapge from "./screens/MyPage/Mypage";
 import Landing from "./screens/Landing";
 
 import Template from "./screens/Template";
-
+import TemplateGroup from "./screens/TemplateGroup";
 import Writing from "./screens/MakePage/Writing";
 import Drawing from "./screens/MakePage/Drawing";
 
 import Details from "./screens/SubPage/Details";
 import UserStore from "./store/UserStore";
-import IsGroupStore from "./store/IsGroupStore";
 import CreateBookStore from "./store/CreateBookStore";
 import DiaryInfoStore from "./store/DiaryInfoStore";
 
@@ -28,8 +27,6 @@ function App() {
   return (
     <UserStore>
       {/*  User contextAPI  */}
-      <IsGroupStore>
-      {/*Group여부 확인 contextAPI */}
       <CreateBookStore>
       {/*가입된 book 정보 확인 contextAPI */}
       <DiaryInfoStore>
@@ -49,6 +46,9 @@ function App() {
                 </Route>
                 <Route path={routes.template}>
                   <Template />
+                </Route>
+                <Route path={routes.templategroup}>
+                  <TemplateGroup />
                 </Route>
                 <Route path={routes.writing}>
                   <Writing />
@@ -71,7 +71,6 @@ function App() {
         </HelmetProvider>
       </DiaryInfoStore>
       </CreateBookStore>
-      </IsGroupStore>
     </UserStore>
   );
 }

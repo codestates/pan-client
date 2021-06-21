@@ -19,7 +19,6 @@ import bg10 from "../../images/Cover_img/10.png"
 import bg11 from "../../images/Cover_img/11.png"
 import bg12 from "../../images/Cover_img/12.png"
 import { CreateBookContext } from "../../store/CreateBookStore";
-import { IsGroupContext } from "../../store/IsGroupStore";
 
 export default function ChooseBook() {
     // modal 
@@ -30,6 +29,7 @@ export default function ChooseBook() {
     const [books, setBooks] = useState([]);
     const [bookName, setBookName] = useState('일기장 이름');
     const [bookCover, setBookCover] = useState(bg01);
+    const [groupId, setGroupId] = useState('');
 
     // 초대 유저
     const [inviteUser, setInviteUser] = useState([]);
@@ -38,8 +38,7 @@ export default function ChooseBook() {
     //context API
     const context = useContext(CreateBookContext);
     const {bookInfo, setBookInfo} = context ;
-    const contextIsGroup = useContext(IsGroupContext);
-    const { isGroup,setIsGroup } = contextIsGroup ;
+
     
     // 서버랑 통신해서 현재 회원의 북 정보를 받아온다
     useEffect(async () => {
@@ -51,7 +50,7 @@ export default function ChooseBook() {
                 },
                 withCredentials : true
                 })
-                .then(res => setBooks(res.data.data))
+                .then(res => console.log(res))
         }catch{ 
             console.error("err");
         }
@@ -73,6 +72,7 @@ export default function ChooseBook() {
                     data: {
                         bookName,
                         bookCover,
+                        groupId
                     },
                     headers:{
                         Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
@@ -83,7 +83,6 @@ export default function ChooseBook() {
                 .then(
                     alert('일기장이 생성되었습니다'),
                     setCreate(false),
-                    setIsGroup(true),
                     setTimeout(() => {
                         window.location.reload(true);
                     }, 100)
@@ -109,10 +108,15 @@ export default function ChooseBook() {
                             },
                         withCredentials: true,
                     })
-                    .then(res => alert(res.data.message))
+                    // .then(res => setGroupId(res.data.groupInfo.id))
+                    .then(res => console.log(res))
                     .then(()=> {setInviteModalIsOpen(false)})
-                    .catch(err => alert(err.response.data.message));
     }
+
+    useEffect(()=>{
+        console.log('리로딩해보자')
+        console.log(groupId)
+    },[groupId])
 
     // 초대 그룹 모달 창 취소하기
     const inviteCancelBtn = () => {

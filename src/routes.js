@@ -5,6 +5,7 @@ const routes = {
     login: "/login",
     signUp: "/signup",
     template: "/template",
+    templategroup: "/templategroup",
     details: "/details/:id",
     writing: "/writing",
     drawing: "/drawing"
