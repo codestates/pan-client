@@ -15,6 +15,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ImageBox, SocialBtn } from "../../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../../components/auth/FontLayout";
+import { KAKAO_AUTH_URL } from './Oauth'
 
 const Container = styled.div`
     position: absolute;
@@ -79,7 +80,8 @@ export default function Login() {
                     <Separator />
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
-                        <SocialBtn><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
+                        {console.log(KAKAO_AUTH_URL)}
+                        <SocialBtn href={KAKAO_AUTH_URL}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
                 </FormBox>
