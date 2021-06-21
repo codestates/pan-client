@@ -123,14 +123,6 @@ export const DiaryBottom = styled.div`
   height: 70px;
 `;
 
-export const DiaryBottomLeft = styled.div`
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  width: 25%;
-  height: 100%;
-  /* border: 2px solid gray; */
-`;
 
 export const DiaryPublicButton = styled.button`
   display: flex;
@@ -154,13 +146,4 @@ export const DiaryBottomCenter = styled.div`
   width: 50%;
   height: 100%;
   /* border: 2px solid tomato; */
-`;
-
-export const DiaryBottomRight = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 100%;
-  /* border: 2px solid blue; */
 `;
