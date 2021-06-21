@@ -51,6 +51,7 @@ export default function ChooseBook() {
                 withCredentials : true
                 })
                 .then(res => console.log(res))
+                // .then(res => setBooks(res.data.data))
         }catch{ 
             console.error("err");
         }
@@ -108,7 +109,7 @@ export default function ChooseBook() {
                             },
                         withCredentials: true,
                     })
-                    // .then(res => setGroupId(res.data.groupInfo.id))
+                    .then(res => setGroupId(res.data.groupInfo.id))
                     .then(res => console.log(res))
                     .then(()=> {setInviteModalIsOpen(false)})
     }
