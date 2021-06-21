@@ -30,15 +30,18 @@ export default function Main() {
       const fetchPosts = async () => {
         setLoading(true);
         const resI = await axios.get('https://api.picanote.me/diaries');
-        // const resG = await axios.get('https://api.picanote.me//group-diaries');
+        console.log(resI)
+        const resG = await axios.get('https://api.picanote.me/group-diaries');
+        console.log(resG)
         setIndividual(resI.data.data);
-        // setGroup(resG.data.data);
+        setGroup(resG.data.data);
         setLoading(false);
       };   
   
       fetchPosts();
+    
     }, []);
-
+    console.log(group)
     // searchDiary 나오게하는 useEffect 
     useEffect(() => {},[searchDiary])
 
@@ -105,14 +108,14 @@ export default function Main() {
                 <>
                   { currentGroup ? 
                     <>
+                    <PublicNote current={currentGroup}/>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
+                    </>
+                    :
+                    <>
                       <CautionEx>
                         현재 공유된 교환일기가 없습니다.
                       </CautionEx>
-                    </>
-                  :
-                    <>
-                      <PublicNote current={currentGroup}/>
-                      <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
                     </>
                   }
                 </>
