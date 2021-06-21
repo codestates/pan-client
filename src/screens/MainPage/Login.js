@@ -81,7 +81,7 @@ export default function Login() {
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
                         {console.log(KAKAO_AUTH_URL)}
-                        <SocialBtn href={KAKAO_AUTH_URL}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
+                        <SocialBtn><a href={KAKAO_AUTH_URL}><img src={kakao_button} width="55%" alt="kakao"/></a></SocialBtn>
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
                 </FormBox>
