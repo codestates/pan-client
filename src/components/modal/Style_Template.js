@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import toronto from '../../images/toronto.jpg';
 import newyork from "../../images/new_york.jpg";
+import WriteTemp from "../../images/writeTemp.png";
 import { BaseModalBackground } from "styled-react-modal";
 
 export const FadingBackground = styled(BaseModalBackground)`
@@ -37,8 +38,8 @@ export const Writing = styled.div`
     font-size: 50px;
     color: white;
     line-height: 520px;
-    background-image: url(${toronto});
-    background-size: 100% 100%;
+    background-image: url(${WriteTemp});
+    background-size: 102% 100%;
     width: 30%;
     height: 70%;
     margin: 5% 5% 5% 15%;

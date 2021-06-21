@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const DetailsWrapper = styled.div`
     /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    height: 102vh;
 `;
 
 export const DetailsMain = styled.div`
@@ -224,6 +227,7 @@ export const BottomPreBtn = styled.div`
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;
+    cursor: pointer;
 `;
 
 export const BottomNextBtn = styled.div`
@@ -238,6 +242,7 @@ export const BottomNextBtn = styled.div`
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;
+    cursor: pointer;
 `;
 
 export const BottomEditBtn = styled.div`
@@ -305,8 +310,11 @@ export const CommentMiddle = styled.div`
 `;
 
 export const CommentRight = styled.div`
+    /* border:1px solid blue; */
+    width: 70%;
     display: flex;
-    margin-left: 190px;
+    flex-direction: row-reverse;
+    /* margin-left: 190px; */
     font-family: 'GmarketSansLight';
     font-size: 12px;
 `;
@@ -322,6 +330,7 @@ export const CommentEditBtn = styled.div`
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;
+    cursor: pointer;
 `;
 
 export const CommentDeleteBtn = styled.div`
@@ -335,6 +344,7 @@ export const CommentDeleteBtn = styled.div`
     font-family: 'GmarketSansMedium';
     font-size: 15px;
     color: #FFF9E9;
+    cursor: pointer;
 `;
 
 export const CommentMain = styled.div`
@@ -386,6 +396,7 @@ export const CommentSubmitBtn = styled.div`
     position: absolute;
     bottom: 0px;
     right: 0px;
+    cursor: pointer;
 `;
 
 export const DisableComment = styled.div`

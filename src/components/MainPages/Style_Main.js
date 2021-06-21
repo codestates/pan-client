@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const MainBody = styled.div`
-    /* border: 2px solid black; */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -45,7 +44,8 @@ export const Phrase = styled.div`
 `;
 
 export const Div1 = styled.div`
-    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
     height: 40vh;
     margin-top: 40px;
 `;

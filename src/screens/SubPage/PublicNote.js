@@ -25,7 +25,7 @@ export default function PublicNote({current}) {
                         <ItemContent>
                             <h3>{post.title}</h3>
                             <h4>{post.writer}</h4>
-                            <p>{post.content}</p>
+                            <p dangerouslySetInnerHTML={ {__html: post.content} }></p>
                         </ItemContent>
                         <ItemOverlay />
                     </Link>

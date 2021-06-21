@@ -34,9 +34,9 @@ export default function Top10({allDiaries}) {
                     <Link to={routes.main}>
                         <CardContent>
                             <h2>{post.title}</h2>
-                            <h2>{post.content}</h2>
-                            <h3>{post.weather}</h3>
-                            <h3>{post.feelings}</h3>
+                            <h2 dangerouslySetInnerHTML={ {__html: post.content} }></h2>
+                            <h3>{post.username}</h3>  
+                            <h3>{post.date}</h3>
                         </CardContent>
                         <CardOverlay />
                     </Link>

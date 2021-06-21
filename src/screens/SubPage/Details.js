@@ -14,11 +14,23 @@ import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, C
 import { useHistory } from 'react-router-dom';
 // import { getDefaultNormalizer } from '@testing-library/react';
 
-export default function Details ({match}) {
-    const [details, setDetails] = useState([]);
+export default function Details ({ match }) {
+    const id = match.params.id;
+    
+    const [details, setDetails] = useState({
+        title : '',
+        content: '',
+        feelings: '',
+        weather: '',
+        picUrl: '',
+        username: '',
+        date: '',
+        private: '',
+    });
+    const [comment, setComment] = useState('');
     const [loading, setLoading] = useState(false);
     const histoy = useHistory();
-
+    
     const context = useContext(UserContext);
     const {username, accessTokenRequest} = context ;
 
@@ -33,29 +45,43 @@ export default function Details ({match}) {
         try {
             const getDetails = async() => {
                 setLoading(true);
-                const id = await match.params.id
-                const res = await axios.get(`https://api.picanote.me/diaries/${id}`, {
+                // const id = await match.params.id
+                await axios.get(`https://api.picanote.me/diaries/${id}`, {
                     headers:{
                         Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                         'ContentType' : 'application/json',
                     },
                     withCredentials : true
-                },[])
-                
-                setDetails(res.data.data[0])
+                })
+                .then(
+                    res => 
+                    res.data.data[0] === undefined ? 
+                    alert('작성되지 않은 일기입니다.')
+                : 
+                setDetails({      
+                    title : res.data.data[0].title,
+                    content: res.data.data[0].content,
+                    feelings: res.data.data[0].feelings,
+                    weather: res.data.data[0].weather,
+                    picUrl: res.data.data[0].picUrl,
+                    username: res.data.data[0].username,
+                    date: res.data.data[0].date,
+                    private: res.data.data[0].private,
+                })
+                )
                 setLoading(false);
             }
-            getDetails()
+            getDetails();
         } catch {
-            console.error("err");
+            histoy.goBack();
         }
     }, [])
-    console.log(details)
+    
     // 다이어리 삭제 메소드
     const deleteDiary = async () => {
         try{
             setLoading(true);
-            const id = await match.params.id
+            // const id = await match.params.id
             await axios.delete(`https://api.picanote.me/diaries/${id}`, {
                 headers: {
                     Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
@@ -73,7 +99,7 @@ export default function Details ({match}) {
 
     // 좋아요 기능 구현
     const handlerHeart = async () => {
-        const id = await match.params.id
+        // const id = await match.params.id
         await axios({
             method: 'post',
             url: `https://api.picanote.me/diaries/${id}/trending`,
@@ -85,6 +111,36 @@ export default function Details ({match}) {
         })
         .then(alert('좋아요 눌렀는지 어떻게 확인하지?'))
     }
+    
+    // 이전 일기로 이동
+    const PreviousDiary = () => {
+        const prvious = parseInt(match.params.id) - 1;
+        histoy.push(`/details/${prvious}`);
+        window.location.reload(true);
+    }
+
+    // 다음 일기로 이동
+    const afterDiary = () => {
+        const next = parseInt(match.params.id) + 1;
+        histoy.push(`/details/${next}`);
+        window.location.reload(true);
+    }
+
+    // 댓글 포스트 
+    // 나중에 현영님 오면 물어보자
+    const commentPost = async () => {
+        console.log(comment);
+        await axios({
+            method: 'post',
+            url: `https://picanote.me/diaries/${id}/comments`,
+            headers:{
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                'ContentType' : 'application/json',
+                },
+            withCredentials: true,
+        })
+
+    }
 
     if (loading) {
         return <h2>Loading...</h2>;
@@ -92,7 +148,7 @@ export default function Details ({match}) {
 
     return (
         <DetailsWrapper>
-            <Header main={routes.main} login={routes.login} />
+            <Header main={routes.main} login={routes.login} />    
             <DetailsMain>
                 <DetailContent>
                     <ContentHeader>
@@ -138,10 +194,10 @@ export default function Details ({match}) {
                             </BottomLikeBtn>
                         </BottomLeft>
                         <BottomRight>
-                            <BottomPreBtn>
+                            <BottomPreBtn onClick={PreviousDiary}>
                                 이전일기
                             </BottomPreBtn>
-                            <BottomNextBtn>
+                            <BottomNextBtn onClick={afterDiary}>
                                 다음일기
                             </BottomNextBtn>
                             {/* username 먼저 확인 있다면 일기장username과 username 비교 */}
@@ -162,6 +218,8 @@ export default function Details ({match}) {
                     </ContentBottom>
                 </DetailContent>
                 {/* 댓글부분 */}
+                {/* private true면 비공개 false면 공개 */}
+                {!details.private  ?
                 <DetailComment>
                     <CommentHeader>
                         <CommentLeft>
@@ -171,26 +229,28 @@ export default function Details ({match}) {
                             2021-06-05
                         </CommentMiddle>
                         <CommentRight>
-                            <CommentEditBtn>
-                                수 정
-                            </CommentEditBtn>
                             <CommentDeleteBtn>
                                 삭 제
                             </CommentDeleteBtn>
+                            <CommentEditBtn>
+                                수 정
+                            </CommentEditBtn>
                         </CommentRight>
                     </CommentHeader>
                     <CommentMain>
                         초심자의 행운이란건, 어떻게 보면 일정한 시간이 흐른뒤에는 사라지는 슬픈 행운이네요.
                     </CommentMain>
                     <CommentBottom>
-                        <CommentInput placeholder="댓글을 입력하세요" type="text" />
-                        <CommentSubmitBtn type="submit">입 력</CommentSubmitBtn>
+                        <CommentInput placeholder="댓글을 입력하세요" type="text" onChange={(e) => {setComment(e.target.value)}}/>
+                        <CommentSubmitBtn type="submit" onClick={commentPost}>입 력</CommentSubmitBtn>
                     </CommentBottom>
                 </DetailComment>
-                {/* <DisableComment>
+                :
+                <DisableComment>
                     <p>공개된 일기의 경우에만</p>
                     <p>댓글 작성이 가능합니다</p>
-                </DisableComment> */}
+                </DisableComment>
+                }
             </DetailsMain>
             <ToggleButton />
         </DetailsWrapper>
