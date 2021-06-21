@@ -28,11 +28,17 @@ export const CoverDelete = styled.button`
   justify-content: center;
   border: 1px solid tomato;
   border-radius: 20px;
-  width: 160px;
-  height: 70px;
-  font-size: 25px;
+  width: 130px;
+  height: 50px;
+  font-size: 23px;
   color: white;
   background-color: #D85941;
+  cursor: pointer;
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  } 
+
 `;
 
 export const Cover = styled.button`

@@ -6,6 +6,7 @@ import {
     ModalMiddle, MiddleTitle, ModalBook, DeleteCover,
     ModalBottom, Button
 } from "../../components/modal/Style_DeleteBook";
+import checkIcons from "../../images/check.png";
 
 export default function Deletebook(props) {
     
@@ -14,6 +15,8 @@ export default function Deletebook(props) {
         setIsOpen(false);
     }
     const [ bookId, setBookId ] = useState();
+
+    // 일기장 삭제
     const HandleSubmit = async(e) => {
         await axios({
             method: "delete",
@@ -38,14 +41,30 @@ export default function Deletebook(props) {
                 </ModalHeader>
                 <ModalMiddle>
                     <MiddleTitle>
-                        일기장을<br />
-                        선택해주세요
+                        <p>일기장을</p><br />
+                        <p>선택해</p><br />
+                        <p>주세요</p>
                     </MiddleTitle>
                     <ModalBook>
                         {books.map((book) => {
                             return (
                                 <DiaryWrapper key={book.id}>
-                                    <Public type="checkbox" onClick={()=>{setBookId(book.id)}}/>
+                                    {
+                                        book.id === bookId ?
+                                        <Public 
+                                            type="checkbox" 
+                                            onClick={()=>{setBookId(book.id)}} 
+                                            style={{
+                                                border: '3px solid white',
+                                                backgroundImage: `url(${checkIcons})`,
+                                                backgroundSize: '100% 100%',
+                                                width: '13%',
+                                                height: '6%'
+                                            }}
+                                        />
+                                        :
+                                        <Public type="checkbox" onClick={()=>{setBookId(book.id)}}/>
+                                    }
                                     <DeleteCover key={book.id} style={{ backgroundImage: `url(${book.bookCover})`, backgroundSize: "100% 100%"}}>
                                         <h2>{book.bookName}</h2>
                                     </DeleteCover>

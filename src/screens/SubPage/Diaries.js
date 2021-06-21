@@ -46,20 +46,6 @@ export default function Diaries ({diary}) {
         return <h2>Loading...</h2>;
     }
 
-    // 일기 공개 비공개 소스
-    // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
-    
-    const handleSubmit = async (id) => {
-            await axios({
-                method: 'post',
-                url: `https://api.picanote.me/diaries/${id}/private`,
-                headers:{
-                    Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
-                    'ContentType' : 'application/json',
-                },
-                withCredentials : true,    
-            })
-    };
    
     return (
         <Container>
@@ -71,9 +57,6 @@ export default function Diaries ({diary}) {
             <DiaryBG>
                 {currentPosts.map(post => (
                     <DiaryWrapper key={post.id}>
-                        {/* 공개 비공개 여부에 맞춰서 체크배경을 나타나게 해줘야 한다! */}
-                        {post.private ? console.log(post.id+'비공개') : console.log(post.id+'공개') }
-                        <Public type="checkbox" onClick={() => {handleSubmit(post.id)}}/>
                         <Diary onClick={()=> ToDetails(post.id)}>
                             <Ttitle>{post.title}</Ttitle>
                             {post.picUrl === null ?  <ChooseTP><img src={Text} width="30px" height="30px" alt="textnote" /></ChooseTP> :  <ChooseTP><img src={Drawing} width="30px" height="30px" alt="drawingnote" /></ChooseTP> }
@@ -84,11 +67,6 @@ export default function Diaries ({diary}) {
                 ))}
             </DiaryBG>
             <DiaryBottom>
-                <DiaryBottomLeft>
-                    <DiaryPublicButton>
-                        일기 공개
-                    </DiaryPublicButton>
-                </DiaryBottomLeft>
                 <DiaryBottomCenter>
                     {/* pagination 을 불러오고 위에 상태들을 props로 전달 */}
                     <Pagination 
@@ -96,9 +74,6 @@ export default function Diaries ({diary}) {
                         currentPage={currentPage} color={["#83B799","black"]}
                     />
                 </DiaryBottomCenter>
-                <DiaryBottomRight>
-                    오른쪽 공간
-                </DiaryBottomRight>
             </DiaryBottom>
         </Container>
 

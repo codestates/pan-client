@@ -244,6 +244,20 @@ export const BottomNextBtn = styled.div`
     color: #FFF9E9;
     cursor: pointer;
 `;
+export const PublicBtn = styled.div`
+    margin-left: 20px;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #75A5A9;
+    background-color: #75A5A9;
+    font-family: 'GmarketSansMedium';
+    font-size: 15px;
+    color: #FFF9E9;
+    cursor: pointer;
+`;
 
 export const BottomEditBtn = styled.div`
     margin-left: 20px;
