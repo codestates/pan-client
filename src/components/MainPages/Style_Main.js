@@ -46,7 +46,7 @@ export const Phrase = styled.div`
 export const Div1 = styled.div`
     display: flex;
     justify-content: center;
-    height: 40vh;
+    height: 44vh;
     margin-top: 40px;
 `;
 
@@ -87,8 +87,10 @@ export const CautionEx = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    justify-content: center;
-    align-items: center;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    /* justify-content: center; */
+    /* align-items: center; */
     font-family: 'Cafe24SsurroundAir';
     font-size: 50px;
 `;
