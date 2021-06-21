@@ -16,7 +16,7 @@ export const HeadCard = styled.header`
     flex-direction: column;
     margin: 1rem 0 10px 0;
     border-radius: 10px;
-    padding: 2rem;
+    padding: 2rem 2rem 2rem 1rem;
     height: 16vh;
     text-shadow: 4px 4px 4px lightgray;
 `;
@@ -47,7 +47,7 @@ export const CardList = styled.section`
     grid-gap: 5px;
     grid-template-columns: repeat(20, minmax(250px, 1fr));
     padding-top: 2rem;
-    /* padding-left: 2rem; */
+    padding-left: 2rem;
     overflow: scroll;
     /* border: 1px solid black; */
     height: 40vh;

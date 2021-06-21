@@ -5,7 +5,7 @@ import routes from '../../routes';
 import Header from '../../components/Header';
 import ToggleButton from '../ToggleButton';
 import { FiHeart } from "react-icons/fi";
-import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom, 
+import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom,CommnetBG, DetailBG,
     ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, 
     CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, PublicBtn, 
     CommentBottom, CommentInput, CommentSubmitBtn, BottomLeft, BottomWriter, ContentTitle, ContentDate, ContentFeel, 
@@ -26,6 +26,8 @@ export default function Details ({ match }) {
         username: '',
         date: '',
         private: '',
+        like: '',
+        comments: []
     });
     const [comment, setComment] = useState('');
     const [loading, setLoading] = useState(false);
@@ -67,6 +69,8 @@ export default function Details ({ match }) {
                     username: res.data.data[0].username,
                     date: res.data.data[0].date,
                     private: res.data.data[0].private,
+                    like: res.data.data[0].like,
+                    comments : res.data.data[0].Comments
                 })
                 )
                 setLoading(false);
@@ -76,7 +80,7 @@ export default function Details ({ match }) {
             histoy.goBack();
         }
     }, [])
-    
+
     // 다이어리 삭제 메소드
     const deleteDiary = async () => {
         try{
@@ -127,20 +131,46 @@ export default function Details ({ match }) {
     }
 
     // 댓글 포스트 
-    // 나중에 현영님 오면 물어보자
     const commentPost = async () => {
-        console.log(comment);
         await axios({
             method: 'post',
-            url: `https://picanote.me/diaries/${id}/comments`,
+            url: `https://api.picanote.me/diaries/${id}/comments`,
             headers:{
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
                 'ContentType' : 'application/json',
                 },
+            data: {
+                text: comment
+            },
             withCredentials: true,
         })
-
+        .then(alert('댓글이 등록되었습니다.'),)
+        .then(() => {
+            window.location.reload(true);
+            }
+        )
+        .catch(alert('다시 시도해 주세요.'));
     }
+
+    // 댓글 삭제
+    const deleteCommnet = async (index) => {
+        console.log(index)
+        await axios({
+            method: 'delete',
+            url: `https://api.picanote.me/diaries/${id}/comments/${index}`,
+            headers:{
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                'ContentType' : 'application/json',
+                },
+            data: {
+                text: comment
+            },
+            withCredentials: true,
+        })
+        .then(() => alert('댓글이 삭제 되었습니다.'))
+        .catch(() => alert('다시 시도해 주세요.'));
+    }
+    
 
     // 일기 공개 비공개 소스
     // 체크박스 클릭후 버튼 클릭하면 공개 비공개 전환 (true, false)
@@ -208,8 +238,10 @@ export default function Details ({ match }) {
                             <BottomWriter>
                                 작성자: {details.username}
                             </BottomWriter>
-                            <BottomLikeBtn>
+                            <BottomLikeBtn>   
                                 <FiHeart onClick={handlerHeart}/>
+                                <div>&nbsp;</div>        
+                                {details.like}
                             </BottomLikeBtn>
                         </BottomLeft>
                         <BottomRight>
@@ -242,31 +274,41 @@ export default function Details ({ match }) {
                 </DetailContent>
                 {/* 댓글부분 */}
                 {/* private true면 비공개 false면 공개 */}
-                {!details.private  ?
+                {!details.private  
+                ? 
                 <DetailComment>
-                    <CommentHeader>
-                        <CommentLeft>
-                            BJ CHRIS
-                        </CommentLeft>
-                        <CommentMiddle>
-                            2021-06-05
-                        </CommentMiddle>
-                        <CommentRight>
-                            <CommentDeleteBtn>
-                                삭 제
-                            </CommentDeleteBtn>
-                            <CommentEditBtn>
-                                수 정
-                            </CommentEditBtn>
-                        </CommentRight>
-                    </CommentHeader>
-                    <CommentMain>
-                        초심자의 행운이란건, 어떻게 보면 일정한 시간이 흐른뒤에는 사라지는 슬픈 행운이네요.
-                    </CommentMain>
-                    <CommentBottom>
+                <DetailBG>
+                {details.comments.map((comment,index) => {
+                    return(
+                        <CommnetBG key={index}>
+                            <CommentHeader>
+                                <CommentLeft>
+                                    {comment.username}
+                                </CommentLeft>
+                                <CommentMiddle>
+                                    {comment.date}
+                                </CommentMiddle>
+                                <CommentRight>
+                                    <CommentDeleteBtn onClick={() => deleteCommnet(index)}>
+                                        삭 제
+                                    </CommentDeleteBtn>
+                                    <CommentEditBtn>
+                                        수 정
+                                    </CommentEditBtn>
+                                </CommentRight>
+                            </CommentHeader>
+                            <CommentMain>
+                                {comment.text}
+                            </CommentMain>
+                        </CommnetBG>
+                    )
+                })}
+                </DetailBG>
+                <CommentBottom>
                         <CommentInput placeholder="댓글을 입력하세요" type="text" onChange={(e) => {setComment(e.target.value)}}/>
                         <CommentSubmitBtn type="submit" onClick={commentPost}>입 력</CommentSubmitBtn>
-                    </CommentBottom>
+                </CommentBottom>
+             
                 </DetailComment>
                 :
                 <DisableComment>

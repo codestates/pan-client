@@ -5,7 +5,7 @@ import {
     StyledModal, Header, Wrapper, CreateBooks, SelectBook, Footer, ModalButton,
     LeftCreateDiv, LeftTitleDiv, LeftCoverDiv, SelectCover, RightCreateDiv, PreviewCover, CoverImg } 
     from "../../components/modal/Style_ChooseBook";
-import { InviteModal, InviteUser, GroupWrapper, InviteBtn, CancelBtn, InviteBottom } from "../../components/modal/Style_InviteUser";
+import { InviteModal, InviteUser, GroupWrapper, InviteBtn, CancelBtn, InviteBottom, CheckBtn } from "../../components/modal/Style_InviteUser";
 import bg01 from "../../images/Cover_img/01.png"
 import bg02 from "../../images/Cover_img/02.png"
 import bg03 from "../../images/Cover_img/03.png"
@@ -22,15 +22,17 @@ import { CreateBookContext } from "../../store/CreateBookStore";
 import { IsGroupContext } from "../../store/IsGroupStore";
 
 export default function ChooseBook() {
+    // modal 
     const [modalIsOpen,setModalIsOpen] = useState(true);
     const [inviteModalIsOpen,setInviteModalIsOpen] = useState(true);
+    // create 변수
     const [create, setCreate] = useState(false);
     const [books, setBooks] = useState([]);
     const [bookName, setBookName] = useState('일기장 이름');
     const [bookCover, setBookCover] = useState(bg01);
 
     // 초대 유저
-    const [inviteUser, setInviteUser] = useState(["abcd@naver.com", "abcd1234@naver.com"]);
+    const [inviteUser, setInviteUser] = useState([]);
     const [inviteUser1, setInviteUser1] = useState('');
     const [inviteUser2, setInviteUser2] = useState('');
     //context API
@@ -107,12 +109,24 @@ export default function ChooseBook() {
                             },
                         withCredentials: true,
                     })
-                    .then(alert('확인'))
+                    .then(res => alert(res.data.message))
+                    .then(()=> {setInviteModalIsOpen(false)})
+                    .catch(err => alert(err.response.data.message));
     }
 
     // 초대 그룹 모달 창 취소하기
     const inviteCancelBtn = () => {
         setInviteModalIsOpen(false);
+    }
+    // 1번째 유저를 확인합니다.
+    const CheckUser1 = () => {
+        setInviteUser([inviteUser1])
+        alert(`${inviteUser[0]} 체크 되었습니다.`)
+    }
+    // 2번째 유저를 확인합니다.
+    const CheckUser2 = () => {
+        setInviteUser([inviteUser1, inviteUser2])
+        alert(`${inviteUser[0]}와${inviteUser[1]} 체크 되었습니다.`)
     }
 
     // 취소하면 리로드되서 다시 북 선택 모달창으로 이동
@@ -124,7 +138,8 @@ export default function ChooseBook() {
     const chooseCancelBtn = () => {
         setModalIsOpen(false);
     };
-
+    // console.log(inviteUser1)
+    // console.log(inviteUser)
     return (
         <>
             <StyledModal isOpen={modalIsOpen}>
@@ -186,8 +201,22 @@ export default function ChooseBook() {
                             {/* 그룹 초대 모달창 */}
                             <InviteModal isOpen={inviteModalIsOpen}> 
                                 <GroupWrapper> 
-                                    <InviteUser type="text" placeholder="초대할 유저의 이메일을 작성해주세요." onChange={e => setInviteUser1(e.target.value)} />
-                                    <InviteUser type="text" placeholder="초대할 유저의 이메일을 작성해주세요." onChange={e => setInviteUser2(e.target.value)} />
+                                    <div>
+                                        <InviteUser 
+                                            type="text" 
+                                            placeholder="초대할 유저의 이메일을 작성해주세요." 
+                                            onChange={(e)=> {setInviteUser1(e.target.value)}}
+                                        />
+                                        <CheckBtn onClick={CheckUser1}>Check</CheckBtn>
+                                    </div>
+                                    <div>
+                                        <InviteUser 
+                                            type="text" 
+                                            placeholder="초대할 유저의 이메일을 작성해주세요." 
+                                            onChange={(e)=> {setInviteUser2(e.target.value)}}
+                                        />
+                                        <CheckBtn onClick={CheckUser2}>Check</CheckBtn>
+                                    </div>
                                     <InviteBottom>
                                         <CancelBtn onClick={inviteCancelBtn}>취소</CancelBtn>
                                         <InviteBtn onClick={inviteModalBtn}>초대</InviteBtn>

@@ -92,7 +92,6 @@ export default function Main() {
             </Div3>
             {searchDiary.length >= 1 ? 
             <>
-            {console.log('실행되는지 확인')}
              <PublicNote current={searchDiary}/> 
              <Pagination postsPerPage={postsPerPage} totalPosts={searchDiary.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
             </>

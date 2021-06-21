@@ -139,10 +139,6 @@ export const ContentMain = styled.div`
     font-family: 'MapoGoldenPier';
     font-size: 20px;
     line-height: 40px;
-    overflow: scroll;
-    &::-webkit-scrollbar {
-        display: none;
-    }
     div { 
         word-break: break-all;
         width: 100%;
@@ -290,7 +286,7 @@ export const BottomDeleteBtn = styled.div`
 `;
 
 export const DetailComment = styled.div`
-    /* border: 3px solid violet; */
+    border: 5px solid red;
     width: 35%;
     height: 100%;
     margin: 0 auto;
@@ -299,6 +295,7 @@ export const DetailComment = styled.div`
     border-left: none;
     border-radius: 0 20px 20px 0;
     position: relative;
+    overflow-x: hidden;
 `;
 
 export const CommentHeader = styled.div`
@@ -315,6 +312,7 @@ export const CommentHeader = styled.div`
 export const CommentLeft = styled.div`
     font-family: 'GmarketSansBold';
     font-size: 15px;
+    /* border: 1px solid red; */
 `;
 
 export const CommentMiddle = styled.div`
@@ -370,6 +368,16 @@ export const CommentMain = styled.div`
     font-size: 18px;
 `;
 
+export const DetailBG = styled.div`
+    /* border: 1px solid blue; */
+    height: 90%;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+`
+
 export const CommentBottom = styled.div`
     /* border: 3px solid tomato; */
     width: 100%;
@@ -394,6 +402,9 @@ export const CommentInput = styled.input`
     background-color: white;
 `;
 
+export const CommnetBG = styled.div`
+    border-bottom:1px solid rgb(229,229,229);
+` 
 export const CommentSubmitBtn = styled.div`
     width: 50px;
     height: 40px;

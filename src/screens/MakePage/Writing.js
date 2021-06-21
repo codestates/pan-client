@@ -105,14 +105,14 @@ export default function Writing() {
 
 
 // 테스트용으로 남겨둔거 나중에 작성 완료되면 삭제해야됨
-  useEffect(()=> {
-    console.log(title)
-    console.log(date)
-    console.log(feelings)
-    console.log(weather)
-    console.log(bookInfo.id)
-    console.log(content)
-  }, [title,date,feelings,weather,bookInfo,content])
+  // useEffect(()=> {
+  //   console.log(title)
+  //   console.log(date)
+  //   console.log(feelings)
+  //   console.log(weather)
+  //   console.log(bookInfo.id)
+  //   console.log(content)
+  // }, [title,date,feelings,weather,bookInfo,content])
 
 
   return (
