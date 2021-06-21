@@ -21,6 +21,8 @@ import UserStore from "./store/UserStore";
 import CreateBookStore from "./store/CreateBookStore";
 import DiaryInfoStore from "./store/DiaryInfoStore";
 
+import OAuth2RedirectHandler from "./screens/MainPage/OAuth2RedirectHandler";
+
 
 function App() { 
 
@@ -66,6 +68,7 @@ function App() {
                 {/* <Route path={routes.details}>
                   <Details />
                 </Route> */}
+                <Route path="/kakao" component={OAuth2RedirectHandler}></Route>
               </Switch>
           </Router>
         </HelmetProvider>
