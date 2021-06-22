@@ -83,8 +83,35 @@ export default function Login() {
         //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는 
         //절차가 있으므로 까먹지 말 것! 
         alert('로그인 성공하였습니다'));
-
     };
+
+    const kakaoApi = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=64297550b73307c8aa6c8a038401053f&redirect_uri=https://picanote.me/kakao'
+    const kakaoLoginHandler = () => {
+        window.location.assign(kakaoApi)
+    }
+
+    useEffect(async () => {
+        const getAccessToken = async authorizationCode => {
+            let tokenData = await axios
+            .post('https://api.picanote.me/kakao', {
+                authorizationCode,
+            })
+            .then(res => {
+                console.log(res.data);
+                let accessToken = res.data.accessToken
+                let refreshToken = res.headers['refresh-token']
+                localStorage.setItem('CC_Token', accessToken)
+                localStorage.setItem('RF_Token', refreshToken)
+                history.push("/")
+            })
+        }
+        const url = new URL(window.location.href)
+        const authorizationCode = url.searchParams.get('code')
+        console.log('인증 코드', authorizationCode);
+        if (authorizationCode) {
+            await getAccessToken(authorizationCode)
+        }
+    }, [])
 
     return (
         <Container>
@@ -105,8 +132,8 @@ export default function Login() {
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
 
-                        {/* <SocialBtn onClick={kakaoLoginHandler}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn> */}
-                        <KaKaoBtn
+                        <SocialBtn onClick={kakaoLoginHandler}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
+                        {/* <KaKaoBtn
                             token={'1365e7c324a3fc0d82f2eff53605375f'}
                             buttonText="KaKao"
                             // 여기에 console.log찍으면 정보가 나옴
@@ -114,7 +141,7 @@ export default function Login() {
                             onFailure={console.log('실패')}
                             // getProfile해야 정보를 볼 수 있음
                             getProfile={true}
-                        />
+                        /> */}
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
                 </FormBox>
