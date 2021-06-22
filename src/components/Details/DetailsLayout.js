@@ -139,6 +139,15 @@ export const ContentMain = styled.div`
     font-family: 'MapoGoldenPier';
     font-size: 20px;
     line-height: 40px;
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    img {
+        width: 100%;
+        height: 60%;
+        border-radius: 13px;
+    }
     div { 
         word-break: break-all;
         width: 100%;
@@ -202,6 +211,7 @@ export const BottomLikeBtn = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 20px;
+    cursor: pointer;
 `;
 
 export const BottomRight = styled.div`

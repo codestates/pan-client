@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import Nondisclosure from '../../images/Nondisclosure.jpg';
+import mask from '../../images/mask.png';
 
 import { 
     EditWrapper, 
@@ -11,7 +12,7 @@ import {
     Bottom, LeftDiv, EditFooter 
 } from "../../components/Mypages/style_UserInfo";
 
-export default function EditUserInfo({username, email, profileUrl}) {
+export default function EditUserInfo({username, email }) {
 
     const history = useHistory();
     const [newName, setNewName] = useState('');
@@ -19,9 +20,41 @@ export default function EditUserInfo({username, email, profileUrl}) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    // 프로필 사진 
+    const [imgBase64, setImgBase64] = useState(""); // 파일 base64
+    // const [imgFile, setImgFile] = useState(null);	//파일	
+
+    const handleChangeFile =  (event) => {
+        let reader = new FileReader();
+    
+        reader.onloadend = async () => {
+          // 2. 읽기가 완료되면 아래코드가 실행됩니다.
+          const base64 = reader.result;
+          if (base64) {
+            setImgBase64(base64.toString()); // 파일 base64 상태 업데이트
+          }
+        }
+        if (event.target.files[0]) {
+            reader.readAsDataURL(event.target.files[0]); // 1. 파일을 읽어 버퍼에 저장합니다.
+            // setImgFile(event.target.files[0]); // 파일 상태 업데이트
+          }
+         
+        // multer s3 통신해서 프로필 사진 변경
+        const formData = new FormData();
+        formData.append('img', event.target.files[0]);
+        axios.put('https://api.picanote.me/profile/upload', formData, {
+            headers: {
+                Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+                "content-type": "multipart/form-data",
+            },
+                withCredentials: true,
+        }).then(res => setNewProfile(res.data.profileUrl) )
+    }
+
+
     // 회원정보 수정
     const UserInfoHandler = async () => {
-        if(!newName || !newPassword){
+        if(!newName || !newPassword ){
             return alert('사용자명과 패스워드는 필수 입력사항입니다.')
         }else if (newPassword !== confirmPassword) {
             return alert('비밀번호가 동일하지 않습니다.');
@@ -37,7 +70,7 @@ export default function EditUserInfo({username, email, profileUrl}) {
                 data: {
                     username: newName,
                     password: newPassword,
-                    profileUrl: newProfile,
+                    profileUrl: newProfile
                 },
                 withCredentials : true   
             }).then(
@@ -67,14 +100,18 @@ export default function EditUserInfo({username, email, profileUrl}) {
         }catch{
             console.log("err");
         }
-    }
+     }
 
     return(
         <EditWrapper>
             <ProfileWrapper>
                     <ProfileLeft>     
-                        {!newProfile ? <img src={Nondisclosure} alt="Nondisclosure" /> : <img src={profileUrl} alt="profileUrl"/>}    
-                        <button>사진 변경</button>
+                        <div>
+                            <img src={imgBase64 ? imgBase64 : mask}></img>
+                        </div>
+                        <label htmlFor="imgFile" onChange={handleChangeFile}>사진 변경</label>
+                        <input type="file" name="imgFile" id="imgFile" onChange={handleChangeFile} style={{display:"none"}}/>
+ 
                     </ProfileLeft>
                     <ProfileRight>
                         <div>{username}</div>

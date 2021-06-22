@@ -50,6 +50,7 @@ const Item = styled.li`
   :hover{
     background-color: gray;
     transform: translateY(-0.5rem);
+    border-radius: 12px;
   }
 `
 

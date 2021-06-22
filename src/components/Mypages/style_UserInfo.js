@@ -20,20 +20,17 @@ export const ProfileWrapper = styled.div`
 
 export const ProfileLeft = styled.div`
     width: 15rem;
-    height: 100%;
+    height: 130%;
     border-right: 1px solid rgb(234,236,239);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    img{
-        width:8rem;
-        height: 8rem;
-        border: 1px solid #CCDEE2;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    button{
+    label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid red;
         margin-top: 15px;
         width: 150px;
         height: 35px;
@@ -49,6 +46,14 @@ export const ProfileLeft = styled.div`
         :hover {
             transform: scale(1.1);
         }  
+    }
+    img{
+        border: 1px solid red;
+        width:8rem;
+        height: 8rem;
+        border: 1px solid #CCDEE2;
+        border-radius: 50%;
+        object-fit: cover;
     }
 `;
 

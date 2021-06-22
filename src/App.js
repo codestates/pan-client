@@ -15,8 +15,8 @@ import Template from "./screens/Template";
 import TemplateGroup from "./screens/TemplateGroup";
 import Writing from "./screens/MakePage/Writing";
 import Drawing from "./screens/MakePage/Drawing";
-
 import Details from "./screens/SubPage/Details";
+
 import UserStore from "./store/UserStore";
 import CreateBookStore from "./store/CreateBookStore";
 import DiaryInfoStore from "./store/DiaryInfoStore";
@@ -28,9 +28,9 @@ function App() {
     <UserStore>
       {/*  User contextAPI  */}
       <CreateBookStore>
-      {/*가입된 book 정보 확인 contextAPI */}
+      {/* 수정을 위한 API */}
       <DiaryInfoStore>
-      {/* 다이어리 정보를 임시 저장 하기 위한 contextAPI */}
+      {/* 수정을 위한 데이터 */}
         <HelmetProvider>
           <GlobalStyles />
           <Router>

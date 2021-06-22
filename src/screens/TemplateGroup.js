@@ -9,7 +9,6 @@ import { FadingBackground, Announcement, TemplateMain, Writing, Drawing } from "
 
 export default function TemplateGroup () {
   const history = useHistory();
-  // IsGroup contextAPI 사용하기 위한 변수
 
     return (
         <>

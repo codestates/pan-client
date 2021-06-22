@@ -30,9 +30,7 @@ export default function Main() {
       const fetchPosts = async () => {
         setLoading(true);
         const resI = await axios.get('https://api.picanote.me/diaries');
-        console.log(resI)
         const resG = await axios.get('https://api.picanote.me/group-diaries');
-        console.log(resG)
         setIndividual(resI.data.data);
         setGroup(resG.data.data);
         setLoading(false);
@@ -41,7 +39,6 @@ export default function Main() {
       fetchPosts();
     
     }, []);
-    console.log(group)
     // searchDiary 나오게하는 useEffect 
     useEffect(() => {},[searchDiary])
 

@@ -30,7 +30,6 @@ export default function ChooseBook() {
     const [bookName, setBookName] = useState('일기장 이름');
     const [bookCover, setBookCover] = useState(bg01);
     const [groupId, setGroupId] = useState('');
-
     // 초대 유저
     const [inviteUser, setInviteUser] = useState([]);
     const [inviteUser1, setInviteUser1] = useState('');
@@ -50,8 +49,7 @@ export default function ChooseBook() {
                 },
                 withCredentials : true
                 })
-                .then(res => console.log(res))
-                // .then(res => setBooks(res.data.data))
+                .then(res => setBooks(res.data.data))
         }catch{ 
             console.error("err");
         }
@@ -110,13 +108,16 @@ export default function ChooseBook() {
                         withCredentials: true,
                     })
                     .then(res => setGroupId(res.data.groupInfo.id))
-                    .then(res => console.log(res))
                     .then(()=> {setInviteModalIsOpen(false)})
+                    .catch(() => alert('이메일을 확인해주세요.'));
+
+
+                    
     }
 
     useEffect(()=>{
-        console.log('리로딩해보자')
-        console.log(groupId)
+        // console.log('리로딩해보자')
+        // console.log(groupId)
     },[groupId])
 
     // 초대 그룹 모달 창 취소하기
@@ -124,14 +125,15 @@ export default function ChooseBook() {
         setInviteModalIsOpen(false);
     }
     // 1번째 유저를 확인합니다.
-    const CheckUser1 = () => {
+    const CheckUser1 =  () => {
         setInviteUser([inviteUser1])
-        alert(`${inviteUser[0]} 체크 되었습니다.`)
+        alert(`체크 되었습니다.`)
+        
     }
     // 2번째 유저를 확인합니다.
     const CheckUser2 = () => {
         setInviteUser([inviteUser1, inviteUser2])
-        alert(`${inviteUser[0]}와${inviteUser[1]} 체크 되었습니다.`)
+        alert(`체크 되었습니다.`);  
     }
 
     // 취소하면 리로드되서 다시 북 선택 모달창으로 이동
@@ -143,8 +145,7 @@ export default function ChooseBook() {
     const chooseCancelBtn = () => {
         setModalIsOpen(false);
     };
-    // console.log(inviteUser1)
-    // console.log(inviteUser)
+
     return (
         <>
             <StyledModal isOpen={modalIsOpen}>

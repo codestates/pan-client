@@ -7,6 +7,7 @@ export default function UserStore (props) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [profileUrl, setProfileUrl] = useState("");
+    const [userId, setUserId] = useState("");
     
     const accessTokenRequest = () => {
         // axios.get('https://api.picanote.me/accessToken',{
@@ -18,10 +19,11 @@ export default function UserStore (props) {
         withCredentials : true
         })
         .then(res => {
-            const { username, email } = res.data.data.userInfo;
+            const { username, email, id, profileUrl } = res.data.data.userInfo;
             setUsername(username);
             setEmail(email);
             setProfileUrl(profileUrl);
+            setUserId(id)
         })
         .catch( error => {
         console.log(error)
@@ -54,6 +56,7 @@ export default function UserStore (props) {
             username,
             setUsername,
             email,
+            userId,
             setEmail,
             profileUrl,
             setProfileUrl,
