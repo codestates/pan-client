@@ -44,18 +44,18 @@ export default function FindPwd(props) {
     const onEmailHandler = (e) => { setEmail(e.target.value); }
 
     const handleFindPwd = () => {
-        if (!username || !email) {
-            return setErrorMessage('사용자 이름과 이메일을 입력해 주세요');
+        if (!email) {
+            return setErrorMessage('이메일을 입력해 주세요');
         } else {
             axios
                 .post(
                     'https://api.picanote.me/findPwd',
                     {
-                        username,
                         email,
                     },
                 )
                 .then((res) => setErrorMessage(res.data.message))
+                .then( ()=>{ alert("비밀번호 초기화 메일이 발송되었습니다.")})
                 .then(() => history.push('/login'))
                 .catch((err) => setErrorMessage(err.response.data.message));
         }
@@ -70,8 +70,6 @@ export default function FindPwd(props) {
                         <BlueGreen>FIND</BlueGreen><CedarChest> PASSWORD</CedarChest>
                     </TextAlign>
                     <form onSubmit={(e) => e.preventDefault()}>
-                        
-                        <Input name="username" type="text" placeholder="닉네임을 입력해주세요." value={username} onChange={onUsernameHandler}  />
                         <Input name="email" type="text" placeholder="이메일을 입력해주세요." value={email} onChange={onEmailHandler} />
                         <Button type="submit" value="Find Password" onClick={handleFindPwd} />
                     </form>
@@ -82,8 +80,6 @@ export default function FindPwd(props) {
                             <span className="errorMsg" />
                         )
                     }
-                    {/* 이 subtitle 글귀 맘에 안들면 그냥 빼버려도 됨 */}
-
                 </FormBox>
                 <BottomBox cta="Bak to main" linkText="Main" link={routes.main} />
 

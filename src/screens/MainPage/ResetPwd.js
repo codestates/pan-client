@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import routes from "../../routes";
 import styled from "styled-components";
 import Input from "../../components/auth/Input";
 import login_bg from "../../images/login_bg.jpg";
 import Button from "../../components/auth/Button";
 import PageTitle from "../../components/PageTitle";
 import FormBox from "../../components/auth/FormBox";
-import BottomBox from "../../components/auth/BottomBox";
 import AuthLayout from "../../components/auth/AuthLayout";
 import { useHistory } from "react-router-dom";
-import { FatLink } from "../../components/shared";
 import { BlueGreen, CedarChest, TextAlign } from "../../components/auth/FontLayout";
 
 const Container = styled.div`
@@ -34,19 +31,20 @@ export default function ResetPwd(props) {
 
     const onPasswordHandler = (e) => { setPassword(e.target.value); }
     const onConfirmPasswordHandler = (e) => { setConfirmPassword(e.target.value); }
-
+    const token = window.location.href.searchParams.get('code');
     const handleResetPwd = () => {
         if (password !== confirmPassword) {
             return setErrorMessage('비밀번호가 일치하지 않습니다.');
         } else {
             axios
                 .post(
-                    'https://api.picanote.me/resetPwd',
+                `https://api.picanote.me/resetPwd/${token}`,
                     {
                         password
                     },
                 )
                 .then((res) => setErrorMessage(res.data.message))
+                .then( ()=>{ alert("비밀번호가 변경되었습니다. 다시 로그인해 주세요.")})
                 .then(() => history.push('/login'))
                 .catch((err) => setErrorMessage(err.response.data.message));
         }
@@ -72,7 +70,6 @@ export default function ResetPwd(props) {
                             <span className="errorMsg" />
                         )
                     }
-                    {/* 이 subtitle 글귀 맘에 안들면 그냥 빼버려도 됨 */}
 
                 </FormBox>
             </AuthLayout>

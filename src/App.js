@@ -10,7 +10,8 @@ import SignUp from "./screens/MainPage/SignUp";
 
 import Myapge from "./screens/MyPage/Mypage";
 import Landing from "./screens/Landing";
-import ResetPwd from "./screens/MyPage/ResetPwd";
+import ResetPwd from "./screens/MainPage/ResetPwd";
+import FindPwd from "./screens/MainPage/FindPwd";
 
 import Template from "./screens/Template";
 import TemplateGroup from "./screens/TemplateGroup";
