@@ -27,10 +27,11 @@ export default function Deletebook(props) {
             },
             withCredentials : true
         })
-        alert("삭제가 완료되었습니다.")
-        .then(setIsOpen(false))
-        .then(() => { window.location.reload(true)}
-        )
+        .then(()=> {
+            setIsOpen(false)
+            alert("삭제가 완료되었습니다.")
+        })
+        .then(() => { window.location.reload(true)})
     }
 
     return (
@@ -41,8 +42,8 @@ export default function Deletebook(props) {
                 </ModalHeader>
                 <ModalMiddle>
                     <MiddleTitle>
-                        <p>일기장을</p><br />
-                        <p>선택해</p><br />
+                        <p>일기장을</p><br/>
+                        <p>선택해</p><br/>
                         <p>주세요</p>
                     </MiddleTitle>
                     <ModalBook>

@@ -6,7 +6,7 @@ import { ListSection, ListItemBox, ItemImg, ItemOverlay, ItemContent } from "../
 export default function PublicNote({current}) {
     //  page이동을 위한 변수들!
     const history = useHistory();
-
+    console.log(current)
     // Details 페이지로 이동 하는 메소드
     // onClick하면 해당 일기의 id값을 추출해서 params로 전달하면서 페이지 이동
     const ToDetails = (id) => {
@@ -24,8 +24,9 @@ export default function PublicNote({current}) {
                     <Link to={routes.main}>
                         <ItemContent>
                             <h3>{post.title}</h3>
-                            <h4>{post.writer}</h4>
-                            <p dangerouslySetInnerHTML={ {__html: post.content} }></p>
+                            <h4>{post.username}</h4>
+                            <h4>{post.date}</h4>
+                            {/* <p dangerouslySetInnerHTML={ {__html: post.content} }></p> */}
                         </ItemContent>
                         {/* <ItemOverlay /> */}
                     </Link>

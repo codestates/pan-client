@@ -33,7 +33,7 @@ function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
           {isMain ? 
           <SearchBox>
             {keywords ? 
-            <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords} style={{
+            <SearchTxt className="serach" type="text" placeholder="Type to search" onChange={searchKeywords} style={{
                   padding: '0 6px',
                   width: '240px',
             }}/>

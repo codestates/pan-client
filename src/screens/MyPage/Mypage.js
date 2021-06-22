@@ -8,7 +8,7 @@ import Books from '../SubPage/Books';
 import Nondisclosure from '../../images/Nondisclosure.jpg'
 import UserInfo from '../MyPage/Userinfo';
 import { UserContext } from "../../store/UserStore";
-import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, ProfileButton, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../../components/Mypages/Style_Mypage"
+import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../../components/Mypages/Style_Mypage"
 
 export default function Mypage() { 
   const [cur, setCur] = useState({

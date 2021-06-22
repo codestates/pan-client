@@ -29,13 +29,13 @@ export const GroupHeader = styled.div`
     justify-content: center;
     align-items: center;
     font-size: xx-large;
-    margin-bottom: 5rem;
+    margin-bottom: 4%;
 `;
 
 export const SearchUser = styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3%;
 `;
 
 export const InviteUser = styled.input`
@@ -64,16 +64,12 @@ export const CheckBtn = styled.button`
 `
 
 export const InviteBottom = styled.div`
-    /* border:1px solid red; */
     display: flex;
-    align-items: center;
-    justify-content: center;
 `
 
 export const InviteBtn = styled.button`
     width: 90px;
     height: 40px;
-    margin-top: 30px;
     margin-left: 15px;
     border: 1px solid #242D40;
     border-radius: 10px;
@@ -91,7 +87,6 @@ export const InviteBtn = styled.button`
 export const CancelBtn = styled.button`
     width: 90px;
     height: 40px;
-    margin-top: 30px;
     margin-left: 15px;
     border: 1px solid #D9A9A9;
     border-radius: 10px;

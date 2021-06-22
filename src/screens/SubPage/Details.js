@@ -26,18 +26,22 @@ export default function Details ({ match }) {
         date: '',
         private: '',
         like: '',
-        comments: []
+        comments: [],
+        isLike: []
     });
     const [comment, setComment] = useState('');
     const [loading, setLoading] = useState(false);
     const histoy = useHistory();
     
-    const context = useContext(UserContext);
-    const {username, accessTokenRequest} = context ;
 
+    // user contextAPI
+    const userContext = useContext(UserContext);
+    const {username, accessTokenRequest } = userContext ;
+   
     // 토큰 유무를 확인해서 로그인 상태라면 에세스 토큰으로 정보를 추출함 => 본인 일기라면 수정,삭제 보이게 해주기 위함
     // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
+        // 토큰이 있다면
         if(localStorage.getItem('CC_Token')) {
             accessTokenRequest()
                 try {
@@ -66,33 +70,38 @@ export default function Details ({ match }) {
                     date: res.data.data[0].date,
                     private: res.data.data[0].private,
                     like: res.data.data[0].like,
-                    comments : res.data.data[0].Comments
-                })
+                    comments : res.data.data[0].Comments,
+                    isLike : res.data.data[0].Likes
+                }),
+                setLoading(false),
                 )
-                setLoading(false);
             }
             getDetails();
         } catch {
             histoy.goBack();
         }
+        // 토큰이 없다면
         } else {
             const fetchPosts = async () => {
                 setLoading(true);
                 const res = await axios.get(`https://api.picanote.me/diaries/${id}`);
-                setDetails({      
-                    title : res.data.data[0].title,
-                    content: res.data.data[0].content,
-                    feelings: res.data.data[0].feelings,
-                    weather: res.data.data[0].weather,
-                    picUrl: res.data.data[0].picUrl,
-                    username: res.data.data[0].username,
-                    date: res.data.data[0].date,
-                    private: res.data.data[0].private,
-                    like: res.data.data[0].like,
-                    comments : res.data.data[0].Comments
-                })
+                // console.log(res)
+                    setDetails({      
+                        title : res.data.data[0].title,
+                        content: res.data.data[0].content,
+                        feelings: res.data.data[0].feelings,
+                        weather: res.data.data[0].weather,
+                        picUrl: res.data.data[0].picUrl,
+                        username: res.data.data[0].username,
+                        date: res.data.data[0].date,
+                        private: res.data.data[0].private,
+                        like: res.data.data[0].like,
+                        comments : res.data.data[0].Comments,
+                        isLike : res.data.data[0].Likes
+                    })
+
+                
                 setLoading(false);
-                console.log(res)
               };   
           
               fetchPosts();
@@ -131,7 +140,10 @@ export default function Details ({ match }) {
                 },
             withCredentials: true,
         })
-        .then(alert('좋아요 눌렀는지 어떻게 확인하지?'))
+        setTimeout(()=> {
+           (window.location.reload(true));
+        },1000)
+ 
     }
     
     // 이전 일기로 이동
@@ -147,6 +159,15 @@ export default function Details ({ match }) {
         histoy.push(`/details/${next}`);
         window.location.reload(true);
     }
+
+    // 수정 하기
+    const FixedDiary = () => {
+        localStorage.setItem('temp', JSON.stringify(details));
+        localStorage.setItem('id', JSON.stringify(id));
+        !details.picUrl ? histoy.push('/writing') : histoy.push('/drawing')
+    }
+
+
 
     // 댓글 포스트 
     const commentPost = async () => {
@@ -252,6 +273,7 @@ export default function Details ({ match }) {
                     </ContentHeader>
                     {/* 일기 본문 내용 */}
                     <ContentMain>
+                        { details.picUrl ? <img src={details.picUrl}/> : null }                       
                         <div dangerouslySetInnerHTML={ {__html: details.content} }></div>
                         {/* {details.content} */}
                     </ContentMain>
@@ -261,9 +283,11 @@ export default function Details ({ match }) {
                                 작성자: {details.username}
                             </BottomWriter>
                             <BottomLikeBtn>   
-                                <FiHeart onClick={handlerHeart}/>
-                                <div>&nbsp;</div>        
-                                {details.like}
+                             <>
+                                 <FiHeart onClick={handlerHeart}/>
+                                 <div>&nbsp;</div>        
+                                 {details.like}
+                             </>
                             </BottomLikeBtn>
                         </BottomLeft>
                         <BottomRight>
@@ -282,7 +306,7 @@ export default function Details ({ match }) {
                                 <PublicBtn onClick={handleSubmit}> 공 개 </PublicBtn> 
                                 : <PublicBtn onClick={handleSubmit}> 비 공 개 </PublicBtn>
                                 }
-                                    <BottomEditBtn>
+                                    <BottomEditBtn onClick={FixedDiary}>
                                         수 정
                                     </BottomEditBtn>
                                     <BottomDeleteBtn onClick={deleteDiary}>

@@ -1,19 +1,17 @@
 import React, { createContext, useState } from 'react'
 
-export const CreateDiaryInfoContext = createContext();
+export const DiaryInfoContext = createContext();
 
 function DiaryInfoStore (props) {
-    const [diaryInfo, setDiaryInfo] = useState({});
-
-
+    const [diaryInfo, setDiaryInfo] = useState("");
 
     return (
-        <CreateDiaryInfoContext.Provider value={{
+        <DiaryInfoContext.Provider value={{
             diaryInfo,
             setDiaryInfo
         }}>
             {props.children}
-        </CreateDiaryInfoContext.Provider>
+        </DiaryInfoContext.Provider>
     )
 }
 

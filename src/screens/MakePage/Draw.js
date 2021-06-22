@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import brushIcon from "../../images/brush.png"
@@ -6,14 +7,14 @@ import brushIcon from "../../images/brush.png"
 const CANVAS_WIDTH = 1300;
 const CANVAS_HEIGHT = 400;
 
-export default function Board() {
+export default function Board({ setPicUrl }) {
   const COLORS = ["#FFF9E9", "#CCDEE2", "#C08A90", "#DCB1B7", "#F4A24F", "#C57951", "#E2CD6D", 
   "#D85941", "#83B799", "#3D8DAB", "#9196E1", "#505AC5", ,"#274040", "#1C1B1A"];
 
   const [filling, setFilling] = useState(false);
   const [painting, setPainting] = useState(false);
   const [color, setColor] = useState(COLORS[14]);
-  
+
   const canvas = useRef(null);
   const ctx = useRef(null);
 
@@ -41,10 +42,6 @@ export default function Board() {
   };
 
   const handleColorClick = (e) => {
-    // if(filling){
-    //   setColor(e.target.name)
-    //   ctx.current.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    // }else {
       setColor(e.target.name)
       ctx.current.fillStyle = color;
     // }
@@ -76,6 +73,33 @@ export default function Board() {
     ctx.current.fillStyle = 'white'
     ctx.current.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   }
+
+  const uploadCanvasToServer = async () => {
+    const newCtx = document.getElementsByClassName("canva");
+    const imgBase64 = newCtx[0].toDataURL('image/png');
+    const decodImg = atob(imgBase64.split(',')[1]);
+    let array = [];
+    for (let i = 0; i < decodImg .length; i++) {
+      array.push(decodImg .charCodeAt(i));
+    }
+    const file = new Blob([new Uint8Array(array)], {type: 'image/png'});
+    // const fileName = 'canvas_img_' + new Date().getMilliseconds() + '.png';
+    let formData = new FormData();
+    formData.append('img', file);
+
+    
+    await axios.post("https://api.picanote.me/diaries/upload", formData, {
+      headers: {
+        Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+        "content-type": "multipart/form-data",
+    },
+        withCredentials: true,
+    })
+    .then(alert('그림이 등록 되었습니다.'))
+    .then(res => setPicUrl(res.data.picUrl));
+  };
+  
+
 
   useEffect(() => {
     if (canvas.current) {
@@ -124,12 +148,12 @@ export default function Board() {
             </ColorButton>
           )})}
           <ToolRight>
-            <Savebtn>
+            <Savebtn onClick={uploadCanvasToServer}>
               그림 저장
             </Savebtn>
           </ToolRight>
       </ToolDiv>
-      <Canva
+      <Canva className="canva"
         ref={canvas}
         width={CANVAS_WIDTH}
         height={CANVAS_HEIGHT}

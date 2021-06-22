@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useRef }  from 'react';
 import routes from '../../routes';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import ToggleButton from '../ToggleButton';
 import {
@@ -28,7 +28,7 @@ export default function Writing() {
   const [feelings, setFeelings] = useState('');
   const [weather, setWeather] = useState('');
   const [content, setContent] = useState('');
-  const [drawingData, setDrawingData] = useState('');
+  const [picUrl, setPicUrl] = useState('');
 
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
   const titleHandler = (e) => {
@@ -57,9 +57,10 @@ export default function Writing() {
           if(!bookInfo) {
             alert('일기장이 선택되지 않았습니다. 일기장을 다시 선택하고 작성해주세요.');
           }
-          else if(!title || !date || !feelings || !weather || !content || drawingData) {
+          else if(!title || !date || !feelings || !weather || !content || !picUrl) {
             alert('제목,기분,날짜,날씨,내용,그림을 작성해주세요.');
-          } else {
+          } 
+          else {
           await axios({
             method: 'post',
             url: 'https://api.picanote.me/diaries',
@@ -67,9 +68,12 @@ export default function Writing() {
                 bookId: bookInfo.id,
                 title,
                 date,
+                content,
                 feelings,
                 weather,
-                drawingData
+                picUrl,
+                
+
             },
             headers: {
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
@@ -106,14 +110,15 @@ export default function Writing() {
 
 
 // 테스트용으로 남겨둔거 나중에 작성 완료되면 삭제해야됨
-  useEffect(()=> {
-    console.log(title)
-    console.log(date)
-    console.log(feelings)
-    console.log(weather)
-    console.log(bookInfo.id)
-    console.log(content)
-  }, [title,date,feelings,weather,bookInfo,content])
+  // useEffect(()=> {
+  //   console.log(title)
+  //   console.log(date)
+  //   console.log(feelings)
+  //   console.log(weather)
+  //   console.log(bookInfo.id)
+  //   console.log(content)
+  //   console.log(picUrl)
+  // }, [title,date,feelings,weather,bookInfo,content,picUrl])
 
 
   return (
@@ -135,7 +140,7 @@ export default function Writing() {
             </WriteHeaderRight>
           </WriteHeader>
           <WriteContents>
-            <Darw/>
+            <Darw setPicUrl={setPicUrl}/>
             <Editor 
               previewStyle="vertical" 
               height="300px" 

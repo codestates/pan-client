@@ -56,14 +56,9 @@ export default function SignUp(props) {
                     'https://api.picanote.me/signup',
                     {
                         username,
-
                         email,
                         password
                     },
-                    // {
-                    //     'Content-Type': 'application/json',
-                    //     withCredentials: true,
-                    // }
                 )
                 .then((res) => setErrorMessage(res.data.message))
                 .then(() => history.push('/login'))
@@ -77,7 +72,7 @@ export default function SignUp(props) {
                 <PageTitle title="Sign Up" />
                 <FormBox>
                     <TextAlign>
-                        <BlueGreen>SIGN UP </BlueGreen><CedarChest> ACCOUNT</CedarChest>
+                        <BlueGreen>SIGN UP</BlueGreen><CedarChest> ACCOUNT</CedarChest>
                     </TextAlign>
                     <form onSubmit={(e) => e.preventDefault()}>
                         <Input name="email" type="text" placeholder="이메일을 입력해주세요." value={email} onChange={onEmailHandler} />
