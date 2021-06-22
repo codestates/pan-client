@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ImageBox, SocialBtn } from "../../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../../components/auth/FontLayout";
-import { KAKAO_AUTH_URL } from './Oauth'
+import { KakaoLogin } from "./Oauth";
 
 const Container = styled.div`
     position: absolute;
@@ -67,11 +67,9 @@ export default function Login() {
     // const CLIENT_ID = "64297550b73307c8aa6c8a038401053f";
     // const REDIRECT_URI =  "http://localhost:3000/kakao";
     // const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-
-    const kakaoLoginHandler = () => {
-        window.location.assign(KAKAO_AUTH_URL)
-    }
+    // const kakaoLoginHandler = () => {
+    //     window.location.assign(KAKAO_AUTH_URL)
+    // }
 
     return (
         <Container>
@@ -90,8 +88,7 @@ export default function Login() {
                     <Separator />
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
-                        {console.log(KAKAO_AUTH_URL)}
-                        <SocialBtn onClick={kakaoLoginHandler}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
+                        <SocialBtn onClick={KakaoLogin}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
                 </FormBox>
