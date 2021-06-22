@@ -75,6 +75,7 @@ export default function Login() {
             //받아오는 response객체의 access_token을 통해 유저 정보를 authorize한다. 
           },
         })
+        .then((res)=> console.log(res))
           .then((res) => res.json())
           .then((res) => localStorage.setItem('token', res.token), 
                 //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
@@ -82,7 +83,7 @@ export default function Login() {
                 //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는 
                 //절차가 있으므로 까먹지 말 것! 
                 alert('로그인 성공하였습니다'));
-                console.log(data)
+                console.log(data);
       };
 
     return (
@@ -108,9 +109,9 @@ export default function Login() {
                         <KaKaoBtn
                             token={'1365e7c324a3fc0d82f2eff53605375f'}
                             buttonText="KaKao"
-                            onSuccess={responseKaKao}
+                            onSuccess={res => console.log(res)}
                             onFailure={console.log('실패')}
-                            // getProfile={true}
+                            getProfile={true}
                         />
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
