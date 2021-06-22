@@ -69,24 +69,22 @@ export default function Login() {
         setData(data.res)
         fetch(`${KAKAO_AUTH_URL}/kakao`, {
           //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
-          method: 'GET',
-          headers: {
-            Authorization: res.response.access_token,
-            //받아오는 response객체의 access_token을 통해 유저 정보를 authorize한다. 
-          },
+            method: 'GET',
+            headers: {
+                Authorization: res.response.access_token,
+                //받아오는 response객체의 access_token을 통해 유저 정보를 authorize한다. 
+            },
         })
-
         .then((res)=> console.log(res))
+        .then((res) => res.json())
+        .then((res) => localStorage.setItem('token', res.token), 
+        //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
+        //여기서 중요한것은 처음에 console.log(res)해서 들어오는 
+        //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는 
+        //절차가 있으므로 까먹지 말 것! 
+        alert('로그인 성공하였습니다'));
 
-          .then((res) => res.json())
-          .then((res) => localStorage.setItem('token', res.token), 
-                //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
-                //여기서 중요한것은 처음에 console.log(res)해서 들어오는 
-                //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는 
-                //절차가 있으므로 까먹지 말 것! 
-                alert('로그인 성공하였습니다'));
-
-      };
+    };
 
     return (
         <Container>
@@ -111,12 +109,11 @@ export default function Login() {
                         <KaKaoBtn
                             token={'1365e7c324a3fc0d82f2eff53605375f'}
                             buttonText="KaKao"
-
+                            // 여기에 console.log찍으면 정보가 나옴
                             onSuccess={res => console.log(res)}
                             onFailure={console.log('실패')}
+                            // getProfile해야 정보를 볼 수 있음
                             getProfile={true}
-
-
                         />
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
