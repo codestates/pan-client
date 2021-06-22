@@ -35,7 +35,7 @@ export default function Writing() {
     await setDiaryId(JSON.parse(localStorage.getItem('id')))
     // await editorRef.current.getInstance().setHtml(temp.content); 
 
-  },[temp])
+  },[])
   
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
   const titleHandler = (e) => {
