@@ -9,7 +9,8 @@ const routes = {
     details: "/details/:id",
     writing: "/writing",
     drawing: "/drawing",
-    findPwd: "/findPwd"
+    resetPwd: "/resetPwd",
+    findPWd: "/findPwd"
 }
 
 export default routes;

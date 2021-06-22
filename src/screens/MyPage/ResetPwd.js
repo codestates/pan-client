@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 
 
-export default function SignUp(props) {
+export default function ResetPwd(props) {
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -35,13 +35,13 @@ export default function SignUp(props) {
     const onPasswordHandler = (e) => { setPassword(e.target.value); }
     const onConfirmPasswordHandler = (e) => { setConfirmPassword(e.target.value); }
 
-    const handleFindPwd = () => {
+    const handleResetPwd = () => {
         if (password !== confirmPassword) {
             return setErrorMessage('비밀번호가 일치하지 않습니다.');
         } else {
             axios
                 .post(
-                    'https://api.picanote.me/findPwd',
+                    'https://api.picanote.me/resetPwd',
                     {
                         password
                     },
@@ -55,15 +55,15 @@ export default function SignUp(props) {
     return (
         <Container>
             <AuthLayout>
-                <PageTitle title="Find Password" />
+                <PageTitle title="Reset Password" />
                 <FormBox>
                     <TextAlign>
-                        <BlueGreen>FIND</BlueGreen><CedarChest> PASSWORD</CedarChest>
+                        <BlueGreen>RESET</BlueGreen><CedarChest> PASSWORD</CedarChest>
                     </TextAlign>
                     <form onSubmit={(e) => e.preventDefault()}>
                         <Input name="password" type="password" placeholder="비밀번호를 입력해주세요." value={password} onChange={onPasswordHandler} />
                         <Input name="passwordCorrect" type="password" placeholder="다시 한번 입력해주세요." value={confirmPassword} onChange={onConfirmPasswordHandler} />
-                        <Button type="submit" value="CHANGE PASSWORD" onClick={handleFindPwd} />
+                        <Button type="submit" value="CHANGE PASSWORD" onClick={handleResetPwd} />
                     </form>
                     {
                         errorMessage ? (
