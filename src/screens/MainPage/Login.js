@@ -103,7 +103,6 @@ export default function Login() {
                     <Separator />
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
-
                         {/* <SocialBtn onClick={kakaoLoginHandler}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn> */}
                         <KaKaoBtn
                             token={'1365e7c324a3fc0d82f2eff53605375f'}
