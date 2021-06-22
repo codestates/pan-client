@@ -86,6 +86,7 @@ export default function Login() {
                         <Input name="email" type="text" placeholder="EMAIL" onChange={HandleEmail}/>
                         <Input name="password" type="password" placeholder="PASSWORD" onChange={HandlePassword}/>
                         <Button type="submit" value="LOG IN" onClick={HandleSubmit} />
+                        <BottomBox linkText="비밀번호찾기" link={routes.findPwd} />
                     </form>
                     <Separator />
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}

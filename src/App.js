@@ -10,6 +10,7 @@ import SignUp from "./screens/MainPage/SignUp";
 
 import Myapge from "./screens/MyPage/Mypage";
 import Landing from "./screens/Landing";
+import FindPwd from "./screens/MyPage/FindPwd";
 
 import Template from "./screens/Template";
 import TemplateGroup from "./screens/TemplateGroup";
@@ -61,6 +62,9 @@ function App() {
                 </Route>
                 <Route path={routes.signUp}>
                   <SignUp />
+                </Route>
+                <Route path={routes.findPwd}>
+                  <FindPwd />
                 </Route>
                   <Route exact path="/details/:id" component={Details}/>
                 {/* <Route path={routes.details}>

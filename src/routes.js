@@ -8,7 +8,8 @@ const routes = {
     templategroup: "/templategroup",
     details: "/details/:id",
     writing: "/writing",
-    drawing: "/drawing"
+    drawing: "/drawing",
+    findPwd: "/findPwd"
 }
 
 export default routes;
