@@ -23,30 +23,39 @@ const Container = styled.div`
     width: 100%;
 `;
 
+const Subtitle = styled(FatLink)`
+    font-size: 12px;
+    color: #666666;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    text-align: center;
+`;
 
-export default function SignUp(props) {
 
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+export default function FindPwd(props) {
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const history = useHistory();
 
-    const onPasswordHandler = (e) => { setPassword(e.target.value); }
-    const onConfirmPasswordHandler = (e) => { setConfirmPassword(e.target.value); }
+    const onUsernameHandler = (e) => { setUsername(e.target.value); }
+    const onEmailHandler = (e) => { setEmail(e.target.value); }
 
     const handleFindPwd = () => {
-        if (password !== confirmPassword) {
-            return setErrorMessage('비밀번호가 일치하지 않습니다.');
+        if (!email) {
+            return setErrorMessage('이메일을 입력해 주세요');
         } else {
             axios
                 .post(
                     'https://api.picanote.me/findPwd',
                     {
-                        password
+                        email,
                     },
                 )
                 .then((res) => setErrorMessage(res.data.message))
+                .then( ()=>{ alert("비밀번호 초기화 메일이 발송되었습니다.")})
                 .then(() => history.push('/login'))
                 .catch((err) => setErrorMessage(err.response.data.message));
         }
@@ -61,9 +70,8 @@ export default function SignUp(props) {
                         <BlueGreen>FIND</BlueGreen><CedarChest> PASSWORD</CedarChest>
                     </TextAlign>
                     <form onSubmit={(e) => e.preventDefault()}>
-                        <Input name="password" type="password" placeholder="비밀번호를 입력해주세요." value={password} onChange={onPasswordHandler} />
-                        <Input name="passwordCorrect" type="password" placeholder="다시 한번 입력해주세요." value={confirmPassword} onChange={onConfirmPasswordHandler} />
-                        <Button type="submit" value="CHANGE PASSWORD" onClick={handleFindPwd} />
+                        <Input name="email" type="text" placeholder="이메일을 입력해주세요." value={email} onChange={onEmailHandler} />
+                        <Button type="submit" value="Find Password" onClick={handleFindPwd} />
                     </form>
                     {
                         errorMessage ? (
@@ -72,9 +80,9 @@ export default function SignUp(props) {
                             <span className="errorMsg" />
                         )
                     }
-                    {/* 이 subtitle 글귀 맘에 안들면 그냥 빼버려도 됨 */}
-
                 </FormBox>
+                <BottomBox cta="Bak to main" linkText="Main" link={routes.main} />
+
             </AuthLayout>
         </Container>
     )

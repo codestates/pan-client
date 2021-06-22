@@ -9,6 +9,7 @@ const routes = {
     details: "/details/:id",
     writing: "/writing",
     drawing: "/drawing",
+    resetPwd: "/resetPwd",
     findPwd: "/findPwd"
 }
 
