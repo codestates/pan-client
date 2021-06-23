@@ -6,7 +6,6 @@ import { ListSection, ListItemBox, ItemImg, ItemOverlay, ItemContent } from "../
 export default function PublicNote({current}) {
     //  page이동을 위한 변수들!
     const history = useHistory();
-    console.log(current)
     // Details 페이지로 이동 하는 메소드
     // onClick하면 해당 일기의 id값을 추출해서 params로 전달하면서 페이지 이동
     const ToDetails = (id) => {

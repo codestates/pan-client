@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import toronto from '../../images/toronto.jpg';
-import newyork from "../../images/new_york.jpg";
-import WriteTemp from "../../images/writeTemp.png";
+import drawing from "../../images/drawing.jpg"
+import Write from "../../images/write.jpg"
 import { BaseModalBackground } from "styled-react-modal";
 
 export const FadingBackground = styled(BaseModalBackground)`
@@ -36,9 +35,10 @@ export const TemplateMain = styled.section`
 export const Writing = styled.div` 
     display: block;
     font-size: 50px;
-    color: white;
+    color: #3D8DAB;
+    font-weight: 800;
     line-height: 520px;
-    background-image: url(${toronto});
+    background-image: url(${Write});
     background-size: 102% 100%;
     width: 30%;
     height: 70%;
@@ -57,9 +57,10 @@ export const Writing = styled.div`
 export const Drawing = styled.div`
     display: block;
     font-size: 50px;
-    color: white;
+    color: #D85941;
+    font-weight: 800;
     line-height: 520px;
-    background-image: url(${newyork});
+    background-image: url(${drawing});
     background-size: 100% 100%;
     width: 30%;
     height: 70%;
