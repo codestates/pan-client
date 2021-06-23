@@ -31,7 +31,8 @@ export default function ResetPwd(props) {
 
     const onPasswordHandler = (e) => { setPassword(e.target.value); }
     const onConfirmPasswordHandler = (e) => { setConfirmPassword(e.target.value); }
-    const token = window.location.href.searchParams.get('code');
+    const token = new URL(window.location.href).searchParams.get('code');
+   // const token = window.location.href.searchParams.get('code');
     const handleResetPwd = () => {
         if (password !== confirmPassword) {
             return setErrorMessage('비밀번호가 일치하지 않습니다.');
