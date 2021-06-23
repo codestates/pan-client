@@ -29,6 +29,20 @@ export default function Writing() {
   const [weather, setWeather] = useState('');
   const [content, setContent] = useState('');
   const [picUrl, setPicUrl] = useState('');
+  const [temp, setTemp] = useState('');
+  const [diaryId, setDiaryId] = useState('');
+
+  useEffect( ()=> {
+    // console.log('렌더링된다')
+    setTemp(JSON.parse(localStorage.getItem('temp')))
+    setDiaryId(JSON.parse(localStorage.getItem('id')))
+    
+    // console.log(temp)
+    // console.log(diaryId)
+    diaryId !== null ? 
+    editorRef.current.getInstance().setHtml(temp.content) :
+    editorRef.current.getInstance().setHtml("<h1>환영합니다!</h1>"); 
+  },[diaryId])
 
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
   const titleHandler = (e) => {
@@ -94,8 +108,49 @@ export default function Writing() {
       }
   }
 
+  const fixedBtn = async () => {
+    console.log('수정버튼');
+    localStorage.removeItem('temp');
+
+    if(!title || !date || !feelings || !weather || !content ) {
+      alert('제목,기분,날짜,날씨,내용을 작성해주세요.');
+    } else {
+    await axios({
+      method: 'put',
+      url: `https://api.picanote.me/diaries/${diaryId}`,
+      data: {
+          bookId: bookInfo.id,
+          title,
+          date,
+          feelings,
+          weather,
+          content,
+      },
+      headers: {
+          Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
+          'ContentType' : 'application/json',
+      },
+          withCredentials: true,
+    })
+    .then(() => {
+      localStorage.removeItem('temp');
+      localStorage.removeItem('id');
+      alert('일기가 수정 되었습니다.');
+      history.push('/mypage');
+    }
+    )
+    .catch((err) => {
+      alert('일기 수정이 실패되었습니다. 다시 작성해주세요.');
+      console.error(err);
+      history.push('/');
+  });
+}
+  }
+
   const cancelBtn = () => {
     history.push('/');
+    localStorage.removeItem('temp');
+    localStorage.removeItem('id');
   };
 
   // 에디터 툴 내용 추출
@@ -153,7 +208,10 @@ export default function Writing() {
           <Footer>
             {/* 여기서 취소를 누르면 전페이지로 이동 */}
             <CancelButton onClick={cancelBtn}>취 소</CancelButton>
-            <WriteButton onClick={writeBtn}>생 성</WriteButton>
+            {
+              diaryId ? <WriteButton onClick={fixedBtn}>수 정</WriteButton> :
+              <WriteButton onClick={writeBtn}>생 성</WriteButton>
+            }
        
 
           </Footer>

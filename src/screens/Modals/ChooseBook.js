@@ -35,6 +35,23 @@ import bg27 from "../../images/Cover_img/27.png"
 import bg28 from "../../images/Cover_img/28.png"
 import bg29 from "../../images/Cover_img/29.png"
 import bg30 from "../../images/Cover_img/30.png"
+import bg31 from "../../images/Cover_img/31.png"
+import bg32 from "../../images/Cover_img/32.png"
+import bg33 from "../../images/Cover_img/33.png"
+import bg34 from "../../images/Cover_img/34.png"
+import bg35 from "../../images/Cover_img/35.png"
+import bg36 from "../../images/Cover_img/36.png"
+import bg38 from "../../images/Cover_img/38.jpeg"
+import bg39 from "../../images/Cover_img/39.png"
+import bg40 from "../../images/Cover_img/40.png"
+import bg41 from "../../images/Cover_img/41.jpeg"
+import bg42 from "../../images/Cover_img/42.jpeg"
+import bg43 from "../../images/Cover_img/43.jpeg"
+import bg44 from "../../images/Cover_img/44.jpeg"
+import bg45 from "../../images/Cover_img/45.jpeg"
+import bg46 from "../../images/Cover_img/46.png"
+import bg47 from "../../images/Cover_img/47.jpeg"
+import bg48 from "../../images/Cover_img/48.jpeg"
 
 import { CreateBookContext } from "../../store/CreateBookStore";
 
@@ -175,6 +192,16 @@ export default function ChooseBook() {
                                 <LeftCoverDiv>
                                     <h1>커버를 선택해주세요.</h1>
                                     <SelectCover>
+                                        <CoverImg src={bg39} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg40} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg41} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg42} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg43} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg44} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg45} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg46} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg47} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg48} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg01} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg02} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg03} onClick={e => {setBookCover(e.target.src)}} />
@@ -205,6 +232,13 @@ export default function ChooseBook() {
                                         <CoverImg src={bg28} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg29} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg30} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg31} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg32} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg33} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg34} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg35} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg36} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg38} onClick={e => {setBookCover(e.target.src)}} />
                                     </SelectCover>
                                 </LeftCoverDiv>
                             </LeftCreateDiv>

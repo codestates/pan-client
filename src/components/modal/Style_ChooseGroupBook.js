@@ -160,7 +160,7 @@ export const SelectCover = styled.div`
   height: 90%;
   display: grid;
   grid-template-columns: repeat(3, minmax(25%, 1fr));
-  grid-template-rows: repeat(3, minmax(50%, 1fr));
+  grid-template-rows: repeat(100, minmax(50%, 1fr));
   overflow-y: scroll;
 `;
 

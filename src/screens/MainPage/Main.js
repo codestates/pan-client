@@ -103,19 +103,11 @@ export default function Main() {
                 </>
                 : 
                 <>
-                  { currentGroup ? 
-                    <>
-                    <PublicNote current={currentGroup}/>
-                    <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
-                    </>
-                    :
-                    <>
-                      <CautionEx>
-                        현재 공유된 교환일기가 없습니다.
-                      </CautionEx>
-                    </>
-                  }
+                  <PublicNote current={currentGroup}/>
+                  <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
                 </>
+
+ 
             }
             {/* 개인과 그룹을 구별하기 위한 삼항 연산자 */}
             {/* {cur.individual ? 

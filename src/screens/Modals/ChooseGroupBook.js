@@ -18,6 +18,41 @@ import bg09 from "../../images/Cover_img/09.png"
 import bg10 from "../../images/Cover_img/10.png"
 import bg11 from "../../images/Cover_img/11.png"
 import bg12 from "../../images/Cover_img/12.png"
+import bg13 from "../../images/Cover_img/13.png"
+import bg14 from "../../images/Cover_img/14.png"
+import bg15 from "../../images/Cover_img/15.png"
+import bg16 from "../../images/Cover_img/16.png"
+import bg17 from "../../images/Cover_img/17.png"
+import bg18 from "../../images/Cover_img/18.png"
+import bg19 from "../../images/Cover_img/19.png"
+import bg20 from "../../images/Cover_img/20.png"
+import bg21 from "../../images/Cover_img/21.png"
+import bg22 from "../../images/Cover_img/22.png"
+import bg23 from "../../images/Cover_img/23.png"
+import bg24 from "../../images/Cover_img/24.png"
+import bg25 from "../../images/Cover_img/25.png"
+import bg26 from "../../images/Cover_img/26.png"
+import bg27 from "../../images/Cover_img/27.png"
+import bg28 from "../../images/Cover_img/28.png"
+import bg29 from "../../images/Cover_img/29.png"
+import bg30 from "../../images/Cover_img/30.png"
+import bg31 from "../../images/Cover_img/31.png"
+import bg32 from "../../images/Cover_img/32.png"
+import bg33 from "../../images/Cover_img/33.png"
+import bg34 from "../../images/Cover_img/34.png"
+import bg35 from "../../images/Cover_img/35.png"
+import bg36 from "../../images/Cover_img/36.png"
+import bg38 from "../../images/Cover_img/38.jpeg"
+import bg39 from "../../images/Cover_img/39.png"
+import bg40 from "../../images/Cover_img/40.png"
+import bg41 from "../../images/Cover_img/41.jpeg"
+import bg42 from "../../images/Cover_img/42.jpeg"
+import bg43 from "../../images/Cover_img/43.jpeg"
+import bg44 from "../../images/Cover_img/44.jpeg"
+import bg45 from "../../images/Cover_img/45.jpeg"
+import bg46 from "../../images/Cover_img/46.png"
+import bg47 from "../../images/Cover_img/47.jpeg"
+import bg48 from "../../images/Cover_img/48.jpeg"
 import { CreateBookContext } from "../../store/CreateBookStore";
 
 export default function ChooseBook() {
@@ -240,6 +275,17 @@ export default function ChooseBook() {
                                 <LeftCoverDiv>
                                     <h1>커버를 선택해주세요.</h1>
                                     <SelectCover>
+                                        <CoverImg src={bg38} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg39} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg40} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg41} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg42} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg43} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg44} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg45} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg46} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg47} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg48} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg01} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg02} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg03} onClick={e => {setBookCover(e.target.src)}} />
@@ -252,6 +298,31 @@ export default function ChooseBook() {
                                         <CoverImg src={bg10} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg11} onClick={e => {setBookCover(e.target.src)}} />
                                         <CoverImg src={bg12} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg13} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg14} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg15} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg16} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg17} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg18} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg19} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg20} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg21} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg22} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg23} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg24} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg25} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg26} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg27} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg28} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg29} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg30} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg31} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg32} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg33} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg34} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg35} onClick={e => {setBookCover(e.target.src)}} />
+                                        <CoverImg src={bg36} onClick={e => {setBookCover(e.target.src)}} />
+                      
                                     </SelectCover>
                                 </LeftCoverDiv>
                             </LeftCreateDiv>
