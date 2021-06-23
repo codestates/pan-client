@@ -15,7 +15,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ImageBox, SocialBtn } from "../../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../../components/auth/FontLayout";
-import { KAKAO_AUTH_URL } from './Oauth'
+import { KAKAO_AUTH_URL1 } from './Oauth'
+import { KAKAO_AUTH_URL2 } from './Oauth'
 import KaKaoLogin from 'react-kakao-login'
 
 const Container = styled.div`
@@ -66,28 +67,26 @@ export default function Login() {
     };
 
     const responseKaKao = (res) => {
-        setData(data.res)
-        fetch(`${KAKAO_AUTH_URL}/kakao`, {
-          //백엔드에서 원하는 형태의 endpoint로 입력해서 fetch한다. 
-            method: 'GET',
-            headers: {
-                Authorization: res.response.access_token,
-                //받아오는 response객체의 access_token을 통해 유저 정보를 authorize한다. 
-            },
+        window.Kakao.Auth.login({
+            success: authObj => {
+              console.log(authObj)
+              axios('https://api.picanote.me/kakao', {
+                method: 'POST',
+                headers: {
+                  Authorization: authObj.access_token,
+                },
+            })
+            .then(res=> console.log(res))
+            }
         })
-        .then((res)=> console.log(res))
-        .then((res) => res.json())
-        .then((res) => localStorage.setItem('token', res.token), 
-        //백엔드에서 요구하는 key 값(token)으로 저장해서 localStorage에 저장한다.
-        //여기서 중요한것은 처음에 console.log(res)해서 들어오는 
-        //access_token 값을 백엔드에 전달해줘서 백엔드에 저장 해두는 
-        //절차가 있으므로 까먹지 말 것! 
-        alert('로그인 성공하였습니다'));
+
     };
 
     const kakaoApi = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=64297550b73307c8aa6c8a038401053f&redirect_uri=https://picanote.me/kakao'
     const kakaoLoginHandler = () => {
-        window.location.assign(kakaoApi)
+        window.location.assign(KAKAO_AUTH_URL1)
+
+
     }
 
     useEffect(async () => {
@@ -99,15 +98,15 @@ export default function Login() {
             .then(res => {
                 console.log(res.data);
                 let accessToken = res.data.accessToken
-                let refreshToken = res.headers['refresh-token']
+                // let refreshToken = res.headers['refresh-token']
                 localStorage.setItem('CC_Token', accessToken)
-                localStorage.setItem('RF_Token', refreshToken)
+                // localStorage.setItem('RF_Token', refreshToken)
                 history.push("/")
             })
         }
         const url = new URL(window.location.href)
         const authorizationCode = url.searchParams.get('code')
-        console.log('인증 코드', authorizationCode);
+        // console.log('인증 코드', authorizationCode);
         if (authorizationCode) {
             await getAccessToken(authorizationCode)
         }
@@ -131,7 +130,7 @@ export default function Login() {
                     <Separator />
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
-
+                        
                         <SocialBtn onClick={kakaoLoginHandler}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
                         {/* <KaKaoBtn
                             token={'1365e7c324a3fc0d82f2eff53605375f'}

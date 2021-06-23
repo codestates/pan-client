@@ -41,6 +41,7 @@ export default function Details ({ match }) {
     // 토큰 유무를 확인해서 로그인 상태라면 에세스 토큰으로 정보를 추출함 => 본인 일기라면 수정,삭제 보이게 해주기 위함
     // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
+        console.log(details.like)
         // 토큰이 있다면
         if(localStorage.getItem('CC_Token')) {
             accessTokenRequest()
