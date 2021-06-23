@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import routes from "./routes";
 import { GlobalStyles } from "./styles";
 import { HelmetProvider } from "react-helmet-async";
@@ -18,6 +18,7 @@ import TemplateGroup from "./screens/TemplateGroup";
 import Writing from "./screens/MakePage/Writing";
 import Drawing from "./screens/MakePage/Drawing";
 import Details from "./screens/SubPage/Details";
+import KakaoHandler from "./screens/MainPage/Kakao";
 
 import UserStore from "./store/UserStore";
 import CreateBookStore from "./store/CreateBookStore";
@@ -74,7 +75,7 @@ function App() {
                 {/* <Route path={routes.details}>
                   <Details />
                 </Route> */}
-                {/* <Route path="/kakao" component={OAuth2RedirectHandler}></Route> */}
+                <Route path="/kakao" component={KakaoHandler}></Route>
               </Switch>
           </Router>
         </HelmetProvider>
