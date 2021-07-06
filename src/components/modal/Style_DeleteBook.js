@@ -1,6 +1,5 @@
 import Modal from 'styled-react-modal';
 import styled from 'styled-components';
-import checkIcons from "../../images/check.png";
 
 export const StyledModal = Modal.styled`
     width: 60vw;
@@ -13,7 +12,6 @@ export const StyledModal = Modal.styled`
 `;
 
 export const ModalBox = styled.div`
-    /* border: 5px solid tomato; */
     border-radius: 20px;
     width: 98%;
     height: 98%;
@@ -26,12 +24,12 @@ export const ModalHeader = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 10%;
+    height: 20%;
 `;
 
 export const ModalTitle = styled.div`
     width: 100%;
-    margin-top: 10px;
+    margin: 10px 0;
     font-size: 2rem;
     text-align: center;
 `;
@@ -40,7 +38,6 @@ export const ModalMiddle = styled.div`
     display: flex;
     align-items: center;
     margin-top: 10px;
-    /* border: 2px solid blue; */
     width: 100%;
     height: 74%;
 `;
@@ -50,21 +47,17 @@ export const MiddleTitle = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* border: 3px solid gray; */
     width: 16%;
     height: 100%;
     padding-left: 10px;
     font-size: 24px;
     color: #C57951;
     
-    
 `;
 
 export const ModalBook = styled.div`
     display: grid;
-    /* border: 3px solid tomato; */
-    /* margin: 40px 20px; */
-    grid-template-columns: repeat(10, minmax(25%, 1fr));
+    grid-template-columns: repeat(100, minmax(25%, 1fr));
     grid-template-rows: repeat(1, minmax(50%, 1fr));
     overflow-x: scroll;
     height: 100%;
@@ -79,7 +72,6 @@ export const DiaryWrapper = styled.div`
     width: 100%;
     height: 100%;
     font-family: 'Cafe24SsurroundAir';
-    /* border: 1px solid black; */
 `;
 
 export const Public = styled.input` 
@@ -94,7 +86,6 @@ export const Public = styled.input`
 `;
 
 export const DeleteCover = styled.button`
-    /* background-image: url("https://source.unsplash.com/random/640x960"); */
     width: 90%;
     height: 80%;
     box-shadow: 10px 10px 10px #E4D8B4;
@@ -124,7 +115,6 @@ export const ModalBottom = styled.div`
     width: 100%;
     height: 3.5rem;
     margin-top: 10px;
-    /* border: 1px solid red; */
 `;
 
 export const Button = styled.button`

@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
-import Nondisclosure from '../../images/Nondisclosure.jpg';
 import mask from '../../images/mask.png';
 
 import { 
@@ -54,7 +53,7 @@ export default function EditUserInfo({username, email }) {
 
     // 회원정보 수정
     const UserInfoHandler = async () => {
-        if(!newPassword ){
+        if(!newPassword || !newName){
             return alert('사용자명과 패스워드는 필수 입력사항입니다.')
         }else if (newPassword !== confirmPassword) {
             return alert('비밀번호가 동일하지 않습니다.');
@@ -68,7 +67,7 @@ export default function EditUserInfo({username, email }) {
                     'ContentType' : 'application/json',
                 },
                 data: {
-                    // username: newName,
+                    username: newName,
                     password: newPassword,
                     profileUrl: newProfile
                 },
@@ -107,7 +106,7 @@ export default function EditUserInfo({username, email }) {
             <ProfileWrapper>
                     <ProfileLeft>     
                         <div>
-                            <img src={imgBase64 ? imgBase64 : mask}></img>
+                            <img alt="#" src={imgBase64 ? imgBase64 : mask}></img>
                         </div>
                         <label htmlFor="imgFile" onChange={handleChangeFile}>사진 변경</label>
                         <input type="file" name="imgFile" id="imgFile" onChange={handleChangeFile} style={{display:"none"}}/>
@@ -119,8 +118,8 @@ export default function EditUserInfo({username, email }) {
                     </ProfileRight>
             </ProfileWrapper>
             <UsernameWrapper>
-                {/* <LeftDiv>유저네임</LeftDiv>   */}
-                    {/* <input type="text" placeholder="유저네임" onChange={e=> {setNewName(e.target.value)}}></input> */}
+                <LeftDiv>유저네임</LeftDiv>  
+                    <input type="text" placeholder="유저네임" onChange={e=> {setNewName(e.target.value)}}></input>
             </UsernameWrapper>
             <PassowrdWrapper>
                 <LeftDiv>비밀번호</LeftDiv>  

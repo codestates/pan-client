@@ -24,12 +24,24 @@ export const ListItemBox = styled.div`
     transition: all 0.4s;
     border-radius: 8px;
     overflow: hidden;
-    opacity: 0.5;
+    z-index: 1;
+    position: relative;
+    ::after{
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 20px;
+        background: rgba(50, 50, 50, 0.2);
+    }
     &:hover {
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
-        opacity: 1.0;
+        filter: brightness(1.2);
     }
 `;
 
@@ -39,7 +51,7 @@ export const ItemImg = styled.img`
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
-    opacity: 0.8;
+    opacity: 0.5;
 `;
 
 export const ItemOverlay = styled.div`
@@ -58,29 +70,30 @@ export const ItemOverlay = styled.div`
 `;
 
 export const ItemContent = styled.article`
+    width: 100%;
     position: absolute;
     left: 15px;
     bottom: 15px;
     display: flex;
     flex-direction: column;
     font-family: 'Cafe24SsurroundAir';
-    color: #fff;
+    color: #343a40;
     padding: 10px;
+    filter: brightness(1);
+    opacity: 1;
     h3 {
-        color: #343a40;
         font-size: x-large;
         font-weight: 800;
-        margin: 0 0 10px;
+        margin:0 0 10px;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         word-break: break-word;
         overflow: hidden;
-        text-shadow: 2px 2px 0 #fff;
+        text-shadow: 1.5px 1.5px 0 #E3DFD4;
     }
     h4 {
-        color: #343a40;
         font-size: 1rem;
         font-weight: 700;
         margin: 0 0 10px;
@@ -90,19 +103,6 @@ export const ItemContent = styled.article`
         -webkit-box-orient: vertical;
         word-break: break-word;
         overflow: hidden;
-        text-shadow: 2px 2px 0 #fff;
-    }
-    p {
-        color: #343a40;
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin: 0 0 10px;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        word-break: break-;
-        text-shadow: 2px 2px 0 #fff;
-        overflow: hidden;
+        text-shadow: 1px 1px 0 #E3DFD4;
     }
 `;

@@ -49,7 +49,6 @@ export const CardList = styled.section`
     padding-top: 2rem;
     padding-left: 2rem;
     overflow: scroll;
-    /* border: 1px solid black; */
     height: 38vh;
     &::-webkit-scrollbar {
         width: 10px;
@@ -65,7 +64,6 @@ export const CardList = styled.section`
 `;
 
 export const CardWrap = styled.article`
-    /* border:1px solid blue; */
     width: 90%;
     height: 99%;
     box-shadow: #ced4da 0 1px 4px;
@@ -75,7 +73,19 @@ export const CardWrap = styled.article`
     flex-direction: column;
     transition: all 0.4s;
     border-radius: 20px;
-    opacity: 0.5;
+    z-index: 1;
+    position: relative;
+    &:after{
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 20px;
+        background: rgba(50, 50, 50, 0.1);
+    }
     &:focus-within ~ .card,
     &:hover ~ .card {
         transform: translateX(200px);
@@ -83,6 +93,7 @@ export const CardWrap = styled.article`
     &:hover {
         transform: translateY(-1rem);
         opacity: 1.0;
+        filter: brightness(1.3);
     }
 `;
 
@@ -92,7 +103,7 @@ export const CardImg = styled.img`
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
-    opacity: 0.6;
+    opacity: 0.7;
     background-size: 100% 100%;
 `;
 
@@ -120,13 +131,17 @@ export const CardContent = styled.article`
     flex-direction: column;
     font-family: 'Cafe24SsurroundAir';
     padding: 10px;
-    /* color: #343a40; */
+    filter: brightness(1);
+    opacity: 1;
+    &:hover {
+        filter: brightness(3.5);
+    }
     h2 {
         color: black;
-        opacity: 0.9;
+        opacity: 1;
         font-size: 2rem;
-        font-weight: 700px;
-        text-shadow: 1px 1px 0 #fff;
+        font-weight: 800px;
+        text-shadow: 2px 2px 0 #E3DFD4;
         margin: 0 0 12px;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -138,7 +153,7 @@ export const CardContent = styled.article`
     }
     h3 {
         color: black;
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-weight: 700;
         margin: 0 0 10px;
         text-overflow: ellipsis;
@@ -147,21 +162,6 @@ export const CardContent = styled.article`
         -webkit-box-orient: vertical;
         word-break: break-word;
         overflow: hidden;
-        text-shadow: 1px 1px 0 #fff;
-    }
-    p {
-        color: black;
-        opacity: 0.9;
-        font-size: 1rem;
-        font-weight: 400;
-        margin: 0;
-        margin-bottom: 12px;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        word-break: break-word;
-        overflow: hidden;
-        text-shadow: 1px 1px 0 #fff;
+        text-shadow: 1px 1px 0 #E3DFD4;
     }
 `;

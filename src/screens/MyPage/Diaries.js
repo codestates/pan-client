@@ -11,25 +11,20 @@ import Text from "../../images/text.png";
 import Drawing from "../../images/drawing.png";
 
 export default function Diaries ({diary}) {
-    // console.log(diary)
     // pagenation state 
     const [posts, setPosts] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
     
     // pagenation useEffect   
     useEffect(() => {
-        setLoading(true);
         setPosts(diary);
-        setLoading(false);
-    }, []);
+    });
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    // console.log(currentPosts)
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -42,12 +37,7 @@ export default function Diaries ({diary}) {
     const ToDetails = (id) => {
         history.push(`/details/${id}`) 
     }
-    // 없애거나 좋은 이미지 있으면 넣으면 좋을 듯 ex) 비바 로딩
-    if (loading) {
-        return <h2>Loading...</h2>;
-    }
 
-   
     return (
         <Container>
             <DiaryHeader>

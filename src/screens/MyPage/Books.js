@@ -5,7 +5,6 @@ import Deletebook from '../Modals/DeleteBook';
 
 export default function Books ({isCoverClick, books}) {
     const [ modalIsOpen, setIsOpen ] = useState(false);
-
     const openModal = () => {
         setIsOpen(true);
     }

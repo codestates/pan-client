@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import routes from "../../routes";
-import Top10 from '../SubPage/Top10';
-import ToggleButton from '../ToggleButton';
+import Top10 from './Top10';
+import ToggleButton from '../../components/ToggleButton';
 import Header from '../../components/Header';
-import PublicNote from '../SubPage/PublicNote';
+import PublicNote from './PublicNote';
 import Pagination from '../../components/Pagination';
-import { MainBody, PhraseGroup, Phrase, Div1, Div2, Div3, MainFooter, MainLabel, CautionEx } from "../../components/MainPages/Style_Main";
+import { MainBody, PhraseGroup, Phrase, Div1, Div2, Div3, MainFooter, MainLabel } from "../../components/MainPages/Style_Main";
 
 export default function Main() {
   // 개인, 그룹 규별
@@ -21,33 +21,31 @@ export default function Main() {
   // pagination을 위한 states
     const [individual, setIndividual] = useState([]);
     const [group, setGroup] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
   // (resI:개인, resG:그룹) 렌더링 될 때  각 state에 담아줌
     useEffect(() => {
       const fetchPosts = async () => {
-        setLoading(true);
         const resI = await axios.get('https://api.picanote.me/diaries');
         const resG = await axios.get('https://api.picanote.me/group-diaries');
         setIndividual(resI.data.data);
         setGroup(resG.data.data);
-        setLoading(false);
       };   
   
       fetchPosts();
     
     }, []);
     // searchDiary 나오게하는 useEffect 
-    useEffect(() => {},[searchDiary])
+    useEffect(() => {},
+    [searchDiary])
 
     // Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
+    const currentSearchDiary = searchDiary.slice(indexOfFirstPost, indexOfLastPost);
     const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
-    const curSearchDiary = [];
     
     // 개인일기와 교환일기를 합쳐서 like가 1개라도 있으면 top10으로 props 전달
     const allDiaries = individual.concat(group).filter((e)=> {return e.like !== null})
@@ -67,10 +65,6 @@ export default function Main() {
         )
     }
  
-    if (loading) {
-      return <h2>Loading...</h2>;
-    }
-
     return (
       <>
         <Header isMain={isMain} keywords={keywords} SetKeywords={SetKeywords} handlerSearch={handlerSearch} main={routes.main} login={routes.login}></Header>
@@ -90,9 +84,9 @@ export default function Main() {
               <MainLabel  choose={cur.individual} onClick={()=>setCur({individual:true, group:false})}>공유된 개인일기</MainLabel>
               <MainLabel  choose={cur.group} onClick={()=>setCur({individual:false, group:true})}>공유된 교환일기</MainLabel>
             </Div3>
-            {searchDiary.length >= 1 ? 
+            {currentSearchDiary.length >= 1 ? 
             <>
-              <PublicNote current={searchDiary}/> 
+              <PublicNote current={currentSearchDiary}/> 
               <Pagination postsPerPage={postsPerPage} totalPosts={searchDiary.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
             </>
             :
@@ -106,31 +100,7 @@ export default function Main() {
                   <PublicNote current={currentGroup}/>
                   <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
                 </>
-
- 
             }
-            {/* 개인과 그룹을 구별하기 위한 삼항 연산자 */}
-            {/* {cur.individual ? 
-              <>
-                <PublicNote current={currentIndividual}/> 
-                <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
-              </>
-              : 
-              <>
-                { currentGroup ? 
-                  <>
-                    <CautionEx>
-                      현재 공유된 교환일기가 없습니다.
-                    </CautionEx>
-                  </>
-                :
-                  <>
-                    <PublicNote current={currentGroup}/>
-                    <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
-                  </>
-                }
-              </>
-            } */}
           </Div2>
           <MainFooter></MainFooter>
         </MainBody>

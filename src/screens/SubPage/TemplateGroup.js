@@ -1,11 +1,11 @@
 import React from 'react';
-import routes from '../routes';
-import ToggleButton from './ToggleButton';
-import Header from '../components/Header';
-import ChooseGroupBook from './Modals/ChooseGroupBook';
+import routes from '../../routes';
+import ToggleButton from '../../components/ToggleButton';
+import Header from '../../components/Header';
+import ChooseGroupBook from '../Modals/ChooseGroupBook';
 import { useHistory } from "react-router-dom";
 import { ModalProvider } from "styled-react-modal";
-import { FadingBackground, Announcement, TemplateMain, Writing, Drawing } from "../components/modal/Style_Template";
+import { FadingBackground, Announcement, TemplateMain, Writing, Drawing } from "../../components/modal/Style_Template";
 
 export default function TemplateGroup () {
   const history = useHistory();

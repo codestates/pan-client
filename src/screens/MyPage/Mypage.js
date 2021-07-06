@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext }  from 'react';
 import axios from 'axios';
 import routes from '../../routes';
-import ToggleButton from '../ToggleButton';
-import Diaries from '../SubPage/Diaries';
+import ToggleButton from '../../components/ToggleButton';
+import Diaries from './Diaries';
 import Header from '../../components/Header';
-import Books from '../SubPage/Books';
-import Nondisclosure from '../../images/Nondisclosure.jpg'
+import Books from './Books';
+import mask from '../../images/mask.png';
 import UserInfo from '../MyPage/Userinfo';
 import { UserContext } from "../../store/UserStore";
 import { MypageWrapper, MypageMain, LeftSection, ProfileWrapper, Profile, Username, PersonalDiary, ExchangeDiary, Print, DiarySection, MypageFooter } from "../../components/Mypages/Style_Mypage"
@@ -18,10 +18,9 @@ export default function Mypage() {
   })
 
   const context = useContext(UserContext);
-  const {username, email, profileUrl, accessTokenRequest, refreshTokenRequest} = context ;
+  const { username, email, profileUrl, accessTokenRequest } = context ;
   const [individual, setIndividual] = useState([]);
   const [group, setGroup] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [lookBooks, SetLookBooks] = useState(false);
   const [diaries, setDiaries] = useState([]);
 
@@ -50,7 +49,6 @@ export default function Mypage() {
   
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true);
       await axios.get('https://api.picanote.me/books',{
       headers:{
         Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
@@ -66,14 +64,9 @@ export default function Mypage() {
         
           
       })
-      setLoading(false);
     };   
     fetchPosts();
   }, []);
-
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
 
   return (
     <>
@@ -82,7 +75,7 @@ export default function Mypage() {
         <MypageMain>
           <LeftSection>
             <ProfileWrapper>
-              {!profileUrl ?  <Profile src={Nondisclosure} alt="이미지입니다" /> :  <Profile src={profileUrl} alt="이미지입니다" />}
+              {!profileUrl ?  <Profile src={mask} alt="이미지입니다" /> :  <Profile src={profileUrl} alt="이미지입니다" />}
                 <Username>{username}</Username>
             </ProfileWrapper>
             <PersonalDiary cur={cur.individual} onClick={changeIndividual}>개인 일기</PersonalDiary>

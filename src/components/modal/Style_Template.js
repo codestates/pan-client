@@ -9,9 +9,7 @@ export const FadingBackground = styled(BaseModalBackground)`
 `;
 
 export const Announcement = styled.div`
-    /* position: relative; */
     padding-top: 4.3%;
-    /* border:1px solid blue; */
     text-align: center;
     font-family: 'Cafe24Ssurround';
     font-size: 50px;
@@ -24,7 +22,6 @@ export const Announcement = styled.div`
 
 export const TemplateMain = styled.section`
     display: flex;
-    /* border: 1px solid black; */
     height: 70vh;
     max-width: 1600px;
     width: 80%;
@@ -34,9 +31,9 @@ export const TemplateMain = styled.section`
 
 export const Writing = styled.div` 
     display: block;
-    font-size: 50px;
-    color: #3D8DAB;
-    font-weight: 800;
+    font-size: 45px;
+    color: #1C1B1A;
+    font-weight: 900;
     line-height: 520px;
     background-image: url(${Write});
     background-size: 102% 100%;
@@ -45,20 +42,33 @@ export const Writing = styled.div`
     margin: 5% 5% 5% 15%;
     cursor: pointer;
     text-align: center;
-    opacity: 0.5;
     border-radius: 10px;
     box-shadow: 10px 10px 10px gray ;
+    z-index: 1;
+    position: relative;
+    text-shadow: 2px 2px 0 #E3DFD4;
+    &:after{
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 20px;
+        background: rgba(100, 100, 100, 0.4);
+    }
     :hover {
-        opacity: 1;
         transform: scale(1.05);
+        filter: brightness(1.4);
     }
 `;
 
 export const Drawing = styled.div`
     display: block;
-    font-size: 50px;
-    color: #D85941;
-    font-weight: 800;
+    font-size: 45px;
+    color: #1C1B1A;
+    font-weight: 900;
     line-height: 520px;
     background-image: url(${drawing});
     background-size: 100% 100%;
@@ -67,11 +77,24 @@ export const Drawing = styled.div`
     margin: 5% 15% 5% 5%;
     cursor: pointer;
     text-align: center;
-    opacity: 0.5;
     border-radius: 10px;
     box-shadow: 10px 10px 10px gray ;
+    z-index: 1;
+    position: relative;
+    text-shadow: 2px 2px 0 #E3DFD4;
+    &:after{
+        width: 100%;
+        height: 100%;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 20px;
+        background: rgba(100, 100, 100, 0.4);
+    }
     :hover {
-        opacity: 1;
         transform: scale(1.05);
+        filter: brightness(1.4);
     }
 `;

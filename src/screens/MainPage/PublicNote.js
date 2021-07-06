@@ -1,7 +1,7 @@
 import React from "react";
 import routes from "../../routes";
 import { Link, useHistory } from "react-router-dom";
-import { ListSection, ListItemBox, ItemImg, ItemOverlay, ItemContent } from "../../components/MainPages/Style_PublicNote"
+import { ListSection, ListItemBox, ItemImg, ItemContent } from "../../components/MainPages/Style_PublicNote"
 
 export default function PublicNote({current}) {
     //  page이동을 위한 변수들!

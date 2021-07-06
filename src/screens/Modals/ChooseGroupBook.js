@@ -151,8 +151,6 @@ export default function ChooseBook() {
     }
 
     useEffect(()=>{
-        // console.log('리로딩해보자')
-        // console.log(groupId)
     },[groupId])
 
     // 초대 그룹 모달 창 취소하기
