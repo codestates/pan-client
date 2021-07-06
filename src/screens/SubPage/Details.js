@@ -3,7 +3,7 @@ import { UserContext } from "../../store/UserStore";
 import axios from 'axios';
 import routes from '../../routes';
 import Header from '../../components/Header';
-import ToggleButton from '../ToggleButton';
+import ToggleButton from '../../components/ToggleButton';
 import { FiHeart } from "react-icons/fi";
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom,CommnetBG, DetailBG,
     ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, 
@@ -30,7 +30,6 @@ export default function Details ({ match }) {
         isLike: []
     });
     const [comment, setComment] = useState('');
-    const [loading, setLoading] = useState(false);
     const histoy = useHistory();
     
 
@@ -41,13 +40,10 @@ export default function Details ({ match }) {
     // 토큰 유무를 확인해서 로그인 상태라면 에세스 토큰으로 정보를 추출함 => 본인 일기라면 수정,삭제 보이게 해주기 위함
     // url params에 맞춰서 일기를 렌더링 한다.
     useEffect(() => {
-        console.log(details.like)
         // 토큰이 있다면
         if(localStorage.getItem('CC_Token')) {
             accessTokenRequest()
-                try {
             const getDetails = async() => {
-                setLoading(true);
                 // const id = await match.params.id
                 await axios.get(`https://api.picanote.me/diaries/${id}`, {
                     headers:{
@@ -74,17 +70,12 @@ export default function Details ({ match }) {
                     comments : res.data.data[0].Comments,
                     isLike : res.data.data[0].Likes
                 }),
-                setLoading(false),
                 )
             }
             getDetails();
-        } catch {
-            histoy.goBack();
-        }
         // 토큰이 없다면
         } else {
             const fetchPosts = async () => {
-                setLoading(true);
                 const res = await axios.get(`https://api.picanote.me/diaries/${id}`);
                 // console.log(res)
                     setDetails({      
@@ -100,19 +91,13 @@ export default function Details ({ match }) {
                         comments : res.data.data[0].Comments,
                         isLike : res.data.data[0].Likes
                     })
-
-                
-                setLoading(false);
               };   
           
               fetchPosts();
         }
     },[]);
-
     // 다이어리 삭제 메소드
     const deleteDiary = async () => {
-        try{
-            setLoading(true);
             // const id = await match.params.id
             await axios.delete(`https://api.picanote.me/diaries/${id}`, {
                 headers: {
@@ -121,12 +106,8 @@ export default function Details ({ match }) {
                 },
                 withCredentials : true
             })
-            .then(setLoading(false),
-                  alert('일기장이 삭제되었습니다'))
+            .then(()=>alert('일기장이 삭제되었습니다'))
             .then(()=>{ histoy.push('/mypage')})
-        }catch{
-            console.error("err");
-        }
     };
 
     // 좋아요 기능 구현
@@ -144,7 +125,6 @@ export default function Details ({ match }) {
         setTimeout(()=> {
            (window.location.reload(true));
         },1000)
- 
     }
     
     // 이전 일기로 이동
@@ -167,7 +147,6 @@ export default function Details ({ match }) {
         localStorage.setItem('id', JSON.stringify(id));
         !details.picUrl ? histoy.push('/writing') : histoy.push('/drawing')
     }
-
 
 
     // 댓글 포스트 
@@ -193,7 +172,6 @@ export default function Details ({ match }) {
 
     // 댓글 삭제
     const deleteCommnet = async (id) => {
-    try {
         await axios({
             method: 'delete',
             url: `https://api.picanote.me/comments/${id}`,
@@ -212,9 +190,7 @@ export default function Details ({ match }) {
                 window.location.reload(true)
             },2000)
             )
-    }catch {
-        console.log('err')
-        }}
+    }
     
 
     // 일기 공개 비공개 소스
@@ -234,10 +210,6 @@ export default function Details ({ match }) {
             setTimeout(()=> { window.location.reload(true)}, 100)
         )
 };
-
-    if (loading) {
-        return <h2>Loading...</h2>;
-    }
 
     return (
         <DetailsWrapper>

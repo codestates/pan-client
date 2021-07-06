@@ -11,13 +11,12 @@ import Separator from "../../components/auth/Separator";
 import kakao_button from "../../images/kakao_button.png";
 import AuthLayout from "../../components/auth/AuthLayout";
 import google_button from "../../images/google_button.png";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { ImageBox, SocialBtn } from "../../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../../components/auth/FontLayout";
 import { KAKAO_AUTH_URL1 } from './Oauth'
-import { KAKAO_AUTH_URL2 } from './Oauth'
-import KaKaoLogin from 'react-kakao-login'
+// import { KAKAO_AUTH_URL2 } from './Oauth'
 
 const Container = styled.div`
     position: absolute;
@@ -33,7 +32,6 @@ export default function Login() {
     const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [data, setData] = useState('')
 
     const HandleEmail = (e) => {
         setEmail(e.target.value);
@@ -66,51 +64,10 @@ export default function Login() {
         });
     };
 
-    const responseKaKao = (res) => {
-        window.Kakao.Auth.login({
-            success: authObj => {
-              console.log(authObj)
-              axios('https://api.picanote.me/kakao', {
-                method: 'POST',
-                headers: {
-                  Authorization: authObj.access_token,
-                },
-            })
-            .then(res=> console.log(res))
-            }
-        })
-
-    };
-
-    const kakaoApi = 'https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=64297550b73307c8aa6c8a038401053f&redirect_uri=https://picanote.me/kakao'
+    // kakao login
     const kakaoLoginHandler = () => {
         window.location.assign(KAKAO_AUTH_URL1)
-
-
     }
-
-    useEffect(async () => {
-        const getAccessToken = async authorizationCode => {
-            let tokenData = await axios
-            .post('https://api.picanote.me/kakao', {
-                authorizationCode,
-            })
-            .then(res => {
-                console.log(res.data);
-                let accessToken = res.data.accessToken
-                // let refreshToken = res.headers['refresh-token']
-                localStorage.setItem('CC_Token', accessToken)
-                // localStorage.setItem('RF_Token', refreshToken)
-                history.push("/")
-            })
-        }
-        const url = new URL(window.location.href)
-        const authorizationCode = url.searchParams.get('code')
-        // console.log('인증 코드', authorizationCode);
-        if (authorizationCode) {
-            await getAccessToken(authorizationCode)
-        }
-    }, [])
 
     return (
         <Container>
@@ -130,17 +87,7 @@ export default function Login() {
                     <Separator />
                     {/* 이 부분 고민이 좀 필요함, 한 줄로 띄울지 두 줄로 띄울지 */}
                     <ImageBox>
-                        
                         <SocialBtn onClick={kakaoLoginHandler}><img src={kakao_button} width="55%" alt="kakao"/></SocialBtn>
-                        {/* <KaKaoBtn
-                            token={'1365e7c324a3fc0d82f2eff53605375f'}
-                            buttonText="KaKao"
-                            // 여기에 console.log찍으면 정보가 나옴
-                            onSuccess={res => console.log(res)}
-                            onFailure={console.log('실패')}
-                            // getProfile해야 정보를 볼 수 있음
-                            getProfile={true}
-                        /> */}
                         <SocialBtn><img src={google_button} width="55%" alt="google" /></SocialBtn>
                     </ImageBox>
                 </FormBox>

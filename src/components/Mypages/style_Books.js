@@ -11,10 +11,21 @@ export const CoverWrapper = styled.div`
   margin: 40px 20px;
   grid-template-columns: repeat(4, minmax(25%, 1fr));
   grid-template-rows: repeat(5, minmax(50%, 1fr));
-  overflow-x: scroll;
+  overflow-y: scroll;
   height: 100%;
   width: 100%;
+  /* 스크롤바 설정*/
+  &::-webkit-scrollbar{
+      width: 10px;
+  }
+  /* 스크롤바 막대 설정*/
+  &::-webkit-scrollbar-thumb{
+      height: 17%;
+      background-color: #3D8DAB;
+      border-radius: 20px;    
+  }
 `;
+
 
 export const CoverHeader = styled.div`
   display: flex;
@@ -42,26 +53,40 @@ export const CoverDelete = styled.button`
 `;
 
 export const Cover = styled.button`
-  /* background-image: url("https://source.unsplash.com/random/640x960"); */
   box-shadow: 10px 10px 10px #E4D8B4;
   border: none;
   outline: none;
   cursor: pointer;
   font-family: 'Cafe24SsurroundAir';
-  font-size: xx-large;
+  font-size: x-large;
   font-weight: bold;
-  color: #FFF9E9;
-  border-radius: 5px;
+  border-radius: 20px;
   margin: 15px;
+  z-index: 1;
+  position: relative;
+  &:after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 20px;
+    background: rgba(50, 50, 50, 0.4);
+  }
   &:hover {
     transform: translateY(-1rem);
+    opacity: 1;
   }
   h2 {
+    color: #FFF9E9;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     word-break: break-word;
     overflow: hidden;
     line-height: 2.6rem;
+    opacity: 1;
   }
 `;

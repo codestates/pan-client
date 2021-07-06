@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef }  from 'react';
 import routes from '../../routes';
 import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
-import ToggleButton from '../ToggleButton';
+import ToggleButton from '../../components/ToggleButton';
 import {
     DiaryWritingWrapper, DiaryWritingMain, WriteHeader, WriteHeaderLeft, 
     WriteContents, WriteTitle, WriteHeaderRight, WriteDate, Footer, WriteButton, CancelButton 
@@ -10,6 +10,7 @@ import {
 import { CreateBookContext } from "../../store/CreateBookStore";
 import Feeling from "./Feeing";
 import Weather from "./Weather";
+import Darw from "./Draw";
 
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -18,32 +19,28 @@ import axios from 'axios';
 
 
 export default function Writing() {
-  const createContext = useContext(CreateBookContext);
+  const context = useContext(CreateBookContext);
   const history = useHistory();
 
-  const { bookInfo } = createContext;
+  const { bookInfo } = context;
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [feelings, setFeelings] = useState('');
   const [weather, setWeather] = useState('');
   const [content, setContent] = useState('');
+  const [picUrl, setPicUrl] = useState('');
   const [temp, setTemp] = useState('');
   const [diaryId, setDiaryId] = useState('');
 
   useEffect( ()=> {
-    // console.log('렌더링된다')
     setTemp(JSON.parse(localStorage.getItem('temp')))
     setDiaryId(JSON.parse(localStorage.getItem('id')))
-    
-    // console.log(temp)
-    // console.log(diaryId)
-    // console.log(editorRef)
+   
     diaryId !== null ? 
     editorRef.current.getInstance().setHtml(temp.content) :
-    editorRef.current.getInstance().setHtml("<h1>환영합니다!</h1>"); 
+    editorRef.current.getInstance().setHtml("<h1>일기를 작성해주세요!</h1>"); 
   },[diaryId])
 
-  
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
   const titleHandler = (e) => {
       if(e.target.value.length > 15) {
@@ -51,7 +48,7 @@ export default function Writing() {
           return alert('15자 이내로 작성해주세요');
         
       }else {
-        setTitle(e.target.value);
+          setTitle(e.target.value);
       }
   };
   // 제목과 마찬가지로 날짜는 총10글자 2022-06-17 까지만 작성가능하게 하고 상태에 저장
@@ -71,9 +68,10 @@ export default function Writing() {
           if(!bookInfo) {
             alert('일기장이 선택되지 않았습니다. 일기장을 다시 선택하고 작성해주세요.');
           }
-          else if(!title || !date || !feelings || !weather || !content ) {
-            alert('제목,기분,날짜,날씨,내용을 작성해주세요.'); 
-          } else {
+          else if(!title || !date || !feelings || !weather || !content || !picUrl) {
+            alert('제목,기분,날짜,날씨,내용,그림을 작성해주세요.');
+          } 
+          else {
           await axios({
             method: 'post',
             url: 'https://api.picanote.me/diaries',
@@ -81,9 +79,12 @@ export default function Writing() {
                 bookId: bookInfo.id,
                 title,
                 date,
+                content,
                 feelings,
                 weather,
-                content,
+                picUrl,
+                
+
             },
             headers: {
                 Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
@@ -92,7 +93,6 @@ export default function Writing() {
                 withCredentials: true,
           })
           .then(() => {
-            localStorage.removeItem('temp');
             alert('일기가 작성 되었습니다.');
             history.push('/mypage');
           }
@@ -106,7 +106,6 @@ export default function Writing() {
   }
 
   const fixedBtn = async () => {
-    console.log('수정버튼');
     localStorage.removeItem('temp');
 
     if(!title || !date || !feelings || !weather || !content ) {
@@ -152,25 +151,13 @@ export default function Writing() {
 
   // 에디터 툴 내용 추출
   const editorRef = useRef();
-
   
   const getEditorContent = () => {
     const editorInstance = editorRef.current.getInstance();
     // const getContent_md = editorInstance.getMarkdown();
     const GetContent_html = editorInstance.getHtml();
-    setContent(GetContent_html);
+    setContent(GetContent_html)
   }
-
-
-// 테스트용으로 남겨둔거 나중에 작성 완료되면 삭제해야됨
-//   useEffect(()=> {
-//     console.log(title)
-//     console.log(date)
-//     console.log(feelings)
-//     console.log(weather)
-//     console.log(bookInfo.id)
-//     console.log(content)
-//   }, [title,date,feelings,weather,bookInfo,content])
 
 
   return (
@@ -180,13 +167,9 @@ export default function Writing() {
           <WriteHeader>
             <WriteHeaderLeft>
               <WriteTitle>
-                {/* 왜 에러가 나지 value ={temp.title || ''} 하면 글씨가 안쳐짐 ㅠㅠ */}
-               {/* 제목: <input value={temp.title || ''} type="text" placeholder="15자 이내로 작성해주세요" onChange={titleHandler}/> */}
-               제목: <input type="text" placeholder="15자 이내로 작성해주세요" onChange={titleHandler}/>
+                제목: <input type="text" placeholder="15자 이내로 작성해주세요" onChange={titleHandler}/>
               </WriteTitle>
               <WriteDate>
-                {/* 글자가 안바껴 !!!! */}
-                {/* 날짜: <input value={temp.date || ''} type="text" placeholder="예시) 2021-06-07" onChange={dateHandler}/> */}
                 날짜: <input type="text" placeholder="예시) 2021-06-07" onChange={dateHandler}/>
               </WriteDate>
             </WriteHeaderLeft>
@@ -196,9 +179,10 @@ export default function Writing() {
             </WriteHeaderRight>
           </WriteHeader>
           <WriteContents>
-            <Editor              
+            <Darw setPicUrl={setPicUrl}/>
+            <Editor 
               previewStyle="vertical" 
-              height="590px" 
+              height="300px" 
               initialEditType="markdown" 
               useCommandShortcut={true} 
               ref={editorRef} 
@@ -212,7 +196,6 @@ export default function Writing() {
               diaryId ? <WriteButton onClick={fixedBtn}>수 정</WriteButton> :
               <WriteButton onClick={writeBtn}>생 성</WriteButton>
             }
-            
        
 
           </Footer>

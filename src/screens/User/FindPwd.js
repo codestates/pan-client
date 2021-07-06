@@ -10,7 +10,6 @@ import FormBox from "../../components/auth/FormBox";
 import BottomBox from "../../components/auth/BottomBox";
 import AuthLayout from "../../components/auth/AuthLayout";
 import { useHistory } from "react-router-dom";
-import { FatLink } from "../../components/shared";
 import { BlueGreen, CedarChest, TextAlign } from "../../components/auth/FontLayout";
 
 const Container = styled.div`
@@ -23,24 +22,15 @@ const Container = styled.div`
     width: 100%;
 `;
 
-const Subtitle = styled(FatLink)`
-    font-size: 12px;
-    color: #666666;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    text-align: center;
-`;
 
 
 export default function FindPwd(props) {
 
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const history = useHistory();
 
-    const onUsernameHandler = (e) => { setUsername(e.target.value); }
     const onEmailHandler = (e) => { setEmail(e.target.value); }
 
     const handleFindPwd = () => {

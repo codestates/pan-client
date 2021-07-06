@@ -12,7 +12,7 @@ export const StyledModal = Modal.styled`
 `;
 
 export const Header = styled.div`
-  /* margin: 40px 0px 20px 0px; */
+  margin: 10px 0px;
   width: 100%;
   height: 10vh;
   display: flex;
@@ -37,7 +37,7 @@ export const Header = styled.div`
 
 export const Wrapper = styled.section`
   width:95%;
-  height: 80%;
+  height: 70%;
   padding: 10px 0;
   border-radius: 10px;
   display: flex;
@@ -74,7 +74,14 @@ export const SelectBook = styled.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(20%, 1fr));
   grid-template-rows: repeat(5, minmax(50%, 1fr));
-  overflow-x: scroll;
+  overflow-y: scroll;
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+      background-color: #E3DFD4;
+      border-radius: 20px;    
+  }
     div{
       display: flex;
       justify-content: center;
@@ -83,7 +90,6 @@ export const SelectBook = styled.div`
       font-size: medium;
       margin : 10px;
       border: 1px solid lightgray;
-      /* border: ${props=> props.checked  ? "1px solid lightgray" : "4px solid black"}; */
       border-radius: 15px;
       box-shadow: 5px 5px 5px gray;
       cursor: pointer;
@@ -97,7 +103,7 @@ export const SelectBook = styled.div`
 
 export const Footer = styled.div`
   width: 95%;
-  height: 10%;
+  height: 8%;
   display: flex;      
   justify-content: flex-end;
   margin-bottom: 20px;
@@ -123,7 +129,6 @@ export const ModalButton = styled.button`
 export const LeftCreateDiv = styled.div`
   width: 50%;
   height: 90%;
-  /* border: 1px solid red; */
   margin-left: 20px;
   margin-right: 30px;
   display: flex;
@@ -135,7 +140,6 @@ export const LeftCreateDiv = styled.div`
 export const LeftTitleDiv = styled.div`
   width: 100%;
   height: 20%;
-  /* border: 2px solid blue; */
   display: flex;
   padding-left: 20px;
   align-items: center;
@@ -152,11 +156,9 @@ export const LeftTitleDiv = styled.div`
 export const LeftCoverDiv = styled.div`
   width: 100%;
   height: 80%;
-  /* border: 2px solid blue; */
   h1 {
     width: 100%;
     height: 10%;
-    /* border: 1px solid tomato; */
     display: flex;
     align-items: center;
     padding-left: 20px;
@@ -172,6 +174,14 @@ export const SelectCover = styled.div`
   grid-template-rows: repeat(100, minmax(50%, 1fr));
   overflow: hidden;
   overflow-y: scroll;
+  &::-webkit-scrollbar{
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+      background-color: #E3DFD4;
+      border-radius: 20px;    
+  }
+  
 `;
 
 export const CoverImg = styled.img`
@@ -191,7 +201,6 @@ export const CoverImg = styled.img`
 export const RightCreateDiv = styled.div`
   width: 40%;
   height: 90%;
-  /* border: 1px solid red; */
   margin-left: 30px;
   display: flex;
   align-items: center;
@@ -223,8 +232,8 @@ export const PreviewCover = styled.div`
     border-radius: 20px 0 0 20px;
     background: linear-gradient(
         to right,
-        rgba(20, 20, 20, 0.6) 10%,
-        rgba(20, 20, 20, 0.6) 100%
+        rgba(20, 20, 20, 0.4) 10%,
+        rgba(20, 20, 20, 0.4) 100%
     );
     background-size: cover;
   }

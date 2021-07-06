@@ -1,25 +1,23 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import routes from "./routes";
 import { GlobalStyles } from "./styles";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Main from "./screens/MainPage/Main";
-import Login from "./screens/MainPage/Login";
-import SignUp from "./screens/MainPage/SignUp";
-
 import Myapge from "./screens/MyPage/Mypage";
-import Landing from "./screens/Landing";
-import ResetPwd from "./screens/MainPage/ResetPwd";
-import FindPwd from "./screens/MainPage/FindPwd";
-
-import Template from "./screens/Template";
-import TemplateGroup from "./screens/TemplateGroup";
-import Writing from "./screens/MakePage/Writing";
-import Drawing from "./screens/MakePage/Drawing";
+import Template from "./screens/SubPage/Template";
+import TemplateGroup from "./screens/SubPage/TemplateGroup";
+import Writing from "./screens/PostPage/Writing";
+import Drawing from "./screens/PostPage/Drawing";
 import Details from "./screens/SubPage/Details";
-import KakaoHandler from "./screens/MainPage/Kakao";
-
+// User
+import Login from "./screens/User/Login";
+import SignUp from "./screens/User/SignUp";
+import ResetPwd from "./screens/User/ResetPwd";
+import FindPwd from "./screens/User/FindPwd";
+import KakaoHandler from "./screens/User/Kakao";
+// context API
 import UserStore from "./store/UserStore";
 import CreateBookStore from "./store/CreateBookStore";
 import DiaryInfoStore from "./store/DiaryInfoStore";
@@ -38,9 +36,6 @@ function App() {
           <GlobalStyles />
           <Router>
               <Switch>
-                <Route path={routes.landing}>
-                  <Landing />
-                </Route>
                 <Route path={routes.main} exact>
                   <Main />
                 </Route>

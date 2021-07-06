@@ -229,6 +229,7 @@ export const BottomPreBtn = styled.div`
     justify-content: center;
     align-items: center;
     border: 5px solid #75A5A9;
+    border-radius: 6px;
     background-color: #75A5A9;
     font-family: 'GmarketSansMedium';
     font-size: 15px;
@@ -244,6 +245,7 @@ export const BottomNextBtn = styled.div`
     justify-content: center;
     align-items: center;
     border: 5px solid #75A5A9;
+    border-radius: 6px;
     background-color: #75A5A9;
     font-family: 'GmarketSansMedium';
     font-size: 15px;
@@ -258,6 +260,7 @@ export const PublicBtn = styled.div`
     justify-content: center;
     align-items: center;
     border: 5px solid #75A5A9;
+    border-radius: 6px;
     background-color: #75A5A9;
     font-family: 'GmarketSansMedium';
     font-size: 15px;
@@ -273,6 +276,7 @@ export const BottomEditBtn = styled.div`
     justify-content: center;
     align-items: center;
     border: 5px solid #75A5A9;
+    border-radius: 6px;
     background-color: #75A5A9;
     font-family: 'GmarketSansMedium';
     font-size: 15px;
@@ -288,6 +292,7 @@ export const BottomDeleteBtn = styled.div`
     justify-content: center;
     align-items: center;
     border: 5px solid #75A5A9;
+    border-radius: 6px;
     background-color: #75A5A9;
     font-family: 'GmarketSansMedium';
     font-size: 15px;

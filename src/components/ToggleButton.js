@@ -1,6 +1,57 @@
+import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { VscEdit, VscAccount } from 'react-icons/vsc';
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
-export const Span = styled.span`
+export default function ToggleButton() {
+  const history = useHistory();
+  const token = localStorage.getItem('CC_Token');
+
+  const Toindividual = () => {
+    // token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.');
+    history.push('/template')
+    
+  }
+  const ToGroup = () => {
+    // token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.');
+    history.push('/templategroup')
+  }
+  const ToMypage = () => {
+    token ? history.push('/mypage') : alert('로그인이 필요합니다');
+  }
+  
+    return (
+        <div>
+                <Switch>
+                    <input type="checkbox" id="switch" />
+                    <label htmlFor="switch">
+                        <Hamburger>
+                            <SpanWrapper>
+                                <Span /><Span /><Span />
+                            </SpanWrapper>
+                        </Hamburger>
+                        <Navigation id="mypage" onClick={ToMypage}>
+                            <VscAccount />
+                            <Paragraph>마이 페이지</Paragraph>
+                        </Navigation>
+                        <Navigation id="groupadd" onClick={ToGroup}>
+                            <AiOutlineUsergroupAdd />
+                            <Paragraph>그룹일기 작성</Paragraph>
+                        </Navigation>  
+                        <Navigation id="privateadd" onClick={Toindividual}>
+                            <VscEdit />
+                            <Paragraph>개인일기 작성</Paragraph>
+                        </Navigation>
+                    </label>
+                </Switch>
+        </div>
+    )
+}
+
+
+
+const Span = styled.span`
     display: block;
     width: 25px;
     height: 2px;
@@ -11,11 +62,11 @@ export const Span = styled.span`
     }
 `;
 
-export const SpanWrapper = styled.div`
+const SpanWrapper = styled.div`
     opacity: 1;
 `;
 
-export const Paragraph = styled.p`
+const Paragraph = styled.p`
     display: block;
     line-height: 16px;
     z-index: 5;
@@ -34,7 +85,7 @@ export const Paragraph = styled.p`
     color: #FFF9E9;
 `;
 
-export const Hamburger = styled.div`
+const Hamburger = styled.div`
     z-index: 6;
     position: fixed;
     display: flex;
@@ -52,7 +103,7 @@ export const Hamburger = styled.div`
     transition: all 0.2s ease-in-out;
 `;
 
-export const Navigation = styled.div`
+const Navigation = styled.div`
     z-index: 5;
     position: fixed;
     display: flex;
@@ -83,7 +134,7 @@ export const Navigation = styled.div`
 `;
 
 
-export const Switch = styled.div`
+const Switch = styled.div`
     > input {
         display: none;
     }
