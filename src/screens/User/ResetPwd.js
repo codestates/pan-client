@@ -37,13 +37,17 @@ export default function ResetPwd(props) {
         if (password !== confirmPassword) {
             return setErrorMessage('비밀번호가 일치하지 않습니다.');
         } else {
-            axios
-                .post(
-                `https://api.picanote.me/resetPwd/${token}`,
-                    {
-                        password
-                    },
-                )
+                
+            axios(`https://api.picanote.me/resetPwd/${token}`, {
+                method: 'POST',
+                headers: {
+                "Content-Type": "application/json",
+                },
+                data: {
+                    password
+                },
+                withCredentials: true,
+                }) 
                 .then((res) => setErrorMessage(res.data.message))
                 .then( ()=>{ alert("비밀번호가 변경되었습니다. 다시 로그인해 주세요.")})
                 .then(() => history.push('/login'))

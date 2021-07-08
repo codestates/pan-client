@@ -19,9 +19,12 @@ export default function Main() {
     const [isMain] = useState(true);
     const [searchDiary, setSearchDiary] = useState([]);
   // pagination을 위한 states
+   // I = 개인 , G = 그룹 , S = 검색
     const [individual, setIndividual] = useState([]);
     const [group, setGroup] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPageI, setCurrentPageI] = useState(1);
+    const [currentPageG, setCurrentPageG] = useState(1);
+    const [currentPageS, setCurrentPageS] = useState(1);
     const [postsPerPage] = useState(10);
 
   // (resI:개인, resG:그룹) 렌더링 될 때  각 state에 담아줌
@@ -32,28 +35,32 @@ export default function Main() {
         setIndividual(resI.data.data);
         setGroup(resG.data.data);
       };   
-  
       fetchPosts();
-    
     }, []);
     // searchDiary 나오게하는 useEffect 
     useEffect(() => {},
     [searchDiary])
 
     // Get current posts
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentIndividual = individual.slice(indexOfFirstPost, indexOfLastPost);
-    const currentSearchDiary = searchDiary.slice(indexOfFirstPost, indexOfLastPost);
-    const currentGroup = group.slice(indexOfFirstPost, indexOfLastPost);
+    const indexOfLastPostI = currentPageI * postsPerPage;
+    const indexOfLastPostG = currentPageG * postsPerPage;
+    const indexOfLastPostS = currentPageG * postsPerPage;
+    const indexOfFirstPostI = indexOfLastPostI - postsPerPage;
+    const indexOfFirstPostG = indexOfLastPostG - postsPerPage;
+    const indexOfFirstPostS = indexOfLastPostG - postsPerPage;
+    const currentIndividual = individual.slice(indexOfFirstPostI, indexOfLastPostI);
+    const currentSearchDiary = searchDiary.slice(indexOfFirstPostS, indexOfLastPostS);
+    const currentGroup = group.slice(indexOfFirstPostG, indexOfLastPostG);
     
     // 개인일기와 교환일기를 합쳐서 like가 1개라도 있으면 top10으로 props 전달
     const allDiaries = individual.concat(group).filter((e)=> {return e.like !== null})
 
     // Change page
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginateI = pageNumber => setCurrentPageI(pageNumber);
+    const paginateG = pageNumber => setCurrentPageG(pageNumber);
+    const paginateS = pageNumber => setCurrentPageS(pageNumber);
 
-
+    // search
     const handlerSearch = async () => {
         await axios({
           method: 'get',
@@ -67,7 +74,7 @@ export default function Main() {
  
     return (
       <>
-        <Header isMain={isMain} keywords={keywords} SetKeywords={SetKeywords} handlerSearch={handlerSearch} main={routes.main} login={routes.login}></Header>
+        <Header isMain={isMain} SetKeywords={SetKeywords} handlerSearch={handlerSearch} main={routes.main} login={routes.login}></Header>
         <MainBody>
           <PhraseGroup>
               <Phrase style={{ animation: "fadein 1s", fontWeight: "bolder"}}>순간의 기억을 정리하고</Phrase>
@@ -87,18 +94,18 @@ export default function Main() {
             {currentSearchDiary.length >= 1 ? 
             <>
               <PublicNote current={currentSearchDiary}/> 
-              <Pagination postsPerPage={postsPerPage} totalPosts={searchDiary.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
+              <Pagination postsPerPage={postsPerPage} totalPosts={searchDiary.length} paginate={paginateS} currentPage={currentPageS} color={["#343a40","#C57951"]} /> 
             </>
             :
               cur.individual ? 
                 <>
                   <PublicNote current={currentIndividual}/> 
-                  <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} /> 
+                  <Pagination postsPerPage={postsPerPage} totalPosts={individual.length} paginate={paginateI} currentPage={currentPageI} color={["#343a40","#C57951"]} /> 
                 </>
                 : 
                 <>
                   <PublicNote current={currentGroup}/>
-                  <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginate} currentPage={currentPage} color={["#343a40","#C57951"]} />
+                  <Pagination postsPerPage={postsPerPage} totalPosts={group.length} paginate={paginateG} currentPage={currentPageG} color={["#343a40","#C57951"]} />
                 </>
             }
           </Div2>

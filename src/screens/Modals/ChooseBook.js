@@ -53,18 +53,41 @@ import bg46 from "../../images/Cover_img/46.png"
 import bg47 from "../../images/Cover_img/47.jpeg"
 import bg48 from "../../images/Cover_img/48.jpeg"
 
+
 import { CreateBookContext } from "../../store/CreateBookStore";
+import { ModalProvider } from "styled-react-modal";
+import AlertModal from "../Modals/AlertModal";
 
 export default function ChooseBook() {
+
+    const BG = [ bg01, bg02, bg03, bg04, bg05, bg06, bg07, bg08, bg09, bg10, bg11, bg12, bg13, bg14, bg15, bg16, bg17, bg18, 
+        bg19, bg20, bg21, bg22, bg23, bg24, bg25, bg26, bg27, bg28, bg29, bg30, bg31, bg32, bg33, bg34, bg35, bg36, bg38, bg39,
+        bg40, bg41, bg42, bg43, bg44, bg45, bg46, bg47, bg48 ];
+
+
     const [modalIsOpen,setModalIsOpen] = useState(true);
     const [create, setCreate] = useState(false);
     const [books, setBooks] = useState([]);
     const [bookName, setBookName] = useState('일기장 이름');
     const [bookCover, setBookCover] = useState(bg01);
-
+    //context API
     const context = useContext(CreateBookContext);
     const {bookInfo, setBookInfo} = context ;
-    
+
+    // modal state
+    const [isModal, setIsModal] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
+    const [btnContents, setBtnContents] = useState("")
+    const [toPage, setToPage] = useState("")
+
+    // 모달 핸들러
+    const modalHandler = (isModal, alertMsg, btnContents, toPage) => {
+        setIsModal(isModal);
+        setAlertMsg(alertMsg);
+        setBtnContents(btnContents);
+        setToPage(toPage);
+    }
+
     // 서버랑 통신해서 현재 회원의 북 정보를 받아온다
     useEffect(async () => {
         try{
@@ -84,12 +107,12 @@ export default function ChooseBook() {
     // 선택 버튼
     const selectBtn = () => {
         setBookInfo(bookInfo)
-        bookInfo.id ? setModalIsOpen(false) : alert('일기장을 선택해주세요.');
+        bookInfo.id ? setModalIsOpen(false) : 
+        modalHandler(true, '일기장을 선택해주세요', '확인');
     };
 
     // create에서 북을 선택하고 북 이름을 적으면 일기장이 생성되기 위한 메소드
     const createBook = async () => {
-        try{ 
             localStorage.getItem('CC_Token') ? 
                 await axios({
                     method: 'post',
@@ -105,17 +128,15 @@ export default function ChooseBook() {
                     withCredentials: true,
                 })
                 .then(
-                    alert('일기장이 생성되었습니다'),
+                    modalHandler(true, '일기장이 생성되었습니다', '확인'),
                     setCreate(false),
                     setTimeout(() => {
                         window.location.reload(true);
                     }, 100)
                 )
             :
-                alert('일기장 생성이 실패했습니다. 로그인 후 생성 가능합니다.');   
-        }catch{
-            console.error("err");
-        };
+                modalHandler(true, '로그인 후 이용해주세요', '확인' );  
+
     };
 
     // 취소하면 리로드되서 다시 북 선택 모달창으로 이동
@@ -129,7 +150,14 @@ export default function ChooseBook() {
     };
 
     return (
-        <>
+        <ModalProvider>
+        <AlertModal 
+            isModal={isModal} 
+            setIsModal={setIsModal} 
+            alertMsg={alertMsg} 
+            btnContents={btnContents} 
+            toPage={toPage}
+        /> 
             <StyledModal isOpen={modalIsOpen}>
                 {!create ?
                     <>
@@ -192,53 +220,7 @@ export default function ChooseBook() {
                                 <LeftCoverDiv>
                                     <h1>커버를 선택해주세요.</h1>
                                     <SelectCover>
-                                        <CoverImg src={bg39} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg40} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg41} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg42} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg43} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg44} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg45} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg46} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg47} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg48} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg01} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg02} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg03} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg04} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg05} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg06} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg07} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg08} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg09} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg10} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg11} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg12} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg13} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg14} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg15} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg16} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg17} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg18} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg19} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg20} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg21} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg22} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg23} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg24} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg25} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg26} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg27} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg28} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg29} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg30} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg31} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg32} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg33} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg34} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg35} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg36} onClick={e => {setBookCover(e.target.src)}} />
-                                        <CoverImg src={bg38} onClick={e => {setBookCover(e.target.src)}} />
+                                    {BG.map((img,index) => <CoverImg key={index} src={img} onClick={e => {setBookCover(e.target.src)}} /> )}
                                     </SelectCover>
                                 </LeftCoverDiv>
                             </LeftCreateDiv>
@@ -262,6 +244,6 @@ export default function ChooseBook() {
                     </>
                 }
             </StyledModal>
-        </>
+        </ModalProvider>
     )
 }

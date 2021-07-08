@@ -42,6 +42,7 @@ export const ListItemBox = styled.div`
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
         filter: brightness(1.2);
+        cursor: pointer;
     }
 `;
 

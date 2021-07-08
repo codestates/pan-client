@@ -26,7 +26,6 @@ export default function UserStore (props) {
             setUserId(id)
         })
         .catch( error => {
-        console.log(error)
         alert("다시 로그인 해주세요.");
         })
     }

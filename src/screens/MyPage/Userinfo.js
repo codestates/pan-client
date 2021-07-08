@@ -58,7 +58,6 @@ export default function EditUserInfo({username, email }) {
         }else if (newPassword !== confirmPassword) {
             return alert('비밀번호가 동일하지 않습니다.');
         } else {
-        try{
             await axios({
                 method: 'put',
                 url: 'https://api.picanote.me/profile',
@@ -77,14 +76,11 @@ export default function EditUserInfo({username, email }) {
                 alert('회원정보가 정상적으로 바꼈습니다. 다시 로그인해주세요.'),
                 history.push("/login")
             )
-        }catch{
-            console.log("err");
-        }}
+        }
     }
 
     // 회원탈퇴
     const WithdrawalHandler = async () => {
-        try{
             await axios.delete('https://api.picanote.me/withdrawal', {
                 headers: {
                     Authorization : `Bearer ${localStorage.getItem('CC_Token')}`,
@@ -96,9 +92,6 @@ export default function EditUserInfo({username, email }) {
                 localStorage.removeItem('CC_Token');
                 history.push('/');
             })
-        }catch{
-            console.log("err");
-        }
      }
 
     return(

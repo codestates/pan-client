@@ -17,6 +17,8 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import axios from 'axios';
 
+import { ModalProvider } from "styled-react-modal";
+import AlertModal from "../Modals/AlertModal";
 
 export default function Writing() {
   const context = useContext(CreateBookContext);
@@ -32,20 +34,34 @@ export default function Writing() {
   const [temp, setTemp] = useState('');
   const [diaryId, setDiaryId] = useState('');
 
+  // modal state
+  const [isModal, setIsModal] = useState(false)
+  const [alertMsg, setAlertMsg] = useState("")
+  const [btnContents, setBtnContents] = useState("")
+  const [toPage, setToPage] = useState("")
+
   useEffect( ()=> {
     setTemp(JSON.parse(localStorage.getItem('temp')))
     setDiaryId(JSON.parse(localStorage.getItem('id')))
    
     diaryId !== null ? 
-    editorRef.current.getInstance().setHtml(temp.content) :
-    editorRef.current.getInstance().setHtml("<h1>일기를 작성해주세요!</h1>"); 
+    fixed() :
+    editorRef.current.getInstance().setHtml("<h5>그림 저장 버튼을 먼저 누르고 생성 버튼을 클릭 하셔야 그림 일기가 정상적으로 저장됩니다!</h5>"); 
   },[diaryId])
+
+  // 수정할 데이터 담기
+  const fixed = () => {
+    editorRef.current.getInstance().setHtml(temp.content)
+    setPicUrl(temp.picUrl)
+    setTitle(temp.title)
+    setDate(temp.date)
+  }
 
   // 제목에 입력한 값 상태에 담기 15자 넘어가면 짤리게 설정해서 최대15자까지 작성가능
   const titleHandler = (e) => {
       if(e.target.value.length > 15) {
           e.target.value = e.target.value.substr(0, 15);
-          return alert('15자 이내로 작성해주세요');
+          modalHandler(true, '15자 이내로 작성해주세요', '확인');
         
       }else {
           setTitle(e.target.value);
@@ -55,7 +71,7 @@ export default function Writing() {
   const dateHandler = (e) => {
       if(e.target.value.length > 10) {
           e.target.value = e.target.value.substr(0, 10);
-          return alert('형식에 맞게 작성해주세요');
+          modalHandler(true, '형식에 맞게 작성해주세요', '확인');
       }else {
           setDate(e.target.value);
       }
@@ -66,10 +82,10 @@ export default function Writing() {
   // 3. 마지막으로 서버랑 통신해서 데이터 전송
   const writeBtn = async() => {
           if(!bookInfo) {
-            alert('일기장이 선택되지 않았습니다. 일기장을 다시 선택하고 작성해주세요.');
+            modalHandler(true, '일기장을 다시 선택하고 작성해주세요', '확인' );
           }
           else if(!title || !date || !feelings || !weather || !content || !picUrl) {
-            alert('제목,기분,날짜,날씨,내용,그림을 작성해주세요.');
+            modalHandler(true, '제목,기분,날짜,날씨,내용을 작성해주세요', '확인' );
           } 
           else {
           await axios({
@@ -93,14 +109,11 @@ export default function Writing() {
                 withCredentials: true,
           })
           .then(() => {
-            alert('일기가 작성 되었습니다.');
-            history.push('/mypage');
+            modalHandler(true, '일기가 작성 되었습니다', '확인', '/mypage');
           }
           )
           .catch((err) => {
-            alert('일기 작성이 실패되었습니다. 다시 작성해주세요.');
-            console.error(err);
-            history.push('/');
+            modalHandler(true, '일기 작성을 실패했습니다', '확인', '/');
         });
       }
   }
@@ -109,7 +122,7 @@ export default function Writing() {
     localStorage.removeItem('temp');
 
     if(!title || !date || !feelings || !weather || !content ) {
-      alert('제목,기분,날짜,날씨,내용을 작성해주세요.');
+      modalHandler(true, '제목,기분,날짜,날씨,내용을 작성해주세요', '확인' );
     } else {
     await axios({
       method: 'put',
@@ -131,14 +144,11 @@ export default function Writing() {
     .then(() => {
       localStorage.removeItem('temp');
       localStorage.removeItem('id');
-      alert('일기가 수정 되었습니다.');
-      history.push('/mypage');
+      modalHandler(true, '일기가 수정 되었습니다', '확인', '/mypage');
     }
     )
     .catch((err) => {
-      alert('일기 수정이 실패되었습니다. 다시 작성해주세요.');
-      console.error(err);
-      history.push('/');
+      modalHandler(true, '일기 수정이 실패되었습니다', '확인', '/');
   });
 }
   }
@@ -160,17 +170,33 @@ export default function Writing() {
   }
 
 
+  // 모달 핸들러
+  const modalHandler = (isModal, alertMsg, btnContents, toPage) => {
+    setIsModal(isModal);
+    setAlertMsg(alertMsg);
+    setBtnContents(btnContents);
+    setToPage(toPage);
+  }
+
   return (
+    <ModalProvider>
+        <AlertModal 
+          isModal={isModal} 
+          setIsModal={setIsModal} 
+          alertMsg={alertMsg} 
+          btnContents={btnContents} 
+          toPage={toPage}
+        /> 
       <DiaryWritingWrapper>
         <Header main={routes.main} login={routes.login} />
         <DiaryWritingMain>
           <WriteHeader>
             <WriteHeaderLeft>
               <WriteTitle>
-                제목: <input type="text" placeholder="15자 이내로 작성해주세요" onChange={titleHandler}/>
+                제목: <input type="text" placeholder="15자 이내로 작성해주세요" onChange={titleHandler} value={title || ""}/>
               </WriteTitle>
               <WriteDate>
-                날짜: <input type="text" placeholder="예시) 2021-06-07" onChange={dateHandler}/>
+                날짜: <input type="text" placeholder="예시) 2021-06-07" onChange={dateHandler} value={date || ""}/>
               </WriteDate>
             </WriteHeaderLeft>
             <WriteHeaderRight>
@@ -202,5 +228,6 @@ export default function Writing() {
         </DiaryWritingMain>
         <ToggleButton />
     </DiaryWritingWrapper>
+    </ModalProvider>
   )
 }

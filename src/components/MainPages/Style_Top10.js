@@ -19,6 +19,7 @@ export const HeadCard = styled.header`
     padding: 2rem 2rem 2rem 1rem;
     height: 16vh;
     text-shadow: 4px 4px 4px lightgray;
+
 `;
 
 export const HeaderText = styled.div`
@@ -49,7 +50,8 @@ export const CardList = styled.section`
     padding-top: 2rem;
     padding-left: 2rem;
     overflow: scroll;
-    height: 38vh;
+    height: 100%;
+    width: 100%;
     &::-webkit-scrollbar {
         width: 10px;
         height: 26px;
@@ -65,7 +67,7 @@ export const CardList = styled.section`
 
 export const CardWrap = styled.article`
     width: 90%;
-    height: 99%;
+    height: 100%;
     box-shadow: #ced4da 0 1px 4px;
     background-color: none;
     position: relative;
@@ -94,6 +96,7 @@ export const CardWrap = styled.article`
         transform: translateY(-1rem);
         opacity: 1.0;
         filter: brightness(1.3);
+        cursor: pointer;
     }
 `;
 

@@ -7,6 +7,9 @@ import {
     ModalBottom, Button
 } from "../../components/modal/Style_DeleteBook";
 import checkIcons from "../../images/check.png";
+import { ModalProvider } from "styled-react-modal";
+import DeleteModal from "../Modals/DeleteModal";
+import AlertModal from "../Modals/AlertModal";
 
 export default function Deletebook(props) {
     
@@ -15,6 +18,19 @@ export default function Deletebook(props) {
         setIsOpen(false);
     }
     const [ bookId, setBookId ] = useState();
+
+    // modal state
+    const [isModal, setIsModal] = useState(false)
+    const [isConfirmModal, setIsConfirmModal] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
+    const [btnContents, setBtnContents] = useState("")
+
+    // 모달 핸들러
+    const modalHandler = ( isModal, alertMsg, btnContents ) => {
+        setIsModal(isModal);
+        setBtnContents(btnContents);
+        setAlertMsg(alertMsg);
+    }
 
     // 일기장 삭제
     const HandleSubmit = async(e) => {
@@ -28,13 +44,28 @@ export default function Deletebook(props) {
             withCredentials : true
         })
         .then(()=> {
-            setIsOpen(false)
-            alert("삭제가 완료되었습니다.")
+            modalHandler(true, '삭제가 완료되었습니다', '확인' );
+            setIsOpen(false);
+            setTimeout(() => {
+                window.location.reload(true)
+            }, 500);
         })
-        .then(() => { window.location.reload(true)})
     }
 
     return (
+        <ModalProvider>
+        <AlertModal
+            isModal={isModal} 
+            setIsModal={setIsModal} 
+            alertMsg={alertMsg} 
+            btnContents={btnContents}
+        />
+        <DeleteModal
+            isModal={isConfirmModal} 
+            setIsModal={setIsConfirmModal} 
+            HandleSubmit={HandleSubmit}
+            bookId={bookId}
+        />
         <StyledModal isOpen={modalIsOpen}>
             <ModalBox>
                 <ModalHeader>
@@ -75,10 +106,17 @@ export default function Deletebook(props) {
                     </ModalBook>
                 </ModalMiddle>
                 <ModalBottom>
-                    <Button style={{backgroundColor: "white", color: "tomato"}} onClick={HandleSubmit}>DELETE</Button>
+                    <Button 
+                        style={{backgroundColor: "white", color: "tomato"}} 
+                        onClick={()=> { 
+                            return !bookId ? modalHandler(true, '삭제할 일기를 선택해주세요', '확인') : setIsConfirmModal(true)
+                             }}>
+                        DELETE
+                        </Button>
                     <Button className="close" onClick={closeModal}>CLOSE</Button>
                 </ModalBottom>
             </ModalBox>
         </StyledModal>
+        </ModalProvider>
     )
 }

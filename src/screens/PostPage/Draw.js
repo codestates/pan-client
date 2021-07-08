@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import brushIcon from "../../images/brush.png"
-
+import { ModalProvider } from "styled-react-modal";
+import AlertModal from "../Modals/AlertModal";
 
 const CANVAS_WIDTH = 1300;
 const CANVAS_HEIGHT = 400;
@@ -14,6 +15,11 @@ export default function Board({ setPicUrl }) {
   const [filling, setFilling] = useState(false);
   const [painting, setPainting] = useState(false);
   const [color, setColor] = useState(COLORS[14]);
+   // modal state
+   const [isModal, setIsModal] = useState(false)
+   const [alertMsg, setAlertMsg] = useState("")
+   const [btnContents, setBtnContents] = useState("")
+   const [toPage, setToPage] = useState("")
 
   const canvas = useRef(null);
   const ctx = useRef(null);
@@ -95,11 +101,29 @@ export default function Board({ setPicUrl }) {
     },
         withCredentials: true,
     })
-    .then(alert('그림이 등록 되었습니다.'))
+    .then(modalHandler(true, '그림이 등록 되었습니다', '확인' ))
     .then(res => setPicUrl(res.data.picUrl));
   };
   
+  const updateCanvas =() => {
+    var img = new Image(); //이미지 객체 생성
+    img.src = "https://s3.ap-northeast-2.amazonaws.com/picanote.me/uploads/1624432560283_blob" ; //code.jpg라는 이미지 파일을 로딩 시작
+    img.onload = function () //이미지 로딩 완료시 실행되는 함수
+    {
+    //(20,20)을 중심으로 100*100의 사이즈로 이미지를 그림 
+    ctx.current.drawImage(img, 0, 0, this.width, this.height)
+    }
+    const newCtx = document.getElementsByClassName("canva");
+    const imgBase64 = newCtx[0].toDataURL('image/png');
+  }
 
+    // 모달 핸들러
+    const modalHandler = (isModal, alertMsg, btnContents, toPage) => {
+      setIsModal(isModal);
+      setAlertMsg(alertMsg);
+      setBtnContents(btnContents);
+      setToPage(toPage);
+    }
 
   useEffect(() => {
     if (canvas.current) {
@@ -110,60 +134,72 @@ export default function Board({ setPicUrl }) {
   }, [color]);
 
   return (
-    <DrawWrapper>
-      <ToolDiv> 
-        <ControlsRng>
-          <Range className="controls__range">
-            Brush
-            <input
-              type="range"
-              min="0.1"
-              max="5"
-              defaultValue={"2.5"}
-              onChange={handleRangeChange}
-              step="0.1"
-            />
-          </Range>
-          <Range className="controls__range">
-            Eraser
-            <input
-              type="range"
-              min="10"
-              max="40"
-              defaultValue={"2.5"}
-              onChange={handleEraser}
-              step="0.1"
-            />
-          </Range>
-      </ControlsRng>
-      {filling ? <Mode onClick={handleModeClick}>Fill</Mode> : <Mode onClick={handleModeClick}>Paint</Mode>}
-      <Clear onClick={clearDrawing}>Clear</Clear>
-        {COLORS.map(c => {
-          return (
-            color === c ? 
-            <ColorButton name={c} key={c} onClick={handleColorClick} color={c} style={{border:'2px solid #E3DFD4'}}>
-            C</ColorButton>
-             :
-            <ColorButton name={c} key={c} onClick={handleColorClick} color={c}>
-            </ColorButton>
-          )})}
-          <ToolRight>
-            <Savebtn onClick={uploadCanvasToServer}>
-              그림 저장
-            </Savebtn>
-          </ToolRight>
-      </ToolDiv>
-      <Canva className="canva"
-        ref={canvas}
-        width={CANVAS_WIDTH}
-        height={CANVAS_HEIGHT}
-        onMouseMove={onMouseMove}
-        onMouseDown={startPainting}
-        onMouseUp={stopPainting}
-        onMouseLeave={stopPainting}
-        onClick={handleCanvasClick}
-      />
-    </DrawWrapper>
+    <ModalProvider>
+    <AlertModal 
+      isModal={isModal} 
+      setIsModal={setIsModal} 
+      alertMsg={alertMsg} 
+      btnContents={btnContents} 
+      toPage={toPage}
+    /> 
+      <DrawWrapper>
+        <ToolDiv> 
+          <ControlsRng>
+            <Range className="controls__range">
+              Brush
+              <input
+                type="range"
+                min="0.1"
+                max="5"
+                defaultValue={"2.5"}
+                onChange={handleRangeChange}
+                step="0.1"
+              />
+            </Range>
+            <Range className="controls__range">
+              Eraser
+              <input
+                type="range"
+                min="10"
+                max="40"
+                defaultValue={"2.5"}
+                onChange={handleEraser}
+                step="0.1"
+              />
+            </Range>
+        </ControlsRng>
+        {filling ? <Mode onClick={handleModeClick}>Fill</Mode> : <Mode onClick={handleModeClick}>Paint</Mode>}
+        <Clear onClick={clearDrawing}>Clear</Clear>
+          {COLORS.map(c => {
+            return (
+              color === c ? 
+              <ColorButton name={c} key={c} onClick={handleColorClick} color={c} style={{border:'2px solid #E3DFD4'}}>
+              C</ColorButton>
+              :
+              <ColorButton name={c} key={c} onClick={handleColorClick} color={c}>
+              </ColorButton>
+            )})}
+            <ToolRight>
+              <Savebtn onClick={uploadCanvasToServer}>
+                그림 저장
+              </Savebtn>
+              {/* <Savebtn onClick={updateCanvas}>
+                그림 수정
+              </Savebtn> */}
+            </ToolRight>
+        </ToolDiv>
+        <Canva className="canva"
+          ref={canvas}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
+          onMouseMove={onMouseMove}
+          onMouseDown={startPainting}
+          onMouseUp={stopPainting}
+          onMouseLeave={stopPainting}
+          onClick={handleCanvasClick}
+        />
+      </DrawWrapper>
+    </ModalProvider>  
   );
 };
 

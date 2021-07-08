@@ -77,7 +77,6 @@ export default function Details ({ match }) {
         } else {
             const fetchPosts = async () => {
                 const res = await axios.get(`https://api.picanote.me/diaries/${id}`);
-                // console.log(res)
                     setDetails({      
                         title : res.data.data[0].title,
                         content: res.data.data[0].content,

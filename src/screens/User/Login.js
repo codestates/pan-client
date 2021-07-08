@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 import { ImageBox, SocialBtn } from "../../components/auth/ImageBox";
 import { TextAlign, BlueGreen, CedarChest } from "../../components/auth/FontLayout";
 import { KAKAO_AUTH_URL1 } from './Oauth'
-// import { KAKAO_AUTH_URL2 } from './Oauth'
+import { KAKAO_AUTH_URL2 } from './Oauth'
 
 const Container = styled.div`
     position: absolute;

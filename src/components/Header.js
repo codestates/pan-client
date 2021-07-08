@@ -6,17 +6,13 @@ import route from "../routes"
 import React from "react";
 import { useHistory } from "react-router-dom";
 
-function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
+function Header ({SetKeywords, isMain, handlerSearch}) {
   const history = useHistory();
   const token = localStorage.getItem('CC_Token');
   const handlelogout = () => {
-    try {
       localStorage.removeItem('CC_Token');
       history.push("/");
       window.location.reload(true);
-    } catch(err) {
-      console.log(err);
-    }
   }
 
   const searchKeywords = (e) => {
@@ -32,13 +28,8 @@ function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
         <div> 
           {isMain ? 
           <SearchBox>
-            {keywords ? 
-            <SearchTxt className="serach" type="text" placeholder="Type to search" onChange={searchKeywords} style={{
-                  padding: '0 6px',
-                  width: '240px',
-            }}/>
-            :
-            <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords}/>}
+            <SearchTxt type="text" placeholder="Type to search" onChange={searchKeywords}/>
+            
             <SearchBtn href="#" onClick={handlerSearch}>
               <img src={SearchImg} width="15px" alt="serach" /> 
             </SearchBtn>
@@ -46,7 +37,6 @@ function Header ({keywords, SetKeywords, isMain, handlerSearch}) {
           : 
             null
           }
-
               {token ? 
                 (
                   <Login>

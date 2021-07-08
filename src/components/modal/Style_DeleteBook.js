@@ -62,6 +62,15 @@ export const ModalBook = styled.div`
     overflow-x: scroll;
     height: 100%;
     width: 84%;
+    /* 스크롤바 설정*/
+    &::-webkit-scrollbar{
+        height: 12px;
+    }
+    /* 스크롤바 막대 설정*/
+    &::-webkit-scrollbar-thumb{
+        background-color: #E4D8B4;
+        border-radius: 20px;    
+  }
 `;
 
 export const DiaryWrapper = styled.div`

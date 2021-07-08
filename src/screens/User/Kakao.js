@@ -12,19 +12,17 @@ export default function KakaoHandler(props) {
   const code = new URL(window.location.href).searchParams.get("code");
 
   useEffect(()=> {
-    console.log(code)
+    axios({
+      method: 'get',
+      url: `https://api.picanote.me/kakao?code=${code}`,
+      data: {},
+      withCredentials: true
     
-    axios('https://api.picanote.me/kakao', {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        authorizationCode : code
-      },
-      withCredentials: true,
       }) 
       .then(res => console.log(res))
   
   }, [])
+
 
 
   return (

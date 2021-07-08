@@ -1,28 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { VscEdit, VscAccount } from 'react-icons/vsc';
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { ModalProvider } from "styled-react-modal";
+import AlertModal from "../screens/Modals/AlertModal";
+import ConfirmModal from "../screens/Modals/ConfirmModal";
 
 export default function ToggleButton() {
   const history = useHistory();
   const token = localStorage.getItem('CC_Token');
 
+  // modal state
+  const [isModal, setIsModal] = useState(false)
+  const [isConfirmModal, setIsConfirmModal] = useState(false)
+  const [alertMsg, setAlertMsg] = useState("")
+  const [btnContents, setBtnContents] = useState("")
+  const [toPage, setToPage] = useState("")
+  const [toPage2, setToPage2] = useState("")
+  
+  // 모달 핸들러
+  const modalHandler = (isModal, alertMsg, btnContents, toPage) => {
+    setIsModal(isModal);
+    setAlertMsg(alertMsg);
+    setBtnContents(btnContents);
+    setToPage(toPage);
+  }
+
+  const confirmMDHandler = (isConfirmModal, toPage1, toPage2) => {
+    setIsConfirmModal(isConfirmModal);
+    setToPage(toPage1);
+    setToPage2(toPage2);
+  }
+
   const Toindividual = () => {
-    // token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.');
-    history.push('/template')
+    token ? history.push('/template') : 
+    confirmMDHandler(true, '/login', '/template')
     
   }
+
   const ToGroup = () => {
-    // token ? history.push('/template') : alert('로그인 하지 않으면 작성한 글이 저장되지 않습니다.');
-    history.push('/templategroup')
+    token ? history.push('/templategroup') : 
+    confirmMDHandler(true,'/login', '/templategroup')
+    
   }
+ 
   const ToMypage = () => {
-    token ? history.push('/mypage') : alert('로그인이 필요합니다');
+    token ? history.push('/mypage') : 
+    modalHandler(true, '로그인 후 이용가능합니다', '로그인', '/login')
   }
   
     return (
-        <div>
+        <ModalProvider>
+        <AlertModal 
+            isModal={isModal} 
+            setIsModal={setIsModal} 
+            alertMsg={alertMsg} 
+            btnContents={btnContents}
+            toPage={toPage}
+        /> 
+        <ConfirmModal
+            isModal={isConfirmModal} 
+            setIsModal={setIsConfirmModal} 
+            toPage1={toPage}
+            toPage2={toPage2}
+        />
+        <div>   
                 <Switch>
                     <input type="checkbox" id="switch" />
                     <label htmlFor="switch">
@@ -46,6 +89,7 @@ export default function ToggleButton() {
                     </label>
                 </Switch>
         </div>
+        </ModalProvider>
     )
 }
 

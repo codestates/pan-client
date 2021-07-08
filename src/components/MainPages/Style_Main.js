@@ -46,12 +46,12 @@ export const Phrase = styled.div`
 export const Div1 = styled.div`
     display: flex;
     justify-content: center;
-    height: 44vh;
+    height: 50vh;
+    width: 100vw;
     margin-top: 40px;
 `;
 
 export const Div2 = styled.div`
-    /* border: 1px solid red; */
     width: 100%;
     height: 60vh;
     margin: 40px 0;
