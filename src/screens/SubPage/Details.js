@@ -5,6 +5,7 @@ import routes from '../../routes';
 import Header from '../../components/Header';
 import ToggleButton from '../../components/ToggleButton';
 import { FiHeart } from "react-icons/fi";
+import heart from "../../images/heart.png"
 import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, ContentBottom,CommnetBG, DetailBG,
     ContentHeader, ContentMain, DetailComment, DetailContent, DetailsMain, DetailsWrapper, CommentEditBtn, 
     CommentDeleteBtn, BottomEditBtn, BottomDeleteBtn, BottomRight, BottomPreBtn, BottomNextBtn, BottomLikeBtn, PublicBtn, 
@@ -12,6 +13,8 @@ import { CommentHeader, CommentMain, CommentMiddle, CommentLeft, CommentRight, C
     ContentWeather, ContentHeaderT, ContentHeaderB, ContentHBLeft, ContentHBRight, DisableComment } 
     from "../../components/Details/DetailsLayout"
 import { useHistory } from 'react-router-dom';
+import { ModalProvider } from "styled-react-modal";
+import AlertModal from "../Modals/AlertModal";
 
 export default function Details ({ match }) {
     const id = match.params.id;
@@ -25,7 +28,6 @@ export default function Details ({ match }) {
         username: '',
         date: '',
         private: '',
-        like: '',
         comments: [],
         isLike: []
     });
@@ -35,7 +37,24 @@ export default function Details ({ match }) {
 
     // user contextAPI
     const userContext = useContext(UserContext);
-    const {username, accessTokenRequest } = userContext ;
+    const {userId, username, accessTokenRequest } = userContext ;
+
+     // modal state
+    const [isModal, setIsModal] = useState(false)
+    const [isConfirmModal, setIsConfirmModal] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
+    const [btnContents, setBtnContents] = useState("")
+    const [toPage, setToPage] = useState("")
+    const [toPage2, setToPage2] = useState("")
+    
+    // 모달 핸들러
+    const modalHandler = (isModal, alertMsg, btnContents, toPage) => {
+        setIsModal(isModal);
+        setAlertMsg(alertMsg);
+        setBtnContents(btnContents);
+        setToPage(toPage);
+    }
+
    
     // 토큰 유무를 확인해서 로그인 상태라면 에세스 토큰으로 정보를 추출함 => 본인 일기라면 수정,삭제 보이게 해주기 위함
     // url params에 맞춰서 일기를 렌더링 한다.
@@ -55,7 +74,7 @@ export default function Details ({ match }) {
                 .then(
                     res => 
                     res.data.data[0] === undefined ? 
-                    alert('작성되지 않은 일기입니다.')
+                    modalHandler(true, '작성되지 않은 일기입니다', '확인')
                 : 
                 setDetails({      
                     title : res.data.data[0].title,
@@ -66,7 +85,6 @@ export default function Details ({ match }) {
                     username: res.data.data[0].username,
                     date: res.data.data[0].date,
                     private: res.data.data[0].private,
-                    like: res.data.data[0].like,
                     comments : res.data.data[0].Comments,
                     isLike : res.data.data[0].Likes
                 }),
@@ -86,7 +104,6 @@ export default function Details ({ match }) {
                         username: res.data.data[0].username,
                         date: res.data.data[0].date,
                         private: res.data.data[0].private,
-                        like: res.data.data[0].like,
                         comments : res.data.data[0].Comments,
                         isLike : res.data.data[0].Likes
                     })
@@ -105,8 +122,7 @@ export default function Details ({ match }) {
                 },
                 withCredentials : true
             })
-            .then(()=>alert('일기장이 삭제되었습니다'))
-            .then(()=>{ histoy.push('/mypage')})
+            .then(()=>modalHandler(true, '일기가 삭제되었습니다', '확인', '/mypage'))
     };
 
     // 좋아요 기능 구현
@@ -162,9 +178,11 @@ export default function Details ({ match }) {
             },
             withCredentials: true,
         })
-        .then(alert('댓글이 등록되었습니다.'),)
+        .then(modalHandler(true, '댓글이 등록 되었습니다', '확인'))
         .then(() => {
-            window.location.reload(true);
+            setTimeout(()=> {
+                window.location.reload(true);
+            }, 1000)
             }
         )
     }
@@ -184,10 +202,10 @@ export default function Details ({ match }) {
             withCredentials: true,
         })
         .then(() => 
-            alert('댓글이 삭제 되었습니다.'),
+            modalHandler(true, '댓글이 삭제 되었습니다', '확인'),
             setTimeout(()=> {
                 window.location.reload(true)
-            },2000)
+            }, 1000)
             )
     }
     
@@ -211,6 +229,14 @@ export default function Details ({ match }) {
 };
 
     return (
+        <ModalProvider>
+        <AlertModal 
+            isModal={isModal} 
+            setIsModal={setIsModal} 
+            alertMsg={alertMsg} 
+            btnContents={btnContents}
+            toPage={toPage}
+        /> 
         <DetailsWrapper>
             <Header main={routes.main} login={routes.login} />    
             <DetailsMain>
@@ -254,12 +280,22 @@ export default function Details ({ match }) {
                             <BottomWriter>
                                 작성자: {details.username}
                             </BottomWriter>
-                            <BottomLikeBtn>   
-                             <>
-                                 <FiHeart onClick={handlerHeart}/>
-                                 <div>&nbsp;</div>        
-                                 {details.like}
-                             </>
+                            <BottomLikeBtn> 
+                            <> 
+                                {details.isLike.filter(e => e.userId === userId).length !== 0 ? 
+                                    <img 
+                                    src={heart} 
+                                    style={{width: "22px", height: "22px" }}
+                                    onClick={handlerHeart}
+                                    >
+                                    </img>
+                                :                  
+                                <FiHeart onClick={handlerHeart}/>
+                                }
+                                <div>&nbsp;</div>   
+                                <div>&nbsp;</div>   
+                                {details.isLike.length}    
+                            </>
                             </BottomLikeBtn>
                         </BottomLeft>
                         <BottomRight>
@@ -337,5 +373,6 @@ export default function Details ({ match }) {
             </DetailsMain>
             <ToggleButton />
         </DetailsWrapper>
+        </ModalProvider>
     )
 }

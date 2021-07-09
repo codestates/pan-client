@@ -10,6 +10,10 @@ import {
     Withdrawal, WithdrawalMain, 
     Bottom, LeftDiv, EditFooter 
 } from "../../components/Mypages/style_UserInfo";
+import { ModalProvider } from "styled-react-modal";
+import DeleteModal from "../Modals/DeleteModal";
+import AlertModal from "../Modals/AlertModal";
+
 
 export default function EditUserInfo({username, email }) {
 
@@ -18,6 +22,28 @@ export default function EditUserInfo({username, email }) {
     const [newProfile, setNewProfile] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    // modal state
+    const [isModal, setIsModal] = useState(false)
+    const [isConfirmModal, setIsConfirmModal] = useState(false)
+    const [alertMsg, setAlertMsg] = useState("")
+    const [target, setTarget] = useState("")
+    const [btnContents, setBtnContents] = useState("")
+    const [toPage, setToPage] = useState("")
+
+    // alertModal handler
+    const alertHandler = ( isModal, alertMsg, btnContents, toPage ) => {
+        setIsModal(isModal);
+        setBtnContents(btnContents);
+        setAlertMsg(alertMsg);
+        setToPage(toPage);
+    }
+
+    // deleteModal handler
+    const deleteHandler = ( isConfirmModal, target ) => {
+        setIsConfirmModal(isConfirmModal);
+        setTarget(target)
+    }
 
     // 프로필 사진 
     const [imgBase64, setImgBase64] = useState(""); // 파일 base64
@@ -54,9 +80,9 @@ export default function EditUserInfo({username, email }) {
     // 회원정보 수정
     const UserInfoHandler = async () => {
         if(!newPassword || !newName){
-            return alert('사용자명과 패스워드는 필수 입력사항입니다.')
+            return alertHandler(true, '유저네임과 비밀번호는 필수 사항입니다', '확인' );
         }else if (newPassword !== confirmPassword) {
-            return alert('비밀번호가 동일하지 않습니다.');
+            return alertHandler(true, '비밀번호가 일치하지 않습니다', '확인' );
         } else {
             await axios({
                 method: 'put',
@@ -73,8 +99,7 @@ export default function EditUserInfo({username, email }) {
                 withCredentials : true   
             }).then(
                 localStorage.removeItem('CC_Token'),
-                alert('회원정보가 정상적으로 바꼈습니다. 다시 로그인해주세요.'),
-                history.push("/login")
+                alertHandler(true, '회원정보가 정상적으로 바꼈습니다', '확인' ,'/login' )
             )
         }
     }
@@ -88,13 +113,27 @@ export default function EditUserInfo({username, email }) {
                 },
                 withCredentials : true   
             }).then(()=>{ 
-                alert("회원탈퇴가 되었습니다.");
+                alertHandler(true, '회원탈퇴가 되었습니다', '확인' );
                 localStorage.removeItem('CC_Token');
                 history.push('/');
             })
      }
 
     return(
+        <ModalProvider>
+        <AlertModal
+            isModal={isModal} 
+            setIsModal={setIsModal} 
+            alertMsg={alertMsg} 
+            btnContents={btnContents}
+            toPage={toPage}
+        />
+        <DeleteModal
+            isModal={isConfirmModal} 
+            setIsModal={setIsConfirmModal} 
+            target={target}
+            HandleSubmit={WithdrawalHandler}
+        />
         <EditWrapper>
             <ProfileWrapper>
                     <ProfileLeft>     
@@ -130,7 +169,7 @@ export default function EditUserInfo({username, email }) {
             <Withdrawal>
                 <WithdrawalMain>
                     <LeftDiv>회원탈퇴</LeftDiv>
-                    <button onClick={WithdrawalHandler}>회원 탈퇴</button>   
+                    <button onClick={() => deleteHandler(true, '탈퇴')}>회원 탈퇴</button>   
                 </WithdrawalMain>
                 <Bottom>
                     탈퇴 시 작성하신 일기장 및 일기들이 모두 삭제되며 복구되지 않습니다.
@@ -140,5 +179,6 @@ export default function EditUserInfo({username, email }) {
                 <button onClick={UserInfoHandler}>수정하기</button>
             </EditFooter>
         </EditWrapper>
+        </ModalProvider>
     )
 };

@@ -23,17 +23,25 @@ export default function Deletebook(props) {
     const [isModal, setIsModal] = useState(false)
     const [isConfirmModal, setIsConfirmModal] = useState(false)
     const [alertMsg, setAlertMsg] = useState("")
+    const [target, setTarget] = useState("")
     const [btnContents, setBtnContents] = useState("")
 
-    // 모달 핸들러
-    const modalHandler = ( isModal, alertMsg, btnContents ) => {
+    // alertModal handler
+    const alertHandler = ( isModal, alertMsg, btnContents ) => {
         setIsModal(isModal);
         setBtnContents(btnContents);
         setAlertMsg(alertMsg);
+        setTarget(target)
+    }
+
+    // deleteModal handler
+    const deleteHandler = ( isConfirmModal, target ) => {
+        setIsConfirmModal(isConfirmModal);
+        setTarget(target)
     }
 
     // 일기장 삭제
-    const HandleSubmit = async(e) => {
+    const HandleSubmit = async() => {
         await axios({
             method: "delete",
             url: `https://api.picanote.me/books/${bookId}`,
@@ -44,7 +52,7 @@ export default function Deletebook(props) {
             withCredentials : true
         })
         .then(()=> {
-            modalHandler(true, '삭제가 완료되었습니다', '확인' );
+            alertHandler(true, '삭제가 완료되었습니다', '확인' );
             setIsOpen(false);
             setTimeout(() => {
                 window.location.reload(true)
@@ -63,8 +71,8 @@ export default function Deletebook(props) {
         <DeleteModal
             isModal={isConfirmModal} 
             setIsModal={setIsConfirmModal} 
+            target={target}
             HandleSubmit={HandleSubmit}
-            bookId={bookId}
         />
         <StyledModal isOpen={modalIsOpen}>
             <ModalBox>
@@ -109,7 +117,7 @@ export default function Deletebook(props) {
                     <Button 
                         style={{backgroundColor: "white", color: "tomato"}} 
                         onClick={()=> { 
-                            return !bookId ? modalHandler(true, '삭제할 일기를 선택해주세요', '확인') : setIsConfirmModal(true)
+                            return !bookId ? alertHandler(true, '삭제할 일기를 선택해주세요', '확인') : deleteHandler(true, '삭제')
                              }}>
                         DELETE
                         </Button>

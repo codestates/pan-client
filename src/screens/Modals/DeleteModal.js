@@ -2,27 +2,27 @@ import Modal from 'styled-react-modal';
 import styled from 'styled-components';
 import React from "react";
 
-export default function DeleteModal({ isModal, setIsModal, HandleSubmit }) {  
+export default function DeleteModal({ isModal, setIsModal, target, HandleSubmit }) {  
 
   return(
 
     <DeleteMD isOpen={isModal}>
       <DeleteText>
-        삭제하면 복구 되지 않습니다
+        {`${target}하면 복구 되지 않습니다`}
       </DeleteText>
       <DeleteText>
         정말&nbsp;
         <span style={{color: '#ec4646', fontWeight: '700'}}>
-         삭제
+         {target}
         </span>
-        하시겠습니까??
+        &nbsp;하시겠습니까??
       </DeleteText>
       <DeleteFooter>
         <DeleteBtn onClick={() => { setIsModal(false) }}>
             취소
         </DeleteBtn>
         <DeleteBtn onClick={() => { HandleSubmit() }}>
-            삭제
+            {target}
         </DeleteBtn>
       </DeleteFooter>
     </DeleteMD>
